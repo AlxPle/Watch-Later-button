@@ -34,7 +34,12 @@ html {
     box-sizing: inherit;
 }
 
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+}
+
 body {
+    width: 200px;
     font-family: Roboto,sans-serif,Arial,-apple-system,BlinkMacSystemFont;
     font-size: 14px;
     line-height: 1.65;
@@ -43,5 +48,5 @@ body {
     font-size: 16px;
 }
 .extention-desc {
-    
+    font-size: 14px;
 }
