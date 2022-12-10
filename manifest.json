@@ -13,15 +13,11 @@
 		"service_worker": "background.js"
 	},
   "action": {
-    "default_popup": "main.html"
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "css": [
-        "assets/styles/style.css"
-      ],
-      "matches": ["<all_urls>"],
-      "js": ["js/toggleIcon.js"]
+        "matches": [ "<all_urls>" ]
     }
   ]
 }
