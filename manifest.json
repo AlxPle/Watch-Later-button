@@ -2,7 +2,16 @@
   "manifest_version": 3,
   "name": "Youtube SaveTo",
   "description": "Adds a convenient way to save a video in YouTube",
-  "version": "1.0",
+  "version": "1.0", 
+  "icons": {
+		"128": "assets/icons/128.png",
+		"16": "assets/icons/16.png",
+		"32": "assets/icons/32.png",
+		"48": "assets/icons/48.png"
+	},
+	"background": {
+		"service_worker": "app/background.js"
+	},
   "action": {
     "default_popup": "app/main.html",
     "default_icon": "app/assets/icons/heart_plus_48.png"
