@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/roboto-300.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/roboto-400.woff2") format("woff2");
+}
+
+:root {
+    --border-radius: 3px;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+html {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+body {
+    font-family: Roboto,sans-serif,Arial,-apple-system,BlinkMacSystemFont;
+    font-size: 14px;
+    line-height: 1.65;
+}
+.extention-name {
+    font-size: 16px;
+}
+.extention-desc {
+    
+}

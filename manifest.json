@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
+  "name": "Youtube SaveTo",
+  "description": "Adds a convenient way to save a video in YouTube",
   "version": "1.0",
   "action": {
-    "default_popup": "hello.html",
-    "default_icon": "hello_extensions.png"
+    "default_popup": "app/main.html",
+    "default_icon": "app/assets/icons/heart_plus_48.png"
   }
 }
