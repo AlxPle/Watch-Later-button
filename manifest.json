@@ -4,16 +4,22 @@
   "description": "Adds a convenient way to save a video in YouTube",
   "version": "1.0", 
   "icons": {
-		"128": "assets/icons/128.png",
-		"16": "assets/icons/16.png",
-		"32": "assets/icons/32.png",
-		"48": "assets/icons/48.png"
+    "16": "assets/icons/light-mode/iconmonstr-text-plus-lined-16.png",
+		"32": "assets/icons/light-mode/iconmonstr-text-plus-lined-32.png",
+		"48": "assets/icons/light-mode/iconmonstr-text-plus-lined-48.png",
+		"128": "assets/icons/light-mode/iconmonstr-text-plus-lined-120.png"
 	},
 	"background": {
-		"service_worker": "app/background.js"
+		"service_worker": "assets/js/background.js"
 	},
   "action": {
-    "default_popup": "app/main.html",
-    "default_icon": "app/assets/icons/heart_plus_48.png"
-  }
+    "default_popup": "main.html",
+    "default_icon": "assets/icons/heart_plus_48.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["toggleIcon.js"]
+    }
+  ]
 }
