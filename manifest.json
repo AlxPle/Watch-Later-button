@@ -2,22 +2,25 @@
   "manifest_version": 3,
   "name": "Youtube SaveTo",
   "description": "Adds a convenient way to save a video in YouTube",
-  "version": "1.0", 
+  "version": "1.0",
+  "author": "@2thecrow",
   "icons": {
     "16": "assets/icons/red/iconmonstr-text-plus-lined-16.png",
-		"32": "assets/icons/red/iconmonstr-text-plus-lined-32.png",
-		"48": "assets/icons/red/iconmonstr-text-plus-lined-48.png",
-		"128": "assets/icons/red/iconmonstr-text-plus-lined-120.png"
-	},
-	"background": {
-		"service_worker": "background.js"
-	},
+    "32": "assets/icons/red/iconmonstr-text-plus-lined-32.png",
+    "48": "assets/icons/red/iconmonstr-text-plus-lined-48.png",
+    "128": "assets/icons/red/iconmonstr-text-plus-lined-120.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup/popup.html"
   },
   "content_scripts": [
-    {
-        "matches": [ "<all_urls>" ]
+    { 
+      "css": ["assets/styles/style.css"],
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["js/saveto.js"]
     }
   ]
 }

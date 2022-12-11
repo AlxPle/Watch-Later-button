@@ -1,0 +1,13 @@
+.save-to {
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACB0lEQVRo3u2XMW/TQBiGv/fuglW1m40Y6GCvhZkIpAwwhiEz4i9ULPwOFtS9UyTExgBjFyRQ8gO6umVAimRvaSXj830dSIRJ7OAoPbsS90gnWZ/Pr9/Pzvm9EDkcDofjfwarhVTKd2TMG2JW3TqDJiHe+0XxdrsGgIyY73Vq/k8Tv3xmb9MUsV4RJwTorr0v3sBJ1zYcDodlXA5YbsLlgMNxV5mFoUiUGqZCjFMgToF8MeJUiHGi1HAWhmL3O1kg6fWOUmCSEvHGAUySXu9ok5b9HAB+8N7eo+D6ek5ElCj1AkXxiZgPGl4/ZylHgdZnzRq47RyQ8pVfFB+WTx5aTxqbLzehVD/I8/PVU3ZzALjQQfCR6PdvHlqf1plnzxuw5w0qdZgPoPXpLIrW/IJaIlFqCK0/1533F15SIq6bw0q9DLT+Uq61tsphzGsbGu19ppif2dBo8zt7+JcXzxv4RFiOZb1cq1gTh6uidzMotsBqDpj9/Yf3r65+EhGlQEzMYd3cJouYgAufOSqX1t+AMce3FWLIsselm3/bXXBdw2oOwJjny2MWYryrXpVGazkwC0OhLi+/E/OTSnOLBYss+1r9NDDVYfj0QRybThogamsrYZEgz89ZyhEB863MSzmqMt96A0REgdZnrFSfgGkD81NWql+3E+2UWRT9+w9NxebN4XA4HI4yNy3O/XwEShuyAAAAAElFTkSuQmCC);
+    background-size: cover;
+    margin-right: 15px;
+    transition: all .3s ease-in-out;
+}
+.save-to:hover {
+    transform: rotate(180deg);
+    transition: all .3s ease-in-out;
+}
