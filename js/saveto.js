@@ -1,39 +1,38 @@
-function searchSaveBtn() {
-    var saveBtn = document.evaluate("//yt-formatted-string[contains(., 'Save')]", document, null, XPathResult.ANY_TYPE, null );
-    var thisBtn = saveBtn.iterateNext();
-    var parentBtn = thisBtn.parentElement;
-    var nextParentBtn = parentBtn.parentElement;
-
-    nextParentBtn.click();
-    var popUp = document.querySelector('#menu > ytd-menu-renderer');
-    popUp.removeAttribute('menu-active');
-}
-
-/* Wait for bar is load */
 setTimeout(() => {
-    /* Create saveTo button */
-    let saveTo = document.createElement('div');
+  /* Wait for bar is load */
+  let appendItem = document.getElementById("top-level-buttons-computed");
 
-    /* Find bottom bar under vider */
-    let appendItem = document.getElementById('top-level-buttons-computed');
+  if (appendItem) {
+    /* Create saveTo button */
+    let saveTo = document.createElement("div");
     /* Set id to element */
-    saveTo.id = 'saveToPlaylist';
+    saveTo.id = "saveToPlaylist";
     /* Set class name to element */
-    saveTo.className = 'save-to';
+    saveTo.className = "save-to";
 
     /* Create saveTo button in DOM */
     appendItem.prepend(saveTo);
 
-    
-}, "3000"); 
+    /* Find "Save" btn */
+    function searchSaveBtn() {
+      var saveBtn = document.evaluate(
+        "//yt-formatted-string[contains(., 'Save')]",
+        document,
+        null,
+        XPathResult.ANY_TYPE,
+        null
+      );
+      var thisBtn = saveBtn.iterateNext();
+      var parentBtn = thisBtn.parentElement;
+      var nextParentBtn = parentBtn.parentElement;
+      nextParentBtn.click();
+    }
+    /* Setup Click event */
+    saveTo.addEventListener("click", () => {
+      document.querySelector("#button-shape > button").click();
+      searchSaveBtn();
+    });
+  }
+}, 4000);
 
-/* Setup Click event */
-setTimeout(() => {
-    let saveBtn = document.getElementById('saveToPlaylist');
-    saveBtn.addEventListener('click', () => {
-        document.querySelector('#button-shape > button').click();
-        searchSaveBtn();
-    })
-}, "3001");
-
-
+/* style-scope ytd-menu-service-item-renderer */
