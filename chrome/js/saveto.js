@@ -20,6 +20,15 @@ function waitForElm(selector) {
   });
 }
 
+/* NEW TO DO TO CREATE ELEMENT */
+/* 
+window.addEventListener("DOMContentLoaded", (event) => {
+  var g = document.createElement("div");
+  g.setAttribute("id", "google_translate_elementMobile");
+
+  document.querySelector("Selector will here").appendChild(g);
+}); */
+
 /* Create saveTo button */
 const saveTo = document.createElement("div");
 /* Set id to element */
