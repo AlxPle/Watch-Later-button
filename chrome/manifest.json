@@ -2,13 +2,13 @@
   "manifest_version": 3,
   "name": "Watch Later button",
   "description": "Add a quick way to save videos to Watch Later on YouTube",
-  "version": "1.1",
-  "author": "@2thecrow",
+  "version": "1.2",
+  "author": "Alex Pletnov",
   "icons": {
-    "16": "assets/icons/red/iconmonstr-text-plus-lined-16.png",
-    "32": "assets/icons/red/iconmonstr-text-plus-lined-32.png",
-    "48": "assets/icons/red/iconmonstr-text-plus-lined-48.png",
-    "128": "assets/icons/red/iconmonstr-text-plus-lined-128.png"
+    "16": "assets/app-icons/red/iconmonstr-text-plus-lined-16.png",
+    "32": "assets/app-icons/red/iconmonstr-text-plus-lined-32.png",
+    "48": "assets/app-icons/red/iconmonstr-text-plus-lined-48.png",
+    "128": "assets/app-icons/red/iconmonstr-text-plus-lined-128.png"
   },
   "background": {
     "service_worker": "background.js"
