@@ -13,14 +13,6 @@ saveTo.className = "saveToWatchLater";
  * - https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
  */
 
-/* Error handler function */
-function handleError(msg, error) {
-  if (error) {
-    console.error(msg, error);
-  } else {
-    console.error(msg);
-  }
-}
 /* Function to wait for the element */
 function waitForElm(selector) {
   // Create a promise to wait for the element
@@ -49,27 +41,13 @@ function waitForElm(selector) {
 /* 
 Function: addSaveToButtonToDOM
 Description: Wait for the element with id "#actions" to be available, then add the saveTo button to the DOM.
-Added duplicate check and error handling.
 */
 waitForElm("#actions").then((elm) => {
-  try {
-    const appendItem = document.getElementById("top-level-buttons-computed");
-    if (!appendItem) {
-      handleError("Element with id 'top-level-buttons-computed' not found");
-      return;
-    }
-    // Duplicate button check
-    if (!document.getElementById("saveToPlaylist")) {
-      appendItem.prepend(saveTo);
-      console.log("'Save to Watch Later' button added");
-    } else {
-      console.log("Button already exists, no need to add again");
-    }
-  } catch (error) {
-    handleError("Error while adding the button:", error);
+  const appendItem = document.getElementById("top-level-buttons-computed");
+  /* Create saveTo button in DOM */
+  if (appendItem) {
+    appendItem.prepend(saveTo);
   }
-}).catch((error) => {
-  handleError("Error while waiting for #actions element:", error);
 });
 
 /* Function: getAddVideoParams
@@ -101,33 +79,28 @@ const getRemoveVideoParams = (videoId) => ({
 
 /* ACTION SENDER */
 const sendActionToNativeYouTubeHandler = (getParams) => {
-  try {
-    // Get the video ID from the URL
-    const videoId = new URL(window.location.href).searchParams.get("v");
-    // Find the app element on the page
-    const appElement = document.querySelector("ytd-app");
+  // Get the video ID from the URL
+  const videoId = new URL(window.location.href).searchParams.get("v");
+  // Find the app element on the page
+  const appElement = document.querySelector("ytd-app");
 
-    // If videoId or appElement is not found, return early
-    if (!videoId || !appElement) {
-      handleError("Failed to get videoId or ytd-app element");
-      return;
-    }
-
-    // Create a custom event to send the action to YouTube
-    const event = new window.CustomEvent("yt-action", {
-      detail: {
-        actionName: "yt-service-request",
-        returnValue: [],
-        args: [{ data: {} }, getParams(videoId)],
-        optionalAction: false,
-      },
-    });
-
-    // Dispatch the custom event to the appElement
-    appElement.dispatchEvent(event);
-  } catch (error) {
-    handleError("Error while sending action:", error);
+  // If videoId or appElement is not found, return early
+  if (!videoId || !appElement) {
+    return;
   }
+
+  // Create a custom event to send the action to YouTube
+  const event = new window.CustomEvent("yt-action", {
+    detail: {
+      actionName: "yt-service-request",
+      returnValue: [],
+      args: [{ data: {} }, getParams(videoId)],
+      optionalAction: false,
+    },
+  });
+
+  // Dispatch the custom event to the appElement
+  appElement.dispatchEvent(event);
 };
 
 /* Check if saveTo button is created if not create it */
@@ -139,9 +112,5 @@ if (saveTo) {
 
 /* Button listener */
 saveTo.addEventListener("click", () => {
-  try {
-    sendActionToNativeYouTubeHandler(getAddVideoParams);
-  } catch (error) {
-    handleError("Error while handling button click:", error);
-  }
+  sendActionToNativeYouTubeHandler(getAddVideoParams);
 });

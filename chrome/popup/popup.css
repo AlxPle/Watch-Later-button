@@ -4,6 +4,7 @@
     font-weight: 300;
     src: url("../assets/fonts/roboto-300.woff2") format("woff2");
 }
+
 @font-face {
     font-family: "Roboto";
     font-style: normal;
@@ -14,7 +15,6 @@
 :root {
     --border-radius: 3px;
 }
-
 
 @media (prefers-reduced-motion: no-preference) {
     :root {
@@ -34,19 +34,147 @@ html {
     box-sizing: inherit;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
 }
 
 body {
-    width: 200px;
-    font-family: Roboto,sans-serif,Arial,-apple-system,BlinkMacSystemFont;
+    width: 250px;
+    font-family: Roboto, sans-serif, Arial, -apple-system, BlinkMacSystemFont;
     font-size: 14px;
     line-height: 1.65;
+    padding: 0;
+    margin: 0 auto;
 }
+
+/* MAIN */
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 15px;
+    background: #e9ecef;
+}
+
+/* HEADER */
+
+header {}
+
 .extention-name {
     font-size: 16px;
+    text-align: center;
 }
+
 .extention-desc {
     font-size: 14px;
+}
+
+/* FOOTER */
+
+footer {
+    width: 100%;
+}
+
+.socials {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.socials__item {
+    display: flex;
+
+    &.socials__item--full {
+        grid-column: span 2;
+    }
+}
+
+.socials__item--full {
+    & .socials__link {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.socials__link {
+    display: flex;
+    flex: 1 0 0;
+    z-index: 2;
+
+    & img {
+        width: 24px;
+    }
+
+    & :hover {
+        background: red;
+    }
+}
+
+.socials__link {}
+
+
+
+[popover]:popover-open {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+[popover] {
+    font-size: 1.2rem;
+    padding: 10px;
+
+    /* Final state of the exit animation */
+    opacity: 0;
+    transform: scaleX(0);
+
+    transition:
+        opacity 0.7s,
+        transform 0.7s,
+        overlay 0.7s allow-discrete,
+        display 0.7s allow-discrete;
+    /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+/* Needs to be after the previous [popover]:popover-open rule
+to take effect, as the specificity is the same */
+@starting-style {
+    [popover]:popover-open {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+}
+
+/* Transition for the popover's backdrop */
+
+[popover]::backdrop {
+    background-color: rgba(5, 0, 15, 0);
+    transition:
+        display 0.7s allow-discrete,
+        overlay 0.7s allow-discrete,
+        background-color 0.7s;
+    /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+[popover]:popover-open::backdrop {
+    background-color: rgba(148, 0, 0, 0.25);
+}
+
+/* The nesting selector (&) cannot represent pseudo-elements
+so this starting-style rule cannot be nested */
+
+@starting-style {
+    [popover]:popover-open::backdrop {
+        background-color: rgb(0 0 0 / 0%);
+    }
 }
