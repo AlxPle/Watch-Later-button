@@ -21,56 +21,54 @@ function handleError(msg, error) {
     console.error(msg);
   }
 }
-/* Function to wait for the element */
+
+/* Add the button if not present */
+function addSaveToButton() {
+  const appendItem = document.getElementById("top-level-buttons-computed");
+  if (!appendItem) return;
+  if (!document.getElementById("saveToPlaylist")) {
+    appendItem.prepend(saveTo);
+    console.log("'Save to Watch Later' button added");
+  }
+}
+
+/* Observe changes in the #actions block */
+function observeActionsBlock() {
+  const target = document.querySelector("#actions");
+  if (!target) return;
+
+  // Watch for changes inside #actions (for SPA navigation)
+  const observer = new MutationObserver(() => {
+    addSaveToButton();
+  });
+
+  observer.observe(target, { childList: true, subtree: true });
+}
+
+/* Wait for #actions and set up observer */
 function waitForElm(selector) {
-  // Create a promise to wait for the element
   return new Promise((resolve) => {
-    // Check if the element is already available
     if (document.querySelector(selector)) {
       return resolve(document.querySelector(selector));
     }
-
-    // Create a MutationObserver to listen for element availability
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver(() => {
       if (document.querySelector(selector)) {
         resolve(document.querySelector(selector));
         observer.disconnect();
       }
     });
-
-    // Observe changes in the document body
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
+    observer.observe(document.body, { childList: true, subtree: true });
   });
 }
 
-/* 
-Function: addSaveToButtonToDOM
-Description: Wait for the element with id "#actions" to be available, then add the saveTo button to the DOM.
-Added duplicate check and error handling.
-*/
-waitForElm("#actions").then((elm) => {
-  try {
-    const appendItem = document.getElementById("top-level-buttons-computed");
-    if (!appendItem) {
-      handleError("Element with id 'top-level-buttons-computed' not found");
-      return;
-    }
-    // Duplicate button check
-    if (!document.getElementById("saveToPlaylist")) {
-      appendItem.prepend(saveTo);
-      console.log("'Save to Watch Later' button added");
-    } else {
-      console.log("Button already exists, no need to add again");
-    }
-  } catch (error) {
-    handleError("Error while adding the button:", error);
-  }
-}).catch((error) => {
-  handleError("Error while waiting for #actions element:", error);
-});
+waitForElm("#actions")
+  .then(() => {
+    addSaveToButton();
+    observeActionsBlock();
+  })
+  .catch((error) => {
+    handleError("Error while waiting for #actions element:", error);
+  });
 
 /* Function: getAddVideoParams
    Description: Returns the parameters object needed to add a video to the watch later playlist.
