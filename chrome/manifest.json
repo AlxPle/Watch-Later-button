@@ -17,10 +17,19 @@
     "default_popup": "popup/popup.html"
   },
   "content_scripts": [
-    { 
-      "css": ["assets/styles/style.css"],
-      "matches": ["https://www.youtube.com/*"],
-      "js": ["js/saveto.js"]
+    {
+      "css": [
+        "assets/styles/style.css"
+      ],
+      "matches": [
+        "https://www.youtube.com/*"
+      ],
+      "exclude_matches": [
+        "https://www.youtube.com/results*"
+      ],
+      "js": [
+        "js/saveto.js"
+      ]
     }
   ]
 }
