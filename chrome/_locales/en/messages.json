@@ -1,0 +1,29 @@
+{
+    "extName": {
+        "message": "Watch Later Button"
+    },
+    "description": {
+        "message": "Add a quick way to save videos to 'Watch Later' playlist on YouTube."
+    },
+    "feedback": {
+        "message": "Feedback"
+    },
+    "rate": {
+        "message": "Rate"
+    },
+    "donate": {
+        "message": "Donate"
+    },
+    "issues": {
+        "message": "Issues"
+    },
+    "help": {
+        "message": "Help"
+    },
+    "settings": {
+        "message": "Settings"
+    },
+    "remove_button": {
+        "message": "Remove from Watch Later"
+    }
+}

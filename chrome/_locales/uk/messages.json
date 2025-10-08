@@ -1,0 +1,29 @@
+{
+    "extName": {
+        "message": "Кнопка 'Переглянути пізніше'"
+    },
+    "description": {
+        "message": "Швидке додавання відео до списку 'Переглянути пізніше' на YouTube."
+    },
+    "feedback": {
+        "message": "Зворотний зв'язок"
+    },
+    "rate": {
+        "message": "Оцінити"
+    },
+    "donate": {
+        "message": "Донат"
+    },
+    "issues": {
+        "message": "Проблеми"
+    },
+    "help": {
+        "message": "Допомога"
+    },
+    "settings": {
+        "message": "Налаштування"
+    },
+    "remove_button": {
+        "message": "Видалити з 'Переглянути пізніше'"
+    }
+}
