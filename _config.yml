@@ -1,2 +1,9 @@
+title: Watch Later Button
+description: A simple Chrome extension that adds a convenient button to quickly save videos to your "Watch Later" playlist on YouTube.
+
 # Set the Jekyll theme
 theme: minima
+
+# Add plugins
+plugins:
+  - jekyll-seo-tag
