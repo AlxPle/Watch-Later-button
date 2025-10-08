@@ -1,10 +1,9 @@
 /* 
-   Create saveTo button element, set id to "saveToPlaylist" and class to "save-to-watch-later"
+  Create saveTo button element, set id to "saveToPlaylist" and class to "save-to-watch-later"
 */
 const saveTo = document.createElement("div");
 saveTo.id = "saveToPlaylist";
 saveTo.className = "saveToWatchLater";
-//const EnterPoint = document.getElementById("actions");
 
 /**
  * This function creates a WIKI about Observer and Mutation.
@@ -71,11 +70,11 @@ waitForElm("#actions")
   });
 
 /* Function: getAddVideoParams
-   Description: Returns the parameters object needed to add a video to the watch later playlist.
-   Parameters:
-     - videoId: The ID of the video to be added
-   Returns: 
-     Object with click tracking params, command metadata, and playlist edit endpoint
+  Description: Returns the parameters object needed to add a video to the watch later playlist.
+  Parameters:
+    - videoId: The ID of the video to be added
+  Returns: 
+    Object with click tracking params, command metadata, and playlist edit endpoint
 */
 const getAddVideoParams = (videoId) => ({
   clickTrackingParams: "",
