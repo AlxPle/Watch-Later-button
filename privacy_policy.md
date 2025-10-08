@@ -1,3 +1,8 @@
+---
+layout: page
+title: Privacy Policy
+permalink: /privacy/
+---
 # Privacy Policy for Watch Later button
 
 **Last Updated: October 8, 2024**
