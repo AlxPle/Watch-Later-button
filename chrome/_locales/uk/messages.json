@@ -1,8 +1,8 @@
 {
-    "extName": {
+    "extensionName": {
         "message": "Кнопка 'Переглянути пізніше'"
     },
-    "description": {
+    "extensionDescription": {
         "message": "Швидке додавання відео до списку 'Переглянути пізніше' на YouTube."
     },
     "feedback": {

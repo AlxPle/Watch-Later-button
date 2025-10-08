@@ -1,8 +1,8 @@
 {
-  "extName": {
+  "extensionName": {
     "message": "Später ansehen Button"
   },
-  "description": {
+  "extensionDescription": {
     "message": "Fügen Sie Videos schnell zur Playlist 'Später ansehen' auf YouTube hinzu."
   },
   "feedback": {
