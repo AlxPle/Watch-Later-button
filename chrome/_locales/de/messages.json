@@ -1,0 +1,29 @@
+{
+  "extName": {
+    "message": "Später ansehen Button"
+  },
+  "description": {
+    "message": "Fügen Sie Videos schnell zur Playlist 'Später ansehen' auf YouTube hinzu."
+  },
+  "feedback": {
+    "message": "Feedback"
+  },
+  "rate": {
+    "message": "Bewerten"
+  },
+  "donate": {
+    "message": "Spenden"
+  },
+  "issues": {
+    "message": "Probleme"
+  },
+  "help": {
+    "message": "Hilfe"
+  },
+  "settings": {
+    "message": "Einstellungen"
+  },
+  "remove_button": {
+    "message": "Aus 'Später ansehen' entfernen"
+  }
+}

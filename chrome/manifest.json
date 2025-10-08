@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Watch Later button",
-  "description": "Add a quick way to save videos to 'Watch Later' playlist on YouTube.",
+  "name": "__MSG_extName__",
+  "description": "__MSG_description__",
   "version": "1.2.2",
   "author": "Alex Pletnov",
+  "default_locale": "en",
   "icons": {
     "16": "assets/app-icons/red/iconmonstr-text-plus-lined-16.png",
     "32": "assets/app-icons/red/iconmonstr-text-plus-lined-32.png",

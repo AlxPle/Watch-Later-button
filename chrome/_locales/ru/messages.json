@@ -1,0 +1,29 @@
+{
+    "extName": {
+        "message": "Кнопка 'Посмотреть позже'"
+    },
+    "description": {
+        "message": "Быстрое добавление видео в плейлист 'Посмотреть позже' на YouTube."
+    },
+    "feedback": {
+        "message": "Обратная связь"
+    },
+    "rate": {
+        "message": "Оценить"
+    },
+    "donate": {
+        "message": "Донат"
+    },
+    "issues": {
+        "message": "Проблемы"
+    },
+    "help": {
+        "message": "Помощь"
+    },
+    "settings": {
+        "message": "Настройки"
+    },
+    "remove_button": {
+        "message": "Удалить из 'Посмотреть позже'"
+    }
+}
