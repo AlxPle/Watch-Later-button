@@ -1,8 +1,8 @@
 {
-    "extName": {
+    "extensionName": {
         "message": "Watch Later Button"
     },
-    "description": {
+    "extensionDescription": {
         "message": "Add a quick way to save videos to 'Watch Later' playlist on YouTube."
     },
     "feedback": {

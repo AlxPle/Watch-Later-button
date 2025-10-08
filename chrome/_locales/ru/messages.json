@@ -1,8 +1,8 @@
 {
-    "extName": {
+    "extensionName": {
         "message": "Кнопка 'Посмотреть позже'"
     },
-    "description": {
+    "extensionDescription": {
         "message": "Быстрое добавление видео в плейлист 'Посмотреть позже' на YouTube."
     },
     "feedback": {
