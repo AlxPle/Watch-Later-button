@@ -64,8 +64,6 @@ main {
 
 /* HEADER */
 
-header {}
-
 .extension-name {
     font-size: 18px;
     font-weight: 500;
@@ -103,6 +101,12 @@ header {}
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
+.btn p {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
 .btn:hover {
     background: #e9ecef;
     border-color: #bdbdbd;
@@ -112,47 +116,4 @@ header {}
     width: 22px;
     height: 22px;
     display: block;
-}
-
-/* FOOTER */
-
-footer {
-    width: 100%;
-}
-
-.socials {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.socials__item {
-    display: flex;
-
-    &.socials__item--full {
-        grid-column: span 2;
-    }
-}
-
-.socials__item--full {
-    & .socials__link {
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-.socials__link {
-    display: flex;
-    flex: 1 0 0;
-    z-index: 2;
-
-    & img {
-        width: 24px;
-    }
-
-    & :hover {
-        background: red;
-    }
 }
