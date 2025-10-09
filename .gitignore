@@ -1,3 +1,6 @@
 node_modules/
 .bundle/
-vendor/bundle exec jekyll serve
+vendor/bundle
+_site/
+.sass-cache/
+.jekyll-cache/
