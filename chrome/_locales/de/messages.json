@@ -8,9 +8,6 @@
   "feedback": {
     "message": "Feedback"
   },
-  "rate": {
-    "message": "Bewerten"
-  },
   "donate": {
     "message": "Spenden"
   },
@@ -19,11 +16,5 @@
   },
   "help": {
     "message": "Hilfe"
-  },
-  "settings": {
-    "message": "Einstellungen"
-  },
-  "remove_button": {
-    "message": "Aus 'Später ansehen' entfernen"
   }
 }

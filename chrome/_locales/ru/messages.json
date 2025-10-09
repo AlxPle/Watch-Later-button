@@ -8,9 +8,6 @@
     "feedback": {
         "message": "Обратная связь"
     },
-    "rate": {
-        "message": "Оценить"
-    },
     "donate": {
         "message": "Донат"
     },
@@ -19,11 +16,5 @@
     },
     "help": {
         "message": "Помощь"
-    },
-    "settings": {
-        "message": "Настройки"
-    },
-    "remove_button": {
-        "message": "Удалить из 'Посмотреть позже'"
     }
 }

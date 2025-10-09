@@ -8,9 +8,6 @@
     "feedback": {
         "message": "Зворотний зв'язок"
     },
-    "rate": {
-        "message": "Оцінити"
-    },
     "donate": {
         "message": "Донат"
     },
@@ -19,11 +16,5 @@
     },
     "help": {
         "message": "Допомога"
-    },
-    "settings": {
-        "message": "Налаштування"
-    },
-    "remove_button": {
-        "message": "Видалити з 'Переглянути пізніше'"
     }
 }
