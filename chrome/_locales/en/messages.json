@@ -8,9 +8,6 @@
     "feedback": {
         "message": "Feedback"
     },
-    "rate": {
-        "message": "Rate"
-    },
     "donate": {
         "message": "Donate"
     },
@@ -19,11 +16,5 @@
     },
     "help": {
         "message": "Help"
-    },
-    "settings": {
-        "message": "Settings"
-    },
-    "remove_button": {
-        "message": "Remove from Watch Later"
     }
 }
