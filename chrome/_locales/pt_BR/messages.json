@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Nome da extensão"
+    },
+    "extensionDescription": {
+        "message": "Adicione uma maneira rápida de salvar vídeos na playlist 'Assistir mais tarde' no YouTube.",
+        "description": "Descrição da extensão"
+    },
+    "feedback": {
+        "message": "Feedback",
+        "description": "Texto do link de feedback"
+    },
+    "donate": {
+        "message": "Doar",
+        "description": "Texto do link de doação"
+    },
+    "issues": {
+        "message": "Problemas",
+        "description": "Texto do link de problemas"
+    },
+    "help": {
+        "message": "Ajuda",
+        "description": "Texto do link de ajuda"
+    }
+}

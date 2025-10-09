@@ -1,20 +1,26 @@
 {
     "extensionName": {
-        "message": "Watch Later Button"
+        "message": "Watch Later Button",
+        "description": "Название расширения"
     },
     "extensionDescription": {
-        "message": "Быстрое добавление видео в плейлист 'Посмотреть позже' на YouTube."
+        "message": "Добавьте быстрый способ сохранения видео в плейлист «Смотреть позже» на YouTube.",
+        "description": "Описание расширения"
     },
     "feedback": {
-        "message": "Обратная связь"
+        "message": "Обратная связь",
+        "description": "Текст ссылки обратной связи"
     },
     "donate": {
-        "message": "Донат"
+        "message": "Поддержать",
+        "description": "Текст ссылки пожертвования"
     },
     "issues": {
-        "message": "Проблемы"
+        "message": "Проблемы",
+        "description": "Текст ссылки на проблемы"
     },
     "help": {
-        "message": "Помощь"
+        "message": "Справка",
+        "description": "Текст ссылки помощи"
     }
 }

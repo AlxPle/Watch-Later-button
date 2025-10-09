@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Nazwa rozszerzenia"
+    },
+    "extensionDescription": {
+        "message": "Dodaj szybki sposób zapisywania filmów do playlisty 'Obejrzyj później' w YouTube.",
+        "description": "Opis rozszerzenia"
+    },
+    "feedback": {
+        "message": "Opinie",
+        "description": "Tekst linku do opinii"
+    },
+    "donate": {
+        "message": "Wspomóż",
+        "description": "Tekst linku do darowizny"
+    },
+    "issues": {
+        "message": "Problemy",
+        "description": "Tekst linku do problemów"
+    },
+    "help": {
+        "message": "Pomoc",
+        "description": "Tekst linku do pomocy"
+    }
+}

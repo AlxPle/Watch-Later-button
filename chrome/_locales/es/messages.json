@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Nombre de la extensión"
+    },
+    "extensionDescription": {
+        "message": "Agregue una forma rápida de guardar videos en la lista de reproducción 'Ver más tarde' en YouTube.",
+        "description": "Descripción de la extensión"
+    },
+    "feedback": {
+        "message": "Comentarios",
+        "description": "Texto del enlace de comentarios"
+    },
+    "donate": {
+        "message": "Donar",
+        "description": "Texto del enlace de donación"
+    },
+    "issues": {
+        "message": "Problemas",
+        "description": "Texto del enlace de problemas"
+    },
+    "help": {
+        "message": "Ayuda",
+        "description": "Texto del enlace de ayuda"
+    }
+}

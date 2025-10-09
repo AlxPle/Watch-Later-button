@@ -21,13 +21,17 @@ A simple Chrome extension that adds a convenient button to quickly save videos t
 
 ## Feedback & Support
 
-- [Report an issue or bug](https://github.com/2thecrow/Watch-Later-button)
-- [Send feedback](https://forms.gle/ufcc2NadWXxsJov86)
+- [Report an issue or bug](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/support)
+- [Send feedback](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews)
 - [Buy me a coffee](https://www.buymeacoffee.com/pletnovalex)
 
 ## Privacy
 
 This extension does **not** collect, store, or transmit any personal data.
+
+## Localization
+
+
 
 ---
 

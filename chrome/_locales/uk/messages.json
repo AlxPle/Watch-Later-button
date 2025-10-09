@@ -1,20 +1,26 @@
 {
     "extensionName": {
-        "message": "Watch Later Button"
+        "message": "Watch Later Button",
+        "description": "Назва розширення"
     },
     "extensionDescription": {
-        "message": "Швидке додавання відео до списку 'Переглянути пізніше' на YouTube."
+        "message": "Швидке додавання відео до списку 'Переглянути пізніше' на YouTube.",
+        "description": "Опис розширення"
     },
     "feedback": {
-        "message": "Зворотний зв'язок"
+        "message": "Зворотний зв'язок",
+        "description": "Текст посилання для зворотного зв'язку"
     },
     "donate": {
-        "message": "Донат"
+        "message": "Донат",
+        "description": "Текст посилання для донату"
     },
     "issues": {
-        "message": "Проблеми"
+        "message": "Проблеми",
+        "description": "Текст посилання для проблем"
     },
     "help": {
-        "message": "Допомога"
+        "message": "Допомога",
+        "description": "Текст посилання для допомоги"
     }
 }

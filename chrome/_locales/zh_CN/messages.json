@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "扩展程序名称"
+    },
+    "extensionDescription": {
+        "message": "在YouTube上快速将视频保存到 稍后观看 播放列表。",
+        "description": "扩展程序描述"
+    },
+    "feedback": {
+        "message": "反馈",
+        "description": "反馈链接文本"
+    },
+    "donate": {
+        "message": "捐赠",
+        "description": "捐赠链接文本"
+    },
+    "issues": {
+        "message": "问题",
+        "description": "问题链接文本"
+    },
+    "help": {
+        "message": "帮助",
+        "description": "帮助链接文本"
+    }
+}
