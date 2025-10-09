@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "확장 프로그램 이름"
+    },
+    "extensionDescription": {
+        "message": "YouTube에서 '나중에 볼 동영상' 재생목록에 동영상을 빠르게 저장하는 방법을 추가합니다.",
+        "description": "확장 프로그램 설명"
+    },
+    "feedback": {
+        "message": "피드백",
+        "description": "피드백 링크 텍스트"
+    },
+    "donate": {
+        "message": "기부하기",
+        "description": "기부 링크 텍스트"
+    },
+    "issues": {
+        "message": "문제",
+        "description": "문제 링크 텍스트"
+    },
+    "help": {
+        "message": "도움말",
+        "description": "도움말 링크 텍스트"
+    }
+}

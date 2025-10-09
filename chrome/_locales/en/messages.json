@@ -1,20 +1,26 @@
 {
     "extensionName": {
-        "message": "Watch Later Button"
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Add a quick way to save videos to 'Watch Later' playlist on YouTube."
+        "message": "Add a quick way to save videos to 'Watch Later' playlist on YouTube.",
+        "description": "Description of the extension"
     },
     "feedback": {
-        "message": "Feedback"
+        "message": "Feedback",
+        "description": "Feedback link text"
     },
     "donate": {
-        "message": "Donate"
+        "message": "Donate",
+        "description": "Donate link text"
     },
     "issues": {
-        "message": "Issues"
+        "message": "Issues",
+        "description": "Issues link text"
     },
     "help": {
-        "message": "Help"
+        "message": "Help",
+        "description": "Help link text"
     }
 }

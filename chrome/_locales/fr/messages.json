@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Nom de l'extension"
+    },
+    "extensionDescription": {
+        "message": "Ajoutez un moyen rapide d'enregistrer des vidéos dans la playlist 'À regarder plus tard' sur YouTube.",
+        "description": "Description de l'extension"
+    },
+    "feedback": {
+        "message": "Commentaires",
+        "description": "Texte du lien de commentaires"
+    },
+    "donate": {
+        "message": "Faire un don",
+        "description": "Texte du lien de don"
+    },
+    "issues": {
+        "message": "Problèmes",
+        "description": "Texte du lien des problèmes"
+    },
+    "help": {
+        "message": "Aide",
+        "description": "Texte du lien d'aide"
+    }
+}
