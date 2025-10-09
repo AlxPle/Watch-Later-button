@@ -8,3 +8,22 @@ theme: minima
 # Add plugins
 plugins:
   - jekyll-seo-tag
+
+# Опционально: настроить URL для постов
+permalink: /updates/:year/:month/:day/:title/
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle
+  - .bundle
+  - .sass-cache
+  - .jekyll-cache
+  - README.md
+  - e2e.test.js
+  - LICENSE
+  - .gitignore
+  - package.json
+  - package-lock.json
+  - chrome/
