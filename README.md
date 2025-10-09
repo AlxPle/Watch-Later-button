@@ -31,8 +31,9 @@ This extension does **not** collect, store, or transmit any personal data.
 
 ## Localization
 
-
+The localization of the extension is carried out using AI translation technologies to make it accessible to a wider audience. We strive to provide accurate translations, but there may be some inaccuracies. If you find any errors or have suggestions for improving the translation, please let us know.
 
 ---
+
 
 **Enjoy a faster way to manage your YouTube Watch Later playlist!**
