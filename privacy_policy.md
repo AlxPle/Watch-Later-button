@@ -13,7 +13,7 @@ Welcome to the Watch Later button extension for YouTube™. This extension is de
 
 We are committed to protecting your privacy. The Watch Later button extension **does not collect, store, share, or transmit any of your personal data.**
 
-The extension's functionality is limited to interacting with the content on the YouTube page you are viewing. It adds a "Save to Watch Later" button and, when clicked, communicates directly with YouTube's services to add or remove a video from your "Watch Later" playlist. All actions are performed locally in your browser, and no information about your activity is sent to our servers or any third parties.
+The extension's functionality is limited to interacting with the content on the YouTube page you are viewing. It adds a "Save to Watch Later" button and, when clicked, communicates directly with YouTube's services to add a video from your "Watch Later" playlist. All actions are performed locally in your browser, and no information about your activity is sent to our servers or any third parties.
 
 ## Permissions
 
