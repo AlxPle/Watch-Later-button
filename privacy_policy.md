@@ -6,6 +6,7 @@ permalink: /privacy/
 # Privacy Policy
 
 ##### Last updated: 19/10/2025
+##### email: pletnov@duck.com
 
 ## Introduction
 
