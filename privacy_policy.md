@@ -6,7 +6,6 @@ permalink: /privacy/
 # Privacy Policy
 
 ##### Last updated: 19/10/2025
-##### email: pletnov@duck.com
 
 ## Introduction
 
@@ -34,7 +33,7 @@ We may update this Privacy Policy in the future if the extension's functionality
 
 ## Contact Us
 
-If you have any questions about this Privacy Policy, please feel free to contact us.
-
+If you have any questions about this Privacy Policy, please feel free to contact us **[pletnov@duck.com](mailto:pletnov@duck.com)
+**.
 ---
 *YouTube™ is a trademark of Google Inc. Use of this trademark is subject to Google Permissions.*
