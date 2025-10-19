@@ -5,6 +5,8 @@ permalink: /privacy/
 ---
 # Privacy Policy
 
+##### Last updated: 19/10/2025
+
 ## Introduction
 
 Welcome to the Watch Later button extension for YouTube™. This extension is designed to provide a simple and efficient way to add videos to your "Watch Later" playlist on YouTube. Your privacy is important to us, and this policy is intended to help you understand what information we handle.

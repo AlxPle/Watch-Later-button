@@ -1,6 +1,7 @@
 node_modules/
 .bundle/
-vendor/bundle
+vendor/
 _site/
 .sass-cache/
 .jekyll-cache/
+e2e.test.js
