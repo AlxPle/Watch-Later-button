@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Add a quick way to save videos to your 'Watch Later' playlist on YouTube.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Feedback",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Support",
+        "description": "British English commonly uses 'Support' instead of 'Donate'"
+    },
+    "issues": {
+        "message": "Report Issues",
+        "description": "Issues link text - more formal for British English"
+    },
+    "help": {
+        "message": "Help Centre",
+        "description": "Help link text - British spelling of 'Center'"
+    }
+}
