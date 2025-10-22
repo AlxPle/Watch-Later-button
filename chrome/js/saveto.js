@@ -127,6 +127,13 @@ const sendActionToNativeYouTubeHandler = (getParams) => {
   }
 };
 
+/* Check if saveTo button is created if not create it */
+if (saveTo) {
+  console.log("find menu");
+} else {
+  console.log("nope");
+}
+
 /* Button listener */
 saveTo.addEventListener("click", () => {
   try {
