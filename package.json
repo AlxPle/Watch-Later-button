@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/2thecrow/Youtube-SaveTo.git"
+    "url": "git+https://github.com/AlxPle/Watch-Later-button.git"
   },
   "keywords": [],
   "author": "Alex Pletnov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/2thecrow/Youtube-SaveTo/issues"
+    "url": "https://github.com/AlxPle/Watch-Later-button/issues"
   },
-  "homepage": "https://github.com/2thecrow/Youtube-SaveTo",
+  "homepage": "https://github.com/AlxPle/Watch-Later-button",
   "dependencies": {
     "jest": "^30.2.0",
     "puppeteer": "^24.23.0"
