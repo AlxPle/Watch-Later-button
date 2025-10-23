@@ -9,7 +9,7 @@ theme: minima
 plugins:
   - jekyll-seo-tag
 
-# Опционально: настроить URL для постов
+# Optional: configure URL for posts
 permalink: /updates/:year/:month/:day/:title/
 
 exclude:
