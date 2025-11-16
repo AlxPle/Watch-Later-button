@@ -32,6 +32,7 @@ bundle install
 - `jekyll` (~4.3) - генератор статических сайтов
 - `minima` (~2.5) - тема Jekyll
 - `jekyll-seo-tag` - плагин для SEO оптимизации
+- `jekyll-jekyll-sitemap` - генерирует XML sitemap
 
 ### 3. Node.js зависимости (тестирование)
 ```bash
