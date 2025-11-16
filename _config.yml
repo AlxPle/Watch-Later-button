@@ -8,6 +8,21 @@ theme: minima
 # Add plugins
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-typographer
+
+# Sitemap
+url: "https://alxple.github.io/Watch-Later-button/"  # Required for correct URLs in sitemap
+sitemap:
+  include_posts: true  # Include posts (default: true)
+  change_frequency: "weekly"  # Change frequency
+  priority: 0.5  # Page priority
+
+# Typographer
+typographer:
+  entities: true  # Enable HTML entities
+  quotes: true    # Replace quotes
+  dashes: true    # Replace dashes
 
 # Optional: configure URL for posts
 permalink: /updates/:year/:month/:day/:title/
@@ -27,3 +42,8 @@ exclude:
   - package.json
   - package-lock.json
   - chrome/
+
+
+
+
+
