@@ -41,6 +41,7 @@ exclude:
   - package.json
   - package-lock.json
   - chrome/
+  - SETUP.md
 
 
 
