@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Voeg een snelle manier toe om video's op te slaan in je 'Later bekijken'-afspeellijst op YouTube.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Feedback",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Doneren",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Problemen",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Help",
+        "description": "Help link text"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "YouTube'da videoları 'Daha Sonra İzle' oynatma listenize kaydetmek için hızlı bir yol ekleyin.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Geri Bildirim",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Bağış",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Sorunlar",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Yardım",
+        "description": "Help link text"
+    }
+}

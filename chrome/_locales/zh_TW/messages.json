@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "新增快速將影片儲存至 YouTube「稍後觀看」播放清單的方式。",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "回饋",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "捐贈",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "問題",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "幫助",
+        "description": "Help link text"
+    }
+}

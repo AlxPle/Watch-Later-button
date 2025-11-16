@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "راهی سریع برای ذخیره ویدیوها در لیست پخش 'بعداً ببین' یوتیوب اضافه کنید.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "بازخورد",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "اهدا",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "مشکلات",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "کمک",
+        "description": "Help link text"
+    }
+}

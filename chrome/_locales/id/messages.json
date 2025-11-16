@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Tambahkan cara cepat untuk menyimpan video ke daftar putar 'Tonton Nanti' di YouTube.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Umpan Balik",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Donasi",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Masalah",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Bantuan",
+        "description": "Help link text"
+    }
+}
