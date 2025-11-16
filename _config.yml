@@ -9,7 +9,6 @@ theme: minima
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-typographer
 
 # Sitemap
 url: "https://alxple.github.io/Watch-Later-button/"  # Required for correct URLs in sitemap
