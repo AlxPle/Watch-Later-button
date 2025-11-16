@@ -1,0 +1,26 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Legg til en rask måte å lagre videoer til 'Se senere'-spillelisten din på YouTube.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Tilbakemelding",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Doner",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Problemer",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Hjelp",
+        "description": "Help link text"
+    }
+}
