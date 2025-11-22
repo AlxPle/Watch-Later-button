@@ -15,7 +15,8 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/popup.html",
+    "default_title": "__MSG_extensionName__"
   },
   "content_scripts": [
     {
@@ -30,7 +31,15 @@
       ],
       "js": [
         "js/saveto.js"
-      ]
+      ],
+      "run_at": "document_idle"
     }
-  ]
+  ],
+  "permissions": [],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }
