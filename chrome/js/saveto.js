@@ -6,7 +6,7 @@ const CONFIG = {
   BUTTON_CLASS: "saveToWatchLater",
   SELECTORS: {
     ACTIONS: "#actions",
-    TOP_LEVEL_BUTTONS: "#top-level-buttons-computed",
+    TOP_LEVEL_BUTTONS: "top-level-buttons-computed",
     YTD_APP: "ytd-app"
   },
   PLAYLIST_ID: "WL",
@@ -40,7 +40,7 @@ function handleError(msg, error) {
  * The button is prepended to the top-level buttons container
  */
 function addSaveToButton() {
-  const appendItem = document.getElementById(CONFIG.SELECTORS.TOP_LEVEL_BUTTONS.substring(1));
+  const appendItem = document.getElementById(CONFIG.SELECTORS.TOP_LEVEL_BUTTONS);
   if (!appendItem) return;
   if (!document.getElementById(CONFIG.BUTTON_ID)) {
     appendItem.prepend(saveTo);
@@ -100,18 +100,10 @@ waitForElm(CONFIG.SELECTORS.ACTIONS)
  */
 const getAddVideoParams = (videoId) => ({
   clickTrackingParams: "",
-  commandMetadata: { 
-    webCommandMetadata: { 
-      sendPost: true, 
-      apiUrl: CONFIG.API_URL 
-    } 
-  },
+  commandMetadata: { webCommandMetadata: { sendPost: true, apiUrl: CONFIG.API_URL } },
   playlistEditEndpoint: { 
     playlistId: CONFIG.PLAYLIST_ID, 
-    actions: [{ 
-      addedVideoId: videoId, 
-      action: "ACTION_ADD_VIDEO" 
-    }] 
+    actions: [{ addedVideoId: videoId, action: "ACTION_ADD_VIDEO" }] 
   },
 });
 
@@ -122,18 +114,10 @@ const getAddVideoParams = (videoId) => ({
  */
 const getRemoveVideoParams = (videoId) => ({
   clickTrackingParams: "",
-  commandMetadata: { 
-    webCommandMetadata: { 
-      sendPost: true, 
-      apiUrl: CONFIG.API_URL 
-    } 
-  },
+  commandMetadata: { webCommandMetadata: { sendPost: true, apiUrl: CONFIG.API_URL } },
   playlistEditEndpoint: { 
     playlistId: CONFIG.PLAYLIST_ID, 
-    actions: [{ 
-      action: "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", 
-      removedVideoId: videoId 
-    }] 
+    actions: [{ action: "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", removedVideoId: videoId }] 
   },
 });
 
