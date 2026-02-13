@@ -11,8 +11,8 @@ A simple Chrome extension that adds a convenient button to quickly save videos t
 ## Features
 
 - **Add to Watch Later:** Instantly add the current YouTube video to your "Watch Later" playlist with a single click.
-- **Minimal UI:** Clean and intuitive popup with quick access to feedback, help, and donation links.
-- **Localization:** Supports English, Russian, Ukrainian, and German languages.
+- **Minimal UI:** Clean and intuitive popup with quick access to issues, feedback, and donation links.
+- **Localization:** Supports 20 languages including English, German, Spanish, French, Italian, Japanese, Korean, Russian, Ukrainian, Chinese, and more.
 - **Privacy-friendly:** Does not collect or transmit any personal data.
 
 ## How it works
@@ -23,7 +23,7 @@ A simple Chrome extension that adds a convenient button to quickly save videos t
 
 1. **Install** the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab).
 2. **Open any YouTube video** — you’ll see the new button below the video.
-3. **Use the popup** to access feedback, help, or donate.
+3. **Use the popup** to report issues, give feedback, or donate.
 
 ## Feedback & Support
 
