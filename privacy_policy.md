@@ -15,7 +15,7 @@ Welcome to the Watch Later button extension for YouTube™. This extension is de
 
 I am committed to protecting your privacy. The Watch Later button extension **does not collect, store, share, or transmit any of your personal data.**
 
-The extension's functionality is limited to interacting with the content on the YouTube page you are viewing. It adds a "Save to Watch Later" button and, when clicked, communicates directly with YouTube's services to add a video from your "Watch Later" playlist. All actions are performed locally in your browser, and no information about your activity is sent to our servers or any third parties.
+The extension's functionality is limited to interacting with the content on the YouTube page you are viewing. It adds a "Save to Watch Later" button and, when clicked, communicates directly with YouTube's services to add a video to your "Watch Later" playlist. All actions are performed locally in your browser, and no information about your activity is sent to our servers or any third parties.
 
 ## Permissions
 
@@ -25,11 +25,11 @@ To function correctly, the Watch Later button extension requires permission to a
 *   To add the "Save to Watch Later" button to the YouTube page.
 *   To send the "add" action to YouTube's services when you click the button.
 
-I am not use this permission to track your browsing history or collect any other information.
+I do not use this permission to track your browsing history or collect any other information.
 
 ## Changes to This Privacy Policy
 
-I am update this Privacy Policy in the future if the extension's functionality changes. If i make any material changes, i will notify you by updating the "Last Updated" date of this policy and, if required, by providing a more prominent notice within the extension or on its Chrome Web Store page.
+I may update this Privacy Policy in the future if the extension's functionality changes. If I make any material changes, I will notify you by updating the "Last Updated" date of this policy and, if required, by providing a more prominent notice within the extension or on its Chrome Web Store page.
 
 ## Contact Us
 
