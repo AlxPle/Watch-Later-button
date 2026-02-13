@@ -1,18 +1,32 @@
-/* 
-  Create saveTo button element, set id to "saveToPlaylist" and class to "save-to-watch-later"
-*/
-const saveTo = document.createElement("div");
-saveTo.id = "saveToPlaylist";
-saveTo.className = "saveToWatchLater";
+/**
+ * Configuration constants for the Watch Later button extension
+ */
+const CONFIG = {
+  BUTTON_ID: "saveToPlaylist",
+  BUTTON_CLASS: "saveToWatchLater",
+  SELECTORS: {
+    ACTIONS: "#actions",
+    TOP_LEVEL_BUTTONS: "top-level-buttons-computed",
+    YTD_APP: "ytd-app"
+  },
+  PLAYLIST_ID: "WL",
+  API_URL: "/youtubei/v1/browse/edit_playlist"
+};
 
 /**
- * This function creates a WIKI about Observer and Mutation.
- * For more information, visit:
- * - https://stackoverflow.com/questions/5525071/how-to-wait-until-an-element-exists
+ * Create the Watch Later button element
+ * For more information about MutationObserver:
  * - https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
  */
+const saveTo = document.createElement("div");
+saveTo.id = CONFIG.BUTTON_ID;
+saveTo.className = CONFIG.BUTTON_CLASS;
 
-/* Error handler function */
+/**
+ * Handles and logs errors that occur in the extension
+ * @param {string} msg - The error message to display
+ * @param {Error} [error] - Optional error object with additional details
+ */
 function handleError(msg, error) {
   if (error) {
     console.error(msg, error);
@@ -21,19 +35,25 @@ function handleError(msg, error) {
   }
 }
 
-/* Add the button if not present */
+/**
+ * Adds the Watch Later button to the page if it's not already present
+ * The button is prepended to the top-level buttons container
+ */
 function addSaveToButton() {
-  const appendItem = document.getElementById("top-level-buttons-computed");
+  const appendItem = document.getElementById(CONFIG.SELECTORS.TOP_LEVEL_BUTTONS);
   if (!appendItem) return;
-  if (!document.getElementById("saveToPlaylist")) {
+  if (!document.getElementById(CONFIG.BUTTON_ID)) {
     appendItem.prepend(saveTo);
     console.log("'Save to Watch Later' button added");
   }
 }
 
-/* Observe changes in the #actions block */
+/**
+ * Observes changes in the #actions block to handle YouTube's SPA navigation
+ * Re-adds the button when the DOM changes during page transitions
+ */
 function observeActionsBlock() {
-  const target = document.querySelector("#actions");
+  const target = document.querySelector(CONFIG.SELECTORS.ACTIONS);
   if (!target) return;
 
   // Watch for changes inside #actions (for SPA navigation)
@@ -44,7 +64,11 @@ function observeActionsBlock() {
   observer.observe(target, { childList: true, subtree: true });
 }
 
-/* Wait for #actions and set up observer */
+/**
+ * Waits for an element to appear in the DOM
+ * @param {string} selector - CSS selector for the element to wait for
+ * @returns {Promise<Element>} Promise that resolves when element is found
+ */
 function waitForElm(selector) {
   return new Promise((resolve) => {
     if (document.querySelector(selector)) {
@@ -60,7 +84,7 @@ function waitForElm(selector) {
   });
 }
 
-waitForElm("#actions")
+waitForElm(CONFIG.SELECTORS.ACTIONS)
   .then(() => {
     addSaveToButton();
     observeActionsBlock();
@@ -69,40 +93,44 @@ waitForElm("#actions")
     handleError("Error while waiting for #actions element:", error);
   });
 
-/* Function: getAddVideoParams
-  Description: Returns the parameters object needed to add a video to the watch later playlist.
-  Parameters:
-    - videoId: The ID of the video to be added
-  Returns: 
-    Object with click tracking params, command metadata, and playlist edit endpoint
-*/
+/**
+ * Returns the parameters object needed to add a video to the Watch Later playlist
+ * @param {string} videoId - The ID of the video to be added
+ * @returns {Object} YouTube API request parameters for adding a video
+ */
 const getAddVideoParams = (videoId) => ({
   clickTrackingParams: "",
-  commandMetadata: { webCommandMetadata: { sendPost: true, apiUrl: "/youtubei/v1/browse/edit_playlist" } },
-  playlistEditEndpoint: { playlistId: "WL", actions: [{ addedVideoId: videoId, action: "ACTION_ADD_VIDEO" }] },
+  commandMetadata: { webCommandMetadata: { sendPost: true, apiUrl: CONFIG.API_URL } },
+  playlistEditEndpoint: { 
+    playlistId: CONFIG.PLAYLIST_ID, 
+    actions: [{ addedVideoId: videoId, action: "ACTION_ADD_VIDEO" }] 
+  },
 });
 
-/* 
-  Function: getRemoveVideoParams
-  Description: Returns the parameters object needed to remove a video from the watch later playlist.
-  Parameters:
-    - videoId: The ID of the video to be removed
-  Returns: 
-    Object with click tracking parameters, command metadata, and playlist edit endpoint
-*/
+/**
+ * Returns the parameters object needed to remove a video from the Watch Later playlist
+ * @param {string} videoId - The ID of the video to be removed
+ * @returns {Object} YouTube API request parameters for removing a video
+ */
 const getRemoveVideoParams = (videoId) => ({
   clickTrackingParams: "",
-  commandMetadata: { webCommandMetadata: { sendPost: true, apiUrl: "/youtubei/v1/browse/edit_playlist" } },
-  playlistEditEndpoint: { playlistId: "WL", actions: [{ action: "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", removedVideoId: videoId }] },
+  commandMetadata: { webCommandMetadata: { sendPost: true, apiUrl: CONFIG.API_URL } },
+  playlistEditEndpoint: { 
+    playlistId: CONFIG.PLAYLIST_ID, 
+    actions: [{ action: "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", removedVideoId: videoId }] 
+  },
 });
 
-/* ACTION SENDER */
+/**
+ * Sends an action to YouTube's native handler to manipulate the Watch Later playlist
+ * @param {Function} getParams - Function that returns the API parameters for the action
+ */
 const sendActionToNativeYouTubeHandler = (getParams) => {
   try {
     // Get the video ID from the URL
     const videoId = new URL(window.location.href).searchParams.get("v");
     // Find the app element on the page
-    const appElement = document.querySelector("ytd-app");
+    const appElement = document.querySelector(CONFIG.SELECTORS.YTD_APP);
 
     // If videoId or appElement is not found, return early
     if (!videoId || !appElement) {
@@ -127,14 +155,10 @@ const sendActionToNativeYouTubeHandler = (getParams) => {
   }
 };
 
-/* Check if saveTo button is created if not create it */
-if (saveTo) {
-  console.log("find menu");
-} else {
-  console.log("nope");
-}
-
-/* Button listener */
+/**
+ * Button click event listener
+ * Handles the click on the Watch Later button
+ */
 saveTo.addEventListener("click", () => {
   try {
     sendActionToNativeYouTubeHandler(getAddVideoParams);
