@@ -2,14 +2,12 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 // Path to the directory with your extension
-const extensionPath = path.join(__dirname, 'chrome');
+const extensionPath = path.join(__dirname, '..', 'chrome');
 
 // YouTube video URL for testing
 const YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v=PRgS7hBgR1k';
 
-// Selector for the button added by your extension.
-// IMPORTANT: This selector is an assumption. You need to replace it
-// with the actual ID or class you assign to the button in saveto.js.
+// Selector for the button added by the extension.
 const WATCH_LATER_BUTTON_SELECTOR = '#saveToPlaylist';
 
 describe('Watch Later Button E2E Test', () => {
