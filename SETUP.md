@@ -1,78 +1,96 @@
-# Инструкция по установке зависимостей
+# Development Setup
 
-## Системные требования
+This repository contains:
 
-Убедитесь, что у вас установлены:
+- `chrome/` — the Chrome extension source code
+- `docs/` — the Jekyll website used for GitHub Pages
+
+## Requirements
+
+Make sure the following tools are installed:
+
 - Ruby
-- Node.js и npm
+- Bundler
+- Node.js and npm
 - Git
 
-## Установка системных зависимостей
+## Install system dependencies
 
-### 1. Установка инструментов разработки (Fedora/CentOS/RHEL)
+### Fedora / CentOS / RHEL
+
 ```bash
 sudo dnf install ruby-devel gcc gcc-c++ make openssl-devel
 ```
 
-## Установка Bundler и Jekyll напрямую
+## Install Bundler and Jekyll
 
-Если Bundler или Jekyll не установлены, выполните:
+If Bundler or Jekyll are not installed yet, run:
+
 ```bash
 gem install bundler jekyll
 ```
 
-## Установка зависимостей проекта
+## Install project dependencies
 
-### 2. Ruby gems (Jekyll и темы)
+The Jekyll site lives in the `docs/` directory, so all website-related commands should be run from there.
+
+### Install Ruby gems
+
 ```bash
+cd docs
 bundle install
 ```
 
-**Что устанавливается:**
-- `jekyll` (~4.3) - генератор статических сайтов
-- `minima` (~2.5) - тема Jekyll
-- `jekyll-seo-tag` - плагин для SEO оптимизации
-- `jekyll-jekyll-sitemap` - генерирует XML sitemap
+This installs the Jekyll dependencies defined in `docs/Gemfile`, including:
 
-### 3. Node.js зависимости (тестирование)
+- `jekyll`
+- `minima`
+- `jekyll-seo-tag`
+- `jekyll-sitemap`
+
+### Install Node.js dependencies
+
 ```bash
+cd docs
 npm install
 ```
 
-## Запуск проекта
+This installs the JavaScript development dependencies defined in `docs/package.json`.
 
-### Запуск Jekyll сайта
+## Run the site locally
+
+From the `docs/` directory:
+
 ```bash
 bundle exec jekyll serve
 ```
 
-### Запуск тестов
-```bash
-npm test
-```
-
-## Структура проекта
-
-- `chrome/` - исходный код Chrome расширения
-- `_posts/` - статьи для Jekyll блога
-- `_layouts/` - шаблоны Jekyll
-- `_sass/` - стили SCSS
-- `assets/` - статические файлы (CSS, изображения)
-- `package.json` - Node.js зависимости
-- `Gemfile` - Ruby gems зависимости
-
-## Полезные команды
+## Useful commands
 
 ```bash
-# Проверка версий
+# Check installed versions
 ruby --version
+bundle --version
 node --version
 npm --version
-bundle --version
 
-# Сборка сайта без запуска сервера
+# Build the site
+cd docs
 bundle exec jekyll build
 
-# Очистка сгенерированных файлов
+# Clean generated files
+cd docs
 bundle exec jekyll clean
 ```
+
+## Project structure
+
+- `chrome/` — Chrome extension source
+- `docs/` — Jekyll site source
+- `docs/_posts/` — blog and update posts
+- `docs/_layouts/` — Jekyll layouts
+- `docs/_includes/` — shared Jekyll partials
+- `docs/_sass/` — SCSS sources
+- `docs/assets/` — site assets
+- `docs/Gemfile` — Ruby dependencies
+- `docs/package.json` — Node.js dependencies
