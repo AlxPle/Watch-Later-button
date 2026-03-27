@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Watch Later Button
-description: A simple Chrome extension that adds a convenient button to quickly save videos to your "Watch Later" playlist on YouTube.
+description: Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first extension. No data collection.
 image: /assets/screenshots/640 x 400.jpg
 ---
 
@@ -22,25 +22,19 @@ A simple Chrome extension that adds a convenient button to quickly save videos t
 
 ## Getting Started
 
-1. **Install** the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab).
-2. **Open any YouTube video** — you’ll see the new button below the video.
-3. **Use the popup** to report issues, give feedback, or donate.
+1. **Install** from the [Chrome Web Store](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab) · 2. **Open any YouTube video** and click the button · 3. Video saved!
 
-## Feedback & Support
+## Get Help & Support
 
-- [Report an issue or bug](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/support)
-- [Send feedback](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews)
-- [Buy me a coffee](https://www.buymeacoffee.com/pletnovalex)
-
-## Privacy
-
-This extension does **not** collect, store, or transmit any personal data.
+— [Report an issue](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/support) · [Send feedback](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews) · [Support the developer](https://www.buymeacoffee.com/pletnovalex)
 
 ## Localization
 
-The localization of the extension is carried out using AI translation technologies to make it accessible to a wider audience. We strive to provide accurate translations, but there may be some inaccuracies. If you find any errors or have suggestions for improving the translation, please let us know.
+This extension is available in 20 languages including English, German, Spanish, French, Italian, Japanese, Korean, Russian, Ukrainian, Chinese, Arabic, and more. We welcome translation improvements.
 
 ---
 
 <br/>
 **Enjoy a faster way to manage your YouTube Watch Later playlist!**
+
+**Privacy:** This extension does not collect or transmit any personal data. [Read our privacy policy](https://alxple.github.io/Watch-Later-button/privacy/).
