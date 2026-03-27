@@ -4,7 +4,7 @@
         "description": "Nome da extensão"
     },
     "extensionDescription": {
-        "message": "Adicione uma maneira rápida de salvar vídeos na playlist 'Assistir mais tarde' no YouTube.",
+        "message": "Adicione ao YouTube um botão limpo de \"Assistir mais tarde\" com um clique",
         "description": "Descrição da extensão"
     },
     "feedback": {

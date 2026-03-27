@@ -4,7 +4,7 @@
         "description": "Nombre de la extensión"
     },
     "extensionDescription": {
-        "message": "Agregue una forma rápida de guardar videos en la lista de reproducción 'Ver más tarde' en YouTube.",
+        "message": "Añade a YouTube un botón limpio de Ver más tarde con un clic",
         "description": "Descripción de la extensión"
     },
     "feedback": {

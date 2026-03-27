@@ -4,7 +4,7 @@
         "description": "Nom de l'extension"
     },
     "extensionDescription": {
-        "message": "Ajoutez un moyen rapide d'enregistrer des vidéos dans la playlist 'À regarder plus tard' sur YouTube.",
+        "message": "Ajoutez à YouTube un bouton \"À regarder plus tard\" clair en un clic",
         "description": "Description de l'extension"
     },
     "feedback": {

@@ -4,7 +4,7 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "新增快速將影片儲存至 YouTube「稍後觀看」播放清單的方式。",
+        "message": "為 YouTube 新增簡潔的一鍵「稍後觀看」按鈕",
         "description": "Description of the extension"
     },
     "feedback": {
