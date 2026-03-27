@@ -4,6 +4,7 @@ This repository contains:
 
 - `chrome/` — the Chrome extension source code
 - `docs/` — the Jekyll website used for GitHub Pages
+- `tests/` — the JavaScript test tooling and E2E tests
 
 ## Requirements
 
@@ -32,7 +33,10 @@ gem install bundler jekyll
 
 ## Install project dependencies
 
-The Jekyll site lives in the `docs/` directory, so all website-related commands should be run from there.
+The website and test tooling are configured separately:
+
+- Run Jekyll commands from `docs/`
+- Run JavaScript test commands from `tests/`
 
 ### Install Ruby gems
 
@@ -51,11 +55,11 @@ This installs the Jekyll dependencies defined in `docs/Gemfile`, including:
 ### Install Node.js dependencies
 
 ```bash
-cd docs
+cd tests
 npm install
 ```
 
-This installs the JavaScript development dependencies defined in `docs/package.json`.
+This installs the JavaScript development dependencies defined in `tests/package.json`.
 
 ## Run the site locally
 
@@ -63,6 +67,14 @@ From the `docs/` directory:
 
 ```bash
 bundle exec jekyll serve
+```
+
+## Run tests
+
+From the `tests/` directory:
+
+```bash
+npm test
 ```
 
 ## Useful commands
@@ -81,6 +93,13 @@ bundle exec jekyll build
 # Clean generated files
 cd docs
 bundle exec jekyll clean
+
+# Install test dependencies
+cd ../tests
+npm install
+
+# Run E2E tests
+npm test
 ```
 
 ## Project structure
@@ -93,4 +112,6 @@ bundle exec jekyll clean
 - `docs/_sass/` — SCSS sources
 - `docs/assets/` — site assets
 - `docs/Gemfile` — Ruby dependencies
-- `docs/package.json` — Node.js dependencies
+- `tests/` — JavaScript test workspace
+- `tests/e2e.test.js` — E2E test for the extension
+- `tests/package.json` — Node.js dependencies for tests
