@@ -2,6 +2,12 @@
 
 A simple Chrome extension that adds a convenient button to quickly save videos to your "Watch Later" playlist on YouTube.
 
+## Repository Structure
+
+- `chrome/` — Chrome extension source code
+- `docs/` — Jekyll website for GitHub Pages
+- `tests/` — JavaScript tooling and E2E tests
+
 ## Features
 
 - **Add to Watch Later:** Instantly add the current YouTube video to your "Watch Later" playlist with a single click.
@@ -28,6 +34,8 @@ A simple Chrome extension that adds a convenient button to quickly save videos t
 ## Privacy
 
 This extension does **not** collect, store, or transmit any personal data.
+
+The public privacy policy is available on the project website.
 
 ## Localization
 
