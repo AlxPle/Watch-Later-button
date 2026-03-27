@@ -4,7 +4,7 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Legg til ein rask måte å lagra videoar til 'Sjå seinare'-spelelista di på YouTube.",
+        "message": "Legg til ein ryddig eittklikks «Sjå seinare»-knapp i YouTube",
         "description": "Description of the extension"
     },
     "feedback": {

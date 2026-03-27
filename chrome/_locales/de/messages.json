@@ -1,26 +1,26 @@
 {
-  "extensionName": {
-    "message": "Watch Later Button",
-    "description": "Name der Erweiterung"
-  },
-  "extensionDescription": {
-    "message": "Fügen Sie eine schnelle Möglichkeit hinzu, Videos zur Playlist 'Später ansehen' auf YouTube zu speichern.",
-    "description": "Beschreibung der Erweiterung"
-  },
-  "feedback": {
-    "message": "Feedback",
-    "description": "Feedback-Link-Text"
-  },
-  "donate": {
-    "message": "Spenden",
-    "description": "Spenden-Link-Text"
-  },
-  "issues": {
-    "message": "Probleme",
-    "description": "Probleme-Link-Text"
-  },
-  "help": {
-    "message": "Hilfe",
-    "description": "Hilfe-Link-Text"
-  }
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name der Erweiterung"
+    },
+    "extensionDescription": {
+        "message": "Füge YouTube eine übersichtliche \"Mit einem Klick zu Später ansehen\"-Schaltfläche hinzu",
+        "description": "Beschreibung der Erweiterung"
+    },
+    "feedback": {
+        "message": "Feedback",
+        "description": "Feedback-Link-Text"
+    },
+    "donate": {
+        "message": "Spenden",
+        "description": "Spenden-Link-Text"
+    },
+    "issues": {
+        "message": "Probleme",
+        "description": "Probleme-Link-Text"
+    },
+    "help": {
+        "message": "Hilfe",
+        "description": "Hilfe-Link-Text"
+    }
 }
