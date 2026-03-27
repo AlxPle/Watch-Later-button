@@ -5,3 +5,32 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
 {% endcomment %}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon.png' | relative_url }}">
+
+<!-- JSON-LD Schema for SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Watch Later Button",
+  "description": "Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first Chrome extension.",
+  "url": "https://alxple.github.io/Watch-Later-button/",
+  "applicationCategory": "BrowserExtension",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "ratingCount": "26"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Alex Pletnov",
+    "url": "https://alxple.github.io"
+  },
+  "downloadUrl": "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+}
+</script>

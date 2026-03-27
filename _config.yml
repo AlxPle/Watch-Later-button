@@ -1,6 +1,7 @@
 title: Watch Later Button
-description: A simple Chrome extension that adds a convenient button to quickly save videos to your "Watch Later" playlist on YouTube.
+description: Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first Chrome extension. No data collection. Available in 20 languages.
 author: Alex Pletnov
+lang: en
 
 # Navigation: exclude index from header
 header_pages:

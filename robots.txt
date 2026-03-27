@@ -1,0 +1,15 @@
+# robots.txt for Watch Later Button website
+# Allows search engines to crawl all public pages
+
+User-agent: *
+Allow: /
+Disallow: /_site/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://alxple.github.io/sitemap.xml
+
+# Crawl delay (polite crawling)
+Crawl-delay: 1
