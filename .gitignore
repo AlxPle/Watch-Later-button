@@ -1,7 +1,12 @@
+# Node
 node_modules/
+
+# Bundler / Ruby
 .bundle/
 vendor/
+
+# Jekyll build artifacts
 _site/
 .sass-cache/
 .jekyll-cache/
-e2e.test.js
+.jekyll-metadata
