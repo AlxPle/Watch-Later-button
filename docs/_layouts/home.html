@@ -175,22 +175,29 @@ layout: default
         </section>
         <!-- Trust & Privacy Section -->
         <section class="bg-surface py-20 px-6 border-y border-outline-variant/10">
+            {% assign rating_value_raw = site.data.store_rating.ratingValue | default: '4.5' %}
+            {% assign rating_value = rating_value_raw | plus: 0 %}
+            {% assign rating_count = site.data.store_rating.ratingCount | default: '26' %}
+            {% assign full_stars = rating_value | floor %}
+            {% assign next_star = full_stars | plus: 1 %}
+            {% assign remainder = rating_value | minus: full_stars %}
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
                 <div class="text-center md:text-left">
                     <div class="flex items-center justify-center md:justify-start gap-1 mb-4">
-                        <span class="material-symbols-outlined text-primary" data-icon="star"
+                        {% for i in (1..5) %}
+                        {% if i <= full_stars %} <span class="material-symbols-outlined text-primary" data-icon="star"
                             style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="material-symbols-outlined text-primary" data-icon="star"
-                            style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="material-symbols-outlined text-primary" data-icon="star"
-                            style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="material-symbols-outlined text-primary" data-icon="star"
-                            style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="material-symbols-outlined text-primary" data-icon="star_half"
-                            style="font-variation-settings: 'FILL' 1;">star_half</span>
+                            {% elsif i == next_star and remainder >= 0.5 %}
+                            <span class="material-symbols-outlined text-primary" data-icon="star_half"
+                                style="font-variation-settings: 'FILL' 1;">star_half</span>
+                            {% else %}
+                            <span class="material-symbols-outlined text-primary" data-icon="star"
+                                style="font-variation-settings: 'FILL' 0;">star</span>
+                            {% endif %}
+                            {% endfor %}
                     </div>
-                    <h3 class="title-lg mb-2">4.5/5 Chrome Store Rating</h3>
-                    <p class="text-on-surface-variant">Trusted by over 1,000+ daily active users.</p>
+                    <h3 class="title-lg mb-2">{{ rating_value_raw }}/5 Chrome Store Rating</h3>
+                    <p class="text-on-surface-variant">Based on {{ rating_count }} Chrome Web Store reviews.</p>
                 </div>
                 <div class="h-px w-32 bg-outline-variant/20 hidden md:block"></div>
                 <div class="text-center md:text-left flex flex-col items-center md:items-start gap-4">

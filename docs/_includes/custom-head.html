@@ -172,8 +172,8 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   },
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "4.5",
-    "ratingCount": "26"
+    "ratingValue": {{ site.data.store_rating.ratingValue | default: '4.5' | jsonify }},
+    "ratingCount": {{ site.data.store_rating.ratingCount | default: '26' | jsonify }}
   },
   "author": {
     "@id": {{ '/' | absolute_url | append: '#person' | jsonify }}
