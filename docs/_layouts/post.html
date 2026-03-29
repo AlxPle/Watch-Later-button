@@ -3,12 +3,20 @@ layout: default
 ---
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <!-- Убрана дата -->
+  <header class="mb-8 pb-6 border-b border-zinc-200">
+    <p class="text-xs uppercase tracking-wide text-zinc-500 mb-2">Page</p>
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 font-headline p-name"
+        itemprop="name headline">{{ page.title | escape }}</h1>
+    </div>
+    <div class="mt-4 flex flex-wrap items-center gap-4 text-sm">
+      <a class="text-zinc-600 hover:text-zinc-900" href="{{ '/updates/' | relative_url }}">Back to Updates</a>
+    </div>
   </header>
 
-  <div class="post-content e-content" itemprop="articleBody">
+  <div
+    class="post-content e-content [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:border-l-4 [&>h2]:border-[#bc0100] [&>h2]:pl-4 [&>h2]:text-2xl [&>h2]:font-extrabold [&>h2]:tracking-tight [&>h2]:font-headline [&>h2]:text-zinc-900 [&>h3]:mt-8 [&>h3]:mb-3 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:text-zinc-900 [&>p]:my-4 [&>ul]:my-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ul>li]:my-2"
+    itemprop="articleBody">
     {{ content }}
   </div>
 </article>
