@@ -5,7 +5,13 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
 {% endcomment %}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon.png' | relative_url }}">
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link
   href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
   rel="stylesheet" />
