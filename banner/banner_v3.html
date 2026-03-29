@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary": "#ffffff",
+              "primary": "#bc0100",
+              "error": "#ba1a1a",
+              "surface-container": "#f0edec",
+              "surface": "#fcf9f8",
+              "primary-container": "#eb0000",
+              "tertiary-container": "#0071e8",
+              "on-primary": "#ffffff",
+              "tertiary": "#0059ba",
+              "surface-container-highest": "#e5e2e1",
+              "tertiary-fixed": "#d7e2ff",
+              "surface-variant": "#e5e2e1",
+              "background": "#fcf9f8",
+              "surface-container-high": "#ebe7e7",
+              "primary-fixed-dim": "#ffb4a8",
+              "surface-bright": "#fcf9f8",
+              "on-tertiary-container": "#fefcff",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#ffb4a8",
+              "on-background": "#1c1b1b",
+              "on-secondary-container": "#5c0000",
+              "tertiary-fixed-dim": "#acc7ff",
+              "error-container": "#ffdad6",
+              "inverse-surface": "#313030",
+              "on-tertiary-fixed-variant": "#004491",
+              "on-surface-variant": "#603e39",
+              "on-surface": "#1c1b1b",
+              "on-primary-fixed": "#410000",
+              "surface-tint": "#c00100",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#930100",
+              "inverse-on-surface": "#f3f0ef",
+              "secondary-container": "#ff5541",
+              "on-tertiary-fixed": "#001a40",
+              "surface-container-low": "#f6f3f2",
+              "secondary": "#b72114",
+              "on-secondary-fixed": "#410000",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#930100",
+              "surface-dim": "#dcd9d9",
+              "on-primary-container": "#fffbff",
+              "outline-variant": "#ebbbb4",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#ffdad4",
+              "secondary-fixed-dim": "#ffb4a8",
+              "secondary-fixed": "#ffdad4",
+              "outline": "#956d67"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<nav class="bg-white/80 dark:bg-stone-950/80 backdrop-blur-xl shadow-sm dark:shadow-none font-manrope font-bold tracking-tight fixed top-0 w-full z-50">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-black text-[#1c1b1b] dark:text-[#fcf9f8]">
+                SpeedSave Extension
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#bc0100] dark:text-[#eb0000] border-b-2 border-[#bc0100] pb-1 hover:text-[#bc0100] transition-colors duration-200" href="#">Features</a>
+<a class="text-[#603e39] dark:text-[#e5e2e1] hover:text-[#bc0100] transition-colors duration-200" href="#">Efficiency</a>
+<a class="text-[#603e39] dark:text-[#e5e2e1] hover:text-[#bc0100] transition-colors duration-200" href="#">Pricing</a>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-2.5 rounded-full font-bold text-sm hover:opacity-90 active:scale-95 transition-all">
+                    Add to Chrome
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-6 max-w-[1400px] mx-auto min-h-[560px]">
+<div class="text-center mb-16">
+<h1 class="font-headline text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-on-surface mb-4">
+                YouTube hides Save to Watch Later... <span class="text-primary">We don't</span>
+</h1>
+<p class="text-on-surface-variant max-w-2xl mx-auto text-lg">
+                Stop digging through menus. Reclaim your focus with a single-click saving experience designed for the modern curator.
+            </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-xl overflow-hidden shadow-2xl shadow-on-surface/5">
+<div class="bg-surface-container-low p-12 flex flex-col items-center justify-center relative">
+<div class="absolute top-6 left-8">
+<span class="font-headline text-sm font-bold uppercase tracking-widest text-on-surface-variant opacity-50">The Old Way</span>
+</div>
+<div class="flex items-center gap-4 mb-12">
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Click</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">arrow_forward</span>
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">playlist_add</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Menu</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">arrow_forward</span>
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">check_box_outline_blank</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Select</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">arrow_forward</span>
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Close</span>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-error-container text-on-error-container px-6 py-3 rounded-full">
+<span class="material-symbols-outlined font-bold text-error">timer</span>
+<span class="font-bold text-lg">Slower: 4 Clicks</span>
+</div>
+</div>
+<div class="bg-[#e8f5e9] p-12 flex flex-col items-center justify-center relative">
+<div class="absolute top-6 left-8">
+<span class="font-headline text-sm font-bold uppercase tracking-widest text-green-800 opacity-60">The New Way</span>
+</div>
+<div class="absolute -left-12 top-1/2 -translate-y-1/2 z-10 hidden lg:flex items-center justify-center bg-white shadow-xl w-24 h-24 rounded-full border-4 border-surface">
+<div class="text-center">
+<span class="material-symbols-outlined text-primary block text-3xl">trending_flat</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase leading-none">Save 3<br/>Clicks</span>
+</div>
+</div>
+<div class="relative group cursor-pointer">
+<div class="absolute -top-4 -right-4 w-12 h-12 bg-primary text-white flex items-center justify-center rounded-full font-headline text-2xl font-black shadow-lg ring-4 ring-[#e8f5e9] z-20">1</div>
+<div class="w-72 h-44 rounded-2xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="close-up of a high-resolution 4k video thumbnail featuring vibrant cinematography of an urban sunset with a prominent red overlay save button" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1je3H7LOmhuExarjfWxIPp8q7xPDGXXfJBUTcIkuJYeFmCvxfYIVUfL-6TNwrJRhX8by92qM0w4G-OU9rf81sQgoeFOCo2XthuvRVJvZ4qznqOzvd9JGSGqE1jDGZrINTH2Rg6PcEwDSKE5PtElS5bJhM1pWelmNeop12HOdXXtsSTPpYSlOxk9rfNqNjPXbUIHDsXh7Le1xQORMQ3boL1r_ES41XWTvHsBsDwR0xl2I_hp_2vTaHOuT-tuB4QOEjYggr-ohKm3c"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+<div class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-full flex items-center gap-3 shadow-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<span class="font-bold">Watch Later</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex items-center gap-3 text-green-800">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-4xl font-headline font-black">1 Click</span>
+</div>
+</div>
+</div>
+<div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-high p-8 rounded-2xl">
+<span class="material-symbols-outlined text-primary mb-4 text-3xl">curtains_closed</span>
+<h3 class="font-headline font-bold text-xl mb-2">Native Integration</h3>
+<p class="text-on-surface-variant text-sm">Floats seamlessly over YouTube thumbnails. It looks and feels like it belongs there.</p>
+</div>
+<div class="bg-surface-container-high p-8 rounded-2xl">
+<span class="material-symbols-outlined text-tertiary mb-4 text-3xl">auto_fix_high</span>
+<h3 class="font-headline font-bold text-xl mb-2">Smart Queuing</h3>
+<p class="text-on-surface-variant text-sm">Add videos to your default Watch Later list without ever navigating away from your feed.</p>
+</div>
+<div class="bg-surface-container-high p-8 rounded-2xl">
+<span class="material-symbols-outlined text-green-700 mb-4 text-3xl">shutter_speed</span>
+<h3 class="font-headline font-bold text-xl mb-2">Zero Latency</h3>
+<p class="text-on-surface-variant text-sm">Lightweight footprint. Your browsing speed remains lightning fast while your library grows.</p>
+</div>
+</div>
+</main>
+<footer class="bg-[#f6f3f2] dark:bg-[#1c1b1b] w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 py-12 w-full max-w-7xl mx-auto font-inter text-sm">
+<div class="font-manrope font-bold text-[#1c1b1b] dark:text-white mb-4 md:mb-0">
+                SpeedSave Curator
+            </div>
+<div class="flex gap-8 mb-6 md:mb-0">
+<a class="text-[#603e39] hover:text-[#1c1b1b] dark:hover:text-white transition-opacity" href="#">Privacy Policy</a>
+<a class="text-[#603e39] hover:text-[#1c1b1b] dark:hover:text-white transition-opacity" href="#">Terms of Service</a>
+<a class="text-[#603e39] hover:text-[#1c1b1b] dark:hover:text-white transition-opacity" href="#">Contact</a>
+</div>
+<div class="text-[#603e39]">
+                © 2024 SpeedSave Curator. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

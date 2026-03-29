@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#410000",
+              "on-secondary-container": "#5c0000",
+              "primary-fixed": "#ffdad4",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#acc7ff",
+              "secondary": "#b72114",
+              "on-secondary-fixed-variant": "#930100",
+              "inverse-on-surface": "#f3f0ef",
+              "surface": "#fcf9f8",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#ffb4a8",
+              "on-surface-variant": "#603e39",
+              "surface-dim": "#dcd9d9",
+              "tertiary-container": "#0071e8",
+              "tertiary": "#0059ba",
+              "surface-tint": "#c00100",
+              "surface-container": "#f0edec",
+              "on-tertiary-fixed": "#001a40",
+              "error": "#ba1a1a",
+              "secondary-container": "#ff5541",
+              "secondary-fixed": "#ffdad4",
+              "primary-fixed-dim": "#ffb4a8",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#004491",
+              "inverse-primary": "#ffb4a8",
+              "outline": "#956d67",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f6f3f2",
+              "primary": "#bc0100",
+              "surface-variant": "#e5e2e1",
+              "on-background": "#1c1b1b",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#1c1b1b",
+              "background": "#fcf9f8",
+              "tertiary-fixed": "#d7e2ff",
+              "surface-container-high": "#ebe7e7",
+              "surface-container-highest": "#e5e2e1",
+              "on-tertiary-container": "#fefcff",
+              "inverse-surface": "#313030",
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#fcf9f8",
+              "on-primary-fixed-variant": "#930100",
+              "outline-variant": "#ebbbb4",
+              "primary-container": "#eb0000",
+              "on-secondary-fixed": "#410000",
+              "on-primary-container": "#fffbff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 40px 40px -20px rgba(28, 27, 27, 0.06);
+        }
+        .glass-panel {
+            background: rgba(252, 249, 248, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-6 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-zinc-900 dark:text-zinc-50 tracking-tighter">Digital Curator</span>
+<nav class="hidden md:flex space-x-6">
+<a class="font-manrope tracking-tight font-bold text-lg text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors" href="#">Library</a>
+<a class="font-manrope tracking-tight font-bold text-lg text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors" href="#">Collections</a>
+<a class="font-manrope tracking-tight font-bold text-lg text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors" href="#">Archive</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<div class="hidden md:block">
+<div class="bg-zinc-100 dark:bg-zinc-900 rounded-full px-4 py-2 flex items-center">
+<span class="material-symbols-outlined text-zinc-400 text-sm">search</span>
+<span class="ml-2 text-zinc-400 text-sm">Search library...</span>
+</div>
+</div>
+<button class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 rounded-lg transition-all active:scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined text-zinc-500">settings</span>
+</button>
+<button class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 rounded-lg transition-all active:scale-95 duration-200 ease-in-out relative">
+<span class="material-symbols-outlined text-zinc-500">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="w-10 h-10 rounded-full bg-zinc-200 overflow-hidden">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="professional headshot of a creative curator in a minimalist studio setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsme-Tkv1rft7SbbiqNk9L1gtkb__X0FeDoGhMrUqm9-b-hFTLSgQyRwHu6_xFNZWd7PnBSmt6MZF7lbDlQtUXdQdksLNsxF0H-a7ljdvbonW5AJOuaVNeInFYqikp0kBa4Q8FPStXmbHg3nUqlp8Atc8RBUVgp6VumJAlRyy8ZeZ-6znlPP-QwdrGRFgHl1LXve9Hzt8_RCTU2a_Mks7qrPuADpTo07Mknf3edLYvXh8smSII0O7keb9tk_ToRu-uOcK1RJM8bnc"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+<!-- Hero Promotional Banner Section -->
+<section class="relative w-full h-[560px] rounded-lg overflow-hidden bg-zinc-950 flex flex-col md:flex-row items-center editorial-shadow">
+<!-- Darkened YouTube Player Background -->
+<div class="absolute inset-0 z-0">
+<img alt="YouTube Player UI" class="w-full h-full object-cover opacity-40 grayscale-[0.5]" data-alt="dark-themed youtube video player interface with cinematic video frame and UI elements shrouded in heavy dark vignette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmrWIQ7IMFf7-BPXMxwtlRl0MNDmQKOpA4RALWrTFR1yca7LKrPy-p9NOFe-xHgcdj1HRVWVGREoeWI-FJKH8R1pa2dRFks_i6ofZ-ZmG-i63RiMODUJO-xu3YiynjRaq_XH4BX6Bq4lT0H_CeYVUr5NMjn62G92XqzSwhIsoXVW-t8Nq1RZ6NdM3R3UkPb35AuxslZgo2acdApAIv8qcF3DUuCp929LBCmF8CEYjc72SX2tlCVEuyYF5_ZNvpyDO7hVSCNe5NFAg"/>
+<div class="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent"></div>
+</div>
+<!-- Content Overlay -->
+<div class="relative z-10 flex flex-col justify-center px-12 md:w-1/2 space-y-6">
+<div class="space-y-2">
+<span class="font-label text-primary font-bold tracking-widest uppercase text-xs">The Friction Problem</span>
+<h1 class="font-headline text-5xl md:text-6xl text-white font-black leading-tight tracking-tighter">
+                        Hidden inside menu
+                    </h1>
+</div>
+<p class="text-zinc-300 text-xl font-medium max-w-md leading-relaxed">
+                    Save to Watch Later is buried by YouTube. Don't let your inspiration get lost in the click-maze.
+                </p>
+<div class="pt-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-transform hover:scale-105 active:scale-95">
+<span>Fix Your Workflow</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Visual Demonstration (The Highlighted Menu) -->
+<div class="relative z-10 hidden md:flex items-center justify-center w-1/2 h-full">
+<!-- Focused Component Highlight -->
+<div class="relative">
+<!-- Glow effect -->
+<div class="absolute -inset-10 bg-primary/20 blur-3xl rounded-full"></div>
+<!-- Simulated Menu Mockup -->
+<div class="bg-zinc-900 rounded-xl border-outline-variant/20 border p-1 shadow-2xl w-64 translate-x-12 -translate-y-8">
+<div class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:bg-zinc-800 transition-colors rounded-lg">
+<span class="material-symbols-outlined">share</span>
+<span class="text-sm font-medium">Share</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:bg-zinc-800 transition-colors rounded-lg">
+<span class="material-symbols-outlined">download</span>
+<span class="text-sm font-medium">Download</span>
+</div>
+<!-- High Visibility Red Highlight -->
+<div class="flex items-center gap-3 px-4 py-4 bg-primary text-white shadow-lg shadow-primary/40 rounded-lg scale-110 -rotate-2 relative z-20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<span class="text-base font-bold">Save to Watch Later</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:bg-zinc-800 transition-colors rounded-lg">
+<span class="material-symbols-outlined">flag</span>
+<span class="text-sm font-medium">Report</span>
+</div>
+</div>
+<!-- YouTube 'More' Icon focus circle -->
+<div class="absolute -bottom-12 -right-12">
+<div class="w-16 h-16 rounded-full border-4 border-primary animate-pulse flex items-center justify-center bg-zinc-900">
+<span class="material-symbols-outlined text-white">more_horiz</span>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-primary/30 rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Value Bento -->
+<section class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-low rounded-lg p-10 flex flex-col justify-between">
+<div>
+<h3 class="font-headline text-3xl text-on-surface font-bold tracking-tight mb-4">The Curator's Advantage</h3>
+<p class="text-on-surface-variant text-lg max-w-xl">We transform saving from a chore into a seamless editorial experience. Bring your favorite content into a space designed for focus, not distraction.</p>
+</div>
+<div class="mt-12 flex gap-4">
+<div class="bg-surface-container-highest p-6 rounded-lg flex-1">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">bolt</span>
+<h4 class="font-bold mb-2">Instant Capture</h4>
+<p class="text-sm text-on-surface-variant">Single-click archival directly from the video player.</p>
+</div>
+<div class="bg-surface-container-highest p-6 rounded-lg flex-1">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-4">auto_awesome</span>
+<h4 class="font-bold mb-2">Smart Triage</h4>
+<p class="text-sm text-on-surface-variant">Auto-categorization based on creator and length.</p>
+</div>
+</div>
+</div>
+<div class="bg-primary-container text-on-primary-container rounded-lg p-10 flex flex-col">
+<div class="mb-auto">
+<h3 class="font-headline text-3xl font-black tracking-tighter mb-4">Zero Click Friction</h3>
+<p class="opacity-90">Our extension places a high-end interaction layer over the native UI, making saving as natural as breathing.</p>
+</div>
+<div class="mt-8 rounded-lg overflow-hidden editorial-shadow">
+<img alt="Extension interface detail" class="w-full aspect-square object-cover" data-alt="close-up of a sleek glassmorphism user interface button with a subtle red gradient and refined typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK-SKnAR0vgaVP9aSRbakbAk191zzw6RSqO7Rzw2ZPSs3pTtHwUVqjiN7xQKNq-r3KA7Z1Z8c-JFjq80btLs7k8Z3kiF4fLUK4cLBchRMTKNtmDswbFOrMt72DJ2gHdP2S2eHv70faqLdgdEua7UrPTRzJDArpt8XUeC7_4TTsVol38DH_VvUmcFVKMI9rZMb9JvHpKguXTeHVK3bWh19iHOlzH1yDm5NCL7J4U4xxTfyzG4vrYzA8tuG03MTbD14HhxFLgvrzJCY"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-zinc-50 dark:bg-zinc-950 w-full py-12 border-t-0">
+<div class="flex flex-col items-center justify-center space-y-4 px-4 text-center">
+<div class="flex space-x-8">
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-400 dark:text-zinc-600 hover:text-red-600 dark:hover:text-red-400 transition-colors opacity-80 hover:opacity-100" href="#">Terms</a>
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-400 dark:text-zinc-600 hover:text-red-600 dark:hover:text-red-400 transition-colors opacity-80 hover:opacity-100" href="#">Support</a>
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-400 dark:text-zinc-600 hover:text-red-600 dark:hover:text-red-400 transition-colors opacity-80 hover:opacity-100" href="#">Twitter</a>
+</div>
+<p class="font-inter text-xs tracking-wide uppercase text-zinc-400 dark:text-zinc-600 opacity-80">© 2024 Digital Curator Chrome Extension</p>
+</div>
+</footer>
+</body></html>
