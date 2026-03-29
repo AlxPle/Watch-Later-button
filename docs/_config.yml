@@ -8,13 +8,11 @@ header_pages:
   - privacy_policy.md
   - updates.md
 
-# Set the Jekyll theme
-theme: minima
-
 # Add plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-feed
 
 # Sitemap
 url: "https://alxple.github.io"  # Required for correct URLs in sitemap
