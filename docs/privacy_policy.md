@@ -2,6 +2,8 @@
 layout: page
 title: Privacy Policy
 permalink: /privacy/
+description: Privacy policy for Watch Later Button. The extension does not collect, store, or transmit personal data.
+image: /assets/social_poster.png
 ---
 
 ## Introduction

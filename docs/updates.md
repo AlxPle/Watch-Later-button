@@ -2,6 +2,8 @@
 layout: page
 title: Updates
 permalink: /updates/
+description: Official release notes and website changes for Watch Later Button.
+image: /assets/social_poster.png
 ---
 
 <p class="text-zinc-600 mb-8">Latest changes to the extension website and release notes.</p>
