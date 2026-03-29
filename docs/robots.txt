@@ -6,7 +6,10 @@ Allow: /
 Disallow: /_site/
 Disallow: /.git/
 Disallow: /node_modules/
-Disallow: /*.json$
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /Gemfile
+Disallow: /Gemfile.lock
 
 # Sitemap location
 Sitemap: https://alxple.github.io/sitemap.xml
