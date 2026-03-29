@@ -3,9 +3,6 @@ layout: page
 title: Privacy Policy
 permalink: /privacy/
 ---
-# Privacy Policy
-
-##### Last updated: 21/10/2025
 
 ## Introduction
 
@@ -30,10 +27,3 @@ We do not use this permission to track your browsing history or collect any othe
 ## Changes to This Privacy Policy
 
 We may update this Privacy Policy in the future if the extension's functionality changes. If we make any material changes, we will notify you by updating the "Last Updated" date of this policy and, if required, by providing a more prominent notice within the extension or on its Chrome Web Store page.
-
-## Contact Us
-
-If you have any questions about this Privacy Policy, please feel free to contact us [pletnov@duck.com](mailto:pletnov@duck.com).
-
----
-*YouTube™ is a trademark of Google Inc. Use of this trademark is subject to Google Permissions.*

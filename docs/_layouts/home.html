@@ -3,7 +3,333 @@ layout: default
 ---
 
 <div class="home">
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-zinc-100/10 shadow-sm">
+        <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+            <div class="text-xl font-bold text-zinc-900 tracking-tighter font-headline">
+                <a href="{{ '/' | relative_url }}">Watch Later Button</a>
+            </div>
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-zinc-600 hover:text-zinc-900 transition-colors font-headline headline-sm tracking-tight"
+                    href="#how-it-works">How it works
+                </a>
+                <a class="text-zinc-600 hover:text-zinc-900 transition-colors font-headline headline-sm tracking-tight"
+                    href="#features">Features
+                </a>
+                <a class="text-zinc-600 hover:text-zinc-900 transition-colors font-headline headline-sm tracking-tight"
+                    href="#faq">FAQ
+                </a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+                    class="red-gradient text-on-primary font-headline px-6 py-2.5 rounded-full label-md scale-95 active:scale-100 hover:scale-105 transition-transform shadow-lg shadow-primary/20 inline-block">
+                    Add to Chrome
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="pt-24">
+        <!-- Hero Section -->
+        <section class="px-6 py-20 md:py-32 max-w-7xl mx-auto flex flex-col items-center text-center">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/15 mb-8">
+                <span class="material-symbols-outlined text-primary text-sm" data-icon="verified"
+                    style="font-variation-settings: 'FILL' 1;">verified</span>
+                <span class="label-md text-on-surface-variant uppercase tracking-widest">Available on Chrome Web
+                    Store</span>
+            </div>
+            <h1 class="font-headline headline-lg md:text-6xl max-w-5xl tracking-tight mb-8">
+                Save YouTube videos to
+                <span class="text-primary">Watch Later</span> in one click.
+            </h1>
+            <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mb-12 font-body leading-relaxed">
+                Save videos as you watch, without opening extra menus or breaking your flow.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 items-center mb-6">
+                <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+                    class="red-gradient text-on-primary px-10 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/25">
+                    <span class="material-symbols-outlined" data-icon="add_to_drive">add_to_drive</span>
+                    Add to Chrome
+                </a>
+                <a href="#how-it-works"
+                    class="text-on-surface hover:bg-surface-container-high px-10 py-4 rounded-full font-bold text-lg transition-all">
+                    See how it works
+                </a>
+            </div>
+            <div class="flex items-center gap-2 text-on-surface-variant/70 label-md">
+                <span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+                No personal data collection
+            </div>
+        </section>
+        <!-- How It Works (Tonal Depth) -->
+        <section id="how-it-works" class="bg-surface-container-low py-24 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16">
+                    <span class="label-md text-primary uppercase tracking-widest mb-4 block">Three Steps</span>
+                    <h2 class="font-headline text-4xl font-extrabold tracking-tight">How it works</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div
+                        class="bg-surface-container-lowest p-8 rounded-xl ghost-border flex flex-col gap-6 hover:translate-y-[-4px] transition-transform duration-300">
+                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary" data-icon="download">download</span>
+                        </div>
+                        <div>
+                            <h3 class="title-lg mb-3">Install</h3>
+                            <p class="text-on-surface-variant leading-relaxed">Add it from the Chrome Web Store in
+                                seconds.
+                                No setup required.</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div
+                        class="bg-surface-container-lowest p-8 rounded-xl ghost-border flex flex-col gap-6 hover:translate-y-[-4px] transition-transform duration-300">
+                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary"
+                                data-icon="youtube_activity">youtube_activity</span>
+                        </div>
+                        <div>
+                            <h3 class="title-lg mb-3">Open YouTube</h3>
+                            <p class="text-on-surface-variant leading-relaxed">Open any video as usual. The button is
+                                there
+                                when you need it.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div
+                        class="bg-surface-container-lowest p-8 rounded-xl ghost-border flex flex-col gap-6 hover:translate-y-[-4px] transition-transform duration-300">
+                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary" data-icon="ads_click"
+                                style="font-variation-settings: 'FILL' 1;">ads_click</span>
+                        </div>
+                        <div>
+                            <h3 class="title-lg mb-3">Click Button</h3>
+                            <p class="text-on-surface-variant leading-relaxed">Click once to save the video directly to
+                                your
+                                Watch Later list.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Feature Proof Section -->
+        <section id="features" class="py-24 px-6 max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-12">
+                    <div>
+                        <h2 class="font-headline text-4xl font-extrabold tracking-tight mb-6">Designed for Focus.</h2>
+                        <p class="text-on-surface-variant text-lg">We stripped away the noise. No separate accounts, no
+                            syncing
+                            delays, just pure utility.</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+                                <h4 class="font-bold">One-click save</h4>
+                            </div>
+                            <p class="text-on-surface-variant text-sm">Save content in under 0.5 seconds without opening
+                                new
+                                windows.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary"
+                                    data-icon="integration_instructions">integration_instructions</span>
+                                <h4 class="font-bold">Seamless integration</h4>
+                            </div>
+                            <p class="text-on-surface-variant text-sm">Mimics the native YouTube design for an invisible
+                                experience.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary" data-icon="weight">weight</span>
+                                <h4 class="font-bold">Lightweight</h4>
+                            </div>
+                            <p class="text-on-surface-variant text-sm">Zero impact on your browser's performance or
+                                memory.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary"
+                                    data-icon="translate">translate</span>
+                                <h4 class="font-bold">20+ Languages</h4>
+                            </div>
+                            <p class="text-on-surface-variant text-sm">Localization support for a global viewing
+                                experience.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative bg-surface-container p-8 rounded-2xl">
+                    <div class="bg-white rounded-lg shadow-inner overflow-hidden flex items-center justify-center">
+                        <img alt="Minimalist Interface" class="w-full h-full object-bottom-right"
+                            src="../assets/screenshots-new/640 x 400 _new.png" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Trust & Privacy Section -->
+        <section class="bg-surface py-20 px-6 border-y border-outline-variant/10">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-1 mb-4">
+                        <span class="material-symbols-outlined text-primary" data-icon="star"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-primary" data-icon="star"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-primary" data-icon="star"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-primary" data-icon="star"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-primary" data-icon="star_half"
+                            style="font-variation-settings: 'FILL' 1;">star_half</span>
+                    </div>
+                    <h3 class="title-lg mb-2">4.5/5 Chrome Store Rating</h3>
+                    <p class="text-on-surface-variant">Trusted by over 1,000+ daily active users.</p>
+                </div>
+                <div class="h-px w-32 bg-outline-variant/20 hidden md:block"></div>
+                <div class="text-center md:text-left flex flex-col items-center md:items-start gap-4">
+                    <div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center">
+                        <span class="material-symbols-outlined text-2xl" data-icon="shield_lock"
+                            style="font-variation-settings: 'FILL' 1;">shield_lock</span>
+                    </div>
+                    <div>
+                        <h3 class="title-lg mb-2">Privacy First</h3>
+                        <p class="text-on-surface-variant">No personal data collection, storage, or transmission.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ Section -->
+        <section id="faq" class="py-24 px-6 max-w-3xl mx-auto">
+            <h2 class="font-headline text-3xl font-extrabold tracking-tight mb-12 text-center">Frequently Asked
+                Questions
+            </h2>
+            <div class="space-y-6">
+                <div class="bg-surface-container-low p-6 rounded-xl">
+                    <h4 class="font-bold mb-2">Is it really free?</h4>
+                    <p class="text-on-surface-variant text-sm">Yes, the core functionality of saving videos to your
+                        Watch
+                        Later
+                        list is and always will be free.</p>
+                </div>
+                <div class="bg-surface-container-low p-6 rounded-xl">
+                    <h4 class="font-bold mb-2">Does it work on mobile?</h4>
+                    <p class="text-on-surface-variant text-sm">This is a Chrome Extension designed for desktop browsers.
+                        For
+                        mobile, we recommend using the native YouTube app.</p>
+                </div>
+                <div class="bg-surface-container-low p-6 rounded-xl">
+                    <h4 class="font-bold mb-2">Is my data safe?</h4>
+                    <p class="text-on-surface-variant text-sm">Absolutely. We do not have servers that store your data.
+                        Everything
+                        happens locally in your browser.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Support Section -->
+        <section id="support" class="bg-surface-container-low py-24 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="label-md text-primary uppercase tracking-widest mb-4 block">Support</span>
+                    <h2 class="font-headline text-3xl md:text-4xl font-extrabold tracking-tight">Need help or want to
+                        share feedback?</h2>
+                    <p class="text-on-surface-variant mt-4 max-w-2xl mx-auto">Use one of the quick actions below. We
+                        read every report and review.</p>
+                </div>
 
-    {{ content }}
+                <div class="grid md:grid-cols-3 gap-6">
+                    <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary"
+                                data-icon="bug_report">bug_report</span>
+                        </div>
+                        <div>
+                            <h3 class="title-lg mb-2">Report an Issue</h3>
+                            <p class="text-on-surface-variant text-sm">Found a bug or something not working as expected?
+                            </p>
+                        </div>
+                        <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/support"
+                            class="mt-auto inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-zinc-900 bg-surface-container-high hover:bg-surface-container transition-colors">
+                            Open Support
+                        </a>
+                    </article>
 
+                    <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary" data-icon="forum">forum</span>
+                        </div>
+                        <div>
+                            <h3 class="title-lg mb-2">Send Feedback</h3>
+                            <p class="text-on-surface-variant text-sm">Share your experience and help improve the
+                                extension.</p>
+                        </div>
+                        <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews"
+                            class="mt-auto inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-zinc-900 bg-surface-container-high hover:bg-surface-container transition-colors">
+                            Write a Review
+                        </a>
+                    </article>
+
+                    <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary" data-icon="favorite">favorite</span>
+                        </div>
+                        <div>
+                            <h3 class="title-lg mb-2">Support the Developer</h3>
+                            <p class="text-on-surface-variant text-sm">If this tool saves you time, you can support
+                                future updates.</p>
+                        </div>
+                        <a href="https://www.buymeacoffee.com/pletnovalex"
+                            class="mt-auto red-gradient inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-100 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/35">
+                            Buy Me a Coffee
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- Final CTA Band -->
+        <section class="px-6 py-20">
+            <div
+                class="max-w-7xl mx-auto bg-zinc-950 text-white rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[120px]"></div>
+                <div class="relative z-10">
+                    <h2 class="font-headline text-4xl md:text-5xl font-extrabold mb-8 max-w-2xl mx-auto">Build your
+                        digital
+                        library today.</h2>
+                    <p class="text-zinc-400 text-lg mb-12 max-w-xl mx-auto">Join thousands of curators who never lose a
+                        video
+                        again.</p>
+                    <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+                        class="red-gradient text-white px-12 py-5 rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-2xl shadow-primary/40 inline-block">
+                        Add to Chrome — It's Free
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-zinc-200 bg-zinc-50">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-8">
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <div class="text-xl font-bold text-zinc-900 tracking-tighter font-headline mb-2">
+                    Watch Later Button</div>
+                <p class="font-inter text-xs tracking-wide uppercase text-zinc-500">© {{ site.time |
+                    date: "%Y" }} Watch Later Button.</p>
+            </div>
+            <div class="flex gap-8">
+                <a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-[#bc0100] transition-colors hover:opacity-80"
+                    href="{{ '/privacy/' | relative_url }}">Privacy Policy</a>
+                <a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-[#bc0100] transition-colors hover:opacity-80"
+                    href="{{ '/updates/' | relative_url }}">Updates</a>
+                <a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-[#bc0100] transition-colors hover:opacity-80"
+                    href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab">Chrome
+                    Web Store</a>
+            </div>
+        </div>
+    </footer>
 </div>

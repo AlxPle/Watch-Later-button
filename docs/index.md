@@ -6,36 +6,51 @@ image: /assets/screenshots/640 x 400.jpg
 keywords: YouTube, Watch Later, Chrome extension, video playlist, one-click save, privacy-friendly
 ---
 
-# Watch Later Button
+<!-- # Watch Later Button
 
-A simple Chrome extension that adds a convenient button to quickly save videos to your "Watch Later" playlist on YouTube.
+Save YouTube videos to Watch Later in one click.
 
-## Features
+A lightweight Chrome extension that adds a clear "Watch Later" button right on YouTube video pages, so you can save videos instantly without opening extra menus.
 
-- **Add to Watch Later:** Instantly add the current YouTube video to your "Watch Later" playlist with a single click.
-- **Minimal UI:** Clean and intuitive popup with quick access to issues, feedback, and donation links.
-- **Localization:** Supports 20 languages including English, German, Spanish, French, Italian, Japanese, Korean, Russian, Ukrainian, Chinese, and more.
-- **Privacy-friendly:** Does not collect or transmit any personal data.
+## Why people use it
+
+- **One-click save:** Add the current video to Watch Later immediately.
+- **Less friction:** No menu hunting, no extra steps.
+- **Clean and lightweight:** Minimal interface that stays out of your way.
+- **Built for privacy:** No personal data collection or tracking.
+- **Multilingual:** Available in 20+ languages.
 
 ## How it works
 
-- Open a YouTube video, the extension adds a "Watch Later" button directly under the video.
+1. **Install** from the [Chrome Web Store](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab).
+2. **Open** any YouTube video page.
+3. **Click** the button under the video to save it instantly.
 
-## Getting Started
+Done. The video is saved to Watch Later.
 
-1. **Install** from the [Chrome Web Store](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab) · 2. **Open any YouTube video** and click the button · 3. Video saved!
+## Add to Chrome
 
-## Get Help & Support
+Install Watch Later Button and keep watching without losing videos you want to return to.
 
-— [Report an issue](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/support) · [Send feedback](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews) · [Support the developer](https://www.buymeacoffee.com/pletnovalex)
+[Add to Chrome](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab)
+
+**No personal data collection.**
+
+## Help & Support
+
+Need help or want to share feedback?
+
+- [Report an issue](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/support)
+- [Send feedback](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews)
+- [Support the developer](https://www.buymeacoffee.com/pletnovalex)
 
 ## Localization
 
-This extension is available in 20 languages including English, German, Spanish, French, Italian, Japanese, Korean, Russian, Ukrainian, Chinese, Arabic, and more. We welcome translation improvements.
+Watch Later Button is available in 20+ languages including English, German, Spanish, French, Italian, Japanese, Korean, Russian, Ukrainian, Chinese, Arabic, and more. We welcome translation improvements.
 
 ---
 
 <br/>
-**Enjoy a faster way to manage your YouTube Watch Later playlist!**
+**Save videos faster. Keep your flow.**
 
-**Privacy:** This extension does not collect or transmit any personal data. [Read our privacy policy](https://alxple.github.io/Watch-Later-button/privacy/).
+**Privacy:** This extension does not collect, store, or transmit personal data. [Read our privacy policy](https://alxple.github.io/Watch-Later-button/privacy/). -->
