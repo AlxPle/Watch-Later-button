@@ -51,6 +51,35 @@ function extractFirst(html, patterns) {
     return null;
 }
 
+function extractRatingData(html) {
+    const pairedPatterns = [
+        /class="yZ330c Qm2rpf"[\s\S]{0,800}?<span class="Vq0ZA">([0-9]+(?:\.[0-9]+)?)<\/span>[\s\S]{0,400}?<p class="xJEoWe">([0-9,]+)\s+ratings<\/p>/i,
+        /<span class="Vq0ZA">([0-9]+(?:\.[0-9]+)?)<\/span>[\s\S]{0,400}?<p class="xJEoWe">([0-9,]+)\s+ratings<\/p>/i,
+        /([0-9]+(?:\.[0-9]+)?) out of 5[\s\S]{0,300}?\(?([0-9,]+)\s+ratings\)?/i
+    ];
+
+    for (const pattern of pairedPatterns) {
+        const match = html.match(pattern);
+        if (match && match[1] && match[2]) {
+            return {
+                rawValue: match[1],
+                rawCount: match[2]
+            };
+        }
+    }
+
+    return {
+        rawValue: extractFirst(html, [
+            /<span class="Vq0ZA">([0-9]+(?:\.[0-9]+)?)<\/span>/i,
+            /([0-9]+(?:\.[0-9]+)?) out of 5/i
+        ]),
+        rawCount: extractFirst(html, [
+            /<p class="xJEoWe">([0-9,]+)\s+ratings<\/p>/i,
+            /\(?([0-9,]+)\s+ratings\)?/i
+        ])
+    };
+}
+
 function normalizeRatingValue(value) {
     const n = Number(value);
     if (!Number.isFinite(n) || n <= 0 || n > 5) {
@@ -101,18 +130,10 @@ async function main() {
     try {
         const html = await fetchHtml(STORE_URL);
 
-        const rawValue = extractFirst(html, [
-            /"starRating"\s*:\s*([0-9]+(?:\.[0-9]+)?)/i,
-            /"ratingValue"\s*:\s*"?([0-9]+(?:\.[0-9]+)?)"?/i
-        ]);
+        const { rawValue, rawCount } = extractRatingData(html);
 
-        const rawCount = extractFirst(html, [
-            /"ratingCount"\s*:\s*"?([0-9,\.\s]+)"?/i,
-            /"reviewCount"\s*:\s*"?([0-9,\.\s]+)"?/i
-        ]);
-
-        const nextValue = normalizeRatingValue(rawValue ?? current.ratingValue);
-        const nextCount = normalizeRatingCount(rawCount ?? current.ratingCount);
+        const nextValue = normalizeRatingValue(rawValue);
+        const nextCount = normalizeRatingCount(rawCount);
 
         if (!nextValue || !nextCount) {
             throw new Error("Could not parse rating fields from store page");
