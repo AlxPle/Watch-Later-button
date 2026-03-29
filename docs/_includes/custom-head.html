@@ -11,6 +11,22 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
   rel="stylesheet" />
+<script>
+  (function () {
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+    var apply = function (isDark) {
+      document.documentElement.classList.toggle('dark', isDark);
+    };
+
+    apply(media.matches);
+
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', function (event) { apply(event.matches); });
+    } else if (typeof media.addListener === 'function') {
+      media.addListener(function (event) { apply(event.matches); });
+    }
+  })();
+</script>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -76,6 +92,18 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   }
 </script>
 <style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  :root {
+    color-scheme: light dark;
+  }
+
   .headline-sm {
     font-size: 1.2rem;
     line-height: 2rem;
@@ -110,6 +138,70 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 
   .ghost-border {
     border: 1px solid rgba(235, 187, 180, 0.15);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-surface {
+      background-color: #0f1115 !important;
+    }
+
+    .text-on-surface,
+    .text-zinc-900,
+    .text-zinc-800 {
+      color: #e7ebf3 !important;
+    }
+
+    .post-content h2,
+    .post-content h3,
+    article h2,
+    article h3 {
+      color: #f1f5ff !important;
+    }
+
+    .text-on-surface-variant,
+    .text-zinc-600,
+    .text-zinc-500,
+    .text-zinc-400 {
+      color: #b3bdcb !important;
+    }
+
+    .bg-surface-container-lowest,
+    .bg-white,
+    .bg-zinc-50 {
+      background-color: #141922 !important;
+    }
+
+    .bg-surface-container-low {
+      background-color: #1a202b !important;
+    }
+
+    .bg-surface-container,
+    .bg-surface-container-high {
+      background-color: #232b37 !important;
+    }
+
+    .bg-white\/95 {
+      background-color: rgba(15, 17, 21, 0.95) !important;
+    }
+
+    .border-zinc-200,
+    .border-zinc-100\/10,
+    .border-outline-variant\/15,
+    .border-outline-variant\/10 {
+      border-color: rgba(87, 102, 127, 0.4) !important;
+    }
+
+    .hover\:text-zinc-900:hover {
+      color: #f5f7fb !important;
+    }
+
+    .hover\:bg-surface-container-high:hover {
+      background-color: #2a3341 !important;
+    }
+
+    .ghost-border {
+      border-color: rgba(87, 102, 127, 0.35) !important;
+    }
   }
 </style>
 

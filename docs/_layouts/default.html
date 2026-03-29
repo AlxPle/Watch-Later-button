@@ -5,42 +5,12 @@
 
 <body class="bg-surface text-on-surface font-body min-h-screen flex flex-col">
 
-    {%- assign current_url = page.url | default: "" -%}
-
     {%- if page.layout == "home" -%}
     <main aria-label="Content">
         {{ content }}
     </main>
     {%- else -%}
-    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-zinc-100/10 shadow-sm">
-        <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-            <div class="text-xl font-bold text-zinc-900 tracking-tighter font-headline">
-                <a href="{{ '/' | relative_url }}">Watch Later Button</a>
-            </div>
-            <div class="hidden md:flex items-center gap-8">
-                <a class="{% if current_url == '/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
-                    href="{{ '/' | relative_url }}">Home</a>
-                <a class="{% if current_url contains '/privacy/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
-                    href="{{ '/privacy/' | relative_url }}">Privacy</a>
-                <a class="{% if current_url contains '/updates/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
-                    href="{{ '/updates/' | relative_url }}">Updates</a>
-            </div>
-            <div class="flex items-center gap-4">
-                <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
-                    class="red-gradient text-on-primary font-headline px-6 py-2.5 rounded-full label-md scale-95 active:scale-100 hover:scale-105 transition-transform shadow-lg shadow-primary/20 inline-block">
-                    Add to Chrome
-                </a>
-            </div>
-        </div>
-        <div class="md:hidden px-6 pb-4 flex items-center gap-4 text-sm">
-            <a class="{% if current_url == '/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
-                href="{{ '/' | relative_url }}">Home</a>
-            <a class="{% if current_url contains '/privacy/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
-                href="{{ '/privacy/' | relative_url }}">Privacy</a>
-            <a class="{% if current_url contains '/updates/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
-                href="{{ '/updates/' | relative_url }}">Updates</a>
-        </div>
-    </nav>
+    {%- include top-nav.html -%}
 
     <main class="pt-28 pb-16 px-6 flex-1" aria-label="Content">
         <div class="max-w-4xl mx-auto bg-surface-container-lowest rounded-2xl p-6 md:p-10 ghost-border">
@@ -48,25 +18,7 @@
         </div>
     </main>
 
-    <footer class="w-full py-12 border-t border-zinc-200 bg-zinc-50">
-        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-8">
-            <div class="flex flex-col items-center md:items-start gap-2">
-                <div class="text-xl font-bold text-zinc-900 tracking-tighter font-headline mb-2">Watch Later Button
-                </div>
-                <p class="font-inter text-xs tracking-wide uppercase text-zinc-500">© {{ site.time | date: "%Y" }} Watch
-                    Later Button.</p>
-            </div>
-            <div class="flex gap-8">
-                <a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-[#bc0100] transition-colors hover:opacity-80"
-                    href="{{ '/privacy/' | relative_url }}">Privacy Policy</a>
-                <a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-[#bc0100] transition-colors hover:opacity-80"
-                    href="{{ '/updates/' | relative_url }}">Updates</a>
-                <a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-[#bc0100] transition-colors hover:opacity-80"
-                    href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab">Chrome
-                    Web Store</a>
-            </div>
-        </div>
-    </footer>
+    {%- include footer.html -%}
     {%- endif -%}
 
 </body>
