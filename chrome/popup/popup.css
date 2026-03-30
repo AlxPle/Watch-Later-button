@@ -2,6 +2,7 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: url('../assets/fonts/inter-latin-400.woff2') format('woff2');
 }
 
@@ -9,6 +10,7 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
+    font-display: swap;
     src: url('../assets/fonts/inter-latin-500.woff2') format('woff2');
 }
 
@@ -16,6 +18,7 @@
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
     src: url('../assets/fonts/manrope-latin-700.woff2') format('woff2');
 }
 
