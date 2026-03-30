@@ -4,7 +4,8 @@
   "description": "A simple Chrome extension that adds a convenient button to quickly save videos to your \"Watch Later\" playlist on YouTube.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test-locales": "node ./check-locales-puppeteer.js"
   },
   "repository": {
     "type": "git",
