@@ -1,19 +1,33 @@
 @font-face {
-    font-family: "Roboto";
+    font-family: 'Inter';
     font-style: normal;
-    font-weight: 300;
-    src: url("../assets/fonts/roboto-300.woff2") format("woff2");
+    font-weight: 400;
+    src: url('../assets/fonts/inter-latin-400.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: "Roboto";
+    font-family: 'Inter';
     font-style: normal;
-    font-weight: 400;
-    src: url("../assets/fonts/roboto-400.woff2") format("woff2");
+    font-weight: 500;
+    src: url('../assets/fonts/inter-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../assets/fonts/manrope-latin-700.woff2') format('woff2');
 }
 
 :root {
-    --border-radius: 3px;
+    --border-radius: 6px;
+    --primary: #bc0100;
+    --primary-strong: #eb0000;
+    --surface: #f9f9f9;
+    --surface-container: #ffffff;
+    --on-surface: #1a1c1c;
+    --on-surface-variant: #656464;
+    --outline-variant: #ebbbb4;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -44,13 +58,13 @@ h6 {
 }
 
 body {
-    width: 260px;
-    min-height: 200px;
+    width: 280px;
+    min-height: 240px;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', Arial, sans-serif;
-    background: #f7f7fa;
-    color: #222;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans Arabic', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans TC', 'Segoe UI', Arial, sans-serif;
+    background: radial-gradient(120% 120% at 50% -20%, #ffe3df 0%, var(--surface) 55%);
+    color: var(--on-surface);
 }
 
 /* MAIN */
@@ -59,17 +73,19 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px 10px 18px 10px;
+    padding: 20px 12px 10px;
 }
 
 /* HEADER */
 
 .extension-name {
     font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 22px;
+    font-weight: 700;
+    margin-bottom: 18px;
     letter-spacing: 0.5px;
     text-align: center;
+    color: var(--primary);
+    font-family: 'Manrope', 'Inter', 'Noto Sans', 'Noto Sans Arabic', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans TC', 'Segoe UI', Arial, sans-serif;
 }
 
 .extention-desc {
@@ -81,7 +97,7 @@ main {
 .buttons {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
 }
 
@@ -89,16 +105,16 @@ main {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
+    background: var(--surface-container);
+    border: 1px solid var(--outline-variant);
+    border-radius: var(--border-radius);
     padding: 10px 14px;
     text-decoration: none;
-    color: #222;
+    color: var(--on-surface);
     font-size: 15px;
-    font-weight: 400;
-    transition: background 0.15s, border 0.15s;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    font-weight: 500;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(188, 1, 0, 0.06);
 }
 
 .btn p {
@@ -108,12 +124,53 @@ main {
 }
 
 .btn:hover {
-    background: #e9ecef;
-    border-color: #bdbdbd;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+    border-color: var(--primary-strong);
+    color: #fff;
+    transform: translateY(-1px);
 }
 
-.btn img {
+.btn-icon {
     width: 22px;
     height: 22px;
     display: block;
+    flex: 0 0 22px;
+    fill: currentColor;
+    color: var(--primary);
+    transition: color 0.2s ease;
+}
+
+.btn:hover .btn-icon {
+    color: #fff;
+}
+
+.popup-footer {
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px 2px 2px;
+    text-align: center;
+    border-top: 1px solid rgba(149, 109, 103, 0.2);
+}
+
+#ext-version {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--on-surface-variant);
+}
+
+.footer-separator {
+    margin: 0 6px;
+    color: var(--outline-variant);
+}
+
+.footer-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
 }

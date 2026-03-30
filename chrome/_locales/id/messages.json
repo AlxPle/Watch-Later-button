@@ -22,5 +22,17 @@
     "help": {
         "message": "Bantuan",
         "description": "Help link text"
+    },
+    "contact": {
+        "message": "Kontak",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Situs web",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Yang baru",
+        "description": "Updates link text"
     }
 }

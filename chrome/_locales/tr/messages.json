@@ -22,5 +22,17 @@
     "help": {
         "message": "Yardım",
         "description": "Help link text"
+    },
+    "contact": {
+        "message": "İletişim",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Web sitesi",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Yenilikler",
+        "description": "Updates link text"
     }
 }

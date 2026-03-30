@@ -22,5 +22,17 @@
     "help": {
         "message": "도움말",
         "description": "도움말 링크 텍스트"
+    },
+    "contact": {
+        "message": "문의",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "웹사이트",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "새로운 소식",
+        "description": "Updates link text"
     }
 }
