@@ -22,5 +22,17 @@
     "help": {
         "message": "帮助",
         "description": "帮助链接文本"
+    },
+    "contact": {
+        "message": "联系方式",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "网站",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "最新动态",
+        "description": "Updates link text"
     }
 }

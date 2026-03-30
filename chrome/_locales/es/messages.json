@@ -22,5 +22,17 @@
     "help": {
         "message": "Ayuda",
         "description": "Texto del enlace de ayuda"
+    },
+    "contact": {
+        "message": "Contacto",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Sitio web",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Novedades",
+        "description": "Updates link text"
     }
 }

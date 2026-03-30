@@ -22,5 +22,17 @@
     "help": {
         "message": "کمک",
         "description": "Help link text"
+    },
+    "contact": {
+        "message": "تماس",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "وب سایت",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "چه خبر",
+        "description": "Updates link text"
     }
 }

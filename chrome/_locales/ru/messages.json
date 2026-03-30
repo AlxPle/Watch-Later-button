@@ -22,5 +22,17 @@
     "help": {
         "message": "Справка",
         "description": "Текст ссылки помощи"
+    },
+    "contact": {
+        "message": "Контакты",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Сайт",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Что нового",
+        "description": "Updates link text"
     }
 }
