@@ -15,7 +15,7 @@ plugins:
   - jekyll-feed
 
 # Sitemap
-url: "https://alxple.github.io"  # Required for correct URLs in sitemap
+url: "https://alxple.github.io/Watch-Later-button"  # Required for correct URLs in sitemap
 sitemap:
   include_posts: true  # Include posts (default: true)
   change_frequency: "weekly"  # Change frequency
