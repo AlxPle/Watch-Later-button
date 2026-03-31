@@ -16,7 +16,7 @@ plugins:
 
 # Sitemap
 url: "https://alxple.github.io"  # GitHub Pages domain (no trailing slash)
-baseurl: "/Watch-Later-button"  # project path on GitHub Pages
+baseurl: "Watch-Later-button"  # project path on GitHub Pages
 sitemap:
   include_posts: true  # Include posts (default: true)
   change_frequency: "weekly"  # Change frequency
