@@ -18,7 +18,7 @@ A lightweight Chrome extension that adds a clear "Watch Later" button right on Y
 - **Less friction:** No menu hunting, no extra steps.
 - **Clean and lightweight:** Minimal interface that stays out of your way.
 - **Built for privacy:** No personal data collection or tracking.
-- **Multilingual:** Available in 20+ languages.
+-- **Multilingual:** Available in 19 languages.
 
 ## How it works
 
@@ -46,7 +46,7 @@ Need help or want to share feedback?
 
 ## Localization
 
-Watch Later Button is available in 20+ languages including English, German, Spanish, French, Italian, Japanese, Korean, Russian, Ukrainian, Chinese, Arabic, and more. We welcome translation improvements.
+Watch Later Button is available in 19 languages including English, German, Spanish, French, Italian, Japanese, Korean, Russian, Ukrainian, Chinese, Arabic, and more. We welcome translation improvements.
 
 ---
 
