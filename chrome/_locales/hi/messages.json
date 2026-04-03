@@ -1,0 +1,38 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "YouTube में एक क्लिक से साफ-सुथरा \"बाद में देखें\" बटन जोड़ें",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "फ़ीडबैक",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "दान करें",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "समस्याएँ",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "मदद",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "संपर्क",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "वेबसाइट",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "क्या नया है",
+        "description": "Updates link text"
+    }
+}

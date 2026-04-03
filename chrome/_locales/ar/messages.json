@@ -1,0 +1,38 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "أضِف إلى YouTube زر \"المشاهدة لاحقًا\" أنيقًا بنقرة واحدة",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "ملاحظات",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "تبرّع",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "المشكلات",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "المساعدة",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "اتصل بنا",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "الموقع الإلكتروني",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "ما الجديد",
+        "description": "Updates link text"
+    }
+}

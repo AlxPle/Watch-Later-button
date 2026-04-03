@@ -1,0 +1,38 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Lägg till en ren \"Titta senare\"-knapp på YouTube med ett klick",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Återkoppling",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Donera",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Problem",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Hjälp",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "Kontakt",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Webbplats",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Vad är nytt",
+        "description": "Updates link text"
+    }
+}

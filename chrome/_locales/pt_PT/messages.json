@@ -1,0 +1,38 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Adicione ao YouTube um botão limpo de \"Ver mais tarde\" com um clique",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Comentários",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Doar",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Problemas",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Ajuda",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "Contacto",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Site",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Novidades",
+        "description": "Updates link text"
+    }
+}
