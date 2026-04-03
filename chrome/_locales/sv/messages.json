@@ -4,35 +4,35 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Voeg een nette \"Later bekijken\"-knop met één klik toe aan YouTube",
+        "message": "Lägg till en ren \"Titta senare\"-knapp på YouTube med ett klick",
         "description": "Description of the extension"
     },
     "feedback": {
-        "message": "Feedback",
+        "message": "Återkoppling",
         "description": "Feedback link text"
     },
     "donate": {
-        "message": "Doneren",
+        "message": "Donera",
         "description": "Donate link text"
     },
     "issues": {
-        "message": "Problemen",
+        "message": "Problem",
         "description": "Issues link text"
     },
     "help": {
-        "message": "Hulp",
+        "message": "Hjälp",
         "description": "Help link text"
     },
     "contact": {
-        "message": "Contact",
+        "message": "Kontakt",
         "description": "Contact link text"
     },
     "website": {
-        "message": "Website",
+        "message": "Webbplats",
         "description": "Website link text"
     },
     "whatsNew": {
-        "message": "Wat is nieuw",
+        "message": "Vad är nytt",
         "description": "Updates link text"
     }
 }

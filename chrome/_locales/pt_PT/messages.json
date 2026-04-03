@@ -4,35 +4,35 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Voeg een nette \"Later bekijken\"-knop met één klik toe aan YouTube",
+        "message": "Adicione ao YouTube um botão limpo de \"Ver mais tarde\" com um clique",
         "description": "Description of the extension"
     },
     "feedback": {
-        "message": "Feedback",
+        "message": "Comentários",
         "description": "Feedback link text"
     },
     "donate": {
-        "message": "Doneren",
+        "message": "Doar",
         "description": "Donate link text"
     },
     "issues": {
-        "message": "Problemen",
+        "message": "Problemas",
         "description": "Issues link text"
     },
     "help": {
-        "message": "Hulp",
+        "message": "Ajuda",
         "description": "Help link text"
     },
     "contact": {
-        "message": "Contact",
+        "message": "Contacto",
         "description": "Contact link text"
     },
     "website": {
-        "message": "Website",
+        "message": "Site",
         "description": "Website link text"
     },
     "whatsNew": {
-        "message": "Wat is nieuw",
+        "message": "Novidades",
         "description": "Updates link text"
     }
 }

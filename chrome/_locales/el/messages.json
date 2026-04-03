@@ -4,35 +4,35 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Voeg een nette \"Later bekijken\"-knop met één klik toe aan YouTube",
+        "message": "Προσθέστε στο YouTube ένα καθαρό κουμπί «Παρακολούθηση αργότερα» με ένα κλικ",
         "description": "Description of the extension"
     },
     "feedback": {
-        "message": "Feedback",
+        "message": "Ανατροφοδότηση",
         "description": "Feedback link text"
     },
     "donate": {
-        "message": "Doneren",
+        "message": "Δωρεά",
         "description": "Donate link text"
     },
     "issues": {
-        "message": "Problemen",
+        "message": "Προβλήματα",
         "description": "Issues link text"
     },
     "help": {
-        "message": "Hulp",
+        "message": "Βοήθεια",
         "description": "Help link text"
     },
     "contact": {
-        "message": "Contact",
+        "message": "Επικοινωνία",
         "description": "Contact link text"
     },
     "website": {
-        "message": "Website",
+        "message": "Ιστότοπος",
         "description": "Website link text"
     },
     "whatsNew": {
-        "message": "Wat is nieuw",
+        "message": "Τι νέο υπάρχει",
         "description": "Updates link text"
     }
 }

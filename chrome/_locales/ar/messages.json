@@ -4,35 +4,35 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Voeg een nette \"Later bekijken\"-knop met één klik toe aan YouTube",
+        "message": "أضِف إلى YouTube زر \"المشاهدة لاحقًا\" أنيقًا بنقرة واحدة",
         "description": "Description of the extension"
     },
     "feedback": {
-        "message": "Feedback",
+        "message": "ملاحظات",
         "description": "Feedback link text"
     },
     "donate": {
-        "message": "Doneren",
+        "message": "تبرّع",
         "description": "Donate link text"
     },
     "issues": {
-        "message": "Problemen",
+        "message": "المشكلات",
         "description": "Issues link text"
     },
     "help": {
-        "message": "Hulp",
+        "message": "المساعدة",
         "description": "Help link text"
     },
     "contact": {
-        "message": "Contact",
+        "message": "اتصل بنا",
         "description": "Contact link text"
     },
     "website": {
-        "message": "Website",
+        "message": "الموقع الإلكتروني",
         "description": "Website link text"
     },
     "whatsNew": {
-        "message": "Wat is nieuw",
+        "message": "ما الجديد",
         "description": "Updates link text"
     }
 }

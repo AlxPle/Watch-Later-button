@@ -4,23 +4,23 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Voeg een nette \"Later bekijken\"-knop met één klik toe aan YouTube",
+        "message": "Adăugați pe YouTube un buton clar „Urmărește mai târziu” cu un singur clic",
         "description": "Description of the extension"
     },
     "feedback": {
-        "message": "Feedback",
+        "message": "Păreri",
         "description": "Feedback link text"
     },
     "donate": {
-        "message": "Doneren",
+        "message": "Donează",
         "description": "Donate link text"
     },
     "issues": {
-        "message": "Problemen",
+        "message": "Probleme",
         "description": "Issues link text"
     },
     "help": {
-        "message": "Hulp",
+        "message": "Ajutor",
         "description": "Help link text"
     },
     "contact": {
@@ -28,11 +28,11 @@
         "description": "Contact link text"
     },
     "website": {
-        "message": "Website",
+        "message": "Site web",
         "description": "Website link text"
     },
     "whatsNew": {
-        "message": "Wat is nieuw",
+        "message": "Noutăți",
         "description": "Updates link text"
     }
 }

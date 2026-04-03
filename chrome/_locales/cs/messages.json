@@ -4,35 +4,35 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Voeg een nette \"Later bekijken\"-knop met één klik toe aan YouTube",
+        "message": "Přidejte do YouTube čisté tlačítko „Přehrát později“ na jedno kliknutí",
         "description": "Description of the extension"
     },
     "feedback": {
-        "message": "Feedback",
+        "message": "Zpětná vazba",
         "description": "Feedback link text"
     },
     "donate": {
-        "message": "Doneren",
+        "message": "Přispět",
         "description": "Donate link text"
     },
     "issues": {
-        "message": "Problemen",
+        "message": "Problémy",
         "description": "Issues link text"
     },
     "help": {
-        "message": "Hulp",
+        "message": "Nápověda",
         "description": "Help link text"
     },
     "contact": {
-        "message": "Contact",
+        "message": "Kontakt",
         "description": "Contact link text"
     },
     "website": {
-        "message": "Website",
+        "message": "Webová stránka",
         "description": "Website link text"
     },
     "whatsNew": {
-        "message": "Wat is nieuw",
+        "message": "Co je nového",
         "description": "Updates link text"
     }
 }

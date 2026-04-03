@@ -4,35 +4,35 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Voeg een nette \"Later bekijken\"-knop met één klik toe aan YouTube",
+        "message": "YouTube में एक क्लिक से साफ-सुथरा \"बाद में देखें\" बटन जोड़ें",
         "description": "Description of the extension"
     },
     "feedback": {
-        "message": "Feedback",
+        "message": "फ़ीडबैक",
         "description": "Feedback link text"
     },
     "donate": {
-        "message": "Doneren",
+        "message": "दान करें",
         "description": "Donate link text"
     },
     "issues": {
-        "message": "Problemen",
+        "message": "समस्याएँ",
         "description": "Issues link text"
     },
     "help": {
-        "message": "Hulp",
+        "message": "मदद",
         "description": "Help link text"
     },
     "contact": {
-        "message": "Contact",
+        "message": "संपर्क",
         "description": "Contact link text"
     },
     "website": {
-        "message": "Website",
+        "message": "वेबसाइट",
         "description": "Website link text"
     },
     "whatsNew": {
-        "message": "Wat is nieuw",
+        "message": "क्या नया है",
         "description": "Updates link text"
     }
 }
