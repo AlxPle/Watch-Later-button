@@ -3,7 +3,7 @@
  *
  * STABILITY IMPROVEMENTS:
  * 1. Added timeout to waitForElm (max 10 seconds)
- * 2. Added timeout-based disconnect to observeActionsBlock (30 seconds)
+ * 2. Added timeout-based disconnect to observeWatchPage (30 seconds)
  * 3. Added retry logic with exponential backoff to addSaveToButton (max 5 retries)
  * 4. Added popstate listener for SPA navigation handling
  * 5. Removed debug code (console.log "find menu"/"nope")
@@ -14,13 +14,66 @@ const saveTo = document.createElement("div");
 saveTo.id = "saveToPlaylist";
 saveTo.className = "saveToWatchLater";
 
+/* ===== CARD INJECTION CONFIG ===== */
+const CARD_WL_INJECTED = "data-wl-injected";
+const CARD_IMAGE_SELECTORS = [
+  ".yt-lockup-view-model__content-image",
+  "ytd-video-renderer ytd-thumbnail",
+  "ytd-rich-item-renderer ytd-thumbnail",
+  "ytd-compact-video-renderer ytd-thumbnail",
+  "yt-lockup-view-model ytd-thumbnail",
+  "ytd-reel-item-renderer ytd-thumbnail"
+];
+const CARD_RENDERER_SELECTORS = [
+  "ytd-rich-item-renderer",
+  "ytd-compact-video-renderer",
+  "ytd-video-renderer",
+  "yt-lockup-view-model",
+  "ytd-reel-item-renderer"
+];
+const CARD_RENDERER_SELECTOR = CARD_RENDERER_SELECTORS.join(", ");
+const CARD_LINK_SELECTOR = 'a[href*="/watch?v="]';
+const CARD_MOUNT_SELECTORS = {
+  resultsMenu: "ytd-menu-renderer",
+  homePrimary: "#dismissible"
+};
+const RESULTS_PATHNAME = "/results";
+const CARD_LOCATION_CLASS = {
+  home: "home",
+  results: "results"
+};
+const CARD_MOUNT_BEHAVIOR = {
+  skipOnResultsWithoutMenu: true,
+  resultsInsertion: "prepend",
+  homeInsertion: "append"
+};
+const WATCH_BUTTON_MOUNT_SELECTORS = [
+  "ytd-watch-metadata ytd-menu-renderer.style-scope.ytd-watch-metadata",
+  "ytd-watch-metadata ytd-menu-renderer",
+  "#top-level-buttons-computed",
+  "ytd-watch-metadata #top-level-buttons-computed"
+];
+const WATCH_BUTTON_CONTAINER_SELECTOR = WATCH_BUTTON_MOUNT_SELECTORS.join(", ");
+const WATCH_OBSERVER_TARGET_SELECTORS = [
+  "ytd-watch-flexy",
+  "ytd-watch-metadata",
+  "#above-the-fold",
+  "#columns",
+  "body"
+];
+const REINIT_DEDUP_WINDOW_MS = 350;
+
 let actionsObserver = null;
 let actionsObserverTimeoutId = null;
 let reinitTimerId = null;
 let watchBackfillTimerIds = [];
+let cardObserver = null;
+let cardInjectTimer = null;
 let reinitAttempts = 0;
 let reinitSuccess = 0;
 let reinitFailed = 0;
+let lastReinitKey = "";
+let lastReinitAt = 0;
 
 // Persist URL debug flag to sessionStorage before YouTube strips it via history.replaceState
 (function persistUrlDebugFlag() {
@@ -70,6 +123,16 @@ function isWatchPage() {
   }
 }
 
+function getCurrentReinitKey() {
+  try {
+    const url = new URL(window.location.href);
+    const videoId = url.searchParams.get("v") || "";
+    return `${url.pathname}?v=${videoId}`;
+  } catch (error) {
+    return window.location.href;
+  }
+}
+
 /* Error handler function with [Watch Later] prefix for better debugging */
 function handleError(msg, error) {
   if (error) {
@@ -84,8 +147,19 @@ function handleError(msg, error) {
  * Retry up to 5 times if #top-level-buttons-computed not found
  * This solves race condition where appendItem is not yet in DOM
  */
+function findFirstExistingElement(selectors) {
+  for (const selector of selectors) {
+    const el = document.querySelector(selector);
+    if (el) {
+      return el;
+    }
+  }
+
+  return null;
+}
+
 function addSaveToButton(retries = 0, maxRetries = 5) {
-  const appendItem = document.getElementById("top-level-buttons-computed");
+  const appendItem = findFirstExistingElement(WATCH_BUTTON_MOUNT_SELECTORS);
 
   if (!appendItem) {
     if (!isWatchPage()) {
@@ -97,15 +171,67 @@ function addSaveToButton(retries = 0, maxRetries = 5) {
       setTimeout(() => addSaveToButton(retries + 1, maxRetries), delay);
       logInfo(`Element not found, retrying... (${retries + 1}/${maxRetries})`);
     } else {
-      logInfo(`Skipped: #top-level-buttons-computed not found after ${maxRetries} retries`);
+      logInfo(`Skipped: ${WATCH_BUTTON_CONTAINER_SELECTOR} not found after ${maxRetries} retries`);
     }
     return;
   }
 
-  if (!document.getElementById("saveToPlaylist")) {
+  if (saveTo.parentElement !== appendItem || appendItem.firstElementChild !== saveTo) {
     appendItem.prepend(saveTo);
-    logInfo("Button added successfully");
+    logInfo("Button added successfully", appendItem.tagName, appendItem.className || "");
   }
+}
+
+function hasWatchButtonReadyTarget() {
+  return Boolean(findFirstExistingElement(WATCH_BUTTON_MOUNT_SELECTORS));
+}
+
+function waitForWatchButtonTarget(maxWaitTime = 10000) {
+  return new Promise((resolve, reject) => {
+    if (hasWatchButtonReadyTarget()) {
+      logInfo("Watch button target found immediately");
+      resolve(true);
+      return;
+    }
+
+    const startTime = Date.now();
+    const observer = new MutationObserver(() => {
+      if (hasWatchButtonReadyTarget()) {
+        observer.disconnect();
+        logInfo(`Watch button target found after ${Date.now() - startTime}ms`);
+        resolve(true);
+        return;
+      }
+
+      if (Date.now() - startTime > maxWaitTime) {
+        observer.disconnect();
+        handleError(`Timeout (${maxWaitTime}ms) waiting for watch button target`);
+        reject(new Error("Timeout waiting for watch button target"));
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    logInfo(`Waiting for watch button target (max ${maxWaitTime}ms)`);
+  });
+}
+
+function removeStaleWatchButton() {
+  if (isWatchPage()) {
+    return;
+  }
+
+  if (saveTo.parentElement) {
+    saveTo.remove();
+    logInfo("Removed stale watch button outside watch page");
+  }
+}
+
+function isWatchButtonMountedInPreferredContainer() {
+  if (!saveTo.parentElement) {
+    return false;
+  }
+
+  return WATCH_BUTTON_MOUNT_SELECTORS.some((selector) => saveTo.parentElement.matches(selector));
 }
 
 function clearWatchBackfillTimers() {
@@ -122,7 +248,7 @@ function scheduleWatchButtonBackfill(trigger = "unknown") {
 
   const delays = [400, 1200, 2500, 4500, 7000];
   watchBackfillTimerIds = delays.map((delay, index) => setTimeout(() => {
-    if (!isWatchPage() || document.getElementById("saveToPlaylist")) {
+    if (!isWatchPage() || isWatchButtonMountedInPreferredContainer()) {
       return;
     }
 
@@ -130,7 +256,7 @@ function scheduleWatchButtonBackfill(trigger = "unknown") {
 
     // Rebind observer periodically in case YouTube replaced #actions after initial attach.
     if (index === 0 || index === delays.length - 1) {
-      observeActionsBlock();
+      observeWatchPage();
     }
 
     logInfo(`Backfill attempt ${index + 1}/${delays.length} (trigger=${trigger})`);
@@ -142,14 +268,25 @@ function scheduleWatchButtonBackfill(trigger = "unknown") {
  * Observer will disconnect after 30 seconds to prevent memory leaks
  * On SPA navigation, this will be recreated by reinitializeButton()
  */
-function observeActionsBlock(timeoutMs = 30000) {
+function observeWatchPage(timeoutMs = 30000) {
   if (!isWatchPage()) {
     return;
   }
 
-  const target = document.querySelector("#actions");
+  let target = null;
+  let targetSelector = "unknown";
+
+  for (const selector of WATCH_OBSERVER_TARGET_SELECTORS) {
+    const el = document.querySelector(selector);
+    if (el) {
+      target = el;
+      targetSelector = selector;
+      break;
+    }
+  }
+
   if (!target) {
-    logInfo("Skip observing #actions: element not found");
+    logInfo("Skip observing watch page: no stable observer target found");
     return;
   }
 
@@ -168,7 +305,7 @@ function observeActionsBlock(timeoutMs = 30000) {
   });
 
   actionsObserver.observe(target, { childList: true, subtree: true });
-  logInfo("Observing #actions for changes");
+  logInfo(`Observing watch page changes via ${targetSelector}`);
 
   // Auto-disconnect after timeout to prevent memory leak
   // (on SPA navigation, new observer will be created by popstate handler)
@@ -183,48 +320,25 @@ function observeActionsBlock(timeoutMs = 30000) {
 }
 
 /**
- * FIX #1: Add timeout to waitForElm
- * Max wait time: 10 seconds, with proper disconnect on timeout
- * Prevents infinite promise hanging and memory leaks
- */
-function waitForElm(selector, maxWaitTime = 10000) {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(selector)) {
-      logInfo(`Element found immediately: ${selector}`);
-      return resolve(document.querySelector(selector));
-    }
-
-    const startTime = Date.now();
-    const observer = new MutationObserver(() => {
-      // Check if element was found
-      if (document.querySelector(selector)) {
-        observer.disconnect();
-        logInfo(`Element found after ${Date.now() - startTime}ms: ${selector}`);
-        resolve(document.querySelector(selector));
-        return;
-      }
-
-      // Check timeout
-      if (Date.now() - startTime > maxWaitTime) {
-        observer.disconnect();
-        handleError(`Timeout (${maxWaitTime}ms) waiting for ${selector}`);
-        reject(new Error(`Timeout waiting for ${selector}`));
-      }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-    logInfo(`Waiting for element: ${selector} (max ${maxWaitTime}ms)`);
-  });
-}
-
-/**
  * FIX #4: Add SPA navigation handler
  * YouTube is a Single Page Application - reinitialize on browser navigation
  * Handles back/forward button clicks
  */
 function reinitializeButton(eventName = "unknown") {
+  const reinitKey = getCurrentReinitKey();
+  const now = Date.now();
+  if (reinitKey === lastReinitKey && now - lastReinitAt < REINIT_DEDUP_WINDOW_MS) {
+    logInfo(`Reinit dedup skipped: trigger=${eventName}, key=${reinitKey}`);
+    return;
+  }
+
+  lastReinitKey = reinitKey;
+  lastReinitAt = now;
+
   reinitAttempts += 1;
   logInfo(`SPA navigation detected, reinitializing... trigger=${eventName}, attempt=${reinitAttempts}`);
+
+  removeStaleWatchButton();
 
   injectIntoAllCards();
 
@@ -238,12 +352,17 @@ function reinitializeButton(eventName = "unknown") {
     reinitTimerId = null;
   }
 
+  // Early pass for home/results -> watch transitions where metadata mounts late.
+  addSaveToButton(0, 1);
+  observeWatchPage();
+  scheduleWatchButtonBackfill(`${eventName}-early`);
+
   reinitTimerId = setTimeout(() => {
     logInfo(`Reinit trigger: ${eventName}`);
-    waitForElm("#actions", 10000)
+    waitForWatchButtonTarget(10000)
       .then(() => {
         addSaveToButton();
-        observeActionsBlock();
+        observeWatchPage();
         scheduleWatchButtonBackfill(eventName);
         reinitSuccess += 1;
         logInfo(`Reinit stats: attempts=${reinitAttempts}, success=${reinitSuccess}, failed=${reinitFailed}`);
@@ -302,10 +421,10 @@ setInterval(() => {
 
 // Initial setup
 if (isWatchPage()) {
-  waitForElm("#actions", 10000)
+  waitForWatchButtonTarget(10000)
     .then(() => {
       addSaveToButton();
-      observeActionsBlock();
+      observeWatchPage();
       scheduleWatchButtonBackfill("initial");
     })
     .catch((error) => {
@@ -389,16 +508,6 @@ saveTo.addEventListener("click", () => {
 
 /* ===== CARD INJECTION: Watch Later button on homepage / listing pages ===== */
 
-const CARD_WL_INJECTED = "data-wl-injected";
-const CARD_IMAGE_SELECTORS = [
-  ".yt-lockup-view-model__content-image",
-  "ytd-video-renderer ytd-thumbnail",
-  "ytd-rich-item-renderer ytd-thumbnail",
-  "ytd-compact-video-renderer ytd-thumbnail",
-  "yt-lockup-view-model ytd-thumbnail",
-  "ytd-reel-item-renderer ytd-thumbnail"
-];
-
 /**
  * Extracts the videoId for a card by walking up the DOM from a card element
  * to a known card container, then querying down for a /watch?v= link.
@@ -406,13 +515,8 @@ const CARD_IMAGE_SELECTORS = [
 function getVideoIdFromCard(cardElement) {
   let el = cardElement;
   while (el) {
-    if (
-      el.matches &&
-      el.matches(
-        "ytd-rich-item-renderer, ytd-compact-video-renderer, ytd-video-renderer, yt-lockup-view-model, ytd-reel-item-renderer",
-      )
-    ) {
-      const link = el.querySelector('a[href*="/watch?v="]');
+    if (el.matches && el.matches(CARD_RENDERER_SELECTOR)) {
+      const link = el.querySelector(CARD_LINK_SELECTOR);
       if (link) {
         try {
           return new URL(link.href, location.origin).searchParams.get("v");
@@ -427,7 +531,7 @@ function getVideoIdFromCard(cardElement) {
 
 function isResultsPage() {
   try {
-    return new URL(window.location.href).pathname === "/results";
+    return new URL(window.location.href).pathname === RESULTS_PATHNAME;
   } catch (error) {
     return false;
   }
@@ -438,25 +542,30 @@ function isResultsPage() {
  * hover-preview DOM swaps do not remove our button.
  */
 function getStableCardMount(cardElement) {
-  const renderer = cardElement.closest(
-    "ytd-video-renderer, ytd-rich-item-renderer, ytd-compact-video-renderer, yt-lockup-view-model, ytd-reel-item-renderer",
-  );
+  const renderer = cardElement.closest(CARD_RENDERER_SELECTOR);
 
   if (!renderer) {
-    return { mount: cardElement, locationClass: "home" };
+    return { mount: cardElement, locationClass: CARD_LOCATION_CLASS.home };
   }
 
   if (isResultsPage()) {
-    const resultsMenu = renderer.querySelector("ytd-menu-renderer");
+    const resultsMenu = renderer.querySelector(CARD_MOUNT_SELECTORS.resultsMenu);
     if (resultsMenu) {
-      return { mount: resultsMenu, locationClass: "results" };
+      return { mount: resultsMenu, locationClass: CARD_LOCATION_CLASS.results };
     }
 
     // On /results we only render inside menu area to avoid duplicate button on thumbnail/player card.
-    return { mount: null, locationClass: "results" };
+    if (CARD_MOUNT_BEHAVIOR.skipOnResultsWithoutMenu) {
+      return { mount: null, locationClass: CARD_LOCATION_CLASS.results };
+    }
+
+    return { mount: renderer, locationClass: CARD_LOCATION_CLASS.home };
   }
 
-  return { mount: renderer.querySelector("#dismissible") || renderer, locationClass: "home" };
+  return {
+    mount: renderer.querySelector(CARD_MOUNT_SELECTORS.homePrimary) || renderer,
+    locationClass: CARD_LOCATION_CLASS.home
+  };
 }
 
 /**
@@ -478,7 +587,7 @@ function addWatchLaterToCard(contentImageEl) {
   btn.title = "Watch Later";
 
   // Keep absolute button positioning anchored to a stable card-level container.
-  if (locationClass === "home" && window.getComputedStyle(mount).position === "static") {
+  if (locationClass === CARD_LOCATION_CLASS.home && window.getComputedStyle(mount).position === "static") {
     mount.style.position = "relative";
   }
 
@@ -504,7 +613,11 @@ function addWatchLaterToCard(contentImageEl) {
     }
   });
 
-  if (locationClass === "results") {
+  const insertionMode = locationClass === CARD_LOCATION_CLASS.results
+    ? CARD_MOUNT_BEHAVIOR.resultsInsertion
+    : CARD_MOUNT_BEHAVIOR.homeInsertion;
+
+  if (insertionMode === "prepend") {
     mount.prepend(btn);
   } else {
     mount.appendChild(btn);
@@ -516,9 +629,6 @@ function injectIntoAllCards() {
   const selector = CARD_IMAGE_SELECTORS.map((s) => `${s}:not([${CARD_WL_INJECTED}])`).join(", ");
   document.querySelectorAll(selector).forEach(addWatchLaterToCard);
 }
-
-let cardObserver = null;
-let cardInjectTimer = null;
 
 /** Starts a MutationObserver on document.body to handle dynamically loaded cards (infinite scroll, SPA navigation). */
 function startCardObserver() {
@@ -534,6 +644,10 @@ function startCardObserver() {
   logInfo("Card observer started");
 }
 
+function initializeCardInjection() {
+  injectIntoAllCards();
+  startCardObserver();
+}
+
 // Run immediately and start watching for new cards
-injectIntoAllCards();
-startCardObserver();
+initializeCardInjection();
