@@ -7,9 +7,32 @@ const extensionPath = path.join(__dirname, '..', 'chrome');
 // YouTube video URL for testing
 const YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v=PRgS7hBgR1k';
 const SECOND_YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+const YOUTUBE_HOME_URL = 'https://www.youtube.com/';
+const YOUTUBE_RESULTS_URL = 'https://www.youtube.com/results?search_query=lofi';
 
 // Selector for the button added by the extension.
 const WATCH_LATER_BUTTON_SELECTOR = '#saveToPlaylist';
+
+async function clickAnyWatchLink(page) {
+  return page.evaluate(() => {
+    const links = Array.from(document.querySelectorAll('a[href*="/watch?v="]'));
+
+    for (const link of links) {
+      const href = link.getAttribute('href') || '';
+      if (!href || href.startsWith('#')) {
+        continue;
+      }
+
+      const url = new URL(link.href, window.location.origin);
+      if (url.pathname === '/watch' && url.searchParams.get('v')) {
+        link.click();
+        return url.searchParams.get('v');
+      }
+    }
+
+    return null;
+  });
+}
 
 describe('Watch Later Button E2E Test', () => {
   let browser;
@@ -90,6 +113,52 @@ describe('Watch Later Button E2E Test', () => {
         clickedVideoId,
       );
     }
+
+    const buttonAfterNavigation = await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
+    expect(buttonAfterNavigation).not.toBeNull();
+  });
+
+  test('should inject watch-page button after Home -> Watch SPA navigation', async () => {
+    await page.goto(YOUTUBE_HOME_URL, { waitUntil: 'domcontentloaded' });
+
+    const hasWatchLinkOnHome = await page
+      .waitForFunction(
+        () => document.querySelectorAll('a[href*="/watch?v="]').length > 0,
+        { timeout: 15000 },
+      )
+      .then(() => true)
+      .catch(() => false);
+
+    if (!hasWatchLinkOnHome) {
+      console.warn('Home feed has no watch links in this environment; skipping Home -> Watch scenario.');
+      return;
+    }
+
+    const clickedVideoId = await clickAnyWatchLink(page);
+    expect(clickedVideoId).not.toBeNull();
+
+    await page.waitForFunction(
+      (expectedVideoId) => new URL(window.location.href).searchParams.get('v') === expectedVideoId,
+      { timeout: 45000 },
+      clickedVideoId,
+    );
+
+    const buttonAfterNavigation = await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
+    expect(buttonAfterNavigation).not.toBeNull();
+  });
+
+  test('should inject watch-page button after Results -> Watch SPA navigation', async () => {
+    await page.goto(YOUTUBE_RESULTS_URL, { waitUntil: 'domcontentloaded' });
+
+    await page.waitForSelector('a[href*="/watch?v="]', { timeout: 45000 });
+    const clickedVideoId = await clickAnyWatchLink(page);
+    expect(clickedVideoId).not.toBeNull();
+
+    await page.waitForFunction(
+      (expectedVideoId) => new URL(window.location.href).searchParams.get('v') === expectedVideoId,
+      { timeout: 45000 },
+      clickedVideoId,
+    );
 
     const buttonAfterNavigation = await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
     expect(buttonAfterNavigation).not.toBeNull();
