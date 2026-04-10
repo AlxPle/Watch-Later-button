@@ -10,7 +10,7 @@ image: /assets/social_poster.png
 
 <div class="grid gap-4">
 {% for post in site.posts %}
-  <article class="group rounded-xl border border-zinc-200 bg-white p-5 transition-all hover:border-[#bc0100] hover:shadow-md">
+  <article class="group rounded-xl border border-zinc-200 bg-white p-3 sm:p-6 transition-all hover:border-[#bc0100] hover:shadow-md">
     <a class="block" href="{{ post.url | relative_url }}">
       <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <h2 class="m-0 text-lg md:text-xl font-bold tracking-tight text-zinc-900 group-hover:text-[#bc0100]">{{ post.title }}</h2>
