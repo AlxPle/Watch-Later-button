@@ -18,6 +18,10 @@ saveTo.className = "saveToWatchLater";
 const CARD_WL_INJECTED = "data-wl-injected";
 const CARD_IMAGE_SELECTORS = [
   ".yt-lockup-view-model__content-image",
+  "yt-lockup-view-model yt-thumbnail-view-model",
+  "ytd-rich-item-renderer yt-thumbnail-view-model",
+  "ytd-video-renderer yt-thumbnail-view-model",
+  "ytd-compact-video-renderer yt-thumbnail-view-model",
   "ytd-video-renderer ytd-thumbnail",
   "ytd-rich-item-renderer ytd-thumbnail",
   "ytd-compact-video-renderer ytd-thumbnail",
@@ -52,6 +56,7 @@ const WATCH_BUTTON_MOUNT_SELECTORS = [
   "ytd-watch-metadata ytd-menu-renderer",
   "#top-level-buttons-computed",
   "ytd-watch-metadata #top-level-buttons-computed"
+
 ];
 const WATCH_BUTTON_CONTAINER_SELECTOR = WATCH_BUTTON_MOUNT_SELECTORS.join(", ");
 const WATCH_OBSERVER_TARGET_SELECTORS = [
@@ -61,6 +66,15 @@ const WATCH_OBSERVER_TARGET_SELECTORS = [
   "#columns",
   "body"
 ];
+const WATCH_LATER_ACTION = {
+  add: "add",
+  remove: "remove"
+};
+const WL_ADDED_CLASS = "is-added";
+const WL_UNDO_ACTIVE_CLASS = "is-undo-active";
+const WL_ERROR_CLASS = "is-error";
+const WL_UNDO_WINDOW_MS = 10000;
+const WL_ERROR_FLASH_MS = 800;
 const REINIT_DEDUP_WINDOW_MS = 350;
 
 let actionsObserver = null;
@@ -74,6 +88,25 @@ let reinitSuccess = 0;
 let reinitFailed = 0;
 let lastReinitKey = "";
 let lastReinitAt = 0;
+const buttonUndoState = new WeakMap();
+const buttonErrorState = new WeakMap();
+
+function getI18nMessage(key, fallback) {
+  try {
+    const msg = chrome?.i18n?.getMessage?.(key);
+    return msg || fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+const WL_TEXT = {
+  defaultTitle: getI18nMessage("wlButtonDefaultTitle", "Watch Later"),
+  deleteTitle: getI18nMessage("wlButtonDeleteTitle", "Delete from Watch Later"),
+};
+
+saveTo.dataset.defaultTitle = WL_TEXT.defaultTitle;
+saveTo.title = saveTo.dataset.defaultTitle;
 
 // Persist URL debug flag to sessionStorage before YouTube strips it via history.replaceState
 (function persistUrlDebugFlag() {
@@ -220,6 +253,8 @@ function removeStaleWatchButton() {
     return;
   }
 
+  clearButtonUndoState(saveTo);
+
   if (saveTo.parentElement) {
     saveTo.remove();
     logInfo("Removed stale watch button outside watch page");
@@ -337,6 +372,9 @@ function reinitializeButton(eventName = "unknown") {
 
   reinitAttempts += 1;
   logInfo(`SPA navigation detected, reinitializing... trigger=${eventName}, attempt=${reinitAttempts}`);
+
+  // Reset transient visual states before remount/rebind to avoid stale undo UI on SPA transitions.
+  clearButtonUndoState(saveTo);
 
   removeStaleWatchButton();
 
@@ -463,36 +501,179 @@ const getRemoveVideoParams = (videoId) => ({
   playlistEditEndpoint: { playlistId: "WL", actions: [{ action: "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", removedVideoId: videoId }] },
 });
 
+function resolveCurrentVideoId() {
+  try {
+    const url = new URL(window.location.href);
+    const watchVideoId = url.searchParams.get("v");
+    if (watchVideoId) {
+      return watchVideoId;
+    }
+
+    if (url.pathname.startsWith("/shorts/")) {
+      const parts = url.pathname.split("/").filter(Boolean);
+      if (parts.length >= 2) {
+        return parts[1] || null;
+      }
+    }
+  } catch (error) {
+    return null;
+  }
+
+  return null;
+}
+
+function buildWatchLaterParams(action, videoId) {
+  if (action === WATCH_LATER_ACTION.add) {
+    return getAddVideoParams(videoId);
+  }
+
+  if (action === WATCH_LATER_ACTION.remove) {
+    return getRemoveVideoParams(videoId);
+  }
+
+  return null;
+}
+
+function dispatchNativeYouTubeAction(params) {
+  const appElement = document.querySelector("ytd-app");
+  if (!appElement) {
+    return { ok: false, status: "no-app-element" };
+  }
+
+  appElement.dispatchEvent(
+    new window.CustomEvent("yt-action", {
+      bubbles: true,
+      composed: true,
+      detail: {
+        actionName: "yt-service-request",
+        returnValue: [],
+        args: [{ data: {} }, params],
+        optionalAction: false,
+      },
+    }),
+  );
+
+  return { ok: true, status: "sent" };
+}
+
 /**
  * ACTION SENDER
  * Dispatches custom events to YouTube's native API handler
  * Uses the yt-action event system to communicate with YouTube's internal services
  */
-const sendActionToNativeYouTubeHandler = (getParams) => {
+const executeWatchLaterAction = (action, explicitVideoId = null) => {
   try {
-    const videoId = new URL(window.location.href).searchParams.get("v");
-    const appElement = document.querySelector("ytd-app");
+    const videoId = explicitVideoId || resolveCurrentVideoId();
+    if (!videoId) {
+      return { ok: false, status: "no-video-id" };
+    }
 
-    if (!videoId || !appElement) {
-      handleError("Failed: missing videoId or ytd-app element");
+    const params = buildWatchLaterParams(action, videoId);
+    if (!params) {
+      return { ok: false, status: "unsupported-action", videoId };
+    }
+
+    const result = dispatchNativeYouTubeAction(params);
+    if (!result.ok) {
+      return { ...result, videoId, action };
+    }
+
+    logInfo(`Action ${action} sent for video: ${videoId}`);
+    return { ok: true, status: "sent", videoId, action };
+  } catch (error) {
+    return { ok: false, status: "exception", action, error };
+  }
+};
+
+function decorateButtonAccessibility(button) {
+  const defaultTitle = button.dataset.defaultTitle || WL_TEXT.defaultTitle;
+  button.setAttribute("role", "button");
+  button.setAttribute("aria-label", defaultTitle);
+}
+
+function flashButtonErrorState(button) {
+  const existingTimer = buttonErrorState.get(button);
+  if (existingTimer) {
+    clearTimeout(existingTimer);
+  }
+
+  button.classList.remove(WL_ERROR_CLASS);
+  // Restart animation when class is re-applied quickly.
+  void button.offsetWidth;
+  button.classList.add(WL_ERROR_CLASS);
+
+  const timerId = setTimeout(() => {
+    button.classList.remove(WL_ERROR_CLASS);
+    buttonErrorState.delete(button);
+  }, WL_ERROR_FLASH_MS);
+
+  buttonErrorState.set(button, timerId);
+}
+
+function clearButtonUndoState(button) {
+  const undoState = buttonUndoState.get(button);
+  if (undoState && undoState.timerId) {
+    clearTimeout(undoState.timerId);
+  }
+
+  buttonUndoState.delete(button);
+  button.classList.remove(WL_ADDED_CLASS);
+  button.classList.remove(WL_UNDO_ACTIVE_CLASS);
+  button.title = button.dataset.defaultTitle || WL_TEXT.defaultTitle;
+  button.setAttribute("aria-label", button.dataset.defaultTitle || WL_TEXT.defaultTitle);
+}
+
+function setButtonUndoState(button, videoId) {
+  clearButtonUndoState(button);
+
+  button.classList.add(WL_ADDED_CLASS);
+  button.classList.add(WL_UNDO_ACTIVE_CLASS);
+  button.style.setProperty("--wl-undo-ms", `${WL_UNDO_WINDOW_MS}ms`);
+  button.title = WL_TEXT.deleteTitle;
+  button.setAttribute("aria-label", WL_TEXT.deleteTitle);
+
+  const timerId = setTimeout(() => {
+    const state = buttonUndoState.get(button);
+    if (!state || state.videoId !== videoId) {
       return;
     }
 
-    const event = new window.CustomEvent("yt-action", {
-      detail: {
-        actionName: "yt-service-request",
-        returnValue: [],
-        args: [{ data: {} }, getParams(videoId)],
-        optionalAction: false,
-      },
-    });
+    clearButtonUndoState(button);
+  }, WL_UNDO_WINDOW_MS);
 
-    appElement.dispatchEvent(event);
-    logInfo(`Action sent for video: ${videoId}`);
-  } catch (error) {
-    handleError("Error sending action:", error);
+  buttonUndoState.set(button, { timerId, videoId });
+}
+
+function handleWatchLaterToggle(button, explicitVideoId = null) {
+  const resolvedVideoId = explicitVideoId || resolveCurrentVideoId();
+  if (!resolvedVideoId) {
+    flashButtonErrorState(button);
+    handleError("Failed: missing videoId");
+    return;
   }
-};
+
+  const undoState = buttonUndoState.get(button);
+  if (undoState && undoState.videoId === resolvedVideoId) {
+    const removeResult = executeWatchLaterAction(WATCH_LATER_ACTION.remove, resolvedVideoId);
+    if (!removeResult.ok) {
+      flashButtonErrorState(button);
+      handleError(`Remove action failed (status=${removeResult.status})`, removeResult.error);
+      return;
+    }
+
+    clearButtonUndoState(button);
+    return;
+  }
+
+  const addResult = executeWatchLaterAction(WATCH_LATER_ACTION.add, resolvedVideoId);
+  if (!addResult.ok) {
+    flashButtonErrorState(button);
+    handleError(`Add action failed (status=${addResult.status})`, addResult.error);
+    return;
+  }
+
+  setButtonUndoState(button, resolvedVideoId);
+}
 
 /**
  * Button click handler
@@ -500,11 +681,14 @@ const sendActionToNativeYouTubeHandler = (getParams) => {
  */
 saveTo.addEventListener("click", () => {
   try {
-    sendActionToNativeYouTubeHandler(getAddVideoParams);
+    handleWatchLaterToggle(saveTo);
   } catch (error) {
+    flashButtonErrorState(saveTo);
     handleError("Error handling button click:", error);
   }
 });
+
+decorateButtonAccessibility(saveTo);
 
 /* ===== CARD INJECTION: Watch Later button on homepage / listing pages ===== */
 
@@ -584,7 +768,9 @@ function addWatchLaterToCard(contentImageEl) {
 
   const btn = document.createElement("div");
   btn.className = `saveToWatchLater ${locationClass}`;
-  btn.title = "Watch Later";
+  btn.dataset.defaultTitle = WL_TEXT.defaultTitle;
+  btn.title = btn.dataset.defaultTitle;
+  decorateButtonAccessibility(btn);
 
   // Keep absolute button positioning anchored to a stable card-level container.
   if (locationClass === CARD_LOCATION_CLASS.home && window.getComputedStyle(mount).position === "static") {
@@ -595,20 +781,9 @@ function addWatchLaterToCard(contentImageEl) {
     e.stopPropagation();
     e.preventDefault();
     try {
-      const appElement = document.querySelector("ytd-app");
-      if (!appElement) return;
-      appElement.dispatchEvent(
-        new window.CustomEvent("yt-action", {
-          detail: {
-            actionName: "yt-service-request",
-            returnValue: [],
-            args: [{ data: {} }, getAddVideoParams(videoId)],
-            optionalAction: false,
-          },
-        }),
-      );
-      logInfo(`Card WL action sent for video: ${videoId}`);
+      handleWatchLaterToggle(btn, videoId);
     } catch (error) {
+      flashButtonErrorState(btn);
       handleError("Error sending card WL action:", error);
     }
   });
