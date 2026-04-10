@@ -4,7 +4,7 @@
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "author": "Alex Pletnov",
-  "version": "1.4.4",
+  "version": "1.5.0",
   "icons": {
     "16": "assets/app-icons/red/iconmonstr-text-plus-lined-16.png",
     "32": "assets/app-icons/red/iconmonstr-text-plus-lined-32.png",

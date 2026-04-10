@@ -34,5 +34,13 @@
     "whatsNew": {
         "message": "Novedades",
         "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Ver más tarde",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Quitar de Ver más tarde",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
     }
 }

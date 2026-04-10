@@ -34,5 +34,13 @@
     "whatsNew": {
         "message": "Yenilikler",
         "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Daha sonra izle",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Daha sonra izle listesinden kaldır",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
     }
 }

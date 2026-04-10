@@ -34,5 +34,13 @@
     "whatsNew": {
         "message": "最新动态",
         "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "稍后观看",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "从“稍后观看”中删除",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
     }
 }

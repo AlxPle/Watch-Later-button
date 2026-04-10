@@ -34,5 +34,13 @@
     "whatsNew": {
         "message": "क्या नया है",
         "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "बाद में देखें",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "\"बाद में देखें\" से हटाएं",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
     }
 }

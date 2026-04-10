@@ -34,5 +34,13 @@
     "whatsNew": {
         "message": "Co je nového",
         "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Sledovat později",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Odebrat ze seznamu Sledovat později",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
     }
 }

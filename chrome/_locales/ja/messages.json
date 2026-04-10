@@ -34,5 +34,13 @@
     "whatsNew": {
         "message": "最新情報",
         "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "後で見る",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "後で見るから削除",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
     }
 }
