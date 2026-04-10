@@ -2,3 +2,4 @@
 # Usage:
 # bundle exec jekyll serve --config _config.yml,_config_dev.yml --host 0.0.0.0 --port 4000
 url: "http://0.0.0.0:4000"
+baseurl: ""
