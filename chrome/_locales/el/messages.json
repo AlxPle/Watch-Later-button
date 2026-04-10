@@ -4,7 +4,7 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Προσθέστε στο YouTube ένα καθαρό κουμπί «Παρακολούθηση αργότερα» με ένα κλικ",
+        "message": "Αποθηκεύστε βίντεο YouTube στιγμιαία—χωρίς μενού, χωρίς επιπλέον κλικ. Το κουμπί YouTube που χρειάστηκατε.",
         "description": "Description of the extension"
     },
     "feedback": {

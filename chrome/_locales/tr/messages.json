@@ -4,7 +4,7 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "YouTube'a temiz, tek tıklamalı bir Daha Sonra İzle düğmesi ekleyin",
+        "message": "YouTube videolarını anında kaydet—menü yok, ekstra tık yok. İhtiyacın olan YouTube düğmesi.",
         "description": "Description of the extension"
     },
     "feedback": {
