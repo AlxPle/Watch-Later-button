@@ -17,21 +17,7 @@ const userDataDir = path.resolve('/tmp', 'puppeteer_watch_later_profile');
         userDataDir
     });
 
-    // Try to detect loaded extension (may not be present in test env)
     console.log('Extension path:', extensionPath);
-    let extensionId = null;
-    for (let i = 0; i < 40 && !extensionId; i++) {
-        const targets = await browser.targets();
-        const extTarget = targets.find(t => {
-            const u = t.url();
-            return u && u.startsWith('chrome-extension://');
-        });
-        if (extTarget) {
-            extensionId = extTarget.url().split('/')[2];
-            break;
-        }
-        await new Promise(r => setTimeout(r, 300));
-    }
 
     // Prepare popup files and locales
     const popupHtmlPath = path.join(extensionPath, 'popup', 'popup.html');
@@ -69,37 +55,17 @@ const userDataDir = path.resolve('/tmp', 'puppeteer_watch_later_profile');
         }
         const messages = JSON.parse(fs.readFileSync(messagesPath, 'utf8'));
 
-        // If extension page is available, use it; otherwise render locally with mocked chrome.i18n
-        let page;
-        if (extensionId) {
-            const popupUrl = `chrome-extension://${extensionId}/popup/popup.html`;
-            page = await browser.newPage();
-            await page.goto(popupUrl, { waitUntil: 'networkidle2' });
-        } else {
-            const messagesForWindow = {};
-            for (const k of Object.keys(messages)) messagesForWindow[k] = messages[k].message;
-            const manifest = require(path.join(extensionPath, 'manifest.json'));
-            const mockChrome = `<script>window.__MESSAGES = ${JSON.stringify(messagesForWindow)}; window.chrome = { i18n: { getMessage: function(k){ return window.__MESSAGES && window.__MESSAGES[k] || ''; } }, runtime: { getManifest: function(){ return { version: '${manifest.version}' } } };</script>`;
-            const content = popupHtml
-                .replace('<script src="popup.js"></script>', `${mockChrome}\n<script>${popupJs}</script>`)
-                .replace(/<link rel="stylesheet" href="popup.css">/, '');
-            page = await browser.newPage();
-            await page.setContent(content, { waitUntil: 'networkidle0' });
+        const messagesForWindow = {};
+        for (const k of Object.keys(messages)) messagesForWindow[k] = messages[k].message;
 
-            // Debug: check mock presence inside page
-            try {
-                const dbg = await page.evaluate(() => {
-                    return {
-                        hasChrome: !!window.chrome,
-                        sampleGet: (window.chrome && window.chrome.i18n && window.chrome.i18n.getMessage('issues')) || null,
-                        keys: Object.keys(window.__MESSAGES || {}).slice(0, 20)
-                    };
-                });
-                console.log('DEBUG page mock:', dbg);
-            } catch (e) {
-                console.log('DEBUG eval error', e.message);
-            }
-        }
+        const manifest = require(path.join(extensionPath, 'manifest.json'));
+        const mockChrome = `<script>window.__MESSAGES = ${JSON.stringify(messagesForWindow)}; window.chrome = { i18n: { getMessage: function(k){ return window.__MESSAGES && window.__MESSAGES[k] || ''; } }, runtime: { getManifest: function(){ return { version: '${manifest.version}' }; } } };</script>`;
+        const content = popupHtml
+            .replace('<script src="popup.js"></script>', `${mockChrome}\n<script>${popupJs}</script>`)
+            .replace(/<link rel="stylesheet" href="popup.css">/, '');
+
+        const page = await browser.newPage();
+        await page.setContent(content, { waitUntil: 'networkidle0' });
 
         console.log(`Checking locale: ${locale}`);
 

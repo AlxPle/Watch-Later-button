@@ -1,29 +1,125 @@
 .saveToWatchLater {
+    --wl-icon-color: #fff;
+    --wl-ring-color: var(--wl-icon-color);
+    --wl-color-default: rgba(255, 0, 0, .8);
+    --wl-color-default-hover: rgba(255, 0, 0, .95);
+    --wl-color-added: rgba(34, 197, 94, .9);
+    --wl-color-added-hover: rgba(22, 163, 74, .95);
+    --wl-color-error: rgba(249, 115, 22, .95);
+    --wl-undo-ms: 10000ms;
+
     cursor: pointer;
     width: 36px;
     height: 36px;
-    background-size: 24px;
-    background-repeat: no-repeat;
-    background-position: 6px 7px;
+    position: relative;
     border-radius: 18px;
     margin-right: 8px;
-    transition: all .3s ease-in-out;
-    background-color: rgba(255, 0, 0, .8);
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABYUlEQVRo3u2XTU7EMAyF7QjBhhNwhBEnQN0wy54AiStwldlxhV4FqaeouEIjVRoS2yymSFFV+jNN2iL8Lavk1c9x4gRAURRFUQKY+SQiTrbHMfNpLF7sfhCRMwDcbp3Ili9EvBsaYHoMvAOA3zpyAPBtLIqi/Cu0D8RF+4Ci7BVrrSGinJkLEanak8+JSMXMBRHl1lqz/E8JIKIDM5dj5ygzl0R0mCWeoA98Oufug+CPImJnzLdEdJxsQETOMbsRM7+EmZ8ZfGhi2kpEXoGqaRoDcKn5obLx3mfe+2wgEWVd19vtCSLKh5wGFfArRJR3dVdzhIivKTTWNPC0B42r6e4r7302NqdnT7jumH02iiXEPIWccw8/unLptos2sYhUoyuAiG8AcBMjGcaYxyCwj6V6fRpJ3wOI+BzoFhEMLNa4mj/fyABWukqsYCLtZW4lE+mu02sx5UGzec0riqIou+cbNW5M5gYNTDoAAAAASUVORK5CYII=');
+    transition: transform .2s ease-in-out, background-color .18s ease, box-shadow .18s ease;
+    background-color: var(--wl-color-default);
+}
 
-    &:hover {
-        transform: rotate(180deg);
-        transition: all .2s ease-in-out;
+.saveToWatchLater::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--wl-icon-color);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m17.5 11c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm.5 4v-1.5c0-.265-.235-.5-.5-.5s-.5.235-.5.5v1.5h-1.5c-.265 0-.5.235-.5.5s.235.5.5.5h1.5v1.5c0 .265.235.5.5.5s.5-.235.5-.5c0-.592 0-1.5 0-1.5h1.5c.265 0 .5-.235.5-.5s-.235-.5-.5-.5c-.592 0-1.5 0-1.5 0zm-6.479 1c.043.522.153 1.025.321 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm1.106-4c-.328.456-.594.96-.785 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm7.373-3.25c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75zm0-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z' fill-rule='nonzero'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: 24px 24px;
+    mask-image: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m17.5 11c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm.5 4v-1.5c0-.265-.235-.5-.5-.5s-.5.235-.5.5v1.5h-1.5c-.265 0-.5.235-.5.5s.235.5.5.5h1.5v1.5c0 .265.235.5.5.5s.5-.235.5-.5c0-.592 0-1.5 0-1.5h1.5c.265 0 .5-.235.5-.5s-.235-.5-.5-.5c-.592 0-1.5 0-1.5 0zm-6.479 1c.043.522.153 1.025.321 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm1.106-4c-.328.456-.594.96-.785 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm7.373-3.25c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75zm0-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z' fill-rule='nonzero'/%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 24px 24px;
+}
+
+.saveToWatchLater:hover {
+    background-color: var(--wl-color-default-hover);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, .25);
+    transform: rotate(180deg);
+}
+
+.saveToWatchLater.home {
+    z-index: 2;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.saveToWatchLater.results {
+    margin-top: 2px;
+}
+
+.saveToWatchLater.is-added {
+    --wl-ring-color: var(--wl-color-default);
+    background-color: var(--wl-color-added);
+}
+
+.saveToWatchLater.is-added:hover {
+    background-color: var(--wl-color-added-hover);
+}
+
+.saveToWatchLater.is-added::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m17.5 11c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm-5.979 5c.043.522.153 1.025.321 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm3.704-.024 1.442 1.285c.095.085.215.127.333.127.136 0 .271-.055.37-.162l2.441-2.669c.088-.096.131-.217.131-.336 0-.274-.221-.499-.5-.499-.136 0-.271.055-.37.162l-2.108 2.304-1.073-.956c-.096-.085-.214-.127-.333-.127-.277 0-.5.224-.5.499 0 .137.056.273.167.372zm-2.598-3.976c-.328.456-.594.96-.785 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm7.373-3.25c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75zm0-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z' fill-rule='nonzero'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m17.5 11c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm-5.979 5c.043.522.153 1.025.321 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm3.704-.024 1.442 1.285c.095.085.215.127.333.127.136 0 .271-.055.37-.162l2.441-2.669c.088-.096.131-.217.131-.336 0-.274-.221-.499-.5-.499-.136 0-.271.055-.37.162l-2.108 2.304-1.073-.956c-.096-.085-.214-.127-.333-.127-.277 0-.5.224-.5.499 0 .137.056.273.167.372zm-2.598-3.976c-.328.456-.594.96-.785 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm7.373-3.25c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75zm0-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z' fill-rule='nonzero'/%3E%3C/svg%3E");
+}
+
+.saveToWatchLater.is-undo-active::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from -90deg,
+            var(--wl-ring-color) var(--wl-undo-angle),
+            color-mix(in srgb, var(--wl-ring-color) 20%, transparent) 0deg);
+    -webkit-mask: radial-gradient(farthest-side, transparent 14px, #000 15px);
+    mask: radial-gradient(farthest-side, transparent 14px, #000 15px);
+    opacity: .95;
+    animation: wlUndoCountdown var(--wl-undo-ms) linear forwards;
+    pointer-events: none;
+}
+
+.saveToWatchLater.is-error {
+    --wl-ring-color: var(--wl-color-error);
+    background-color: var(--wl-color-error);
+    animation: wlErrorFlash .8s ease;
+}
+
+@property --wl-undo-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 360deg;
+}
+
+@keyframes wlUndoCountdown {
+    from {
+        --wl-undo-angle: 360deg;
+        opacity: .95;
     }
 
-    &.home {
-        z-index: 2;
-        position: absolute;
-        left: 10px;
-        top: 10px;
+    90% {
+        opacity: .95;
     }
 
-    &.results {
-        margin-top: 2px;
+    to {
+        --wl-undo-angle: 0deg;
+        opacity: 0;
+    }
+}
+
+@keyframes wlErrorFlash {
+    0% {
+        box-shadow: 0 0 0 0 rgba(249, 115, 22, .5);
+    }
+
+    50% {
+        box-shadow: 0 0 0 4px rgba(249, 115, 22, .35);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
     }
 }
