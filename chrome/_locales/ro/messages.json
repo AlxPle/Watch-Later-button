@@ -34,5 +34,13 @@
     "whatsNew": {
         "message": "Noutăți",
         "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Urmărește mai târziu",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Șterge din Urmărește mai târziu",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
     }
 }

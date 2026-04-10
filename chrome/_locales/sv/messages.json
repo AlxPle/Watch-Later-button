@@ -34,5 +34,13 @@
     "whatsNew": {
         "message": "Vad är nytt",
         "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Titta senare",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Ta bort från Titta senare",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
     }
 }
