@@ -1,14 +1,3 @@
-/**
- * YouTube Watch Later Button Extension v1.4.0
- *
- * STABILITY IMPROVEMENTS:
- * 1. Added timeout to waitForElm (max 10 seconds)
- * 2. Added timeout-based disconnect to observeWatchPage (30 seconds)
- * 3. Added retry logic with exponential backoff to addSaveToButton (max 5 retries)
- * 4. Added popstate listener for SPA navigation handling
- * 5. Removed debug code (console.log "find menu"/"nope")
- */
-
 /* Create saveTo button element */
 const saveTo = document.createElement("div");
 saveTo.id = "saveToPlaylist";
