@@ -47,10 +47,23 @@
     position: absolute;
     left: 10px;
     top: 10px;
+    margin: 0;
 }
 
 .saveToWatchLater.results {
     margin-top: 2px;
+}
+
+.saveToWatchLater.shortsPage {
+    margin: 0 0 10px 0;
+}
+
+.saveToWatchLater.shortsHomePage {
+    z-index: 2;
+    position: absolute;
+    right: 0px;
+    bottom: -5px;
+    margin: 0;
 }
 
 .saveToWatchLater.is-added {
