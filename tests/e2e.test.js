@@ -8,6 +8,7 @@ const extensionPath = path.join(__dirname, '..', 'chrome');
 const YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v=PRgS7hBgR1k';
 const SECOND_YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
 const YOUTUBE_HOME_URL = 'https://www.youtube.com/';
+const YOUTUBE_SHORTS_URL = 'https://www.youtube.com/shorts/dQw4w9WgXcQ';
 const YOUTUBE_RESULTS_URL = 'https://www.youtube.com/results?search_query=lofi';
 
 // Selector for the button added by the extension.
@@ -44,7 +45,7 @@ describe('Watch Later Button E2E Test', () => {
   beforeAll(async () => {
     // Launch Chromium browser
     browser = await puppeteer.launch({
-      headless: true, // Set to 'true' to run in headless mode
+      headless: true,
       args: [
         `--disable-extensions-except=${extensionPath}`,
         `--load-extension=${extensionPath}`,
@@ -162,5 +163,40 @@ describe('Watch Later Button E2E Test', () => {
 
     const buttonAfterNavigation = await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
     expect(buttonAfterNavigation).not.toBeNull();
+  });
+
+  test('should inject the "Watch Later" button on a YouTube Shorts page', async () => {
+    await page.goto(YOUTUBE_SHORTS_URL, { waitUntil: 'domcontentloaded' });
+
+    // Diagnostic: log final URL and available Shorts-related elements
+    const diagnostics = await page.evaluate(() => {
+      const selectors = [
+        'ytd-reel-video-renderer',
+        'ytd-shorts',
+        'ytd-reel-video-renderer #actions',
+        'ytd-shorts ytd-reel-video-renderer #actions',
+        'ytd-reel-player-overlay-renderer',
+        'ytd-reel-player-overlay-renderer #actions',
+        '#actions',
+      ];
+      return {
+        url: window.location.href,
+        found: selectors.filter(s => document.querySelector(s) !== null),
+      };
+    });
+    console.log('Shorts diagnostics:', JSON.stringify(diagnostics, null, 2));
+
+    const button = await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
+    expect(button).not.toBeNull();
+  });
+
+  test('should keep button after SPA navigation from Watch to Shorts', async () => {
+    await page.goto(YOUTUBE_VIDEO_URL, { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
+
+    await page.goto(YOUTUBE_SHORTS_URL, { waitUntil: 'domcontentloaded' });
+
+    const buttonOnShorts = await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
+    expect(buttonOnShorts).not.toBeNull();
   });
 });

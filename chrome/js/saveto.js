@@ -49,7 +49,6 @@ const WATCH_BUTTON_MOUNT_SELECTORS = [
   "ytd-watch-metadata #top-level-buttons-computed"
 
 ];
-const WATCH_BUTTON_CONTAINER_SELECTOR = WATCH_BUTTON_MOUNT_SELECTORS.join(", ");
 const WATCH_OBSERVER_TARGET_SELECTORS = [
   "ytd-watch-flexy",
   "ytd-watch-metadata",
@@ -254,20 +253,26 @@ function waitForWatchButtonTarget(maxWaitTime = 10000) {
     }
 
     const startTime = Date.now();
+    let settled = false;
+
     const observer = new MutationObserver(() => {
       if (hasWatchButtonReadyTarget()) {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timeoutId);
         observer.disconnect();
         logInfo(`Watch button target found after ${Date.now() - startTime}ms`);
         resolve(true);
-        return;
-      }
-
-      if (Date.now() - startTime > maxWaitTime) {
-        observer.disconnect();
-        handleError(`Timeout (${maxWaitTime}ms) waiting for watch button target`);
-        reject(new Error("Timeout waiting for watch button target"));
       }
     });
+
+    const timeoutId = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      observer.disconnect();
+      handleError(`Timeout (${maxWaitTime}ms) waiting for watch button target`);
+      reject(new Error("Timeout waiting for watch button target"));
+    }, maxWaitTime);
 
     observer.observe(document.body, { childList: true, subtree: true });
     logInfo(`Waiting for watch button target (max ${maxWaitTime}ms)`);
@@ -309,7 +314,7 @@ function scheduleWatchButtonBackfill(trigger = "unknown") {
 
   const delays = [400, 1200, 2500, 4500, 7000];
   watchBackfillTimerIds = delays.map((delay, index) => setTimeout(() => {
-    if (!isWatchPage() || isWatchButtonMountedInPreferredContainer()) {
+    if (!isWatchOrShortsPage() || isWatchButtonMountedInPreferredContainer()) {
       return;
     }
 
@@ -535,11 +540,8 @@ function resolveCurrentVideoId() {
       return watchVideoId;
     }
 
-    if (url.pathname.startsWith("/shorts/")) {
-      const parts = url.pathname.split("/").filter(Boolean);
-      if (parts.length >= 2) {
-        return parts[1] || null;
-      }
+    if (isShortsPage()) {
+      return url.pathname.split("/").filter(Boolean)[1] || null;
     }
   } catch (error) {
     return null;
@@ -762,6 +764,13 @@ function getStableCardMount(cardElement) {
     return { mount: cardElement, locationClass: CARD_LOCATION_CLASS.home };
   }
 
+  if (renderer.closest(SHORTS_SHELF_SELECTOR)) {
+    return {
+      mount: renderer.querySelector(CARD_MOUNT_SELECTORS.homePrimary) || renderer,
+      locationClass: CARD_LOCATION_CLASS.shortsHome
+    };
+  }
+
   if (isResultsPage()) {
     const resultsMenu = renderer.querySelector(CARD_MOUNT_SELECTORS.resultsMenu);
     if (resultsMenu) {
@@ -776,13 +785,6 @@ function getStableCardMount(cardElement) {
     return { mount: renderer, locationClass: CARD_LOCATION_CLASS.home };
   }
 
-  if (renderer.closest(SHORTS_SHELF_SELECTOR)) {
-    return {
-      mount: renderer.querySelector(CARD_MOUNT_SELECTORS.homePrimary) || renderer,
-      locationClass: CARD_LOCATION_CLASS.shortsHome
-    };
-  }
-
   return {
     mount: renderer.querySelector(CARD_MOUNT_SELECTORS.homePrimary) || renderer,
     locationClass: CARD_LOCATION_CLASS.home
@@ -794,6 +796,8 @@ function getStableCardMount(cardElement) {
  * Marks the image container with CARD_WL_INJECTED to avoid double-injection.
  */
 function addWatchLaterToCard(contentImageEl) {
+  if (contentImageEl.hasAttribute(CARD_WL_INJECTED)) return;
+
   const { mount, locationClass } = getStableCardMount(contentImageEl);
   if (!mount) return;
   if (mount.hasAttribute(CARD_WL_INJECTED)) return;
@@ -801,6 +805,7 @@ function addWatchLaterToCard(contentImageEl) {
   const videoId = getVideoIdFromCard(contentImageEl);
   if (!videoId) return;
 
+  contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
   mount.setAttribute(CARD_WL_INJECTED, "1");
 
   const btn = document.createElement("div");
