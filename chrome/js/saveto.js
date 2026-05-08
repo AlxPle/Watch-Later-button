@@ -25,7 +25,7 @@ const CARD_RENDERER_SELECTORS = [
   "ytd-reel-item-renderer"
 ];
 const CARD_RENDERER_SELECTOR = CARD_RENDERER_SELECTORS.join(", ");
-const CARD_LINK_SELECTOR = 'a[href*="/watch?v="]';
+const CARD_LINK_SELECTOR = 'a[href*="/watch?v="], a[href*="/shorts/"]';
 const CARD_MOUNT_SELECTORS = {
   resultsMenu: "ytd-menu-renderer",
   homePrimary: "#dismissible"
@@ -33,8 +33,10 @@ const CARD_MOUNT_SELECTORS = {
 const RESULTS_PATHNAME = "/results";
 const CARD_LOCATION_CLASS = {
   home: "home",
-  results: "results"
+  results: "results",
+  shortsHome: "shortsHomePage"
 };
+const SHORTS_SHELF_SELECTOR = "ytd-rich-shelf-renderer[is-shorts], ytd-reel-shelf-renderer";
 const CARD_MOUNT_BEHAVIOR = {
   skipOnResultsWithoutMenu: true,
   resultsInsertion: "prepend",
@@ -53,6 +55,16 @@ const WATCH_OBSERVER_TARGET_SELECTORS = [
   "ytd-watch-metadata",
   "#above-the-fold",
   "#columns",
+  "body"
+];
+const SHORTS_BUTTON_MOUNT_SELECTORS = [
+  "ytd-reel-video-renderer #actions",
+  "ytd-shorts ytd-reel-video-renderer #actions",
+  "ytd-reel-video-renderer .ytd-reel-video-renderer #actions"
+];
+const SHORTS_OBSERVER_TARGET_SELECTORS = [
+  "ytd-shorts",
+  "ytd-reel-video-renderer",
   "body"
 ];
 const WATCH_LATER_ACTION = {
@@ -145,6 +157,28 @@ function isWatchPage() {
   }
 }
 
+function isShortsPage() {
+  try {
+    const url = new URL(window.location.href);
+    const parts = url.pathname.split("/").filter(Boolean);
+    return parts[0] === "shorts" && Boolean(parts[1]);
+  } catch (error) {
+    return false;
+  }
+}
+
+function isWatchOrShortsPage() {
+  return isWatchPage() || isShortsPage();
+}
+
+function getActiveMountSelectors() {
+  return isShortsPage() ? SHORTS_BUTTON_MOUNT_SELECTORS : WATCH_BUTTON_MOUNT_SELECTORS;
+}
+
+function getActiveObserverTargetSelectors() {
+  return isShortsPage() ? SHORTS_OBSERVER_TARGET_SELECTORS : WATCH_OBSERVER_TARGET_SELECTORS;
+}
+
 function getCurrentReinitKey() {
   try {
     const url = new URL(window.location.href);
@@ -181,10 +215,11 @@ function findFirstExistingElement(selectors) {
 }
 
 function addSaveToButton(retries = 0, maxRetries = 5) {
-  const appendItem = findFirstExistingElement(WATCH_BUTTON_MOUNT_SELECTORS);
+  const activeMountSelectors = getActiveMountSelectors();
+  const appendItem = findFirstExistingElement(activeMountSelectors);
 
   if (!appendItem) {
-    if (!isWatchPage()) {
+    if (!isWatchOrShortsPage()) {
       return;
     }
 
@@ -193,10 +228,12 @@ function addSaveToButton(retries = 0, maxRetries = 5) {
       setTimeout(() => addSaveToButton(retries + 1, maxRetries), delay);
       logInfo(`Element not found, retrying... (${retries + 1}/${maxRetries})`);
     } else {
-      logInfo(`Skipped: ${WATCH_BUTTON_CONTAINER_SELECTOR} not found after ${maxRetries} retries`);
+      logInfo(`Skipped: mount selector not found after ${maxRetries} retries`);
     }
     return;
   }
+
+  saveTo.classList.toggle("shortsPage", isShortsPage());
 
   if (saveTo.parentElement !== appendItem || appendItem.firstElementChild !== saveTo) {
     appendItem.prepend(saveTo);
@@ -205,7 +242,7 @@ function addSaveToButton(retries = 0, maxRetries = 5) {
 }
 
 function hasWatchButtonReadyTarget() {
-  return Boolean(findFirstExistingElement(WATCH_BUTTON_MOUNT_SELECTORS));
+  return Boolean(findFirstExistingElement(getActiveMountSelectors()));
 }
 
 function waitForWatchButtonTarget(maxWaitTime = 10000) {
@@ -238,7 +275,7 @@ function waitForWatchButtonTarget(maxWaitTime = 10000) {
 }
 
 function removeStaleWatchButton() {
-  if (isWatchPage()) {
+  if (isWatchOrShortsPage()) {
     return;
   }
 
@@ -255,7 +292,7 @@ function isWatchButtonMountedInPreferredContainer() {
     return false;
   }
 
-  return WATCH_BUTTON_MOUNT_SELECTORS.some((selector) => saveTo.parentElement.matches(selector));
+  return getActiveMountSelectors().some((selector) => saveTo.parentElement.matches(selector));
 }
 
 function clearWatchBackfillTimers() {
@@ -293,14 +330,14 @@ function scheduleWatchButtonBackfill(trigger = "unknown") {
  * On SPA navigation, this will be recreated by reinitializeButton()
  */
 function observeWatchPage(timeoutMs = 30000) {
-  if (!isWatchPage()) {
+  if (!isWatchOrShortsPage()) {
     return;
   }
 
   let target = null;
   let targetSelector = "unknown";
 
-  for (const selector of WATCH_OBSERVER_TARGET_SELECTORS) {
+  for (const selector of getActiveObserverTargetSelectors()) {
     const el = document.querySelector(selector);
     if (el) {
       target = el;
@@ -369,7 +406,7 @@ function reinitializeButton(eventName = "unknown") {
 
   injectIntoAllCards();
 
-  if (!isWatchPage()) {
+  if (!isWatchOrShortsPage()) {
     logInfo(`Reinit skipped watch-page setup (trigger=${eventName})`);
     return;
   }
@@ -447,7 +484,7 @@ setInterval(() => {
 }, 700);
 
 // Initial setup
-if (isWatchPage()) {
+if (isWatchOrShortsPage()) {
   waitForWatchButtonTarget(10000)
     .then(() => {
       addSaveToButton();
@@ -692,7 +729,11 @@ function getVideoIdFromCard(cardElement) {
       const link = el.querySelector(CARD_LINK_SELECTOR);
       if (link) {
         try {
-          return new URL(link.href, location.origin).searchParams.get("v");
+          const url = new URL(link.href, location.origin);
+          const watchId = url.searchParams.get("v");
+          if (watchId) return watchId;
+          const parts = url.pathname.split("/").filter(Boolean);
+          if (parts[0] === "shorts" && parts[1]) return parts[1];
         } catch (e) { }
       }
       break;
@@ -735,6 +776,13 @@ function getStableCardMount(cardElement) {
     return { mount: renderer, locationClass: CARD_LOCATION_CLASS.home };
   }
 
+  if (renderer.closest(SHORTS_SHELF_SELECTOR)) {
+    return {
+      mount: renderer.querySelector(CARD_MOUNT_SELECTORS.homePrimary) || renderer,
+      locationClass: CARD_LOCATION_CLASS.shortsHome
+    };
+  }
+
   return {
     mount: renderer.querySelector(CARD_MOUNT_SELECTORS.homePrimary) || renderer,
     locationClass: CARD_LOCATION_CLASS.home
@@ -762,7 +810,7 @@ function addWatchLaterToCard(contentImageEl) {
   decorateButtonAccessibility(btn);
 
   // Keep absolute button positioning anchored to a stable card-level container.
-  if (locationClass === CARD_LOCATION_CLASS.home && window.getComputedStyle(mount).position === "static") {
+  if ((locationClass === CARD_LOCATION_CLASS.home || locationClass === CARD_LOCATION_CLASS.shortsHome) && window.getComputedStyle(mount).position === "static") {
     mount.style.position = "relative";
   }
 
