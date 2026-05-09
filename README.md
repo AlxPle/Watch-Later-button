@@ -2,50 +2,56 @@
 
 Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first extension for Chrome and Firefox. No data collection.
 
-## Repository Structure
+## Download & Install
 
-- `chrome/` — Chrome extension source code (Manifest V3)
-- `firefox/` — Firefox extension source code (Manifest V3)
-- `docs/` — Jekyll website for GitHub Pages
-- `tests/` — JavaScript tooling and E2E tests
+<div align="center">
 
-## Features
+[![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab)
 
-- **One-click save:** Add the current YouTube video to your Watch Later list immediately with a single click.
-- **Clean, minimal UI:** Lightweight popup and unobtrusive button that blends with YouTube's interface.
-- **Multilingual:** Available in 19 languages including English, German, Spanish, French, Italian, Japanese, Korean, Russian, Ukrainian, Chinese, and more.
-- **Privacy-first:** No personal data collection, storage, or transmission.
+[![Firefox Add-ons](https://img.shields.io/badge/Firefox_Add--ons-Install-FF7139?style=for-the-badge&logo=firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/)
 
-## How it works
+[![Microsoft Edge](https://img.shields.io/badge/Microsoft_Edge-Install-0078D4?style=for-the-badge&logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/watch-later-button/)
 
-- Open a YouTube video, the extension adds a "Watch Later" button directly under the video.
+</div>
 
 ## Getting Started
 
-### Chrome Version
-1. **Install** from the [Chrome Web Store](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab)
+1. **Install** the extension from your browser's store using the buttons above
 2. **Open any YouTube video** — you'll see the new button below the video
-3. **Use the popup** to report issues, give feedback, or donate
+3. **Click once** to add to Watch Later instantly
+4. **Done!** Your watch later list is updated
 
-### Firefox Version
-1. **Install** from [Mozilla Add-ons](https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/)
-2. **Open any YouTube video** — you'll see the new button below the video
-3. **Use the popup** to report issues, give feedback, or donate
+## Features
+
+- 🎯 **One-click save** — Add videos instantly without menus
+- 🎨 **Minimal UI** — Clean, unobtrusive design
+- 🌍 **19 languages** — Available worldwide
+- 🔒 **Privacy-first** — Zero data collection
+
+## How to Use
+
+1. Navigate to any YouTube video
+2. Click the **Watch Later** button below the video
+3. Video is added to your Watch Later playlist immediately
 
 ## Feedback & Support
 
-- [Report an issue on GitHub](https://github.com/alxple/Watch-Later-button/issues)
-- [Chrome Web Store Reviews](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews)
-- [Firefox Add-ons Reviews](https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/reviews/)
-- [Buy me a coffee](https://www.buymeacoffee.com/pletnovalex)
+- [📖 Website & Blog](https://alxple.github.io/Watch-Later-button/) — Documentation and updates
+- [🐛 Report an issue](https://github.com/alxple/Watch-Later-button/issues) — GitHub Issues
+- [⭐ Chrome Reviews](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews) — Rate on Chrome Web Store
+- [⭐ Firefox Reviews](https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/reviews/) — Rate on Mozilla Add-ons
+- [☕ Buy me a coffee](https://www.buymeacoffee.com/pletnovalex) — Support development
 
-## Privacy
+## Privacy & Security
 
-This extension does **not** collect, store, or transmit any personal data.
+✅ This extension does **not**:
+- Collect personal data
+- Track user activity
+- Store browsing history
+- Request unnecessary permissions
 
-The public privacy policy is available on the project website.
+All functionality works locally in your browser.
 
 ---
 
-
-**Enjoy a faster way to manage your YouTube Watch Later playlist!**
+Made with ❤️ for YouTube lovers everywhere.
