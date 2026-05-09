@@ -1,7 +1,11 @@
 /* Create saveTo button element */
+console.log('[Watch Later] Content script loaded - Firefox version');
+
 const saveTo = document.createElement("div");
 saveTo.id = "saveToPlaylist";
 saveTo.className = "saveToWatchLater";
+
+console.log('[Watch Later] Button element created:', saveTo);
 
 /* ===== CARD INJECTION CONFIG ===== */
 const CARD_WL_INJECTED = "data-wl-injected";
@@ -565,22 +569,31 @@ function buildWatchLaterParams(action, videoId) {
 function dispatchNativeYouTubeAction(params) {
     const appElement = document.querySelector("ytd-app");
     if (!appElement) {
+        console.error('[Watch Later] ytd-app element not found!');
         return { ok: false, status: "no-app-element" };
     }
+
+    console.log('[Watch Later] Dispatching action to YouTube:', params);
+
+    const detail = cloneInto(
+        {
+            actionName: "yt-service-request",
+            returnValue: [],
+            args: [{ data: {} }, params],
+            optionalAction: false,
+        },
+        document.defaultView,
+    );
 
     appElement.dispatchEvent(
         new window.CustomEvent("yt-action", {
             bubbles: true,
             composed: true,
-            detail: {
-                actionName: "yt-service-request",
-                returnValue: [],
-                args: [{ data: {} }, params],
-                optionalAction: false,
-            },
+            detail,
         }),
     );
 
+    console.log('[Watch Later] Action dispatched successfully');
     return { ok: true, status: "sent" };
 }
 
@@ -850,6 +863,12 @@ function injectIntoAllCards() {
 /** Starts a MutationObserver on document.body to handle dynamically loaded cards (infinite scroll, SPA navigation). */
 function startCardObserver() {
     if (cardObserver) return;
+
+    if (!document.body) {
+        logInfo("Card observer deferred: document.body is not ready yet");
+        return;
+    }
+
     cardObserver = new MutationObserver(() => {
         if (cardInjectTimer) return;
         cardInjectTimer = setTimeout(() => {
@@ -864,6 +883,13 @@ function startCardObserver() {
 function initializeCardInjection() {
     injectIntoAllCards();
     startCardObserver();
+
+    if (!cardObserver) {
+        document.addEventListener("DOMContentLoaded", () => {
+            injectIntoAllCards();
+            startCardObserver();
+        }, { once: true });
+    }
 }
 
 // Run immediately and start watching for new cards
