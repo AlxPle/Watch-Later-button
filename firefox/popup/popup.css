@@ -1,0 +1,179 @@
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/inter-latin-400.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../assets/fonts/inter-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../assets/fonts/manrope-latin-700.woff2') format('woff2');
+}
+
+:root {
+    --border-radius: 6px;
+    --primary: #bc0100;
+    --primary-strong: #eb0000;
+    --surface: #f9f9f9;
+    --surface-container: #ffffff;
+    --on-surface: #1a1c1c;
+    --on-surface-variant: #656464;
+    --outline-variant: #ebbbb4;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+html {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+body {
+    width: 280px;
+    min-height: 240px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans Arabic', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans TC', 'Segoe UI', Arial, sans-serif;
+    background: radial-gradient(120% 120% at 50% -20%, #ffe3df 0%, var(--surface) 55%);
+    color: var(--on-surface);
+}
+
+/* MAIN */
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 12px 10px;
+}
+
+/* HEADER */
+
+.extension-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    color: var(--primary);
+    font-family: 'Manrope', 'Inter', 'Noto Sans', 'Noto Sans Arabic', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans TC', 'Segoe UI', Arial, sans-serif;
+}
+
+.extention-desc {
+    font-size: 14px;
+}
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface-container);
+    border: 1px solid var(--outline-variant);
+    border-radius: var(--border-radius);
+    padding: 10px 14px;
+    text-decoration: none;
+    color: var(--on-surface);
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(188, 1, 0, 0.06);
+}
+
+.btn p {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+    border-color: var(--primary-strong);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.btn-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+    flex: 0 0 22px;
+    fill: currentColor;
+    color: var(--primary);
+    transition: color 0.2s ease;
+}
+
+.btn:hover .btn-icon {
+    color: #fff;
+}
+
+.popup-footer {
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px 2px 2px;
+    text-align: center;
+    border-top: 1px solid rgba(149, 109, 103, 0.2);
+}
+
+#ext-version {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--on-surface-variant);
+}
+
+.footer-separator {
+    margin: 0 6px;
+    color: var(--outline-variant);
+}
+
+.footer-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}

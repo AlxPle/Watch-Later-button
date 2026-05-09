@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "YouTube-video's onmiddellijk opslaan—geen menu's, geen extra klikken. De YouTube-knop die je nodig had.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Feedback",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Doneren",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Problemen",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Hulp",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "Contact",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Website",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Wat is nieuw",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Later bekijken",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Verwijderen uit Later bekijken",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Nazwa rozszerzenia"
+    },
+    "extensionDescription": {
+        "message": "Zapisuj filmy z YouTube'a natychmiast—bez menu, bez dodatkowych kliknięć. Przycisk YouTube, którego potrzebowałeś.",
+        "description": "Opis rozszerzenia"
+    },
+    "feedback": {
+        "message": "Opinie",
+        "description": "Tekst linku do opinii"
+    },
+    "donate": {
+        "message": "Wesprzyj",
+        "description": "Tekst linku do darowizny"
+    },
+    "issues": {
+        "message": "Problemy",
+        "description": "Tekst linku do problemów"
+    },
+    "help": {
+        "message": "Pomoc",
+        "description": "Tekst linku do pomocy"
+    },
+    "contact": {
+        "message": "Kontakt",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Witryna",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Co nowego",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Obejrzyj później",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Usuń z Obejrzyj później",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

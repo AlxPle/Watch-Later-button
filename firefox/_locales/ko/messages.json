@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "확장 프로그램 이름"
+    },
+    "extensionDescription": {
+        "message": "YouTube 동영상을 즉시 저장—메뉴 없음, 클릭 없음. 필요한 YouTube 버튼입니다.",
+        "description": "확장 프로그램 설명"
+    },
+    "feedback": {
+        "message": "피드백",
+        "description": "피드백 링크 텍스트"
+    },
+    "donate": {
+        "message": "기부하기",
+        "description": "기부 링크 텍스트"
+    },
+    "issues": {
+        "message": "문제",
+        "description": "문제 링크 텍스트"
+    },
+    "help": {
+        "message": "도움말",
+        "description": "도움말 링크 텍스트"
+    },
+    "contact": {
+        "message": "문의",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "웹사이트",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "새로운 소식",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "나중에 보기",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "나중에 보기에서 삭제",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

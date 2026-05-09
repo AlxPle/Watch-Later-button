@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "احفظ مقاطع YouTube فوراً—بدون قوائم، بدون نقرات إضافية. زر YouTube الذي كنت تحتاجه.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "ملاحظات",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "تبرّع",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "المشكلات",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "المساعدة",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "اتصل بنا",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "الموقع الإلكتروني",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "ما الجديد",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "المشاهدة لاحقًا",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "إزالة من المشاهدة لاحقًا",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

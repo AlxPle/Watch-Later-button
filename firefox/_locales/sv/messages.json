@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Spara YouTube-videor direkt—inga menyer, inga extra klick. Knappen du behövde för YouTube.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Återkoppling",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Donera",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Problem",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Hjälp",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "Kontakt",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Webbplats",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Vad är nytt",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Titta senare",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Ta bort från Titta senare",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Ukládejte videa z YouTube okamžitě—bez nabídek, bez dalších kliknutí. Tlačítko YouTube, které jste potřebovali.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Zpětná vazba",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Přispět",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Problémy",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Nápověda",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "Kontakt",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Webová stránka",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Co je nového",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Sledovat později",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Odebrat ze seznamu Sledovat později",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

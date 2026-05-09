@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "YouTube वीडियो तुरंत सहेजें—कोई मेनू नहीं, कोई अतिरिक्त क्लिक नहीं। YouTube बटन जो आपको चाहिए था।",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "फ़ीडबैक",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "दान करें",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "समस्याएँ",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "मदद",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "संपर्क",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "वेबसाइट",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "क्या नया है",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "बाद में देखें",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "\"बाद में देखें\" से हटाएं",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

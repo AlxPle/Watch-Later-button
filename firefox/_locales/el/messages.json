@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Αποθηκεύστε βίντεο YouTube στιγμιαία—χωρίς μενού, χωρίς επιπλέον κλικ. Το κουμπί YouTube που χρειάστηκατε.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Ανατροφοδότηση",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Δωρεά",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Προβλήματα",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Βοήθεια",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "Επικοινωνία",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Ιστότοπος",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Τι νέο υπάρχει",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Παρακολούθηση αργότερα",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Διαγραφή από το Παρακολούθηση αργότερα",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}
