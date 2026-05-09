@@ -225,13 +225,14 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   },
   "sameAs": [
     "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab",
+    "https://addons.mozilla.org/firefox/addon/watch-later-button/",
     "https://www.buymeacoffee.com/pletnovalex"
   ],
   "contactPoint": [
     {
       "@type": "ContactPoint",
       "contactType": "customer support",
-      "url": "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/support"
+      "url": "https://github.com/AlxPle/Watch-Later-button/issues"
     }
   ]
 }
@@ -258,7 +259,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   "@type": "SoftwareApplication",
   "@id": {{ '/' | absolute_url | append: '#software' | jsonify }},
   "name": "Watch Later Button",
-  "description": "Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first Chrome extension.",
+  "description": "Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first browser extension.",
   "url": {{ '/' | absolute_url | jsonify }},
   "image": {{ '/assets/social_poster.png' | absolute_url | jsonify }},
   "applicationCategory": "Browser extension",
@@ -279,7 +280,10 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   "publisher": {
     "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
   },
-  "downloadUrl": "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+  "downloadUrl": [
+    "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab",
+    "https://addons.mozilla.org/firefox/addon/watch-later-button/"
+  ]
 }
 </script>
 
@@ -373,7 +377,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
       "name": "Does it work on mobile?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This is a Chrome Extension designed for desktop browsers. For mobile, we recommend using the native YouTube app."
+        "text": "This is a browser extension designed for desktop browsers. For mobile, we recommend using the native YouTube app."
       }
     },
     {
