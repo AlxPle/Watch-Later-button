@@ -7,13 +7,10 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 <div align="center">
 
 <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab">
-  <img src="/banner/chrome-web-store.png" alt="Chrome Web Store" width="220" style="margin: 10px; display: inline-block;">
+  <img src="/banner/get_for_chrome.svg" alt="Chrome Web Store" width="220" style="margin: 10px; display: inline-block; vertical-align: middle;">
 </a>
 <a href="https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/">
-  <img src="/banner/firefox-add-ons.svg" alt="Firefox Add-ons" width="220" style="margin: 10px; display: inline-block;">
-</a>
-<a href="https://microsoftedge.microsoft.com/addons/detail/watch-later-button/">
-  <img src="/banner/edge-addons.png" alt="Microsoft Edge" width="220" style="margin: 10px; display: inline-block;">
+  <img src="/banner/get_for_firefox.svg" alt="Firefox Add-ons" width="220" style="margin: 10px; display: inline-block; vertical-align: middle;">
 </a>
 
 </div>

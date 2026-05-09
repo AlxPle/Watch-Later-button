@@ -1,0 +1,19 @@
+<svg width="320" height="80" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Badge background -->
+  <rect x="1" y="1" width="318" height="78" rx="14" fill="#F5F5F5" stroke="#D0D0D0" stroke-width="2"/>
+
+  <!-- Microsoft Logo -->
+  <rect x="22" y="20" width="18" height="18" fill="#F25022"/>
+  <rect x="44" y="20" width="18" height="18" fill="#7FBA00"/>
+  <rect x="22" y="42" width="18" height="18" fill="#00A4EF"/>
+  <rect x="44" y="42" width="18" height="18" fill="#FFB900"/>
+
+  <!-- Text -->
+  <text x="82" y="34" fill="#555555" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600">
+    Get it from
+  </text>
+
+  <text x="82" y="60" fill="#111111" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">
+    Microsoft
+  </text>
+</svg>
