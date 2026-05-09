@@ -146,6 +146,28 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     border: 1px solid rgba(235, 187, 180, 0.15);
   }
 
+  .brand-icon {
+    display: inline-block;
+    flex-shrink: 0;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+
+  .brand-icon--chrome {
+    -webkit-mask-image: url("{{ '/assets/icons/iconmonstr-chrome-1.svg' | relative_url }}");
+    mask-image: url("{{ '/assets/icons/iconmonstr-chrome-1.svg' | relative_url }}");
+  }
+
+  .brand-icon--firefox {
+    -webkit-mask-image: url("{{ '/assets/icons/iconmonstr-firefox-1.svg' | relative_url }}");
+    mask-image: url("{{ '/assets/icons/iconmonstr-firefox-1.svg' | relative_url }}");
+  }
+
   @media (prefers-color-scheme: dark) {
     .bg-surface {
       background-color: #0f1115 !important;
