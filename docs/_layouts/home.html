@@ -177,7 +177,8 @@ layout: default
                             {% endif %}
                             {% endfor %}
                     </div>
-                    <h3 class="title-lg mb-2">{{ rating_value_raw }}/5 Rating <span class="text-xs font-normal text-on-surface-variant">(Chrome Web Store)</span></h3>
+                    <h3 class="title-lg mb-2">{{ rating_value_raw }}/5 Rating <span
+                            class="text-xs font-normal text-on-surface-variant">(Chrome Web Store)</span></h3>
                     <p class="text-on-surface-variant">Based on {{ rating_count }} user reviews</p>
                 </div>
                 <div class="h-px w-32 bg-outline-variant/20 hidden md:block"></div>
@@ -208,7 +209,8 @@ layout: default
                 </div>
                 <div class="bg-surface-container-low p-6 rounded-xl">
                     <h4 class="font-bold mb-2">Does it work on mobile?</h4>
-                    <p class="text-on-surface-variant text-sm">This is a browser extension designed for desktop browsers.
+                    <p class="text-on-surface-variant text-sm">This is a browser extension designed for desktop
+                        browsers.
                         For
                         mobile, we recommend using the native YouTube app.</p>
                 </div>
@@ -257,10 +259,28 @@ layout: default
                             <p class="text-on-surface-variant text-sm">Share your experience and help improve the
                                 extension</p>
                         </div>
-                        <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews"
-                            class="mt-auto inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-zinc-900 bg-surface-container-high hover:bg-surface-container transition-colors">
-                            Write a Review
-                        </a>
+                        <div class="mt-auto relative group">
+                            <button
+                                class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-zinc-900 bg-surface-container-high hover:bg-surface-container transition-colors group">
+                                Write a Review
+                                <span
+                                    class="material-symbols-outlined text-sm ml-2 group-hover:rotate-180 transition-transform">expand_more</span>
+                            </button>
+                            <div
+                                class="absolute bottom-full left-0 right-0 mb-2 bg-white border border-outline-variant/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
+                                <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-lg">chrome_reader_mode</span>
+                                    Chrome Web Store
+                                </a>
+                                <a href="https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/#reviews"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
+                                    <span class="material-symbols-outlined text-primary text-lg">favorite</span>
+                                    Firefox Add-ons
+                                </a>
+                            </div>
+                        </div>
                     </article>
 
                     <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
