@@ -6,11 +6,15 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 
 <div align="center">
 
-[![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab)
-
-[![Firefox Add-ons](https://img.shields.io/badge/Firefox_Add--ons-Install-FF7139?style=for-the-badge&logo=firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/)
-
-[![Microsoft Edge](https://img.shields.io/badge/Microsoft_Edge-Install-0078D4?style=for-the-badge&logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/watch-later-button/)
+<a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab">
+  <img src="/banner/chrome-web-store.png" alt="Chrome Web Store" width="220" style="margin: 10px; display: inline-block;">
+</a>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/">
+  <img src="/banner/firefox-add-ons.svg" alt="Firefox Add-ons" width="220" style="margin: 10px; display: inline-block;">
+</a>
+<a href="https://microsoftedge.microsoft.com/addons/detail/watch-later-button/">
+  <img src="/banner/edge-addons.png" alt="Microsoft Edge" width="220" style="margin: 10px; display: inline-block;">
+</a>
 
 </div>
 
