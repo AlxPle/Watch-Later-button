@@ -13,6 +13,7 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
   <img src="/banner/get_for_firefox.svg" alt="Firefox Add-ons" width="220" height="60">
 </a>
 
+
 </div>
 
 ## Getting Started
@@ -26,7 +27,7 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 
 - 🎯 **One-click save** — Add videos instantly without menus
 - 🎨 **Minimal UI** — Clean, unobtrusive design
-- 🌍 **19 languages** — Available worldwide
+- 🌍 **26 languages** — Available worldwide
 - 🔒 **Privacy-first** — Zero data collection
 
 ## How to Use
