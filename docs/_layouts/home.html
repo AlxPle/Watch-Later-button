@@ -11,8 +11,8 @@ layout: default
                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/15 mb-8">
                 <span class="material-symbols-outlined text-primary text-sm" data-icon="verified"
                     style="font-variation-settings: 'FILL' 1;">verified</span>
-                <span class="label-md text-on-surface-variant uppercase tracking-widest">Available on Chrome Web
-                    Store</span>
+                <span class="label-md text-on-surface-variant uppercase tracking-widest">Available on Chrome, Firefox &
+                    Edge</span>
             </div>
             <h1 class="font-headline headline-lg md:text-6xl max-w-5xl tracking-tight mb-8">
                 Save YouTube videos to
@@ -23,9 +23,14 @@ layout: default
             </p>
             <div class="flex flex-col sm:flex-row gap-4 items-center mb-6">
                 <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
-                    class="red-gradient text-on-primary px-10 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/25">
+                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/25">
                     <span class="material-symbols-outlined" data-icon="add_to_drive">add_to_drive</span>
-                    Add to Chrome
+                    Chrome
+                </a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/"
+                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/25">
+                    <span class="material-symbols-outlined" data-icon="add_to_drive">add_to_drive</span>
+                    Firefox
                 </a>
                 <a href="#how-it-works"
                     class="text-on-surface hover:bg-surface-container-high px-10 py-4 rounded-full font-bold text-lg transition-all">
@@ -53,7 +58,7 @@ layout: default
                         </div>
                         <div>
                             <h3 class="title-lg mb-3">Install</h3>
-                            <p class="text-on-surface-variant leading-relaxed">Add it from the Chrome Web Store in
+                            <p class="text-on-surface-variant leading-relaxed">Add it from your browser's store in
                                 seconds.
                                 No setup required</p>
                         </div>
@@ -172,8 +177,8 @@ layout: default
                             {% endif %}
                             {% endfor %}
                     </div>
-                    <h3 class="title-lg mb-2">{{ rating_value_raw }}/5 Chrome Store Rating</h3>
-                    <p class="text-on-surface-variant">Based on {{ rating_count }} Chrome Web Store reviews</p>
+                    <h3 class="title-lg mb-2">{{ rating_value_raw }}/5 Rating <span class="text-xs font-normal text-on-surface-variant">(Chrome Web Store)</span></h3>
+                    <p class="text-on-surface-variant">Based on {{ rating_count }} user reviews</p>
                 </div>
                 <div class="h-px w-32 bg-outline-variant/20 hidden md:block"></div>
                 <div class="lg:text-left text-center flex flex-col lg:items-start items-center gap-4">
@@ -203,7 +208,7 @@ layout: default
                 </div>
                 <div class="bg-surface-container-low p-6 rounded-xl">
                     <h4 class="font-bold mb-2">Does it work on mobile?</h4>
-                    <p class="text-on-surface-variant text-sm">This is a Chrome Extension designed for desktop browsers.
+                    <p class="text-on-surface-variant text-sm">This is a browser extension designed for desktop browsers.
                         For
                         mobile, we recommend using the native YouTube app.</p>
                 </div>
@@ -237,9 +242,9 @@ layout: default
                             <p class="text-on-surface-variant text-sm">Found a bug or something not working as expected?
                             </p>
                         </div>
-                        <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/support"
+                        <a href="https://github.com/AlxPle/Watch-Later-button/issues"
                             class="mt-auto inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-zinc-900 bg-surface-container-high hover:bg-surface-container transition-colors">
-                            Open Support
+                            Open Issues
                         </a>
                     </article>
 
@@ -287,10 +292,20 @@ layout: default
                     <p class="text-zinc-400 text-lg mb-12 max-w-xl mx-auto">Join thousands of curators who never lose a
                         video
                         again</p>
-                    <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
-                        class="red-gradient text-white px-6 md:px-12 py-5 rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-2xl shadow-primary/40 inline-block">
-                        Add to Chrome — It's Free
-                    </a>
+                    <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                        <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+                            class="red-gradient text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl shadow-primary/40 inline-block">
+                            Chrome
+                        </a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/"
+                            class="red-gradient text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl shadow-primary/40 inline-block">
+                            Firefox
+                        </a>
+                        <a href="#features"
+                            class="text-white hover:bg-white/20 px-8 py-4 rounded-full font-bold text-lg transition-all inline-block">
+                            Learn More
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
