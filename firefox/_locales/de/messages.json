@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name der Erweiterung"
+    },
+    "extensionDescription": {
+        "message": "YouTube-Videos sofort speichern—keine Menüs, keine zusätzlichen Klicks. Die YouTube-Schaltfläche, die du brauchst.",
+        "description": "Beschreibung der Erweiterung"
+    },
+    "feedback": {
+        "message": "Feedback",
+        "description": "Feedback-Link-Text"
+    },
+    "donate": {
+        "message": "Spenden",
+        "description": "Spenden-Link-Text"
+    },
+    "issues": {
+        "message": "Probleme",
+        "description": "Probleme-Link-Text"
+    },
+    "help": {
+        "message": "Hilfe",
+        "description": "Hilfe-Link-Text"
+    },
+    "contact": {
+        "message": "Kontakt",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Website",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Was ist neu",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Später ansehen",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Aus \"Später ansehen\" entfernen",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

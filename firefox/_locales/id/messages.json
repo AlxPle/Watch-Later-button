@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Simpan video YouTube secara instan—tanpa menu, tanpa klik tambahan. Tombol YouTube yang Anda butuhkan.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Umpan Balik",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Donasi",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Masalah",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Bantuan",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "Kontak",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Situs web",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Yang baru",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Tonton nanti",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Hapus dari Tonton nanti",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Salvați videoclipuri YouTube instantaneu—fără meniuri, fără clicuri suplimentare. Butonul YouTube de care aveați nevoie.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Păreri",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Donează",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Probleme",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Ajutor",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "Contact",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Site web",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Noutăți",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Urmărește mai târziu",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Șterge din Urmărește mai târziu",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

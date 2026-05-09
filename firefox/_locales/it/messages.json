@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Nome dell'estensione"
+    },
+    "extensionDescription": {
+        "message": "Salva i video di YouTube istantaneamente—nessun menu, nessun clic extra. Il pulsante YouTube che ti serviva.",
+        "description": "Descrizione dell'estensione"
+    },
+    "feedback": {
+        "message": "Feedback",
+        "description": "Testo del link per il feedback"
+    },
+    "donate": {
+        "message": "Dona",
+        "description": "Testo del link per la donazione"
+    },
+    "issues": {
+        "message": "Problemi",
+        "description": "Testo del link per i problemi"
+    },
+    "help": {
+        "message": "Aiuto",
+        "description": "Testo del link per l'aiuto"
+    },
+    "contact": {
+        "message": "Contatti",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Sito web",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Novità",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Guarda più tardi",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Rimuovi da Guarda più tardi",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

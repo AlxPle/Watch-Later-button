@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "Lagre YouTube-videoer øyeblikkelig—ingen menyer, ingen ekstra klikk. YouTube-knappen du trengte.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "Tilbakemelding",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "Doner",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "Problemer",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "Hjelp",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "Kontakt",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Nettsted",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Hva er nytt",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Se senere",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Fjern fra Se senere",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

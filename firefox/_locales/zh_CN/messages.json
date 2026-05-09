@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "扩展程序名称"
+    },
+    "extensionDescription": {
+        "message": "立即保存YouTube视频——无菜单，无额外点击。您需要的YouTube按钮。",
+        "description": "扩展程序描述"
+    },
+    "feedback": {
+        "message": "反馈",
+        "description": "反馈链接文本"
+    },
+    "donate": {
+        "message": "捐赠",
+        "description": "捐赠链接文本"
+    },
+    "issues": {
+        "message": "问题",
+        "description": "问题链接文本"
+    },
+    "help": {
+        "message": "帮助",
+        "description": "帮助链接文本"
+    },
+    "contact": {
+        "message": "联系方式",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "网站",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "最新动态",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "稍后观看",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "从“稍后观看”中删除",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

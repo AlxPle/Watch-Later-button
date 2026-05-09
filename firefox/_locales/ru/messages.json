@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Название расширения"
+    },
+    "extensionDescription": {
+        "message": "Сохраняйте видео с YouTube мгновенно—без меню, без лишних кликов. Кнопка YouTube, которая вам была нужна.",
+        "description": "Описание расширения"
+    },
+    "feedback": {
+        "message": "Обратная связь",
+        "description": "Текст ссылки обратной связи"
+    },
+    "donate": {
+        "message": "Поддержать",
+        "description": "Текст ссылки пожертвования"
+    },
+    "issues": {
+        "message": "Проблемы",
+        "description": "Текст ссылки на проблемы"
+    },
+    "help": {
+        "message": "Справка",
+        "description": "Текст ссылки помощи"
+    },
+    "contact": {
+        "message": "Контакты",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "Сайт",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "Что нового",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "Смотреть позже",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "Удалить из \"Смотреть позже\"",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}

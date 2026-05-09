@@ -1,0 +1,46 @@
+{
+    "extensionName": {
+        "message": "Watch Later Button",
+        "description": "Name of the extension"
+    },
+    "extensionDescription": {
+        "message": "ویدیوهای YouTube را فوری ذخیره کنید—بدون منو، بدون کلیک اضافی. دکمه YouTube ای که نیاز داشتید.",
+        "description": "Description of the extension"
+    },
+    "feedback": {
+        "message": "بازخورد",
+        "description": "Feedback link text"
+    },
+    "donate": {
+        "message": "اهدا",
+        "description": "Donate link text"
+    },
+    "issues": {
+        "message": "مشکلات",
+        "description": "Issues link text"
+    },
+    "help": {
+        "message": "کمک",
+        "description": "Help link text"
+    },
+    "contact": {
+        "message": "تماس",
+        "description": "Contact link text"
+    },
+    "website": {
+        "message": "وب سایت",
+        "description": "Website link text"
+    },
+    "whatsNew": {
+        "message": "چه خبر",
+        "description": "Updates link text"
+    },
+    "wlButtonDefaultTitle": {
+        "message": "تماشا در آینده",
+        "description": "Default tooltip/aria label for the Watch Later button"
+    },
+    "wlButtonDeleteTitle": {
+        "message": "حذف از تماشا در آینده",
+        "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    }
+}
