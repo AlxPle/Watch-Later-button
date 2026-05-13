@@ -38,7 +38,7 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 
 ## Feedback & Support
 
-- [📖 Website & Blog](https://alxple.github.io/Watch-Later-button/) — Documentation and updates
+- [📖 Website & Blog](https://watchlater.alxple.com/) — Documentation and updates
 - [🐛 Report an issue](https://github.com/alxple/Watch-Later-button/issues) — GitHub Issues
 - [⭐ Chrome Reviews](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews) — Rate on Chrome Web Store
 - [⭐ Firefox Reviews](https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/reviews/) — Rate on Mozilla Add-ons
