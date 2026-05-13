@@ -137,6 +137,37 @@ npm install
 npm test
 ```
 
+## Automatic deploy on commit (recommended)
+
+This repository includes a GitHub Actions workflow at `.github/workflows/deploy-docs.yml`.
+It automatically builds the Jekyll site from `docs/` and uploads `docs/_site/` to your server
+on every push to `main` (and can also be started manually).
+
+Add these repository secrets in GitHub:
+
+- `DEPLOY_HOST` — your server hostname (for example `watchlater.alxple.com`)
+- `DEPLOY_USER` — SSH user for deployment
+- `DEPLOY_SSH_KEY` — private SSH key used by GitHub Actions
+- `DEPLOY_PATH` — target directory on server (for example `/var/www/watchlater.alxple.com`)
+- `DEPLOY_PORT` — optional SSH port (defaults to `22`)
+
+After secrets are configured, deployment is fully automatic on commit.
+
+## Manual deploy from server (alternative)
+
+If you prefer manual deployment:
+
+```bash
+cd /path/to/repo
+git pull
+cd docs
+bundle install
+npm run build
+rsync -az --delete _site/ /var/www/watchlater.alxple.com/
+```
+
+Manual deploy works, but automation is safer and more repeatable.
+
 ## Project structure
 
 - `chrome/` — Chrome extension source
