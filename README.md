@@ -54,6 +54,9 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 
 All functionality works locally in your browser.
 
----
+## License
+
+This project is licensed under the GNU General Public License v3.0 — see the LICENSE file for details.
+
 
 Made with ❤️ for YouTube lovers everywhere.
