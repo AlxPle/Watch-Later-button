@@ -34,6 +34,8 @@
                 href="{{ '/' | relative_url }}">Home</a>
             <a class="{% if current_url contains '/privacy/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
                 href="{{ '/privacy/' | relative_url }}">Privacy</a>
+            <a class="{% if current_url contains '/impressum/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
+                href="{{ '/impressum/' | relative_url }}">Impressum</a>
             <a class="{% if current_url contains '/updates/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
                 href="{{ '/updates/' | relative_url }}">Updates</a>
         </div>
@@ -55,6 +57,8 @@
             href="{{ '/' | relative_url }}">Home</a>
         <a class="{% if current_url contains '/privacy/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
             href="{{ '/privacy/' | relative_url }}">Privacy</a>
+        <a class="{% if current_url contains '/impressum/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
+            href="{{ '/impressum/' | relative_url }}">Impressum</a>
         <a class="{% if current_url contains '/updates/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
             href="{{ '/updates/' | relative_url }}">Updates</a>
     </div>
