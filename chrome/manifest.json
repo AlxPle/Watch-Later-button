@@ -3,7 +3,7 @@
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
-  "author": "Alex Pletnov",
+  "author": "Oleksandr Pletnov",
   "version": "1.5.1",
   "icons": {
     "16": "assets/app-icons/red/iconmonstr-text-plus-lined-16.png",
