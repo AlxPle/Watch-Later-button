@@ -153,6 +153,24 @@ Add these repository secrets in GitHub:
 
 After secrets are configured, deployment is fully automatic on commit.
 
+### Manual trigger (GitHub CLI)
+
+You can start the deploy workflow manually using the GitHub CLI. Example:
+
+```bash
+# trigger the workflow by its display name on the `master` branch
+gh workflow run "Build and Deploy Docs" --ref master
+
+# or trigger by workflow filename
+gh workflow run deploy-docs.yml --ref master
+
+# list recent runs for the workflow
+gh run list --workflow=deploy-docs.yml
+
+# open a specific run in the browser (use run id from the list)
+gh run view <run-id> --web
+```
+
 ## Manual deploy from server (alternative)
 
 If you prefer manual deployment:
