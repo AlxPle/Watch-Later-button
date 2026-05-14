@@ -2,6 +2,7 @@ title: Watch Later Button
 description: Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first browser extension. No data collection. Available in 26 languages.
 author: Alex Pletnov
 lang: en
+google_tag_manager_id: GTM-K5V7248W
 
 # Navigation: exclude index from header
 header_pages:
