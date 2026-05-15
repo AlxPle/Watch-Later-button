@@ -4,7 +4,6 @@ title: GDPR Compliance and Your Privacy
 date: 2026-05-14
 categories: privacy
 description: Watch Later Button is now fully GDPR compliant. Learn what this means for your privacy and why it matters.
-image: /assets/social_poster.png
 ---
 
 We've updated our privacy practices to ensure full **GDPR (General Data Protection Regulation)** compliance. In this post, we explain what GDPR is, why it matters, and how Watch Later Button protects your data.
