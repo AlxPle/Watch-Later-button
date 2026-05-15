@@ -9,7 +9,7 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab">
   <img src="/banner/get_for_chrome.svg" alt="Chrome Web Store" width="220" height="60">
 </a>
-<a href="https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/">
+<a href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/">
   <img src="/banner/get_for_firefox.svg" alt="Firefox Add-ons" width="220" height="60">
 </a>
 
@@ -41,7 +41,7 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 - [📖 Website & Blog](https://watchlater.alxple.com/) — Documentation and updates
 - [🐛 Report an issue](https://github.com/alxple/Watch-Later-button/issues) — GitHub Issues
 - [⭐ Chrome Reviews](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews) — Rate on Chrome Web Store
-- [⭐ Firefox Reviews](https://addons.mozilla.org/en-US/firefox/addon/watch-later-button/reviews/) — Rate on Mozilla Add-ons
+- [⭐ Firefox Reviews](https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/reviews/) — Rate on Mozilla Add-ons
 - [☕ Buy me a coffee](https://www.buymeacoffee.com/pletnovalex) — Support development
 
 ## Privacy & Security
