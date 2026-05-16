@@ -12,8 +12,7 @@ In accordance with § 5 of the German Telemediengesetz (TMG - Tele Media Act) an
 
 ## Responsible for the Website
 
-**Oleksandr Pletnov**  
-Bad Berleburg  
+**Oleksandr Pletnov**
 Germany
 
 **Email:** pletnov.alex@gmail.com
