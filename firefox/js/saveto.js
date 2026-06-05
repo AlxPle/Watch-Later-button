@@ -426,24 +426,23 @@ function reinitializeButton(eventName = "unknown") {
   observeWatchPage();
   scheduleWatchButtonBackfill(`${eventName}-early`);
 
-  reinitTimerId = setTimeout(() => {
+  reinitTimerId = setTimeout(async () => {
     logInfo(`Reinit trigger: ${eventName}`);
-    waitForWatchButtonTarget(10000)
-      .then(() => {
-        addSaveToButton();
-        observeWatchPage();
-        scheduleWatchButtonBackfill(eventName);
-        reinitSuccess += 1;
-        logInfo(`Reinit stats: attempts=${reinitAttempts}, success=${reinitSuccess}, failed=${reinitFailed}`);
-      })
-      .catch((error) => {
-        scheduleWatchButtonBackfill(`${eventName}-fallback`);
-        reinitFailed += 1;
-        handleError(
-          `Reinitialization failed (trigger=${eventName}, attempts=${reinitAttempts}, success=${reinitSuccess}, failed=${reinitFailed}):`,
-          error,
-        );
-      });
+    try {
+      await waitForWatchButtonTarget(10000);
+      addSaveToButton();
+      observeWatchPage();
+      scheduleWatchButtonBackfill(eventName);
+      reinitSuccess += 1;
+      logInfo(`Reinit stats: attempts=${reinitAttempts}, success=${reinitSuccess}, failed=${reinitFailed}`);
+    } catch (error) {
+      scheduleWatchButtonBackfill(`${eventName}-fallback`);
+      reinitFailed += 1;
+      handleError(
+        `Reinitialization failed (trigger=${eventName}, attempts=${reinitAttempts}, success=${reinitSuccess}, failed=${reinitFailed}):`,
+        error,
+      );
+    }
   }, 150);
 }
 
@@ -490,16 +489,17 @@ setInterval(() => {
 
 // Initial setup
 if (isWatchOrShortsPage()) {
-  waitForWatchButtonTarget(10000)
-    .then(() => {
+  (async () => {
+    try {
+      await waitForWatchButtonTarget(10000);
       addSaveToButton();
       observeWatchPage();
       scheduleWatchButtonBackfill("initial");
-    })
-    .catch((error) => {
+    } catch (error) {
       scheduleWatchButtonBackfill("initial-fallback");
       handleError("Initial setup failed:", error);
-    });
+    }
+  })();
 }
 
 /**
