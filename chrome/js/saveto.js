@@ -274,7 +274,7 @@ function waitForWatchButtonTarget(maxWaitTime = 10000) {
       reject(new Error("Timeout waiting for watch button target"));
     }, maxWaitTime);
 
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(document.documentElement, { childList: true, subtree: true });
     logInfo(`Waiting for watch button target (max ${maxWaitTime}ms)`);
   });
 }
@@ -486,7 +486,7 @@ setInterval(() => {
     lastKnownHref = currentHref;
     reinitializeButton("url-changed");
   }
-}, 700);
+}, 2000);
 
 // Initial setup
 if (isWatchOrShortsPage()) {
@@ -568,16 +568,22 @@ function dispatchNativeYouTubeAction(params) {
     return { ok: false, status: "no-app-element" };
   }
 
+  let detail = {
+    actionName: "yt-service-request",
+    returnValue: [],
+    args: [{ data: {} }, params],
+    optionalAction: false,
+  };
+
+  if (typeof cloneInto !== "undefined") {
+    detail = cloneInto(detail, document.defaultView);
+  }
+
   appElement.dispatchEvent(
     new window.CustomEvent("yt-action", {
       bubbles: true,
       composed: true,
-      detail: {
-        actionName: "yt-service-request",
-        returnValue: [],
-        args: [{ data: {} }, params],
-        optionalAction: false,
-      },
+      detail,
     }),
   );
 
@@ -799,11 +805,20 @@ function addWatchLaterToCard(contentImageEl) {
   if (contentImageEl.hasAttribute(CARD_WL_INJECTED)) return;
 
   const { mount, locationClass } = getStableCardMount(contentImageEl);
-  if (!mount) return;
-  if (mount.hasAttribute(CARD_WL_INJECTED)) return;
+  if (!mount) {
+    contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
+    return;
+  }
+  if (mount.hasAttribute(CARD_WL_INJECTED)) {
+    contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
+    return;
+  }
 
   const videoId = getVideoIdFromCard(contentImageEl);
-  if (!videoId) return;
+  if (!videoId) {
+    contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
+    return;
+  }
 
   contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
   mount.setAttribute(CARD_WL_INJECTED, "1");
@@ -857,7 +872,7 @@ function startCardObserver() {
       injectIntoAllCards();
     }, 300);
   });
-  cardObserver.observe(document.body, { childList: true, subtree: true });
+  cardObserver.observe(document.documentElement, { childList: true, subtree: true });
   logInfo("Card observer started");
 }
 

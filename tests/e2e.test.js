@@ -35,6 +35,42 @@ async function clickAnyWatchLink(page) {
   });
 }
 
+async function gotoWithConsent(page, url) {
+  await page.goto(url, { waitUntil: 'domcontentloaded' });
+
+  for (let i = 0; i < 10; i++) {
+    if (page.url().includes('consent.youtube.com')) {
+      break;
+    }
+    await new Promise(resolve => setTimeout(resolve, 300));
+  }
+
+  if (page.url().includes('consent.youtube.com')) {
+    console.log(`Bypassing cookie consent page on: ${url}`);
+    try {
+      await page.waitForSelector('button', { timeout: 5000 }).catch(() => {});
+      await Promise.all([
+        page.evaluate(() => {
+          const buttons = Array.from(document.querySelectorAll('form button, button'));
+          const acceptBtn = buttons.find(btn => {
+            const text = btn.textContent.toLowerCase();
+            return text.includes('accept') || text.includes('agree') || text.includes('принять') || text.includes('все') || text.includes('да');
+          }) || buttons[buttons.length - 1];
+          if (acceptBtn) {
+            acceptBtn.click();
+            return true;
+          }
+          return false;
+        }),
+        page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 15000 }).catch(() => {})
+      ]);
+    } catch (e) {
+      console.warn('Error during cookie consent bypass:', e);
+    }
+  }
+}
+
+
 describe('Watch Later Button E2E Test', () => {
   let browser;
   let page;
@@ -63,7 +99,7 @@ describe('Watch Later Button E2E Test', () => {
 
   test('should inject the "Watch Later" button on a YouTube video page', async () => {
     // 1. Go to the video page
-    await page.goto(YOUTUBE_VIDEO_URL, { waitUntil: 'domcontentloaded' });
+    await gotoWithConsent(page, YOUTUBE_VIDEO_URL);
 
     // 2. Wait for the button to appear on the page.
     // Puppeteer will wait up to 30 seconds for the element to become available.
@@ -76,7 +112,7 @@ describe('Watch Later Button E2E Test', () => {
   });
 
   test('should keep button after real SPA navigation to another video', async () => {
-    await page.goto(YOUTUBE_VIDEO_URL, { waitUntil: 'domcontentloaded' });
+    await gotoWithConsent(page, YOUTUBE_VIDEO_URL);
     await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
 
     const currentVideoId = await page.evaluate(() => {
@@ -106,7 +142,7 @@ describe('Watch Later Button E2E Test', () => {
 
     // Fallback in case there is no clickable recommendation in current layout.
     if (!clickedVideoId) {
-      await page.goto(SECOND_YOUTUBE_VIDEO_URL, { waitUntil: 'domcontentloaded' });
+      await gotoWithConsent(page, SECOND_YOUTUBE_VIDEO_URL);
     } else {
       await page.waitForFunction(
         (expectedVideoId) => new URL(window.location.href).searchParams.get('v') === expectedVideoId,
@@ -120,7 +156,7 @@ describe('Watch Later Button E2E Test', () => {
   });
 
   test('should inject watch-page button after Home -> Watch SPA navigation', async () => {
-    await page.goto(YOUTUBE_HOME_URL, { waitUntil: 'domcontentloaded' });
+    await gotoWithConsent(page, YOUTUBE_HOME_URL);
 
     const hasWatchLinkOnHome = await page
       .waitForFunction(
@@ -149,7 +185,7 @@ describe('Watch Later Button E2E Test', () => {
   });
 
   test('should inject watch-page button after Results -> Watch SPA navigation', async () => {
-    await page.goto(YOUTUBE_RESULTS_URL, { waitUntil: 'domcontentloaded' });
+    await gotoWithConsent(page, YOUTUBE_RESULTS_URL);
 
     await page.waitForSelector('a[href*="/watch?v="]', { timeout: 45000 });
     const clickedVideoId = await clickAnyWatchLink(page);
@@ -166,7 +202,7 @@ describe('Watch Later Button E2E Test', () => {
   });
 
   test('should inject the "Watch Later" button on a YouTube Shorts page', async () => {
-    await page.goto(YOUTUBE_SHORTS_URL, { waitUntil: 'domcontentloaded' });
+    await gotoWithConsent(page, YOUTUBE_SHORTS_URL);
 
     // Diagnostic: log final URL and available Shorts-related elements
     const diagnostics = await page.evaluate(() => {
@@ -191,10 +227,10 @@ describe('Watch Later Button E2E Test', () => {
   });
 
   test('should keep button after SPA navigation from Watch to Shorts', async () => {
-    await page.goto(YOUTUBE_VIDEO_URL, { waitUntil: 'domcontentloaded' });
+    await gotoWithConsent(page, YOUTUBE_VIDEO_URL);
     await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
 
-    await page.goto(YOUTUBE_SHORTS_URL, { waitUntil: 'domcontentloaded' });
+    await gotoWithConsent(page, YOUTUBE_SHORTS_URL);
 
     const buttonOnShorts = await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
     expect(buttonOnShorts).not.toBeNull();
