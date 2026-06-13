@@ -1,0 +1,19 @@
+/* fraunces-black */
+@font-face {
+	font-family: "Fraunces";
+	font-style: normal;
+	font-weight: 100 900;
+	font-stretch: 100%;
+	src: local("Fraunces 9pt Black"), local("Fraunces-9ptBlack"), url(fraunces-black.woff2) format("woff2"), url(fraunces-black.woff) format("woff");
+	font-display: auto;
+}
+/* fraunces-black-italic */
+@font-face {
+	font-family: "Fraunces";
+	font-style: italic;
+	font-weight: 100 900;
+	font-stretch: 100%;
+	src: local("Fraunces 9pt Black Italic"), local("Fraunces-9ptBlackItalic"), url(fraunces-black-italic.woff2) format("woff2"), url(fraunces-black-italic.woff) format("woff");
+	font-display: auto;
+}
+
