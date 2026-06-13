@@ -234,8 +234,8 @@ function addSaveToButton(retries = 0, maxRetries = 5) {
 
   saveTo.classList.toggle("shortsPage", isShortsPage());
 
-  if (saveTo.parentElement !== appendItem || appendItem.firstElementChild !== saveTo) {
-    appendItem.prepend(saveTo);
+  if (saveTo.parentElement !== appendItem || appendItem.lastElementChild !== saveTo) {
+    appendItem.append(saveTo);
     logInfo("Button added successfully", appendItem.tagName, appendItem.className || "");
   }
 }
