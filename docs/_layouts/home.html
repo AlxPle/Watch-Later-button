@@ -9,8 +9,7 @@ layout: default
         <section class="px-3 sm:px-6 py-20 md:py-32 max-w-7xl mx-auto flex flex-col items-center text-center">
             <div
                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/15 mb-8">
-                <span class="material-symbols-outlined text-primary text-sm" data-icon="verified"
-                    style="font-variation-settings: 'FILL' 1;">verified</span>
+                <span class="material-symbols-outlined text-primary text-lg" data-icon="verified">verified</span>
                 <span class="label-md text-on-surface-variant uppercase tracking-widest">Available on Chrome, Firefox &
                     Edge</span>
             </div>
@@ -59,7 +58,8 @@ layout: default
                     <div
                         class="bg-surface-container-lowest p-8 rounded-xl ghost-border flex flex-col gap-6 hover:translate-y-[-4px] transition-transform duration-300">
                         <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary" data-icon="download">download</span>
+                            <span class="material-symbols-outlined text-primary text-xl"
+                                data-icon="download">download</span>
                         </div>
                         <div>
                             <h3 class="title-lg mb-3">Install</h3>
@@ -72,7 +72,7 @@ layout: default
                     <div
                         class="bg-surface-container-lowest p-8 rounded-xl ghost-border flex flex-col gap-6 hover:translate-y-[-4px] transition-transform duration-300">
                         <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary"
+                            <span class="material-symbols-outlined text-primary text-xl"
                                 data-icon="youtube_activity">youtube_activity</span>
                         </div>
                         <div>
@@ -86,8 +86,8 @@ layout: default
                     <div
                         class="bg-surface-container-lowest p-8 rounded-xl ghost-border flex flex-col gap-6 hover:translate-y-[-4px] transition-transform duration-300">
                         <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary" data-icon="ads_click"
-                                style="font-variation-settings: 'FILL' 1;">ads_click</span>
+                            <span class="material-symbols-outlined text-primary text-xl"
+                                data-icon="ads_click">ads_click</span>
                         </div>
                         <div>
                             <h3 class="title-lg mb-3">Click Button</h3>
@@ -112,7 +112,8 @@ layout: default
                     <div class="grid sm:grid-cols-2 gap-8">
                         <div class="space-y-4">
                             <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+                                <span class="material-symbols-outlined text-primary text-xl"
+                                    data-icon="bolt">bolt</span>
                                 <h4 class="font-bold">One-click save</h4>
                             </div>
                             <p class="text-on-surface-variant text-sm">Save content in under 0.5 seconds without opening
@@ -122,7 +123,7 @@ layout: default
                         </div>
                         <div class="space-y-4">
                             <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary"
+                                <span class="material-symbols-outlined text-primary text-xl"
                                     data-icon="integration_instructions">integration_instructions</span>
                                 <h4 class="font-bold">Seamless integration</h4>
                             </div>
@@ -132,7 +133,8 @@ layout: default
                         </div>
                         <div class="space-y-4">
                             <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary" data-icon="weight">weight</span>
+                                <span class="material-symbols-outlined text-primary text-xl"
+                                    data-icon="weight">weight</span>
                                 <h4 class="font-bold">Lightweight</h4>
                             </div>
                             <p class="text-on-surface-variant text-sm">Zero impact on your browser's performance or
@@ -141,7 +143,7 @@ layout: default
                         </div>
                         <div class="space-y-4">
                             <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary"
+                                <span class="material-symbols-outlined text-primary text-xl"
                                     data-icon="translate">translate</span>
                                 <h4 class="font-bold">26 Languages</h4>
                             </div>
@@ -171,14 +173,15 @@ layout: default
                 <div class="text-center md:text-left">
                     <div class="flex items-center justify-center md:justify-start gap-1 mb-4">
                         {% for i in (1..5) %}
-                        {% if i <= full_stars %} <span class="material-symbols-outlined text-primary" data-icon="star"
-                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        {% if i <= full_stars %} <span class="material-symbols-outlined text-primary text-xl"
+                            data-icon="star">
+                            star</span>
                             {% elsif i == next_star and remainder >= 0.5 %}
-                            <span class="material-symbols-outlined text-primary" data-icon="star_half"
-                                style="font-variation-settings: 'FILL' 1;">star_half</span>
+                            <span class="material-symbols-outlined text-primary text-xl"
+                                data-icon="star_half">star_half</span>
                             {% else %}
-                            <span class="material-symbols-outlined text-primary" data-icon="star"
-                                style="font-variation-settings: 'FILL' 0;">star</span>
+                            <span class="material-symbols-outlined text-primary text-xl"
+                                data-icon="star_outline">star_outline</span>
                             {% endif %}
                             {% endfor %}
                     </div>
@@ -188,8 +191,7 @@ layout: default
                 <div class="h-px w-32 bg-outline-variant/20 hidden md:block"></div>
                 <div class="lg:text-left text-center flex flex-col lg:items-start items-center gap-4">
                     <div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center">
-                        <span class="material-symbols-outlined text-2xl" data-icon="shield_lock"
-                            style="font-variation-settings: 'FILL' 1;">shield_lock</span>
+                        <span class="material-symbols-outlined text-2xl" data-icon="shield_lock">shield_lock</span>
                     </div>
                     <div>
                         <h3 class="title-lg mb-2">Privacy First</h3>
@@ -240,7 +242,7 @@ layout: default
                 <div class="grid md:grid-cols-3 gap-6">
                     <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
                         <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary"
+                            <span class="material-symbols-outlined text-primary text-xl"
                                 data-icon="bug_report">bug_report</span>
                         </div>
                         <div>
@@ -256,7 +258,7 @@ layout: default
 
                     <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
                         <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary" data-icon="forum">forum</span>
+                            <span class="material-symbols-outlined text-primary text-xl" data-icon="forum">forum</span>
                         </div>
                         <div>
                             <h3 class="title-lg mb-2">Send Feedback</h3>
@@ -268,7 +270,8 @@ layout: default
                                 class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-zinc-900 bg-surface-container-high hover:bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors">
                                 Write a Review
                                 <span
-                                    class="material-symbols-outlined text-sm ml-2 group-hover:rotate-180 group-focus-within:rotate-180 transition-transform">expand_more</span>
+                                    class="material-symbols-outlined text-lg ml-2 group-hover:rotate-180 group-focus-within:rotate-180 transition-transform"
+                                    data-icon="expand_more">expand_more</span>
                             </button>
                             <div
                                 class="absolute bottom-full left-0 right-0 mb-2 bg-white border border-outline-variant/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50 overflow-hidden">
@@ -293,7 +296,8 @@ layout: default
 
                     <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
                         <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary" data-icon="favorite">favorite</span>
+                            <span class="material-symbols-outlined text-primary text-xl"
+                                data-icon="favorite">favorite</span>
                         </div>
                         <div>
                             <h3 class="title-lg mb-2">Support the Developer</h3>

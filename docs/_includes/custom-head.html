@@ -7,7 +7,6 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon.png' | relative_url }}">
 <link rel="preload" href="{{ '/assets/fonts/urbanist/urbanist.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/fraunces/fraunces-black.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ '/assets/fonts/material-symbols-outlined/MaterialSymbolsOutlined.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <script src="{{ '/assets/tailwindcss/3.4.17.js' | relative_url }}"></script>
 
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
@@ -164,20 +163,100 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   }
 
   .material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
     display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    vertical-align: -0.125em;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-image: var(--wl-icon-src);
+    mask-image: var(--wl-icon-src);
+    color: currentColor;
+    overflow: hidden;
+    text-indent: 200%;
     white-space: nowrap;
-    text-transform: none;
-    letter-spacing: normal;
-    direction: ltr;
-    font-feature-settings: 'liga';
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  .material-symbols-outlined[data-icon="ads_click"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/ads_click_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="bolt"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/bolt_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="bug_report"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/bug_report_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="dark_mode"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/dark_mode_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="download"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/download_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="expand_more"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/unfold_more_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="favorite"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/favorite_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="forum"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/forum_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="integration_instructions"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/integration_instructions_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="light_mode"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/light_mode_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="lock"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/lock_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="shield_lock"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/shield_lock_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="star"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/star_24dp_CURRENTCOLOR.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="star_outline"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/star_outline_24dp_CURRENTCOLOR.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="star_half"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/star_half_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="translate"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/translate_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="verified"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/verified_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="weight"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/weight_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
+  }
+
+  .material-symbols-outlined[data-icon="youtube_activity"] {
+    --wl-icon-src: url("{{ '/assets/icons/Material Symbols/play_circle_24dp_CURRENTCOLOR_FILL0_wght400_GRAD0_opsz24.svg' | relative_url }}");
   }
 
   .red-gradient {
@@ -351,7 +430,9 @@ Placeholder to allow defining custom head, in principle, you can add anything he
         });
 
         icons.forEach(function (icon) {
-          icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+          var iconName = isDark ? 'light_mode' : 'dark_mode';
+          icon.setAttribute('data-icon', iconName);
+          icon.textContent = iconName;
         });
       }
 
