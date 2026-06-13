@@ -5,6 +5,9 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
 {% endcomment %}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon.png' | relative_url }}">
+<link rel="preload" href="{{ '/assets/fonts/urbanist/urbanist.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/fraunces/fraunces-black.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/material-symbols-outlined/MaterialSymbolsOutlined.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <script src="{{ '/assets/tailwindcss/3.4.17.js' | relative_url }}"></script>
 
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
@@ -112,6 +115,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 
   body {
     font-family: "Urbanist", sans-serif;
+    font-size-adjust: from-font;
     background:
       radial-gradient(circle at 10% 0%, oklch(0.97 0.015 30) 0%, transparent 45%),
       radial-gradient(circle at 90% 20%, oklch(0.96 0.02 250) 0%, transparent 42%),
@@ -131,6 +135,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     font-size: 1.2rem;
     line-height: 2rem;
     font-family: "Fraunces", serif;
+    font-size-adjust: from-font;
   }
 
   .headline-lg {
@@ -138,6 +143,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     line-height: 3rem;
     font-weight: 800;
     font-family: "Fraunces", serif;
+    font-size-adjust: from-font;
     font-variation-settings: "SOFT" 45;
   }
 
@@ -146,6 +152,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     line-height: 1.75rem;
     font-weight: 700;
     font-family: "Fraunces", serif;
+    font-size-adjust: from-font;
     font-variation-settings: "SOFT" 30;
   }
 
