@@ -12,6 +12,9 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 <a href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/">
   <img src="/banner/get_for_firefox.svg" alt="Firefox Add-ons" width="220" height="60">
 </a>
+<a href="https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa">
+  <img src="/banner/get_for_edge.svg" alt="Microsoft Edge Add-ons" width="220" height="60">
+</a>
 
 
 </div>
