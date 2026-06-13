@@ -15,6 +15,13 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
+# Jekyll Feed configuration
+feed:
+  path: feed.xml
+  collections:
+    posts:
+      path: /feed.xml
+
 # Sitemap
 url: "https://watchlater.alxple.com"  # Production domain (no trailing slash)
 baseurl: ""  # Empty for root domain deployments
