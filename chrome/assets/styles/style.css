@@ -18,6 +18,10 @@
     background-color: var(--wl-color-default);
 }
 
+#saveToPlaylist {
+    order: -1;
+}
+
 .saveToWatchLater::before {
     content: "";
     position: absolute;
