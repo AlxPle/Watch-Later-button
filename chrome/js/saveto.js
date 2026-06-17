@@ -25,9 +25,24 @@ const CARD_RENDERER_SELECTORS = [
   "ytd-reel-item-renderer"
 ];
 const CARD_RENDERER_SELECTOR = CARD_RENDERER_SELECTORS.join(", ");
+const RESULTS_CARD_IMAGE_SELECTORS = [
+  "ytd-video-renderer ytd-thumbnail",
+  "ytd-video-renderer yt-thumbnail-view-model",
+  "ytd-compact-video-renderer ytd-thumbnail",
+  "ytd-compact-video-renderer yt-thumbnail-view-model",
+  "yt-lockup-view-model ytd-thumbnail",
+  "yt-lockup-view-model yt-thumbnail-view-model"
+];
+const RESULTS_CARD_RENDERER_SELECTORS = [
+  "ytd-video-renderer",
+  "ytd-compact-video-renderer",
+  "yt-lockup-view-model"
+];
+const RESULTS_CARD_RENDERER_SELECTOR = RESULTS_CARD_RENDERER_SELECTORS.join(", ");
 const CARD_LINK_SELECTOR = 'a[href*="/watch?v="], a[href*="/shorts/"]';
 const CARD_MOUNT_SELECTORS = {
-  resultsMenu: "ytd-menu-renderer",
+  resultsMenu: ":scope > ytd-menu-renderer",
+  resultsMenuFallback: "ytd-menu-renderer",
   homePrimary: "#dismissible"
 };
 const RESULTS_PATHNAME = "/results";
@@ -56,16 +71,9 @@ const WATCH_OBSERVER_TARGET_SELECTORS = [
   "#columns",
   "body"
 ];
-const SHORTS_BUTTON_MOUNT_SELECTORS = [
-  "ytd-reel-video-renderer #actions",
-  "ytd-shorts ytd-reel-video-renderer #actions",
-  "ytd-reel-video-renderer .ytd-reel-video-renderer #actions"
-];
-const SHORTS_OBSERVER_TARGET_SELECTORS = [
-  "ytd-shorts",
-  "ytd-reel-video-renderer",
-  "body"
-];
+const SHORTS_ACTION_BAR_SELECTOR = "reel-action-bar-view-model";
+const SHORTS_BUTTON_MOUNT_SELECTORS = [SHORTS_ACTION_BAR_SELECTOR];
+const SHORTS_OBSERVER_TARGET_SELECTORS = [SHORTS_ACTION_BAR_SELECTOR, "ytd-shorts", "body"];
 const WATCH_LATER_ACTION = {
   add: "add",
   remove: "remove"
@@ -83,6 +91,8 @@ let reinitTimerId = null;
 let watchBackfillTimerIds = [];
 let cardObserver = null;
 let cardInjectTimer = null;
+let isInjectingCards = false;
+let cardInjectRunAgain = false;
 let reinitAttempts = 0;
 let reinitSuccess = 0;
 let reinitFailed = 0;
@@ -160,7 +170,7 @@ function isShortsPage() {
   try {
     const url = new URL(window.location.href);
     const parts = url.pathname.split("/").filter(Boolean);
-    return parts[0] === "shorts" && Boolean(parts[1]);
+    return parts[0] === "shorts";
   } catch (error) {
     return false;
   }
@@ -213,9 +223,19 @@ function findFirstExistingElement(selectors) {
   return null;
 }
 
+function findShortsActionBarElement() {
+  if (!isShortsPage()) {
+    return null;
+  }
+
+  return document.querySelector(SHORTS_ACTION_BAR_SELECTOR);
+}
+
 function addSaveToButton(retries = 0, maxRetries = 5) {
-  const activeMountSelectors = getActiveMountSelectors();
-  const appendItem = findFirstExistingElement(activeMountSelectors);
+  const isShorts = isShortsPage();
+  const appendItem = isShorts
+    ? findShortsActionBarElement() || findFirstExistingElement(getActiveMountSelectors())
+    : findFirstExistingElement(getActiveMountSelectors());
 
   if (!appendItem) {
     if (!isWatchOrShortsPage()) {
@@ -232,7 +252,16 @@ function addSaveToButton(retries = 0, maxRetries = 5) {
     return;
   }
 
-  saveTo.classList.toggle("shortsPage", isShortsPage());
+  saveTo.classList.toggle("shortsPage", isShorts);
+
+  if (isShorts) {
+    if (saveTo.parentElement !== appendItem || appendItem.lastElementChild !== saveTo) {
+      appendItem.append(saveTo);
+      logInfo("Button added successfully", appendItem.tagName, appendItem.className || "", "inside reel-action-bar-view-model");
+    }
+
+    return;
+  }
 
   if (saveTo.parentElement !== appendItem || appendItem.lastElementChild !== saveTo) {
     appendItem.append(saveTo);
@@ -241,6 +270,10 @@ function addSaveToButton(retries = 0, maxRetries = 5) {
 }
 
 function hasWatchButtonReadyTarget() {
+  if (isShortsPage()) {
+    return Boolean(findShortsActionBarElement() || findFirstExistingElement(getActiveMountSelectors()));
+  }
+
   return Boolean(findFirstExistingElement(getActiveMountSelectors()));
 }
 
@@ -270,8 +303,8 @@ function waitForWatchButtonTarget(maxWaitTime = 10000) {
       if (settled) return;
       settled = true;
       observer.disconnect();
-      handleError(`Timeout (${maxWaitTime}ms) waiting for watch button target`);
-      reject(new Error("Timeout waiting for watch button target"));
+      logInfo(`Watch button target timeout (${maxWaitTime}ms); continue with fallback`);
+      resolve(false);
     }, maxWaitTime);
 
     observer.observe(document.documentElement, { childList: true, subtree: true });
@@ -295,6 +328,12 @@ function removeStaleWatchButton() {
 function isWatchButtonMountedInPreferredContainer() {
   if (!saveTo.parentElement) {
     return false;
+  }
+
+  if (isShortsPage()) {
+    const actionBarElement = findShortsActionBarElement();
+    return saveTo.parentElement === actionBarElement
+      && actionBarElement?.lastElementChild === saveTo;
   }
 
   return getActiveMountSelectors().some((selector) => saveTo.parentElement.matches(selector));
@@ -342,12 +381,21 @@ function observeWatchPage(timeoutMs = 30000) {
   let target = null;
   let targetSelector = "unknown";
 
-  for (const selector of getActiveObserverTargetSelectors()) {
-    const el = document.querySelector(selector);
-    if (el) {
-      target = el;
-      targetSelector = selector;
-      break;
+  if (isShortsPage()) {
+    target = findShortsActionBarElement();
+    if (target) {
+      targetSelector = SHORTS_ACTION_BAR_SELECTOR;
+    }
+  }
+
+  if (!target) {
+    for (const selector of getActiveObserverTargetSelectors()) {
+      const el = document.querySelector(selector);
+      if (el) {
+        target = el;
+        targetSelector = selector;
+        break;
+      }
     }
   }
 
@@ -477,15 +525,29 @@ document.addEventListener("yt-page-data-updated", () => reinitializeButton("doc-
   }
 })();
 
-// Fallback URL watcher for edge cases where no SPA events fire.
+// Event-driven fallback URL watcher for edge cases where no SPA events fire.
 let lastKnownHref = window.location.href;
-setInterval(() => {
+function checkUrlOnce(trigger = "fallback") {
   const currentHref = window.location.href;
   if (currentHref !== lastKnownHref) {
     lastKnownHref = currentHref;
-    reinitializeButton("url-changed");
+    reinitializeButton(`url-changed:${trigger}`);
   }
-}, 2000);
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    checkUrlOnce("visibilitychange");
+  }
+});
+
+window.addEventListener("focus", () => {
+  checkUrlOnce("focus");
+});
+
+window.addEventListener("pageshow", () => {
+  checkUrlOnce("pageshow");
+});
 
 // Initial setup
 if (isWatchOrShortsPage()) {
@@ -541,7 +603,36 @@ function resolveCurrentVideoId() {
     }
 
     if (isShortsPage()) {
-      return url.pathname.split("/").filter(Boolean)[1] || null;
+      const shortsPathId = url.pathname.split("/").filter(Boolean)[1];
+      if (shortsPathId) {
+        return shortsPathId;
+      }
+
+      const canonicalHref = document.querySelector('link[rel="canonical"]')?.href;
+      if (canonicalHref) {
+        try {
+          const canonicalUrl = new URL(canonicalHref, location.origin);
+          const canonicalParts = canonicalUrl.pathname.split("/").filter(Boolean);
+          if (canonicalParts[0] === "shorts" && canonicalParts[1]) {
+            return canonicalParts[1];
+          }
+        } catch (error) { }
+      }
+
+      const activeShortsLink = document.querySelector(
+        'ytd-reel-video-renderer[is-active] a[href*="/shorts/"], ytd-reel-video-renderer a[href*="/shorts/"]'
+      );
+      if (activeShortsLink?.href) {
+        try {
+          const activeShortsUrl = new URL(activeShortsLink.href, location.origin);
+          const activeParts = activeShortsUrl.pathname.split("/").filter(Boolean);
+          if (activeParts[0] === "shorts" && activeParts[1]) {
+            return activeParts[1];
+          }
+        } catch (error) { }
+      }
+
+      return null;
     }
   } catch (error) {
     return null;
@@ -731,9 +822,10 @@ decorateButtonAccessibility(saveTo);
  * to a known card container, then querying down for a /watch?v= link.
  */
 function getVideoIdFromCard(cardElement) {
+  const rendererSelector = isResultsPage() ? RESULTS_CARD_RENDERER_SELECTOR : CARD_RENDERER_SELECTOR;
   let el = cardElement;
   while (el) {
-    if (el.matches && el.matches(CARD_RENDERER_SELECTOR)) {
+    if (el.matches && el.matches(rendererSelector)) {
       const link = el.querySelector(CARD_LINK_SELECTOR);
       if (link) {
         try {
@@ -764,7 +856,7 @@ function isResultsPage() {
  * hover-preview DOM swaps do not remove our button.
  */
 function getStableCardMount(cardElement) {
-  const renderer = cardElement.closest(CARD_RENDERER_SELECTOR);
+  const renderer = cardElement.closest(isResultsPage() ? RESULTS_CARD_RENDERER_SELECTOR : CARD_RENDERER_SELECTOR);
 
   if (!renderer) {
     return { mount: cardElement, locationClass: CARD_LOCATION_CLASS.home };
@@ -778,7 +870,8 @@ function getStableCardMount(cardElement) {
   }
 
   if (isResultsPage()) {
-    const resultsMenu = renderer.querySelector(CARD_MOUNT_SELECTORS.resultsMenu);
+    const resultsMenu = renderer.querySelector(CARD_MOUNT_SELECTORS.resultsMenu)
+      || renderer.querySelector(CARD_MOUNT_SELECTORS.resultsMenuFallback);
     if (resultsMenu) {
       return { mount: resultsMenu, locationClass: CARD_LOCATION_CLASS.results };
     }
@@ -806,7 +899,8 @@ function addWatchLaterToCard(contentImageEl) {
 
   const { mount, locationClass } = getStableCardMount(contentImageEl);
   if (!mount) {
-    contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
+    // Mount point may appear later on async YouTube renders (especially on /results).
+    // Keep this element retryable instead of permanently marking it as injected.
     return;
   }
   if (mount.hasAttribute(CARD_WL_INJECTED)) {
@@ -816,7 +910,7 @@ function addWatchLaterToCard(contentImageEl) {
 
   const videoId = getVideoIdFromCard(contentImageEl);
   if (!videoId) {
-    contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
+    // Video link can be attached lazily; retry on future observer cycles.
     return;
   }
 
@@ -856,10 +950,43 @@ function addWatchLaterToCard(contentImageEl) {
   }
 }
 
-/** Finds all unprocessed card image containers on the page and injects Watch Later buttons. */
-function injectIntoAllCards() {
-  const selector = CARD_IMAGE_SELECTORS.map((s) => `${s}:not([${CARD_WL_INJECTED}])`).join(", ");
-  document.querySelectorAll(selector).forEach(addWatchLaterToCard);
+/**
+ * Finds unprocessed card image containers and injects Watch Later buttons in small rAF batches.
+ * Batching keeps the main thread responsive on long YouTube feeds.
+ */
+async function injectIntoAllCards() {
+  if (isInjectingCards) {
+    cardInjectRunAgain = true;
+    return;
+  }
+
+  isInjectingCards = true;
+
+  try {
+    do {
+      cardInjectRunAgain = false;
+      const activeCardImageSelectors = isResultsPage() ? RESULTS_CARD_IMAGE_SELECTORS : CARD_IMAGE_SELECTORS;
+      const selector = activeCardImageSelectors.map((s) => `${s}:not([${CARD_WL_INJECTED}])`).join(", ");
+      const targets = Array.from(document.querySelectorAll(selector));
+      const BATCH_SIZE = 25;
+
+      for (let i = 0; i < targets.length; i += BATCH_SIZE) {
+        await new Promise((resolve) => {
+          requestAnimationFrame(() => {
+            const batch = targets.slice(i, i + BATCH_SIZE);
+            batch.forEach(addWatchLaterToCard);
+            resolve();
+          });
+        });
+
+        if (globalThis.scheduler?.yield) {
+          await scheduler.yield();
+        }
+      }
+    } while (cardInjectRunAgain);
+  } finally {
+    isInjectingCards = false;
+  }
 }
 
 /** Starts a MutationObserver on document.body to handle dynamically loaded cards (infinite scroll, SPA navigation). */
@@ -869,7 +996,7 @@ function startCardObserver() {
     if (cardInjectTimer) return;
     cardInjectTimer = setTimeout(() => {
       cardInjectTimer = null;
-      injectIntoAllCards();
+      void injectIntoAllCards();
     }, 300);
   });
   cardObserver.observe(document.documentElement, { childList: true, subtree: true });
@@ -877,7 +1004,7 @@ function startCardObserver() {
 }
 
 function initializeCardInjection() {
-  injectIntoAllCards();
+  void injectIntoAllCards();
   startCardObserver();
 }
 
