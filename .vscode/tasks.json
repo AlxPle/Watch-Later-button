@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Chrome: start debug (main profile mirror)",
+            "type": "shell",
+            "command": "bash scripts/start-chrome-debug.sh 9222 main",
+            "problemMatcher": []
+        },
+        {
+            "label": "Chrome: start debug (isolated profile)",
+            "type": "shell",
+            "command": "bash scripts/start-chrome-debug.sh 9222 isolated",
+            "problemMatcher": []
+        },
+        {
+            "label": "Chrome: check DevTools endpoint",
+            "type": "shell",
+            "command": "curl -fsS http://127.0.0.1:9222/json/version",
+            "problemMatcher": []
+        },
+        {
+            "label": "DevTools relay: start",
+            "type": "shell",
+            "command": "node scripts/devtools-relay.mjs",
+            "isBackground": true,
+            "problemMatcher": []
+        }
+    ]
+}
