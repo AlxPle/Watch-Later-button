@@ -10,3 +10,6 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+
+# Local Chrome DevTools relay artifacts
+.devtools-relay/

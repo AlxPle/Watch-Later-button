@@ -4,6 +4,10 @@
   "private": true,
   "scripts": {
     "sync": "cp chrome/js/saveto.js firefox/js/saveto.js",
-    "test": "cd tests && npm test"
+    "test": "cd tests && npm test",
+    "chrome:debug:main": "bash scripts/start-chrome-debug.sh 9222 main",
+    "chrome:debug:isolated": "bash scripts/start-chrome-debug.sh 9222 isolated",
+    "chrome:debug:check": "curl -fsS http://127.0.0.1:9222/json/version",
+    "devtools:relay": "node scripts/devtools-relay.mjs"
   }
 }

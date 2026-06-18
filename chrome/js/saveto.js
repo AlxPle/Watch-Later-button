@@ -43,6 +43,7 @@ const CARD_LINK_SELECTOR = 'a[href*="/watch?v="], a[href*="/shorts/"]';
 const CARD_MOUNT_SELECTORS = {
   resultsMenu: ":scope > ytd-menu-renderer",
   resultsMenuFallback: "ytd-menu-renderer",
+  resultsPrimary: "#dismissible",
   homePrimary: "#dismissible"
 };
 const RESULTS_PATHNAME = "/results";
@@ -57,12 +58,30 @@ const CARD_MOUNT_BEHAVIOR = {
   resultsInsertion: "prepend",
   homeInsertion: "append"
 };
+const CARD_SCAN_ROOT_SELECTORS = {
+  results: [
+    "ytd-search #contents",
+    "ytd-two-column-search-results-renderer #primary",
+    "#primary"
+  ],
+  browse: [
+    "ytd-browse[page-subtype='home'] #contents",
+    "ytd-rich-grid-renderer #contents",
+    "#contents.ytd-rich-grid-renderer"
+  ]
+};
+const AD_RENDERER_SELECTORS = [
+  "ytd-ad-slot-renderer",
+  "ytd-promoted-video-renderer",
+  "ytd-display-ad-renderer",
+  "ytd-promoted-sparkles-web-renderer"
+];
+const AD_BADGE_SELECTOR = "ytd-badge-supported-renderer.badge-style-type-ad";
 const WATCH_BUTTON_MOUNT_SELECTORS = [
   "ytd-watch-metadata ytd-menu-renderer.style-scope.ytd-watch-metadata",
   "ytd-watch-metadata ytd-menu-renderer",
   "#top-level-buttons-computed",
   "ytd-watch-metadata #top-level-buttons-computed"
-
 ];
 const WATCH_OBSERVER_TARGET_SELECTORS = [
   "ytd-watch-flexy",
@@ -90,6 +109,7 @@ let actionsObserverTimeoutId = null;
 let reinitTimerId = null;
 let watchBackfillTimerIds = [];
 let cardObserver = null;
+let cardObserverTarget = null;
 let cardInjectTimer = null;
 let isInjectingCards = false;
 let cardInjectRunAgain = false;
@@ -458,6 +478,7 @@ function reinitializeButton(eventName = "unknown") {
   removeStaleWatchButton();
 
   injectIntoAllCards();
+  startCardObserver(true);
 
   if (!isWatchOrShortsPage()) {
     logInfo(`Reinit skipped watch-page setup (trigger=${eventName})`);
@@ -851,6 +872,34 @@ function isResultsPage() {
   }
 }
 
+function findFirstExistingInRoot(root, selectors) {
+  for (const selector of selectors) {
+    const el = root.querySelector(selector);
+    if (el) {
+      return el;
+    }
+  }
+
+  return null;
+}
+
+function getCardScanRoot() {
+  const selectorSet = isResultsPage() ? CARD_SCAN_ROOT_SELECTORS.results : CARD_SCAN_ROOT_SELECTORS.browse;
+  return findFirstExistingInRoot(document, selectorSet) || document;
+}
+
+function isLikelyAdRenderer(renderer) {
+  if (!renderer) {
+    return false;
+  }
+
+  if (renderer.matches(AD_RENDERER_SELECTORS.join(", "))) {
+    return true;
+  }
+
+  return Boolean(renderer.querySelector(`${AD_RENDERER_SELECTORS.join(", ")}, ${AD_BADGE_SELECTOR}`));
+}
+
 /**
  * Returns a stable mounting container for overlay controls so YouTube thumbnail
  * hover-preview DOM swaps do not remove our button.
@@ -859,11 +908,12 @@ function getStableCardMount(cardElement) {
   const renderer = cardElement.closest(isResultsPage() ? RESULTS_CARD_RENDERER_SELECTOR : CARD_RENDERER_SELECTOR);
 
   if (!renderer) {
-    return { mount: cardElement, locationClass: CARD_LOCATION_CLASS.home };
+    return { renderer: null, mount: cardElement, locationClass: CARD_LOCATION_CLASS.home };
   }
 
   if (renderer.closest(SHORTS_SHELF_SELECTOR)) {
     return {
+      renderer,
       mount: renderer.querySelector(CARD_MOUNT_SELECTORS.homePrimary) || renderer,
       locationClass: CARD_LOCATION_CLASS.shortsHome
     };
@@ -873,18 +923,24 @@ function getStableCardMount(cardElement) {
     const resultsMenu = renderer.querySelector(CARD_MOUNT_SELECTORS.resultsMenu)
       || renderer.querySelector(CARD_MOUNT_SELECTORS.resultsMenuFallback);
     if (resultsMenu) {
-      return { mount: resultsMenu, locationClass: CARD_LOCATION_CLASS.results };
+      return { renderer, mount: resultsMenu, locationClass: CARD_LOCATION_CLASS.results };
+    }
+
+    const resultsPrimary = renderer.querySelector(CARD_MOUNT_SELECTORS.resultsPrimary);
+    if (resultsPrimary) {
+      return { renderer, mount: resultsPrimary, locationClass: CARD_LOCATION_CLASS.home };
     }
 
     // On /results we only render inside menu area to avoid duplicate button on thumbnail/player card.
     if (CARD_MOUNT_BEHAVIOR.skipOnResultsWithoutMenu) {
-      return { mount: null, locationClass: CARD_LOCATION_CLASS.results };
+      return { renderer, mount: null, locationClass: CARD_LOCATION_CLASS.results };
     }
 
-    return { mount: renderer, locationClass: CARD_LOCATION_CLASS.home };
+    return { renderer, mount: renderer, locationClass: CARD_LOCATION_CLASS.home };
   }
 
   return {
+    renderer,
     mount: renderer.querySelector(CARD_MOUNT_SELECTORS.homePrimary) || renderer,
     locationClass: CARD_LOCATION_CLASS.home
   };
@@ -897,7 +953,13 @@ function getStableCardMount(cardElement) {
 function addWatchLaterToCard(contentImageEl) {
   if (contentImageEl.hasAttribute(CARD_WL_INJECTED)) return;
 
-  const { mount, locationClass } = getStableCardMount(contentImageEl);
+  const { renderer, mount, locationClass } = getStableCardMount(contentImageEl);
+  if (isLikelyAdRenderer(renderer)) {
+    // Skip promoted/ad cards and mark them processed to avoid repeated expensive checks.
+    contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
+    return;
+  }
+
   if (!mount) {
     // Mount point may appear later on async YouTube renders (especially on /results).
     // Keep this element retryable instead of permanently marking it as injected.
@@ -967,7 +1029,8 @@ async function injectIntoAllCards() {
       cardInjectRunAgain = false;
       const activeCardImageSelectors = isResultsPage() ? RESULTS_CARD_IMAGE_SELECTORS : CARD_IMAGE_SELECTORS;
       const selector = activeCardImageSelectors.map((s) => `${s}:not([${CARD_WL_INJECTED}])`).join(", ");
-      const targets = Array.from(document.querySelectorAll(selector));
+      const scanRoot = getCardScanRoot();
+      const targets = Array.from(scanRoot.querySelectorAll(selector));
       const BATCH_SIZE = 25;
 
       for (let i = 0; i < targets.length; i += BATCH_SIZE) {
@@ -990,8 +1053,18 @@ async function injectIntoAllCards() {
 }
 
 /** Starts a MutationObserver on document.body to handle dynamically loaded cards (infinite scroll, SPA navigation). */
-function startCardObserver() {
-  if (cardObserver) return;
+function startCardObserver(forceRebind = false) {
+  const nextTarget = getCardScanRoot();
+
+  if (!forceRebind && cardObserver && cardObserverTarget === nextTarget) {
+    return;
+  }
+
+  if (cardObserver) {
+    cardObserver.disconnect();
+    cardObserver = null;
+  }
+
   cardObserver = new MutationObserver(() => {
     if (cardInjectTimer) return;
     cardInjectTimer = setTimeout(() => {
@@ -999,7 +1072,8 @@ function startCardObserver() {
       void injectIntoAllCards();
     }, 300);
   });
-  cardObserver.observe(document.documentElement, { childList: true, subtree: true });
+  cardObserver.observe(nextTarget, { childList: true, subtree: true });
+  cardObserverTarget = nextTarget;
   logInfo("Card observer started");
 }
 

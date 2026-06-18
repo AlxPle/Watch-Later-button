@@ -100,6 +100,84 @@ From the `tests/` directory:
 npm test
 ```
 
+## Chrome + VS Code attach debugging (Linux)
+
+Use this workflow when you need Chrome with your existing extensions and want to inspect or forward element data into VS Code.
+
+### 1) Start Chrome with remote debugging
+
+Main profile mirror (recommended, keeps your installed extensions):
+
+```bash
+npm run chrome:debug:main
+```
+
+Why mirror is needed: Chrome blocks DevTools remote debugging on its default profile directory.
+This command clones `~/.config/google-chrome` into a dedicated debug folder and starts Chrome from that mirror.
+
+Important: close all regular Chrome windows first, otherwise profile sync may be incomplete.
+
+Fallback profile (clean isolated profile):
+
+```bash
+npm run chrome:debug:isolated
+```
+
+### 2) Verify DevTools endpoint
+
+```bash
+npm run chrome:debug:check
+```
+
+If the command returns JSON, VS Code can attach to Chrome on port `9222`.
+
+### 3) Attach from VS Code
+
+This repository includes [./.vscode/launch.json](./.vscode/launch.json) with configuration:
+
+- `Attach: Chrome on :9222`
+
+Run this launch config from VS Code Run and Debug panel.
+
+### 4) Start local relay for captured DevTools data
+
+```bash
+npm run devtools:relay
+```
+
+Captured payloads are appended to `.devtools-relay/captures.ndjson`.
+
+### 5) Send selected element info from Chrome DevTools Console
+
+Select an element in Elements panel (`$0` should point to it), then run:
+
+```js
+fetch("http://127.0.0.1:3030/capture", {
+	method: "POST",
+	headers: { "content-type": "application/json" },
+	body: JSON.stringify({
+		page: location.href,
+		ts: new Date().toISOString(),
+		element: {
+			html: $0?.outerHTML ?? null,
+			rect: $0?.getBoundingClientRect?.() ?? null,
+			computed: $0 ? {
+				position: getComputedStyle($0).position,
+				top: getComputedStyle($0).top,
+				right: getComputedStyle($0).right,
+				bottom: getComputedStyle($0).bottom,
+				left: getComputedStyle($0).left,
+				zIndex: getComputedStyle($0).zIndex,
+				width: getComputedStyle($0).width,
+				height: getComputedStyle($0).height
+			} : null
+		}
+	})
+});
+```
+
+You can now inspect the incoming data in `.devtools-relay/captures.ndjson` directly from VS Code.
+
 ## Useful commands
 
 ```bash
