@@ -169,8 +169,8 @@ layout: default
             {% assign full_stars = rating_value | floor %}
             {% assign next_star = full_stars | plus: 1 %}
             {% assign remainder = rating_value | minus: full_stars %}
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
-                <div class="text-center md:text-left">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 items-center text-center md:text-left">
+                <div>
                     <div class="flex items-center justify-center md:justify-start gap-1 mb-4">
                         {% for i in (1..5) %}
                         {% if i <= full_stars %} <span class="material-symbols-outlined text-primary text-xl"
@@ -188,8 +188,17 @@ layout: default
                     <h3 class="title-lg mb-2">{{ rating_value_raw }}/5 Rating</h3>
                     <p class="text-on-surface-variant">Based on {{ rating_count }} user reviews</p>
                 </div>
-                <div class="h-px w-32 bg-outline-variant/20 hidden md:block"></div>
-                <div class="lg:text-left text-center flex flex-col lg:items-start items-center gap-4">
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center">
+                        <span class="material-symbols-outlined text-2xl"
+                            data-icon="accessibility_new">accessibility_new</span>
+                    </div>
+                    <div>
+                        <h3 class="title-lg mb-2">4,500+ Users</h3>
+                        <p class="text-on-surface-variant">Trusted by thousands of curators worldwide</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center md:items-start gap-4">
                     <div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center">
                         <span class="material-symbols-outlined text-2xl" data-icon="shield_lock">shield_lock</span>
                     </div>
