@@ -163,9 +163,9 @@ layout: default
         </section>
         <!-- Trust & Privacy Section -->
         <section class="bg-surface py-20 px-3 sm:px-6 border-y border-outline-variant/10">
-            {% assign rating_value_raw = site.data.store_rating.ratingValue | default: '4.5' %}
+            {% assign rating_value_raw = site.data.store_rating.ratingValue | default: '4.3' %}
             {% assign rating_value = rating_value_raw | plus: 0 %}
-            {% assign rating_count = site.data.store_rating.ratingCount | default: '26' %}
+            {% assign rating_count = site.data.store_rating.ratingCount | default: '35' %}
             {% assign full_stars = rating_value | floor %}
             {% assign next_star = full_stars | plus: 1 %}
             {% assign remainder = rating_value | minus: full_stars %}
@@ -195,7 +195,7 @@ layout: default
                     </div>
                     <div>
                         <h3 class="title-lg mb-2">4,500+ Users</h3>
-                        <p class="text-on-surface-variant">Trusted by thousands of curators worldwide</p>
+                        <p class="text-on-surface-variant">Trusted by thousands of people worldwide</p>
                     </div>
                 </div>
                 <div class="flex flex-col items-center md:items-start gap-4">
