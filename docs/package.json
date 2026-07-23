@@ -7,8 +7,12 @@
   "scripts": {
     "rating:update": "node scripts/update-store-rating.mjs",
     "rating:check": "node scripts/update-store-rating.mjs --dry-run",
-    "build": "bundle exec jekyll build",
-    "build:seo": "npm run rating:update && JEKYLL_ENV=production bundle exec jekyll build",
-    "serve:dev": "npm run rating:update && bundle exec jekyll serve --config _config.yml,_config_dev.yml --host 0.0.0.0 --port 4000"
+    "build:tailwind": "tailwindcss -i assets/css/tailwind-input.css -o assets/css/tailwind.css --minify",
+    "build": "npm run build:tailwind && bundle exec jekyll build",
+    "build:seo": "npm run rating:update && npm run build:tailwind && JEKYLL_ENV=production bundle exec jekyll build",
+    "serve:dev": "npm run rating:update && npm run build:tailwind && bundle exec jekyll serve --config _config.yml,_config_dev.yml --host 0.0.0.0 --port 4000"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }

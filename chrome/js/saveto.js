@@ -735,6 +735,13 @@ function decorateButtonAccessibility(button) {
   const defaultTitle = button.dataset.defaultTitle || WL_TEXT.defaultTitle;
   button.setAttribute("role", "button");
   button.setAttribute("aria-label", defaultTitle);
+  button.setAttribute("tabindex", "0");
+  button.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      button.click();
+    }
+  });
 }
 
 function flashButtonErrorState(button) {
