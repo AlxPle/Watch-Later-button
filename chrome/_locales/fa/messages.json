@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "حذف از تماشا در آینده",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "به دکمه تماشای بعد خوش آمدید!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "با تشکر از شما برای نصب! دکمه تماشای بعداً یک دکمه اختصاصی را مستقیماً روی ویدیوها و تصاویر کوچک YouTube اضافه می‌کند تا بتوانید ویدیوها را با یک کلیک ذخیره کنید.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "نحوه استفاده:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. هر صفحه YouTube.com را باز کنید",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. نشانگر را روی یک تصویر کوچک نگه دارید یا یک پخش کننده ویدیو را باز کنید",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. برای ذخیره فوری روی دکمه قرمز کلیک کنید (با یک شمارش معکوس 10 ثانیه ای)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "شروع به تماشای یوتیوب کنید",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "برنامه افزودنی به روز شد!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "دکمه Watch Later با موفقیت به نسخه به روز شد",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "آنچه در این نسخه جدید است:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "صفحات ورود و به‌روزرسانی: صفحات خوش‌آمدگویی و به‌روزرسانی محلی در داخل برنامه افزودنی.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "پایداری طرح‌بندی YouTube: انعطاف‌پذیری بهبود یافته برای به‌روزرسانی‌های پویای YouTube SPA.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "انتقال‌های صاف: چرخش‌های شناور دکمه‌ها و انیمیشن‌های شمارش معکوس با گرادیان مخروطی.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "به YouTube ادامه دهید",
+        "description": "Close update button text"
     }
 }

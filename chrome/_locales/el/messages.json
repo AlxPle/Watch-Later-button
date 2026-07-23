@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Διαγραφή από το Παρακολούθηση αργότερα",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Καλώς ήρθατε στο κουμπί Παρακολούθηση αργότερα!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Σας ευχαριστούμε για την εγκατάσταση! Το κουμπί Παρακολούθηση αργότερα προσθέτει ένα ειδικό κουμπί απευθείας σε βίντεο και μικρογραφίες YouTube, ώστε να μπορείτε να αποθηκεύετε βίντεο με ένα κλικ.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Τρόπος Χρήσης:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Ανοίξτε οποιαδήποτε σελίδα YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Τοποθετήστε το δείκτη του ποντικιού πάνω από μια μικρογραφία ή ανοίξτε ένα πρόγραμμα αναπαραγωγής βίντεο",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Κάντε κλικ στο κόκκινο κουμπί για άμεση αποθήκευση (με αντίστροφη μέτρηση αναίρεσης 10 δευτερολέπτων)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Ξεκινήστε να παρακολουθείτε το YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Η επέκταση ενημερώθηκε!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Το κουμπί Παρακολούθηση αργότερα ενημερώθηκε με επιτυχία στην έκδοση",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Τι νέο υπάρχει σε αυτήν την έκδοση:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Σελίδες ενσωμάτωσης και ενημέρωσης: Τοπικές σελίδες καλωσορίσματος και ενημέρωσης εντός της επέκτασης.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Σταθερότητα διάταξης YouTube: Βελτιωμένη ανθεκτικότητα για δυναμικές ενημερώσεις YouTube SPA.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Ομαλές μεταβάσεις: Εκλεπτυσμένες περιστροφές κουμπιών και αντίστροφη μέτρηση με κωνική κλίση.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Συνεχίστε στο YouTube",
+        "description": "Close update button text"
     }
 }

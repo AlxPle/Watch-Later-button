@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Verwijderen uit Later bekijken",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Welkom bij de knop Later bekijken!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Bedankt voor het installeren! De knop Later bekijken voegt een speciale knop rechtstreeks toe aan YouTube-video's en thumbnails, zodat je video's met één klik kunt opslaan.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Hoe te gebruiken:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Open een YouTube.com-pagina",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Beweeg over een miniatuur of open een videospeler",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Klik op de rode knop om direct op te slaan (met een aftelling van 10 seconden voor ongedaan maken)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Begin met kijken naar YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Extensie bijgewerkt!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "De knop Later bekijken is succesvol bijgewerkt naar de versie",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Wat is er nieuw in deze release:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Onboarding- en updatepagina's: gelokaliseerde welkomst- en updatepagina's binnen de extensie.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Stabiele YouTube-indeling: verbeterde veerkracht voor dynamische YouTube SPA-updates.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Vloeiende overgangen: verfijnde hover-rotaties van knoppen en aftelanimaties met conische gradiënten.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Ga verder naar YouTube",
+        "description": "Close update button text"
     }
 }

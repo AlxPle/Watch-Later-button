@@ -5,8 +5,11 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
 {% endcomment %}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon.png' | relative_url }}">
-<link rel="preload" href="{{ '/assets/fonts/urbanist/urbanist.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ '/assets/fonts/fraunces/fraunces-black.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/urbanist/urbanist.woff2' | relative_url }}" as="font" type="font/woff2"
+  crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/fraunces/fraunces-black.woff2' | relative_url }}" as="font"
+  type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}">
 <script>
   (function () {
@@ -14,7 +17,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     var saved = null;
     try {
       saved = localStorage.getItem(storageKey);
-    } catch (e) {}
+    } catch (e) { }
     var theme = saved === 'dark' ? 'dark' : 'light';
     var root = document.documentElement;
     root.setAttribute('data-theme', theme);
@@ -67,12 +70,21 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   }
 
   /* Smooth transitions for theme toggling */
-  body, header, nav, footer, article, div, button, a {
+  body,
+  header,
+  nav,
+  footer,
+  article,
+  div,
+  button,
+  a {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   /* Text balance for headlines */
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     text-wrap: balance;
   }
 
@@ -340,53 +352,53 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 </style>
 
 <script>
-    (function () {
-      var storageKey = 'wl-docs-theme';
+  (function () {
+    var storageKey = 'wl-docs-theme';
 
-      function applyTheme(theme) {
-        var root = document.documentElement;
-        var isDark = theme === 'dark';
-        root.setAttribute('data-theme', isDark ? 'dark' : 'light');
-        root.classList.toggle('dark', isDark);
+    function applyTheme(theme) {
+      var root = document.documentElement;
+      var isDark = theme === 'dark';
+      root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      root.classList.toggle('dark', isDark);
 
-        var toggles = document.querySelectorAll('[data-theme-toggle]');
-        var icons = document.querySelectorAll('[data-theme-icon]');
+      var toggles = document.querySelectorAll('[data-theme-toggle]');
+      var icons = document.querySelectorAll('[data-theme-icon]');
 
-        toggles.forEach(function (toggle) {
-          toggle.setAttribute('aria-pressed', String(isDark));
-          toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-        });
-
-        icons.forEach(function (icon) {
-          var iconName = isDark ? 'light_mode' : 'dark_mode';
-          icon.setAttribute('data-icon', iconName);
-          icon.textContent = iconName;
-        });
-      }
-
-      function toggleTheme() {
-        var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-        var next = current === 'dark' ? 'light' : 'dark';
-
-        try {
-          localStorage.setItem(storageKey, next);
-        } catch (error) {
-          // Ignore storage errors in private browsing contexts.
-        }
-
-        applyTheme(next);
-      }
-
-      document.addEventListener('DOMContentLoaded', function () {
-        var currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-        applyTheme(currentTheme);
-
-        var toggles = document.querySelectorAll('[data-theme-toggle]');
-        toggles.forEach(function (toggle) {
-          toggle.addEventListener('click', toggleTheme);
-        });
+      toggles.forEach(function (toggle) {
+        toggle.setAttribute('aria-pressed', String(isDark));
+        toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
       });
-    })();
+
+      icons.forEach(function (icon) {
+        var iconName = isDark ? 'light_mode' : 'dark_mode';
+        icon.setAttribute('data-icon', iconName);
+        icon.textContent = iconName;
+      });
+    }
+
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      var next = current === 'dark' ? 'light' : 'dark';
+
+      try {
+        localStorage.setItem(storageKey, next);
+      } catch (error) {
+        // Ignore storage errors in private browsing contexts.
+      }
+
+      applyTheme(next);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      applyTheme(currentTheme);
+
+      var toggles = document.querySelectorAll('[data-theme-toggle]');
+      toggles.forEach(function (toggle) {
+        toggle.addEventListener('click', toggleTheme);
+      });
+    });
+  })();
 </script>
 
 <!-- JSON-LD: Organization entity for publisher signals -->

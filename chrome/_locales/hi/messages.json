@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "\"बाद में देखें\" से हटाएं",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "बाद में देखें बटन में आपका स्वागत है!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "इंस्टॉल करने के लिए धन्यवाद! बाद में देखें बटन सीधे YouTube वीडियो और थंबनेल पर एक समर्पित बटन जोड़ता है ताकि आप एक क्लिक में वीडियो सहेज सकें।",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "का उपयोग कैसे करें:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. कोई भी YouTube.com पेज खोलें",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. थंबनेल पर होवर करें या वीडियो प्लेयर खोलें",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. तुरंत सेव करने के लिए लाल बटन पर क्लिक करें (10 सेकंड की पूर्ववत उलटी गिनती के साथ)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "यूट्यूब देखना शुरू करें",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "एक्सटेंशन अपडेट किया गया!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "बाद में देखें बटन को सफलतापूर्वक संस्करण में अद्यतन कर दिया गया है",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "इस रिलीज़ में नया क्या है:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "ऑनबोर्डिंग और अपडेट पेज: एक्सटेंशन के अंदर स्थानीयकृत स्वागत और अपडेट पेज।",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "यूट्यूब लेआउट स्थिरता: गतिशील यूट्यूब एसपीए अपडेट के लिए बेहतर लचीलापन।",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "सहज बदलाव: परिष्कृत बटन होवर रोटेशन और शंकु-ढाल उलटी गिनती एनिमेशन।",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "यूट्यूब पर जारी रखें",
+        "description": "Close update button text"
     }
 }

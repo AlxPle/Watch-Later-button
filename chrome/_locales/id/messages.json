@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Hapus dari Tonton nanti",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Selamat datang di Tombol Tonton Nanti!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Terima kasih telah menginstal! Tombol Tonton Nanti menambahkan tombol khusus langsung pada video dan gambar mini YouTube sehingga Anda dapat menyimpan video dalam satu klik.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Cara Menggunakan:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Buka halaman YouTube.com mana pun",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Arahkan kursor ke thumbnail atau buka pemutar video",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Klik tombol merah untuk langsung menyimpan (dengan hitungan mundur 10 detik)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Mulailah menonton YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Ekstensi Diperbarui!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Tombol Tonton Nanti telah berhasil diperbarui ke versi",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Apa yang baru dalam rilis ini:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Halaman Orientasi & Pembaruan: Halaman sambutan dan pembaruan yang dilokalkan di dalam ekstensi.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Stabilitas tata letak YouTube: Peningkatan ketahanan untuk pembaruan YouTube SPA yang dinamis.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Transisi yang mulus: Rotasi tombol yang disempurnakan dan animasi hitung mundur gradien berbentuk kerucut.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Lanjutkan ke YouTube",
+        "description": "Close update button text"
     }
 }

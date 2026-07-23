@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Remover de Ver mais tarde",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Bem-vindo ao botão Ver mais tarde!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Obrigado por instalar! O botão Ver mais tarde adiciona um botão dedicado diretamente nos vídeos e miniaturas do YouTube para que possa guardar vídeos com um clique.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Como usar:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1.º Abra qualquer página do YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2.º Passe o rato sobre uma miniatura ou abra um leitor de vídeo",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3.º Clique no botão vermelho para guardar instantaneamente (com uma contagem decrescente de desfazer de 10 segundos)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Comece a ver no YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Extensão atualizada!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "O botão Ver mais tarde foi atualizado com sucesso para a versão",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "O que há de novo nesta versão:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Páginas de integração e atualização: páginas de boas-vindas e de atualização localizadas dentro da extensão.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Estabilidade de layout do YouTube: resiliência melhorada para atualizações dinâmicas do SPA do YouTube.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Transições suaves: rotações de focagem do botão refinadas e animações de contagem decrescente em gradiente cónico.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Continuar para o YouTube",
+        "description": "Close update button text"
     }
 }

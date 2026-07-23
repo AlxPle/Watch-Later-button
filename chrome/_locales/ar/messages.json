@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "إزالة من المشاهدة لاحقًا",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "مرحبًا بك في زر المشاهدة لاحقًا!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "شكرا لك على التثبيت! يضيف زر \"المشاهدة لاحقًا\" زرًا مخصصًا مباشرةً على مقاطع الفيديو والصور المصغرة على YouTube حتى تتمكن من حفظ مقاطع الفيديو بنقرة واحدة.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "كيفية الاستخدام:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. افتح أي صفحة على موقع YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. قم بالتمرير فوق الصورة المصغرة أو افتح مشغل الفيديو",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. انقر فوق الزر الأحمر للحفظ على الفور (مع العد التنازلي للتراجع لمدة 10 ثوانٍ)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "ابدأ بمشاهدة اليوتيوب",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "تم تحديث الامتداد!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "تم تحديث زر المشاهدة لاحقًا إلى الإصدار بنجاح",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "ما الجديد في هذا الإصدار:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "صفحات الإعداد والتحديث: صفحات الترحيب والتحديث المحلية داخل الامتداد.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "استقرار تخطيط YouTube: تحسين المرونة لتحديثات YouTube SPA الديناميكية.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "انتقالات سلسة: دوران الزر المحسّن ورسوم متحركة للعد التنازلي ذات التدرج المخروطي.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "المتابعة إلى يوتيوب",
+        "description": "Close update button text"
     }
 }

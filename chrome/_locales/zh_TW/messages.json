@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "從「稍後觀看」中移除",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "歡迎使用稍後觀看按鈕！",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "感谢您安装！稍後觀看按鈕直接在 YouTube 影片和縮圖上新增專用按鈕，以便您可以一鍵儲存影片。",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "使用方法：",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. 開啟任意 YouTube.com 頁面",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. 將滑鼠停留在縮圖上或開啟影片播放器",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3.點選紅色按鈕立即儲存（有10秒鐘撤銷倒數計時）",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "開始觀看 YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "擴充已更新！",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "稍後觀看按鈕已成功更新至版本",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "此版本的新增內容：",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "入門和更新頁面：擴展內本地化的歡迎和更新頁面。",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "YouTube 佈局穩定性：提高了動態 YouTube SPA 更新的彈性。",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "平滑過渡：精緻的按鈕懸停旋轉和圓錐漸變倒數動畫。",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "繼續造訪 YouTube",
+        "description": "Close update button text"
     }
 }
