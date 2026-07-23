@@ -1,17 +1,17 @@
 {%- assign current_url = page.url | default: "" -%}
 
 {%- if page.layout == "home" -%}
-<nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-zinc-100/10 shadow-sm">
+<nav class="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-md border-b border-outline-variant/20 shadow-sm">
     <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-        <div class="text-xl font-bold text-zinc-900 tracking-tighter font-headline">
+        <div class="text-xl font-bold text-on-surface tracking-tighter font-headline">
             <a href="{{ '/' | relative_url }}">Watch Later Button</a>
         </div>
         <div class="hidden md:flex items-center gap-8">
-            <a class="text-zinc-600 hover:text-zinc-900 transition-colors font-headline headline-sm tracking-tight"
+            <a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline headline-sm tracking-tight"
                 href="#how-it-works">How it works</a>
-            <a class="text-zinc-600 hover:text-zinc-900 transition-colors font-headline headline-sm tracking-tight"
+            <a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline headline-sm tracking-tight"
                 href="#features">Features</a>
-            <a class="text-zinc-600 hover:text-zinc-900 transition-colors font-headline headline-sm tracking-tight"
+            <a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline headline-sm tracking-tight"
                 href="#faq">FAQ</a>
         </div>
         <div class="flex items-center gap-4">
@@ -24,19 +24,19 @@
     </div>
 </nav>
 {%- else -%}
-<nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-zinc-100/10 shadow-sm">
+<nav class="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-md border-b border-outline-variant/20 shadow-sm">
     <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-        <div class="text-xl font-bold text-zinc-900 tracking-tighter font-headline">
+        <div class="text-xl font-bold text-on-surface tracking-tighter font-headline">
             <a href="{{ '/' | relative_url }}">Watch Later Button</a>
         </div>
         <div class="hidden md:flex items-center gap-8">
-            <a class="{% if current_url == '/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
+            <a class="{% if current_url == '/' %}text-primary{% else %}text-on-surface-variant hover:text-on-surface{% endif %} transition-colors font-headline headline-sm tracking-tight"
                 href="{{ '/' | relative_url }}">Home</a>
-            <a class="{% if current_url contains '/privacy/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
+            <a class="{% if current_url contains '/privacy/' %}text-primary{% else %}text-on-surface-variant hover:text-on-surface{% endif %} transition-colors font-headline headline-sm tracking-tight"
                 href="{{ '/privacy/' | relative_url }}">Privacy</a>
-            <a class="{% if current_url contains '/impressum/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
+            <a class="{% if current_url contains '/impressum/' %}text-primary{% else %}text-on-surface-variant hover:text-on-surface{% endif %} transition-colors font-headline headline-sm tracking-tight"
                 href="{{ '/impressum/' | relative_url }}">Impressum</a>
-            <a class="{% if current_url contains '/updates/' %}text-[#bc0100]{% else %}text-zinc-600 hover:text-zinc-900{% endif %} transition-colors font-headline headline-sm tracking-tight"
+            <a class="{% if current_url contains '/updates/' %}text-primary{% else %}text-on-surface-variant hover:text-on-surface{% endif %} transition-colors font-headline headline-sm tracking-tight"
                 href="{{ '/updates/' | relative_url }}">Updates</a>
         </div>
         <div class="flex items-center gap-4">
@@ -53,13 +53,13 @@
             data-theme-toggle aria-label="Toggle theme" aria-pressed="false" title="Toggle theme">
             <span class="material-symbols-outlined text-base" data-theme-icon data-icon="dark_mode">dark_mode</span>
         </button>
-        <a class="{% if current_url == '/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
+        <a class="{% if current_url == '/' %}text-primary{% else %}text-on-surface-variant{% endif %} font-semibold"
             href="{{ '/' | relative_url }}">Home</a>
-        <a class="{% if current_url contains '/privacy/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
+        <a class="{% if current_url contains '/privacy/' %}text-primary{% else %}text-on-surface-variant{% endif %} font-semibold"
             href="{{ '/privacy/' | relative_url }}">Privacy</a>
-        <a class="{% if current_url contains '/impressum/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
+        <a class="{% if current_url contains '/impressum/' %}text-primary{% else %}text-on-surface-variant{% endif %} font-semibold"
             href="{{ '/impressum/' | relative_url }}">Impressum</a>
-        <a class="{% if current_url contains '/updates/' %}text-[#bc0100]{% else %}text-zinc-600{% endif %} font-semibold"
+        <a class="{% if current_url contains '/updates/' %}text-primary{% else %}text-on-surface-variant{% endif %} font-semibold"
             href="{{ '/updates/' | relative_url }}">Updates</a>
     </div>
 </nav>

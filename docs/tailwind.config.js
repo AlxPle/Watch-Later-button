@@ -15,6 +15,7 @@ module.exports = {
         "surface": "var(--wl-surface-color)",
         "on-surface": "var(--wl-on-surface-color)",
         "on-surface-variant": "var(--wl-on-surface-variant-color)",
+        "on-primary": "var(--wl-on-primary-color)",
         "surface-container-lowest": "var(--wl-surface-lowest-color)",
         "surface-container-low": "var(--wl-surface-low-color)",
         "surface-container": "var(--wl-surface-container-color)",

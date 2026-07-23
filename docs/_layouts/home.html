@@ -22,17 +22,17 @@ layout: default
             </p>
             <div class="flex flex-col sm:flex-row gap-4 items-center mb-6">
                 <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
-                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/25">
+                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
                     <span class="brand-icon brand-icon--chrome w-5 h-5" aria-hidden="true"></span>
                     Chrome
                 </a>
                 <a href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/"
-                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/25">
+                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
                     <span class="brand-icon brand-icon--firefox w-5 h-5" aria-hidden="true"></span>
                     Firefox
                 </a>
                 <a href="https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa"
-                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/25">
+                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
                     <span class="brand-icon brand-icon--edge w-5 h-5" aria-hidden="true"></span>
                     Edge
                 </a>
@@ -154,7 +154,7 @@ layout: default
                     </div>
                 </div>
                 <div class="relative bg-surface-container p-4 sm:p-6 md:p-8 rounded-2xl">
-                    <div class="bg-white rounded-lg shadow-inner overflow-hidden flex items-center justify-center">
+                    <div class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg shadow-inner overflow-hidden flex items-center justify-center">
                         <img alt="Minimalist Interface" class="w-full h-full object-bottom-right"
                             src="assets/banner/poster.png" fetchpriority="high" />
                     </div>
@@ -260,7 +260,7 @@ layout: default
                             </p>
                         </div>
                         <a href="https://github.com/AlxPle/Watch-Later-button/issues"
-                            class="mt-auto inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-zinc-900 bg-surface-container-high hover:bg-surface-container transition-colors">
+                            class="mt-auto inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-on-surface bg-surface-container-high hover:bg-surface-container transition-colors">
                             Open Issues
                         </a>
                     </article>
@@ -277,26 +277,26 @@ layout: default
                         <div class="mt-auto relative group">
                             <button
                                 aria-haspopup="true" aria-expanded="false"
-                                class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-zinc-900 bg-surface-container-high hover:bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors">
+                                class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-on-surface bg-surface-container-high hover:bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors">
                                 Write a Review
                                 <span
                                     class="material-symbols-outlined text-lg ml-2 group-hover:rotate-180 group-focus-within:rotate-180 transition-transform"
                                     data-icon="expand_more" aria-hidden="true">expand_more</span>
                             </button>
                             <div
-                                class="absolute bottom-full left-0 right-0 mb-2 bg-white border border-outline-variant/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50 overflow-hidden">
+                                class="absolute bottom-full left-0 right-0 mb-2 bg-surface border border-outline-variant/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50 overflow-hidden">
                                 <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-surface-container-high focus:outline-none focus:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface-container-high focus:outline-none focus:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
                                     <span class="brand-icon brand-icon--chrome w-4 h-4" aria-hidden="true"></span>
                                     Chrome Web Store
                                 </a>
                                 <a href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/#reviews"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-surface-container-high focus:outline-none focus:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface-container-high focus:outline-none focus:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
                                     <span class="brand-icon brand-icon--firefox w-4 h-4" aria-hidden="true"></span>
                                     Firefox Add-ons
                                 </a>
                                 <a href="https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-surface-container-high focus:outline-none focus:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface-container-high focus:outline-none focus:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
                                     <span class="brand-icon brand-icon--edge w-4 h-4" aria-hidden="true"></span>
                                     Edge Add-ons
                                 </a>
@@ -325,33 +325,33 @@ layout: default
         <!-- Final CTA Band -->
         <section class="px-3 sm:px-6 py-20">
             <div
-                class="max-w-7xl mx-auto bg-surface-container text-black rounded-[2rem] p-6 sm:p-10 md:p-20 text-center relative overflow-hidden">
+                class="max-w-7xl mx-auto bg-surface-container text-on-surface rounded-[2rem] p-6 sm:p-10 md:p-20 text-center relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[120px]"></div>
                 <div class="relative z-10">
                     <h2 class="font-headline text-4xl md:text-5xl font-extrabold mb-8 max-w-2xl mx-auto">Build your
                         digital
                         library today</h2>
-                    <p class="text-zinc-400 text-lg mb-12 max-w-xl mx-auto">Join thousands of curators who never lose a
+                    <p class="text-on-surface-variant text-lg mb-12 max-w-xl mx-auto">Join thousands of curators who never lose a
                         video
                         again</p>
                     <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
                         <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
-                            class="red-gradient text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl shadow-primary/40 inline-flex items-center gap-2">
+                            class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
                             <span class="brand-icon brand-icon--chrome w-5 h-5" aria-hidden="true"></span>
                             Chrome
                         </a>
                         <a href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/"
-                            class="red-gradient text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl shadow-primary/40 inline-flex items-center gap-2">
+                            class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
                             <span class="brand-icon brand-icon--firefox w-5 h-5" aria-hidden="true"></span>
                             Firefox
                         </a>
                         <a href="https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa"
-                            class="red-gradient text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl shadow-primary/40 inline-flex items-center gap-2">
+                            class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
                             <span class="brand-icon brand-icon--edge w-5 h-5" aria-hidden="true"></span>
                             Edge
                         </a>
                         <a href="#features"
-                            class="text-black hover:text-white bg-white hover:bg-black/20 px-8 py-4 rounded-full font-bold text-lg transition-all inline-block">
+                            class="text-on-surface hover:text-on-primary bg-surface-container-high hover:bg-surface-container-low px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] inline-block">
                             Learn More
                         </a>
                     </div>
