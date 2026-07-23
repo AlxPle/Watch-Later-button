@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Rimuovi da Guarda più tardi",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Benvenuto nel pulsante Guarda più tardi!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Grazie per l'installazione! Il pulsante Guarda più tardi aggiunge un pulsante dedicato direttamente sui video e sulle miniature di YouTube in modo da poter salvare i video con un clic.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Come usare:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Apri qualsiasi pagina YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Passa il mouse sopra una miniatura o apri un lettore video",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Fai clic sul pulsante rosso per salvare immediatamente (con un conto alla rovescia per l'annullamento di 10 secondi)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Inizia a guardare YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Estensione aggiornata!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Il pulsante Guarda più tardi è stato aggiornato con successo alla versione",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Novità in questa versione:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Pagine di onboarding e aggiornamento: pagine di benvenuto e aggiornamento localizzate all'interno dell'estensione.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Stabilità del layout di YouTube: resilienza migliorata per gli aggiornamenti dinamici della SPA di YouTube.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Transizioni fluide: rotazioni raffinate dei pulsanti al passaggio del mouse e animazioni del conto alla rovescia con gradiente conico.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Continua su YouTube",
+        "description": "Close update button text"
     }
 }

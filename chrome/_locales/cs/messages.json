@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Odebrat ze seznamu Sledovat později",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Vítejte v tlačítku Přehrát později!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Děkujeme za instalaci! Tlačítko Přehrát později přidává vyhrazené tlačítko přímo na videa a miniatury YouTube, takže můžete videa ukládat jediným kliknutím.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Jak používat:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Otevřete libovolnou stránku YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Umístěte ukazatel myši na miniaturu nebo otevřete přehrávač videa",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Klikněte na červené tlačítko pro okamžité uložení (s 10sekundovým odpočítáváním zpět)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Začněte sledovat YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Rozšíření aktualizováno!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Tlačítko Sledovat později bylo úspěšně aktualizováno na verzi",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Co je nového v tomto vydání:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Stránky pro přihlášení a aktualizace: Lokalizované uvítací a aktualizační stránky uvnitř rozšíření.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Stabilita rozvržení YouTube: Vylepšená odolnost pro dynamické aktualizace YouTube SPA.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Plynulé přechody: Vylepšené otáčení tlačítka a animace odpočítávání s kuželovým přechodem.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Pokračujte na YouTube",
+        "description": "Close update button text"
     }
 }

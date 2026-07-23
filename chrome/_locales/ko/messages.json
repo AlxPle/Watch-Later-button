@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "나중에 보기에서 삭제",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "나중에 보기 버튼에 오신 것을 환영합니다!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "설치해주셔서 감사합니다! 나중에 보기 버튼은 YouTube 동영상과 썸네일에 직접 전용 버튼을 추가하므로 한 번의 클릭으로 동영상을 저장할 수 있습니다.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "사용 방법:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. YouTube.com 페이지를 엽니다.",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. 썸네일 위로 마우스를 가져가거나 비디오 플레이어를 엽니다.",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. 빨간색 버튼을 클릭하면 즉시 저장됩니다. (10초 실행 취소 카운트다운 포함)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "YouTube 시청 시작",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "확장 프로그램이 업데이트되었습니다!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "나중에 보기 버튼이 해당 버전으로 성공적으로 업데이트되었습니다.",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "이번 릴리스의 새로운 기능:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "온보딩 및 업데이트 페이지: 확장 프로그램 내부의 현지화된 환영 및 업데이트 페이지입니다.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "YouTube 레이아웃 안정성: 동적 YouTube SPA 업데이트에 대한 복원력이 향상되었습니다.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "부드러운 전환: 세련된 버튼 호버 회전 및 원뿔형 그라데이션 카운트다운 애니메이션.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "YouTube로 계속",
+        "description": "Close update button text"
     }
 }

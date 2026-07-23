@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Usuń z Obejrzyj później",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Witamy w przycisku Obejrzyj później!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Dziękujemy za instalację! Przycisk Obejrzyj później dodaje dedykowany przycisk bezpośrednio do filmów i miniatur w YouTube, dzięki czemu możesz zapisywać filmy jednym kliknięciem.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Jak używać:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Otwórz dowolną stronę YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Najedź kursorem na miniaturę lub otwórz odtwarzacz wideo",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Kliknij czerwony przycisk, aby natychmiast zapisać (z 10-sekundowym odliczaniem cofania)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Zacznij oglądać YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Rozszerzenie zaktualizowane!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Przycisk Obejrzyj później został pomyślnie zaktualizowany do wersji",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Co nowego w tej wersji:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Strony wprowadzania i aktualizacji: zlokalizowane strony powitalne i aktualizacji wewnątrz rozszerzenia.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Stabilność układu YouTube: zwiększona odporność na dynamiczne aktualizacje YouTube SPA.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Płynne przejścia: ulepszone obracanie przycisków i animacje odliczania w gradiencie stożkowym.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Przejdź do YouTube",
+        "description": "Close update button text"
     }
 }

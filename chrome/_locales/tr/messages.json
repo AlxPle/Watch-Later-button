@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Daha sonra izle listesinden kaldır",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Daha Sonra İzle Düğmesine Hoş Geldiniz!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Kurduğunuz için teşekkür ederiz! Daha Sonra İzle Düğmesi, doğrudan YouTube videolarına ve küçük resimlerine özel bir düğme ekler; böylece videoları tek tıklamayla kaydedebilirsiniz.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Nasıl Kullanılır:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Herhangi bir YouTube.com sayfasını açın",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Küçük resmin üzerine gelin veya bir video oynatıcı açın",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Anında kaydetmek için kırmızı düğmeye tıklayın (10 saniyelik geri sayım ile)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "YouTube'u izlemeye başlayın",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Uzantı Güncellendi!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Daha Sonra İzle Düğmesi başarıyla sürüme güncellendi",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Bu sürümdeki yenilikler:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "İlk Katılım ve Güncelleme sayfaları: Uzantının içindeki yerelleştirilmiş karşılama ve güncelleme sayfaları.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "YouTube düzeni kararlılığı: Dinamik YouTube SPA güncellemeleri için geliştirilmiş dayanıklılık.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Sorunsuz geçişler: İyileştirilmiş düğme vurgulu dönüşleri ve konik dereceli geri sayım animasyonları.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "YouTube'a devam et",
+        "description": "Close update button text"
     }
 }

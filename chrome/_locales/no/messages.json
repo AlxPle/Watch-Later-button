@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Fjern fra Se senere",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Velkommen til Se senere-knappen!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Takk for installasjonen! Se senere-knappen legger til en dedikert knapp direkte på YouTube-videoer og miniatyrbilder slik at du kan lagre videoer med ett klikk.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Slik bruker du:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Åpne en hvilken som helst YouTube.com-side",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Hold markøren over et miniatyrbilde eller åpne en videospiller",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Klikk på den røde knappen for å lagre umiddelbart (med en 10-sekunders angre nedtelling)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Begynn å se YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Utvidelsen er oppdatert!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Se senere-knappen har blitt oppdatert til versjon",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Hva er nytt i denne utgivelsen:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Onboarding & Update-sider: Lokaliserte velkomst- og oppdateringssider inne i utvidelsen.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "YouTube-layoutstabilitet: Forbedret motstandskraft for dynamiske YouTube SPA-oppdateringer.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Myke overganger: Raffinerte roteringer av knapper og nedtellingsanimasjoner med konisk gradient.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Fortsett til YouTube",
+        "description": "Close update button text"
     }
 }

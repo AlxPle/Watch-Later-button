@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Ta bort från Titta senare",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Välkommen till knappen Titta senare!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Tack för att du installerade! Knappen Titta senare lägger till en dedikerad knapp direkt på YouTube-videor och miniatyrer så att du kan spara videor med ett klick.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Hur man använder:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Öppna valfri YouTube.com-sida",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Håll muspekaren över en miniatyrbild eller öppna en videospelare",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Klicka på den röda knappen för att spara omedelbart (med en 10-sekunders ångra nedräkning)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Börja titta på YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Tillägget uppdaterat!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Titta senare-knappen har uppdaterats till version",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Vad är nytt i den här utgåvan:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Onboarding & Update-sidor: Lokaliserade välkomst- och uppdateringssidor i tillägget.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "YouTube-layoutstabilitet: Förbättrad motståndskraft för dynamiska YouTube SPA-uppdateringar.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Smidiga övergångar: Förfinade rotationer av knappar och nedräkningsanimationer med konisk gradient.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Fortsätt till YouTube",
+        "description": "Close update button text"
     }
 }

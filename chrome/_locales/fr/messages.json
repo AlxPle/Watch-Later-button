@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Supprimer de À regarder plus tard",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Bienvenue sur le bouton À regarder plus tard !",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Merci pour l'installation ! Le bouton Regarder plus tard ajoute un bouton dédié directement sur les vidéos et les vignettes YouTube afin que vous puissiez enregistrer des vidéos en un clic.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Comment utiliser :",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Ouvrez n'importe quelle page YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Passez la souris sur une vignette ou ouvrez un lecteur vidéo",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Cliquez sur le bouton rouge pour enregistrer instantanément (avec un compte à rebours d'annulation de 10 secondes)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Commencez à regarder YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Extension mise à jour !",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Le bouton Regarder plus tard a été mis à jour avec succès vers la version",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Quoi de neuf dans cette version :",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Pages d'intégration et de mise à jour : pages d'accueil et de mise à jour localisées à l'intérieur de l'extension.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Stabilité de la mise en page YouTube : résilience améliorée pour les mises à jour dynamiques de YouTube SPA.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Transitions fluides : rotations de survol des boutons affinées et animations de compte à rebours en dégradé conique.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Continuer sur YouTube",
+        "description": "Close update button text"
     }
 }

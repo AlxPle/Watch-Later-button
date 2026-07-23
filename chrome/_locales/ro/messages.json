@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Șterge din Urmărește mai târziu",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Bun venit la butonul Vizionați mai târziu!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Vă mulțumim pentru instalare! Butonul Vizionați mai târziu adaugă un buton dedicat direct pe videoclipurile și miniaturile YouTube, astfel încât să puteți salva videoclipuri cu un singur clic.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Cum se utilizează:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Deschide orice pagină YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Plasați cursorul peste o miniatură sau deschideți un player video",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Faceți clic pe butonul roșu pentru a salva instantaneu (cu o numărătoare inversă anulată de 10 secunde)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Începeți să vizionați YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Extensia actualizată!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Butonul Vizionați mai târziu a fost actualizat cu succes la versiunea",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Ce este nou în această versiune:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Pagini de integrare și actualizare: pagini de întâmpinare și actualizare localizate în interiorul extensiei.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Stabilitatea aspectului YouTube: rezistență îmbunătățită pentru actualizările dinamice YouTube SPA.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Tranziții ușoare: rotații rafinate ale butoanelor și animații de numărătoare inversă cu gradient conic.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Continuați pe YouTube",
+        "description": "Close update button text"
     }
 }

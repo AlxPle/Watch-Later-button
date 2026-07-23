@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Видалити з \"Переглянути пізніше\"",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Ласкаво просимо до кнопки «Переглянути пізніше»!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Дякуємо за встановлення! Кнопка «Переглянути пізніше» додає спеціальну кнопку безпосередньо до відео та мініатюр YouTube, щоб ви могли зберігати відео одним натисканням.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Як використовувати:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Відкрийте будь-яку сторінку YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Наведіть курсор на мініатюру або відкрийте відеоплеєр",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Натисніть червону кнопку, щоб миттєво зберегти (з 10-секундним відліком скасування)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Почніть дивитися YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Розширення оновлено!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Кнопку «Переглянути пізніше» успішно оновлено до версії",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Що нового в цьому випуску:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Сторінки реєстрації та оновлення: локалізовані сторінки привітання та оновлення всередині розширення.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Стабільність макета YouTube: покращено стійкість до динамічних оновлень YouTube SPA.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Плавні переходи: покращене обертання кнопок при наведенні курсору та анімація зворотного відліку з конічним градієнтом.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Перейдіть на YouTube",
+        "description": "Close update button text"
     }
 }

@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "後で見るから削除",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "「後で見る」ボタンへようこそ!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "インストールしていただきありがとうございます! 「後で見る」ボタンは、YouTube 動画とサムネイルに専用のボタンを直接追加するので、ワンクリックで動画を保存できます。",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "使用方法:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. YouTube.com の任意のページを開きます",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. サムネイルの上にカーソルを置くか、ビデオプレーヤーを開きます",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. 赤いボタンをクリックして即座に保存します (10 秒間の元に戻すカウントダウン付き)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "YouTube を見始める",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "拡張機能が更新されました!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "「後で見る」ボタンが正常にバージョンに更新されました",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "このリリースの新機能:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "オンボーディングと更新ページ: 拡張機能内のローカライズされたようこそページと更新ページ。",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "YouTube レイアウトの安定性: YouTube SPA の動的な更新に対する復元力が向上しました。",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "スムーズなトランジション: 洗練されたボタンのホバー回転と円錐形のグラデーションのカウントダウン アニメーション。",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "YouTube に進む",
+        "description": "Close update button text"
     }
 }

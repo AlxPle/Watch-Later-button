@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Aus \"Später ansehen\" entfernen",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Willkommen bei „Später ansehen“-Button!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Vielen Dank für die Installation! Mit der Schaltfläche „Später ansehen“ wird eine spezielle Schaltfläche direkt zu YouTube-Videos und Miniaturansichten hinzugefügt, sodass Sie Videos mit einem Klick speichern können.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Anwendung:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Öffnen Sie eine beliebige YouTube.com-Seite",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Bewegen Sie den Mauszeiger über ein Miniaturbild oder öffnen Sie einen Videoplayer",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Klicken Sie auf die rote Schaltfläche, um sofort zu speichern (mit einem 10-sekündigen Countdown zum Rückgängigmachen).",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Fangen Sie an, YouTube anzuschauen",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Erweiterung aktualisiert!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Die Schaltfläche „Später ansehen“ wurde erfolgreich auf die Version aktualisiert",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Was ist neu in dieser Version:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Onboarding- und Update-Seiten: Lokalisierte Willkommens- und Update-Seiten innerhalb der Erweiterung.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Stabilität des YouTube-Layouts: Verbesserte Ausfallsicherheit für dynamische YouTube SPA-Updates.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Reibungslose Übergänge: Verfeinerte Tasten-Hover-Rotationen und Countdown-Animationen mit konischen Farbverläufen.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Weiter zu YouTube",
+        "description": "Close update button text"
     }
 }
