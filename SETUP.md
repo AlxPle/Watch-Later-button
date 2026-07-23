@@ -82,7 +82,14 @@ consistent for future script updates.
 From the `docs/` directory:
 
 ```bash
+cd docs
 bundle exec jekyll serve
+```
+
+If port `4000` is already in use, stop the stale Jekyll process first and then retry:
+
+```bash
+pkill -f "jekyll serve"
 ```
 
 Or use the dev config + rating refresh in one command:
