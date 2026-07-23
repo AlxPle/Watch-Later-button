@@ -7,89 +7,19 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon.png' | relative_url }}">
 <link rel="preload" href="{{ '/assets/fonts/urbanist/urbanist.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/fraunces/fraunces-black.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<script src="{{ '/assets/tailwindcss/3.4.17.js' | relative_url }}"></script>
-
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-
+<link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}">
 <script>
   (function () {
     var storageKey = 'wl-docs-theme';
     var saved = null;
-
     try {
       saved = localStorage.getItem(storageKey);
-    } catch (error) {
-      saved = null;
-    }
-
+    } catch (e) {}
     var theme = saved === 'dark' ? 'dark' : 'light';
     var root = document.documentElement;
     root.setAttribute('data-theme', theme);
     root.classList.toggle('dark', theme === 'dark');
   })();
-</script>
-<script id="tailwind-config">
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          "surface-variant": "oklch(0.90 0.015 30)",
-          "on-tertiary-fixed": "oklch(0.26 0.06 250)",
-          "on-primary-container": "oklch(0.99 0.004 30)",
-          "outline": "oklch(0.62 0.05 35)",
-          "on-secondary-container": "oklch(0.38 0.015 30)",
-          "surface-bright": "oklch(0.98 0.004 25)",
-          "on-primary-fixed-variant": "oklch(0.44 0.18 30)",
-          "on-surface": "oklch(0.22 0.02 30)",
-          "on-surface-variant": "oklch(0.42 0.02 30)",
-          "error": "oklch(0.56 0.2 25)",
-          "primary-fixed": "oklch(0.91 0.05 30)",
-          "on-primary-fixed": "oklch(0.31 0.14 30)",
-          "on-tertiary": "oklch(0.99 0.004 30)",
-          "inverse-primary": "oklch(0.74 0.16 30)",
-          "on-secondary-fixed-variant": "oklch(0.43 0.015 30)",
-          "on-primary": "oklch(0.99 0.004 30)",
-          "secondary": "oklch(0.48 0.02 20)",
-          "surface-tint": "oklch(0.58 0.21 29)",
-          "error-container": "oklch(0.93 0.05 25)",
-          "surface-dim": "oklch(0.93 0.006 25)",
-          "primary-container": "oklch(0.68 0.19 29)",
-          "surface-container": "oklch(0.94 0.008 30)",
-          "primary": "oklch(0.58 0.21 29)",
-          "on-tertiary-fixed-variant": "oklch(0.44 0.07 245)",
-          "tertiary-fixed-dim": "oklch(0.81 0.07 245)",
-          "surface-container-low": "oklch(0.96 0.01 30)",
-          "secondary-fixed": "oklch(0.92 0.01 25)",
-          "surface-container-high": "oklch(0.95 0.01 30)",
-          "tertiary-container": "oklch(0.69 0.11 245)",
-          "primary-fixed-dim": "oklch(0.79 0.13 29)",
-          "secondary-fixed-dim": "oklch(0.84 0.012 25)",
-          "surface-container-highest": "oklch(0.98 0.008 25)",
-          "on-error": "oklch(0.99 0.004 25)",
-          "secondary-container": "oklch(0.92 0.01 25)",
-          "on-error-container": "oklch(0.4 0.13 25)",
-          "tertiary": "oklch(0.56 0.14 245)",
-          "on-secondary": "oklch(0.99 0.004 25)",
-          "surface-container-lowest": "oklch(0.98 0.008 25)",
-          "surface": "oklch(0.99 0.004 25)",
-          "on-background": "oklch(0.22 0.02 30)",
-          "background": "oklch(0.94 0.008 30)",
-          "tertiary-fixed": "oklch(0.9 0.05 245)",
-          "on-tertiary-container": "oklch(0.98 0.005 25)",
-          "inverse-on-surface": "oklch(0.95 0.01 25)",
-          "inverse-surface": "oklch(0.3 0.015 25)",
-          "outline-variant": "oklch(0.80 0.025 30)",
-          "on-secondary-fixed": "oklch(0.24 0.012 25)"
-        },
-        fontFamily: {
-          "headline": ["Fraunces", "serif"],
-          "body": ["Urbanist", "sans-serif"],
-          "label": ["Urbanist", "sans-serif"]
-        },
-        borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
-      },
-    },
-  }
 </script>
 <style>
   html {
@@ -106,10 +36,44 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     --wl-primary: oklch(0.58 0.21 29);
     --wl-outline-soft: oklch(0.86 0.02 30);
     color-scheme: light;
+
+    /* Tailwind mapped variables - Light Mode */
+    --wl-background-color: oklch(0.94 0.008 30);
+    --wl-foreground-color: oklch(0.22 0.02 30);
+    --wl-surface-color: oklch(0.99 0.004 25);
+    --wl-on-surface-color: oklch(0.22 0.02 30);
+    --wl-on-surface-variant-color: oklch(0.42 0.02 30);
+    --wl-surface-lowest-color: oklch(0.98 0.008 25);
+    --wl-surface-low-color: oklch(0.96 0.01 30);
+    --wl-surface-container-color: oklch(0.94 0.008 30);
+    --wl-surface-high-color: oklch(0.95 0.01 30);
+    --wl-outline-variant-color: oklch(0.80 0.025 30);
   }
 
   :root[data-theme="dark"] {
     color-scheme: dark;
+
+    /* Tailwind mapped variables - Dark Mode */
+    --wl-background-color: #1a202b;
+    --wl-foreground-color: #e7ebf3;
+    --wl-surface-color: #1a202b;
+    --wl-on-surface-color: #e7ebf3;
+    --wl-on-surface-variant-color: #b3bdcb;
+    --wl-surface-lowest-color: #1a1f2b;
+    --wl-surface-low-color: #1f2635;
+    --wl-surface-container-color: #252e3b;
+    --wl-surface-high-color: #252e3b;
+    --wl-outline-variant-color: rgba(87, 102, 127, 0.4);
+  }
+
+  /* Smooth transitions for theme toggling */
+  body, header, nav, footer, article, div, button, a {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Text balance for headlines */
+  h1, h2, h3 {
+    text-wrap: balance;
   }
 
   body {
@@ -118,16 +82,16 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     background:
       radial-gradient(circle at 10% 0%, oklch(0.97 0.015 30) 0%, transparent 45%),
       radial-gradient(circle at 90% 20%, oklch(0.96 0.02 250) 0%, transparent 42%),
-      var(--wl-background);
-    color: var(--wl-foreground);
+      var(--wl-background-color);
+    color: var(--wl-foreground-color);
   }
 
   :root[data-theme="dark"] body {
     background:
-      radial-gradient(circle at 10% 0%, oklch(0.32 0.025 20) 0%, transparent 45%),
-      radial-gradient(circle at 90% 20%, oklch(0.34 0.03 250) 0%, transparent 42%),
-      oklch(0.24 0.008 25);
-    color: oklch(0.92 0.015 25);
+      radial-gradient(circle at 10% 0%, oklch(0.28 0.05 20) 0%, transparent 45%),
+      radial-gradient(circle at 90% 20%, oklch(0.24 0.06 250) 0%, transparent 42%),
+      var(--wl-background-color);
+    color: var(--wl-foreground-color);
   }
 
   .headline-sm {
@@ -306,47 +270,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     background-color: #fff;
   }
 
-  :root[data-theme="dark"] .bg-surface {
-    background-color: #1a202b !important;
-  }
 
-  :root[data-theme="dark"] .text-on-surface,
-  :root[data-theme="dark"] .text-zinc-900,
-  :root[data-theme="dark"] .text-zinc-800 {
-    color: #e7ebf3 !important;
-  }
-
-  :root[data-theme="dark"] .post-content h2,
-  :root[data-theme="dark"] .post-content h3,
-  :root[data-theme="dark"] article h2,
-  :root[data-theme="dark"] article h3 {
-    color: #f1f5ff !important;
-  }
-
-  :root[data-theme="dark"] .text-on-surface-variant,
-  :root[data-theme="dark"] .text-zinc-600,
-  :root[data-theme="dark"] .text-zinc-500,
-  :root[data-theme="dark"] .text-zinc-400 {
-    color: #b3bdcb !important;
-  }
-
-  :root[data-theme="dark"] .bg-surface-container-lowest,
-  :root[data-theme="dark"] .bg-white,
-  :root[data-theme="dark"] .bg-zinc-50 {
-    background-color: #1a1f2b !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  :root[data-theme="dark"] .bg-surface-container-low {
-    background-color: #1f2635 !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-  }
-
-  :root[data-theme="dark"] .bg-surface-container,
-  :root[data-theme="dark"] .bg-surface-container-high {
-    background-color: #252e3b !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
 
   :root[data-theme="dark"] .bg-white\/95 {
     background-color: rgba(15, 17, 21, 0.95) !important;

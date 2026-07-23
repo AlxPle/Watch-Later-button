@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Later Button - Updated</title>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img class="logo" src="../assets/app-icons/red/iconmonstr-text-plus-lined-128.png" alt="Watch Later Button Logo">
+            <h1 data-i18n="updateTitle">Extension Updated!</h1>
+            <p class="subtitle">
+                <span data-i18n="updateVersionMessage">Watch Later Button has been successfully updated to version </span>v<span id="version-num"></span>
+            </p>
+        </div>
+
+        <div class="features-list">
+            <div class="features-title" data-i18n="updateFeaturesTitle">What's new in this release:</div>
+            <div class="feature-item">
+                <span data-i18n="updateFeature1">Onboarding & Update pages: Localized welcome and update pages inside the extension.</span>
+            </div>
+            <div class="feature-item">
+                <span data-i18n="updateFeature2">YouTube layout stability: Improved resilience for dynamic YouTube SPA updates.</span>
+            </div>
+            <div class="feature-item">
+                <span data-i18n="updateFeature3">Smooth transitions: Refined button hover rotations and conic-gradient countdown animations.</span>
+            </div>
+        </div>
+
+        <a href="https://www.youtube.com" class="btn" target="_blank" data-i18n="updateCloseButton">Continue to YouTube</a>
+
+        <div class="footer">
+            <a href="https://watchlater.alxple.com" target="_blank" data-i18n="website">Website</a> &bull; 
+            <a href="https://www.buymeacoffee.com/pletnovalex" target="_blank" data-i18n="donate">Donate</a> &bull; 
+            v<span id="version-num"></span>
+        </div>
+    </div>
+    <script src="pages.js"></script>
+</body>
+</html>

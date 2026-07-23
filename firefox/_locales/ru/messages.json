@@ -28,7 +28,7 @@
         "description": "Contact link text"
     },
     "website": {
-        "message": "Сайт",
+        "message": "Watch Later Button",
         "description": "Website link text"
     },
     "whatsNew": {
@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Удалить из \"Смотреть позже\"",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Добро пожаловать в Watch Later Button!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Спасибо за установку! Расширение Watch Later Button добавляет специальную кнопку прямо на видео и превью YouTube, позволяя сохранять их в один клик.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Как пользоваться:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Откройте любую страницу YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Наведите курсор на превью видео или откройте страницу проигрывателя",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Нажмите на красную иконку для мгновенного сохранения (с возможностью отмены в течение 10 секунд)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Перейти на YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Расширение обновлено!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Приложение Watch Later Button успешно обновлено до версии ",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Что нового в этой версии:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Страницы приветствия и обновлений: Локализованные страницы внутри расширения.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Стабильность на YouTube: Улучшенная совместимость при динамическом обновлении интерфейса YouTube.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Плавные переходы: Оптимизированная анимация поворота кнопки и обратного отсчета.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Продолжить на YouTube",
+        "description": "Close update button text"
     }
 }

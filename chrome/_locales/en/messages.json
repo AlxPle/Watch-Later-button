@@ -28,7 +28,7 @@
         "description": "Contact link text"
     },
     "website": {
-        "message": "Website",
+        "message": "Watch Later Button",
         "description": "Website link text"
     },
     "whatsNew": {
@@ -42,5 +42,61 @@
     "wlButtonDeleteTitle": {
         "message": "Delete from Watch Later",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Welcome to Watch Later Button!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Thank you for installing! Watch Later Button adds a dedicated button directly on YouTube videos and thumbnails so you can save videos in one click.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "How to Use:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "1. Open any YouTube.com page",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "2. Hover over a thumbnail or open a video player",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "3. Click the red button to instantly save (with a 10-second undo countdown)",
+        "description": "Third step description"
+    },
+    "welcomeStartButton": {
+        "message": "Start watching YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Extension Updated!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Watch Later Button has been successfully updated to version ",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "What's new in this release:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Onboarding & Update pages: Localized welcome and update pages inside the extension.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "YouTube layout stability: Improved resilience for dynamic YouTube SPA updates.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Smooth transitions: Refined button hover rotations and conic-gradient countdown animations.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Continue to YouTube",
+        "description": "Close update button text"
     }
 }
