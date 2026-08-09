@@ -731,17 +731,19 @@ const executeWatchLaterAction = (action, explicitVideoId = null) => {
   }
 };
 
+function handleButtonKeyDown(e) {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    e.currentTarget.click();
+  }
+}
+
 function decorateButtonAccessibility(button) {
   const defaultTitle = button.dataset.defaultTitle || WL_TEXT.defaultTitle;
   button.setAttribute("role", "button");
   button.setAttribute("aria-label", defaultTitle);
   button.setAttribute("tabindex", "0");
-  button.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      button.click();
-    }
-  });
+  button.addEventListener("keydown", handleButtonKeyDown);
 }
 
 function flashButtonErrorState(button) {
@@ -989,6 +991,7 @@ function addWatchLaterToCard(contentImageEl) {
   const btn = document.createElement("div");
   btn.className = `saveToWatchLater ${locationClass}`;
   btn.dataset.defaultTitle = WL_TEXT.defaultTitle;
+  btn.dataset.videoId = videoId;
   btn.title = btn.dataset.defaultTitle;
   decorateButtonAccessibility(btn);
 
@@ -996,17 +999,6 @@ function addWatchLaterToCard(contentImageEl) {
   if ((locationClass === CARD_LOCATION_CLASS.home || locationClass === CARD_LOCATION_CLASS.shortsHome) && window.getComputedStyle(mount).position === "static") {
     mount.style.position = "relative";
   }
-
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    try {
-      handleWatchLaterToggle(btn, videoId);
-    } catch (error) {
-      flashButtonErrorState(btn);
-      handleError("Error sending card WL action:", error);
-    }
-  });
 
   const insertionMode = locationClass === CARD_LOCATION_CLASS.results
     ? CARD_MOUNT_BEHAVIOR.resultsInsertion
@@ -1018,6 +1010,26 @@ function addWatchLaterToCard(contentImageEl) {
     mount.appendChild(btn);
   }
 }
+
+/**
+ * Global delegated click handler for card buttons to avoid per-button closure memory retention.
+ */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".saveToWatchLater:not(#saveToPlaylist)");
+  if (!btn) return;
+
+  e.stopPropagation();
+  e.preventDefault();
+  const videoId = btn.dataset.videoId;
+  if (!videoId) return;
+
+  try {
+    handleWatchLaterToggle(btn, videoId);
+  } catch (error) {
+    flashButtonErrorState(btn);
+    handleError("Error sending card WL action:", error);
+  }
+}, true);
 
 /**
  * Finds unprocessed card image containers and injects Watch Later buttons in small rAF batches.
@@ -1067,6 +1079,11 @@ function startCardObserver(forceRebind = false) {
     return;
   }
 
+  if (cardInjectTimer) {
+    clearTimeout(cardInjectTimer);
+    cardInjectTimer = null;
+  }
+
   if (cardObserver) {
     cardObserver.disconnect();
     cardObserver = null;
@@ -1091,3 +1108,4 @@ function initializeCardInjection() {
 
 // Run immediately and start watching for new cards
 initializeCardInjection();
+
