@@ -1,42 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Later Button - Updated</title>
     <link rel="stylesheet" href="pages.css">
 </head>
+
 <body>
     <div class="container">
-        <div class="header">
-            <img class="logo" src="../assets/app-icons/red/iconmonstr-text-plus-lined-128.png" alt="Watch Later Button Logo">
+        <header class="header">
+            <div class="logo-wrapper">
+                <img class="logo" src="../assets/app-icons/red/iconmonstr-text-plus-lined-128.png"
+                    alt="Watch Later Button Logo" width="64" height="64">
+            </div>
+            <div class="version-chip">
+                <span class="version-chip-dot"></span>
+                <span>v<span class="version-num"></span></span>
+            </div>
             <h1 data-i18n="updateTitle">Extension Updated!</h1>
             <p class="subtitle">
-                <span data-i18n="updateVersionMessage">Watch Later Button has been successfully updated to version </span>v<span id="version-num"></span>
+                <span data-i18n="updateVersionMessage">Watch Later Button has been successfully updated to version </span>v<span class="version-num"></span>
             </p>
-        </div>
+        </header>
 
+        <!-- Changelog list with badges -->
         <div class="features-list">
-            <div class="features-title" data-i18n="updateFeaturesTitle">What's new in this release:</div>
+            <h2 class="features-title" data-i18n="updateFeaturesTitle">What's new in this release:</h2>
+            
             <div class="feature-item">
-                <span data-i18n="updateFeature1">Onboarding & Update pages: Localized welcome and update pages inside the extension.</span>
+                <span class="badge badge-new" data-i18n="badgeNew">New</span>
+                <span class="feature-text" data-i18n="updateFeature1">Redesigned UI: Modern interface with dark mode and interactive visual guides.</span>
             </div>
+            
             <div class="feature-item">
-                <span data-i18n="updateFeature2">YouTube layout stability: Improved resilience for dynamic YouTube SPA updates.</span>
+                <span class="badge badge-new" data-i18n="badgeNew">New</span>
+                <span class="feature-text" data-i18n="updateFeature2">Quick Playlist Access: 1-click Watch Later shortcut in popup menu.</span>
             </div>
+            
             <div class="feature-item">
-                <span data-i18n="updateFeature3">Smooth transitions: Refined button hover rotations and conic-gradient countdown animations.</span>
+                <span class="badge badge-improved" data-i18n="badgeImproved">Improved</span>
+                <span class="feature-text" data-i18n="updateFeature3">Smooth transitions: Refined button animations and timer countdown.</span>
             </div>
         </div>
 
-        <a href="https://www.youtube.com" class="btn" target="_blank" data-i18n="updateCloseButton">Continue to YouTube</a>
-
-        <div class="footer">
-            <a href="https://watchlater.alxple.com" target="_blank" data-i18n="website">Website</a> &bull; 
-            <a href="https://www.buymeacoffee.com/pletnovalex" target="_blank" data-i18n="donate">Donate</a> &bull; 
-            v<span id="version-num"></span>
+        <!-- Action CTAs -->
+        <div class="cta-group">
+            <a href="https://www.youtube.com" class="btn btn-primary" target="_blank">
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/>
+                </svg>
+                <span data-i18n="updateCloseButton">Continue to YouTube</span>
+            </a>
+            <a href="https://www.youtube.com/playlist?list=WL" class="btn btn-secondary" target="_blank" data-i18n="openWatchLater">
+                Watch Later Playlist
+            </a>
         </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="https://watchlater.alxple.com" target="_blank" data-i18n="website">Website</a>
+            <span class="footer-dot">&bull;</span>
+            <a href="https://www.buymeacoffee.com/pletnovalex" target="_blank" data-i18n="donate">Donate</a>
+            <span class="footer-dot">&bull;</span>
+            <span>v<span class="version-num"></span></span>
+        </footer>
     </div>
     <script src="pages.js"></script>
 </body>
+
 </html>

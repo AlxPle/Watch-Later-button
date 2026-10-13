@@ -42,5 +42,121 @@
     "wlButtonDeleteTitle": {
         "message": "Quitar de Ver más tarde",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "¡Bienvenido al botón Ver más tarde!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "¡Gracias por instalar! El botón Ver más tarde agrega un botón dedicado directamente en los videos y miniaturas de YouTube para que pueda guardar videos con un solo clic.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Cómo utilizar:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "Abra cualquier página de YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "Pase el cursor sobre una miniatura o abra un reproductor de video.",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "Haga clic en el botón rojo para guardar instantáneamente (con una cuenta regresiva para deshacer de 10 segundos)",
+        "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "Personaliza el color y la opacidad del botón en cualquier momento en la configuración de la extensión",
+        "description": "Fourth step description"
+    },
+    "welcomeStartButton": {
+        "message": "Empieza a ver YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "¡Extensión actualizada!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "El botón Ver más tarde se ha actualizado correctamente a la versión",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Novedades de esta versión:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Color de botón personalizado: Personaliza el botón con cualquier color RGBA y control deslizante de opacidad.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Menú de configuración dedicado: Menú optimizado en la ventana emergente con vista previa interactiva en vivo.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Sincronización en vivo y rendimiento: Los colores se aplican al instante en todas las pestañas de YouTube abiertas sin recargar.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Continuar en YouTube",
+        "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "Configuración",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "Color del botón",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "Opacidad",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "Restablecer valores predeterminados",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "Atrás",
+        "description": "Back button label"
     }
 }

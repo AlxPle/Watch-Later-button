@@ -1,6 +1,6 @@
 {
   "name": "watch-later-button-root",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "private": true,
   "scripts": {
     "sync": "cp chrome/js/saveto.js firefox/js/saveto.js",

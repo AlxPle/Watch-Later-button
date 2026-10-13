@@ -28,7 +28,7 @@
         "description": "Contact link text"
     },
     "website": {
-        "message": "Watch Later Button",
+        "message": "Сайт",
         "description": "Website link text"
     },
     "whatsNew": {
@@ -56,16 +56,20 @@
         "description": "Steps heading"
     },
     "welcomeStep1": {
-        "message": "1. Откройте любую страницу YouTube.com",
+        "message": "Откройте любую страницу YouTube.com",
         "description": "First step description"
     },
     "welcomeStep2": {
-        "message": "2. Наведите курсор на превью видео или откройте страницу проигрывателя",
+        "message": "Наведите курсор на превью или плеер видео",
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "3. Нажмите на красную иконку для мгновенного сохранения (с возможностью отмены в течение 10 секунд)",
+        "message": "Нажмите красную кнопку для мгновенного сохранения (с отменой 10 сек)",
         "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "Настройте цвет и прозрачность под свой вкус в меню Settings",
+        "description": "Fourth step description"
     },
     "welcomeStartButton": {
         "message": "Перейти на YouTube",
@@ -84,19 +88,75 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Страницы приветствия и обновлений: Локализованные страницы внутри расширения.",
+        "message": "Кастомизация цвета: Выбирайте любой цвет RGBA и прозрачность кнопки с помощью удобного слайдера.",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Стабильность на YouTube: Улучшенная совместимость при динамическом обновлении интерфейса YouTube.",
+        "message": "Меню настроек: Удобная панель настроек в popup-меню с интерактивным живым превью.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Плавные переходы: Оптимизированная анимация поворота кнопки и обратного отсчета.",
+        "message": "Мгновенная синхронизация: Цвет применяется на всех открытых вкладках YouTube без перезагрузки страниц.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
         "message": "Продолжить на YouTube",
         "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Плейлист «Смотреть позже»",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Открыть сохраненные видео на YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Активно на YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "Новое",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Улучшено",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Исправлено",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Интерактивный пример",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Мгновенное сохранение в «Смотреть позже» в 1 клик",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "Настройки",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "Цвет кнопки",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "Прозрачность",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "Сбросить по умолчанию",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "Назад",
+        "description": "Back button label"
     }
 }

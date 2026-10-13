@@ -7,7 +7,8 @@ const userDataDir = path.resolve('/tmp', 'puppeteer_watch_later_profile');
 
 (async () => {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
+        executablePath: process.env.CHROME_BIN || '/usr/bin/google-chrome-stable',
         args: [
             `--disable-extensions-except=${extensionPath}`,
             `--load-extension=${extensionPath}`,
@@ -37,10 +38,12 @@ const userDataDir = path.resolve('/tmp', 'puppeteer_watch_later_profile');
 
     const keyToId = {
         extensionName: 'extension-name',
+        statusActive: 'status-active',
+        openWatchLater: 'open-watch-later',
+        openPlaylistDirect: 'open-playlist-direct',
         issues: 'issues',
         feedback: 'feedback',
         donate: 'donate',
-        contact: 'contact',
         website: 'website',
         whatsNew: 'whats-new'
     };

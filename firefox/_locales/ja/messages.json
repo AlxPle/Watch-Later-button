@@ -42,5 +42,121 @@
     "wlButtonDeleteTitle": {
         "message": "後で見るから削除",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "「後で見る」ボタンへようこそ!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "インストールしていただきありがとうございます! 「後で見る」ボタンは、YouTube 動画とサムネイルに専用のボタンを直接追加するので、ワンクリックで動画を保存できます。",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "使用方法:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "YouTube.com の任意のページを開きます",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "サムネイルの上にカーソルを置くか、ビデオプレーヤーを開きます",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "赤いボタンをクリックして即座に保存します (10 秒間の元に戻すカウントダウン付き)",
+        "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "拡張機能の設定メニューからいつでもボタンの色と透明度をカスタマイズできます",
+        "description": "Fourth step description"
+    },
+    "welcomeStartButton": {
+        "message": "YouTube を見始める",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "拡張機能が更新されました!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "「後で見る」ボタンが正常にバージョンに更新されました",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "このリリースの新機能:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "カスタムボタンカラー: 任意のRGBAカラーと透明度スライダーでボタンを自由にカスタマイズ。",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "専用設定メニュー: インタラクティブなライブプレビューを備えたポップアップ内の洗練された設定画面。",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "即時リアルタイム同期と最適化: ページを再読み込みすることなく、開いているすべてのYouTubeタブに色が即座に反映されます。",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "YouTube に進む",
+        "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "設定",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "ボタンの色",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "不透明度",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "デフォルトに戻す",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "戻る",
+        "description": "Back button label"
     }
 }
