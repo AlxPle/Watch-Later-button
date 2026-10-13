@@ -56,16 +56,20 @@
         "description": "Steps heading"
     },
     "welcomeStep1": {
-        "message": "1. Buka halaman YouTube.com mana pun",
+        "message": "Buka halaman YouTube.com mana pun",
         "description": "First step description"
     },
     "welcomeStep2": {
-        "message": "2. Arahkan kursor ke thumbnail atau buka pemutar video",
+        "message": "Arahkan kursor ke thumbnail atau buka pemutar video",
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "3. Klik tombol merah untuk langsung menyimpan (dengan hitungan mundur 10 detik)",
+        "message": "Klik tombol merah untuk langsung menyimpan (dengan hitungan mundur 10 detik)",
         "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "Sesuaikan warna dan opasitas tombol kapan saja di Pengaturan ekstensi",
+        "description": "Fourth step description"
     },
     "welcomeStartButton": {
         "message": "Mulailah menonton YouTube",
@@ -84,19 +88,75 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Halaman Orientasi & Pembaruan: Halaman sambutan dan pembaruan yang dilokalkan di dalam ekstensi.",
+        "message": "Warna Tombol Khusus: Sesuaikan tombol dengan warna RGBA apa pun dan penggeser opasitas.",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Stabilitas tata letak YouTube: Peningkatan ketahanan untuk pembaruan YouTube SPA yang dinamis.",
+        "message": "Menu Pengaturan Khusus: Menu pengaturan yang ramping di popup dengan pratinjau langsung interaktif.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Transisi yang mulus: Rotasi tombol yang disempurnakan dan animasi hitung mundur gradien berbentuk kerucut.",
+        "message": "Sinkronisasi Langsung & Performa: Warna langsung diterapkan di semua tab YouTube yang terbuka tanpa memuat ulang.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
         "message": "Lanjutkan ke YouTube",
         "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "Pengaturan",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "Warna tombol",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "Opasitas",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "Atur ulang ke default",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "Kembali",
+        "description": "Back button label"
     }
 }

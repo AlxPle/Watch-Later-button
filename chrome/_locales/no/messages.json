@@ -56,16 +56,20 @@
         "description": "Steps heading"
     },
     "welcomeStep1": {
-        "message": "1. Åpne en hvilken som helst YouTube.com-side",
+        "message": "Åpne en hvilken som helst YouTube.com-side",
         "description": "First step description"
     },
     "welcomeStep2": {
-        "message": "2. Hold markøren over et miniatyrbilde eller åpne en videospiller",
+        "message": "Hold markøren over et miniatyrbilde eller åpne en videospiller",
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "3. Klikk på den røde knappen for å lagre umiddelbart (med en 10-sekunders angre nedtelling)",
+        "message": "Klikk på den røde knappen for å lagre umiddelbart (med en 10-sekunders angre nedtelling)",
         "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "Tilpass knappefarge og opasitet når som helst i utvidelsesinnstillingene",
+        "description": "Fourth step description"
     },
     "welcomeStartButton": {
         "message": "Begynn å se YouTube",
@@ -84,19 +88,75 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Onboarding & Update-sider: Lokaliserte velkomst- og oppdateringssider inne i utvidelsen.",
+        "message": "Endret knappefarge: Tilpass knappen med hvilken som helst RGBA-farge og glidebryter for opasitet.",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "YouTube-layoutstabilitet: Forbedret motstandskraft for dynamiske YouTube SPA-oppdateringer.",
+        "message": "Dedikert innstillingsmeny: Forenklet meny i popup-vinduet med interaktiv forhåndsvisning i sanntid.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Myke overganger: Raffinerte roteringer av knapper og nedtellingsanimasjoner med konisk gradient.",
+        "message": "Umiddelbar synkronisering og ytelse: Farger oppdateres umiddelbart på alle åpne YouTube-faner uten å laste inn siden på nytt.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
         "message": "Fortsett til YouTube",
         "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "Innstillinger",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "Knappefarge",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "Opasitet",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "Tilbakestill til standard",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "Tilbake",
+        "description": "Back button label"
     }
 }

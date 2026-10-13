@@ -82,9 +82,12 @@ describe('Watch Later Button E2E Test', () => {
     // Launch Chromium browser
     browser = await puppeteer.launch({
       headless: true,
+      executablePath: process.env.CHROME_BIN || '/usr/bin/google-chrome-stable',
       args: [
         `--disable-extensions-except=${extensionPath}`,
         `--load-extension=${extensionPath}`,
+        '--no-sandbox',
+        '--disable-setuid-sandbox'
       ],
     });
 

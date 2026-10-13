@@ -56,16 +56,20 @@
         "description": "Steps heading"
     },
     "welcomeStep1": {
-        "message": "1. Ouvrez n'importe quelle page YouTube.com",
+        "message": "Ouvrez n'importe quelle page YouTube.com",
         "description": "First step description"
     },
     "welcomeStep2": {
-        "message": "2. Passez la souris sur une vignette ou ouvrez un lecteur vidéo",
+        "message": "Passez la souris sur une vignette ou ouvrez un lecteur vidéo",
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "3. Cliquez sur le bouton rouge pour enregistrer instantanément (avec un compte à rebours d'annulation de 10 secondes)",
+        "message": "Cliquez sur le bouton rouge pour enregistrer instantanément (avec un compte à rebours d'annulation de 10 secondes)",
         "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "Personnalisez la couleur et l'opacité du bouton à tout moment dans les paramètres de l'extension",
+        "description": "Fourth step description"
     },
     "welcomeStartButton": {
         "message": "Commencez à regarder YouTube",
@@ -84,19 +88,75 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Pages d'intégration et de mise à jour : pages d'accueil et de mise à jour localisées à l'intérieur de l'extension.",
+        "message": "Couleur de bouton personnalisée : Personnalisez le bouton avec n'importe quelle couleur RGBA et curseur d'opacité.",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Stabilité de la mise en page YouTube : résilience améliorée pour les mises à jour dynamiques de YouTube SPA.",
+        "message": "Menu Paramètres dédié : Menu simplifié dans le popup avec prévisualisation interactive en direct.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Transitions fluides : rotations de survol des boutons affinées et animations de compte à rebours en dégradé conique.",
+        "message": "Synchronisation en direct et performance : Les couleurs s'appliquent instantanément sur tous les onglets YouTube sans rechargement.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
         "message": "Continuer sur YouTube",
         "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "Paramètres",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "Couleur du bouton",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "Opacité",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "Rétablir par défaut",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "Retour",
+        "description": "Back button label"
     }
 }

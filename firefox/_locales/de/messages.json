@@ -42,5 +42,121 @@
     "wlButtonDeleteTitle": {
         "message": "Aus \"Später ansehen\" entfernen",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Willkommen bei „Später ansehen“-Button!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Vielen Dank für die Installation! Mit der Schaltfläche „Später ansehen“ wird eine spezielle Schaltfläche direkt zu YouTube-Videos und Miniaturansichten hinzugefügt, sodass Sie Videos mit einem Klick speichern können.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Anwendung:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "Öffnen Sie eine beliebige YouTube.com-Seite",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "Bewegen Sie den Mauszeiger über ein Miniaturbild oder öffnen Sie einen Videoplayer",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "Klicken Sie auf die rote Schaltfläche, um sofort zu speichern (mit einem 10-sekündigen Countdown zum Rückgängigmachen).",
+        "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "Passen Sie Schaltflächenfarbe und Deckkraft jederzeit in den Einstellungen der Erweiterung an",
+        "description": "Fourth step description"
+    },
+    "welcomeStartButton": {
+        "message": "Fangen Sie an, YouTube anzuschauen",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Erweiterung aktualisiert!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Die Schaltfläche „Später ansehen“ wurde erfolgreich auf die Version aktualisiert",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Was ist neu in dieser Version:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Benutzerdefinierte Schaltflächenfarbe: Personalisieren Sie die Schaltfläche mit beliebigen RGBA-Farben und Deckkraft-Schieberegler.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Eigenes Einstellungsmenü: Übersichtliches Einstellungsmenü im Popup mit interaktiver Live-Vorschau.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Sofortige Live-Synchronisierung & Leistung: Farben werden sofort auf allen geöffneten YouTube-Tabs ohne Neuladen angewendet.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Weiter zu YouTube",
+        "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "Einstellungen",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "Schaltflächenfarbe",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "Deckkraft",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "Auf Standard zurücksetzen",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "Zurück",
+        "description": "Back button label"
     }
 }

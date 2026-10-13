@@ -42,5 +42,121 @@
     "wlButtonDeleteTitle": {
         "message": "Διαγραφή από το Παρακολούθηση αργότερα",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Καλώς ήρθατε στο κουμπί Παρακολούθηση αργότερα!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Σας ευχαριστούμε για την εγκατάσταση! Το κουμπί Παρακολούθηση αργότερα προσθέτει ένα ειδικό κουμπί απευθείας σε βίντεο και μικρογραφίες YouTube, ώστε να μπορείτε να αποθηκεύετε βίντεο με ένα κλικ.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Τρόπος Χρήσης:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "Ανοίξτε οποιαδήποτε σελίδα YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "Τοποθετήστε το δείκτη του ποντικιού πάνω από μια μικρογραφία ή ανοίξτε ένα πρόγραμμα αναπαραγωγής βίντεο",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "Κάντε κλικ στο κόκκινο κουμπί για άμεση αποθήκευση (με αντίστροφη μέτρηση αναίρεσης 10 δευτερολέπτων)",
+        "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "Προσαρμόστε το χρώμα και τη διαφάνεια του κουμπιού ανά πάσα στιγμή στις ρυθμίσεις της επέκτασης",
+        "description": "Fourth step description"
+    },
+    "welcomeStartButton": {
+        "message": "Ξεκινήστε να παρακολουθείτε το YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Η επέκταση ενημερώθηκε!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Το κουμπί Παρακολούθηση αργότερα ενημερώθηκε με επιτυχία στην έκδοση",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Τι νέο υπάρχει σε αυτήν την έκδοση:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Προσαρμοσμένο χρώμα κουμπιού: Εξατομικεύστε το κουμπί με οποιοδήποτε χρώμα RGBA και ρυθμιστικό διαφάνειας.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Ειδικό μενού ρυθμίσεων: Βελτιστοποιημένο μενού στο αναδυόμενο παράθυρο με διαδραστική ζωντανή προεπισκόπηση.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Άμεσος ζωντανός συγχρονισμός και απόδοση: Τα χρώματα εφαρμόζονται άμεσα σε όλες τις ανοιχτές καρτέλες του YouTube χωρίς ανανέωση.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Συνεχίστε στο YouTube",
+        "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "Ρυθμίσεις",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "Χρώμα κουμπιού",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "Διαφάνεια",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "Επαναφορά προεπιλογών",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "Πίσω",
+        "description": "Back button label"
     }
 }

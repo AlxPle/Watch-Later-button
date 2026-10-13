@@ -56,16 +56,20 @@
         "description": "Steps heading"
     },
     "welcomeStep1": {
-        "message": "1. कोई भी YouTube.com पेज खोलें",
+        "message": "कोई भी YouTube.com पेज खोलें",
         "description": "First step description"
     },
     "welcomeStep2": {
-        "message": "2. थंबनेल पर होवर करें या वीडियो प्लेयर खोलें",
+        "message": "थंबनेल पर होवर करें या वीडियो प्लेयर खोलें",
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "3. तुरंत सेव करने के लिए लाल बटन पर क्लिक करें (10 सेकंड की पूर्ववत उलटी गिनती के साथ)",
+        "message": "तुरंत सेव करने के लिए लाल बटन पर क्लिक करें (10 सेकंड की पूर्ववत उलटी गिनती के साथ)",
         "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "एक्सटेंशन सेटिंग्स में किसी भी समय बटन का रंग और पारदर्शिता कस्टमाइज़ करें",
+        "description": "Fourth step description"
     },
     "welcomeStartButton": {
         "message": "यूट्यूब देखना शुरू करें",
@@ -84,19 +88,75 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "ऑनबोर्डिंग और अपडेट पेज: एक्सटेंशन के अंदर स्थानीयकृत स्वागत और अपडेट पेज।",
+        "message": "कस्टम बटन रंग: किसी भी RGBA रंग और पारदर्शिता स्लाइडर के साथ बटन को कस्टमाइज़ करें।",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "यूट्यूब लेआउट स्थिरता: गतिशील यूट्यूब एसपीए अपडेट के लिए बेहतर लचीलापन।",
+        "message": "समर्पित सेटिंग्स मेनू: इंटरैक्टिव लाइव पूर्वावलोकन के साथ पॉपअप में सरल सेटिंग्स मेनू।",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "सहज बदलाव: परिष्कृत बटन होवर रोटेशन और शंकु-ढाल उलटी गिनती एनिमेशन।",
+        "message": "त्वरित लाइव सिंक और प्रदर्शन: बिना रीलोड किए सभी खुले YouTube टैब पर रंग तुरंत लागू होते हैं।",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
         "message": "यूट्यूब पर जारी रखें",
         "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "सेटिंग्स",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "बटन का रंग",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "पारदर्शिता",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "डिफ़ॉल्ट पर रीसेट करें",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "पीछे",
+        "description": "Back button label"
     }
 }

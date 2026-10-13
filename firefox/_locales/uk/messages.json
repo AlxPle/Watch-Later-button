@@ -42,5 +42,121 @@
     "wlButtonDeleteTitle": {
         "message": "Видалити з \"Переглянути пізніше\"",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"
+    },
+    "welcomeTitle": {
+        "message": "Ласкаво просимо до кнопки «Переглянути пізніше»!",
+        "description": "Welcome page title"
+    },
+    "welcomeMessage": {
+        "message": "Дякуємо за встановлення! Кнопка «Переглянути пізніше» додає спеціальну кнопку безпосередньо до відео та мініатюр YouTube, щоб ви могли зберігати відео одним натисканням.",
+        "description": "Welcome page main message"
+    },
+    "welcomeStepTitle": {
+        "message": "Як використовувати:",
+        "description": "Steps heading"
+    },
+    "welcomeStep1": {
+        "message": "Відкрийте будь-яку сторінку YouTube.com",
+        "description": "First step description"
+    },
+    "welcomeStep2": {
+        "message": "Наведіть курсор на мініатюру або відкрийте відеоплеєр",
+        "description": "Second step description"
+    },
+    "welcomeStep3": {
+        "message": "Натисніть червону кнопку, щоб миттєво зберегти (з 10-секундним відліком скасування)",
+        "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "Налаштуйте колір та прозорість кнопки у будь-який час у налаштуваннях розширення",
+        "description": "Fourth step description"
+    },
+    "welcomeStartButton": {
+        "message": "Почніть дивитися YouTube",
+        "description": "Call-to-action button to open YouTube"
+    },
+    "updateTitle": {
+        "message": "Розширення оновлено!",
+        "description": "Update page title"
+    },
+    "updateVersionMessage": {
+        "message": "Кнопку «Переглянути пізніше» успішно оновлено до версії",
+        "description": "Update version text prefix"
+    },
+    "updateFeaturesTitle": {
+        "message": "Що нового в цьому випуску:",
+        "description": "Features list header"
+    },
+    "updateFeature1": {
+        "message": "Власний колір кнопки: Обирайте будь-який колір RGBA та прозорість за допомогою повзунка.",
+        "description": "Feature 1 description"
+    },
+    "updateFeature2": {
+        "message": "Окреме меню налаштувань: Зручна панель налаштувань у спливаючому вікні з інтерактивним живим переглядом.",
+        "description": "Feature 2 description"
+    },
+    "updateFeature3": {
+        "message": "Миттєва синхронізація та швидкодія: Кольори застосовуються одразу на всіх відкритих вкладках YouTube без перезавантаження.",
+        "description": "Feature 3 description"
+    },
+    "updateCloseButton": {
+        "message": "Перейдіть на YouTube",
+        "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "Налаштування",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "Колір кнопки",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "Прозорість",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "Скинути за замовчуванням",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "Назад",
+        "description": "Back button label"
     }
 }

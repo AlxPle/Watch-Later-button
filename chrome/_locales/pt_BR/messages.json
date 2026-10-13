@@ -56,16 +56,20 @@
         "description": "Steps heading"
     },
     "welcomeStep1": {
-        "message": "1. Abra qualquer página do YouTube.com",
+        "message": "Abra qualquer página do YouTube.com",
         "description": "First step description"
     },
     "welcomeStep2": {
-        "message": "2. Passe o mouse sobre uma miniatura ou abra um player de vídeo",
+        "message": "Passe o mouse sobre uma miniatura ou abra um player de vídeo",
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "3. Clique no botão vermelho para salvar instantaneamente (com uma contagem regressiva de desfazer de 10 segundos)",
+        "message": "Clique no botão vermelho para salvar instantaneamente (com uma contagem regressiva de desfazer de 10 segundos)",
         "description": "Third step description"
+    },
+    "welcomeStep4": {
+        "message": "Personalize a cor e a opacidade do botão a qualquer momento nas configurações da extensão",
+        "description": "Fourth step description"
     },
     "welcomeStartButton": {
         "message": "Comece a assistir no YouTube",
@@ -84,19 +88,75 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Páginas de integração e atualização: páginas de boas-vindas e atualização localizadas dentro da extensão.",
+        "message": "Cor do botão personalizada: Personalize o botão com qualquer cor RGBA e controle deslizante de opacidade.",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Estabilidade de layout do YouTube: resiliência aprimorada para atualizações dinâmicas do SPA do YouTube.",
+        "message": "Menu de configurações dedicado: Menu simplificado no pop-up com pré-visualização interativa em tempo real.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Transições suaves: rotações de foco de botão refinadas e animações de contagem regressiva em gradiente cônico.",
+        "message": "Sincronização em tempo real e desempenho: As cores são aplicadas instantaneamente em todas as guias do YouTube sem recarregar.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
         "message": "Continuar para o YouTube",
         "description": "Close update button text"
+    },
+    "openWatchLater": {
+        "message": "Watch Later Playlist",
+        "description": "Hero button to open Watch Later playlist"
+    },
+    "openPlaylistDirect": {
+        "message": "Open your saved videos on YouTube",
+        "description": "Subtitle for Watch Later hero button"
+    },
+    "statusActive": {
+        "message": "Active on YouTube",
+        "description": "Status text indicating extension is running"
+    },
+    "badgeNew": {
+        "message": "New",
+        "description": "Badge for new features"
+    },
+    "badgeImproved": {
+        "message": "Improved",
+        "description": "Badge for improvements"
+    },
+    "badgeFixed": {
+        "message": "Fixed",
+        "description": "Badge for fixes"
+    },
+    "previewBadge": {
+        "message": "Interactive Preview",
+        "description": "Badge for interactive demo on onboarding page"
+    },
+    "mockVideoTitle": {
+        "message": "Instant 1-Click Save to Watch Later Demo",
+        "description": "Title in mock video thumbnail"
+    },
+    "mockVideoChannel": {
+        "message": "YouTube • 14:20",
+        "description": "Channel info in mock video thumbnail"
+    },
+    "settings": {
+        "message": "Configurações",
+        "description": "Settings title and tooltip"
+    },
+    "settingsColor": {
+        "message": "Cor do botão",
+        "description": "Label for button color picker"
+    },
+    "settingsOpacity": {
+        "message": "Opacidade",
+        "description": "Label for opacity slider"
+    },
+    "settingsReset": {
+        "message": "Redefinir para o padrão",
+        "description": "Button to reset color settings"
+    },
+    "settingsBack": {
+        "message": "Voltar",
+        "description": "Back button label"
     }
 }

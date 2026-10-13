@@ -10,39 +10,87 @@
 
 <body>
     <div class="container">
-        <div class="header">
-            <img class="logo" src="../assets/app-icons/red/iconmonstr-text-plus-lined-128.png"
-                alt="Watch Later Button Logo">
+        <header class="header">
+            <div class="logo-wrapper">
+                <img class="logo" src="../assets/app-icons/red/iconmonstr-text-plus-lined-128.png"
+                    alt="Watch Later Button Logo" width="64" height="64">
+            </div>
             <h1 data-i18n="welcomeTitle">Welcome to Watch Later Button!</h1>
             <p class="subtitle" data-i18n="welcomeMessage">Thank you for installing! Watch Later Button adds a dedicated
                 button directly on YouTube videos and thumbnails so you can save videos in one click.</p>
+        </header>
+
+        <!-- Interactive YouTube Preview Demo -->
+        <div class="demo-section">
+            <div class="demo-badge">
+                <span class="demo-badge-dot"></span>
+                <span data-i18n="previewBadge">Interactive Preview</span>
+            </div>
+            <div class="mock-youtube-card">
+                <div class="mock-thumbnail">
+                    <div class="mock-thumbnail-bg">
+                        <svg class="mock-play-watermark" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                    <!-- The Demo Watch Later Button -->
+                    <button type="button" class="demo-wl-btn" id="demo-btn" aria-label="Watch Later Demo" title="Click to test!">
+                        <span class="demo-btn-icon"></span>
+                    </button>
+                    <span class="mock-duration">14:20</span>
+                </div>
+                <div class="mock-meta">
+                    <div class="mock-avatar"></div>
+                    <div class="mock-details">
+                        <div class="mock-title" data-i18n="mockVideoTitle">Instant 1-Click Save to Watch Later Demo</div>
+                        <div class="mock-channel" data-i18n="mockVideoChannel">YouTube • 14:20</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- How To Use Steps -->
         <div class="steps">
-            <div class="step-title" data-i18n="welcomeStepTitle">How to Use:</div>
+            <h2 class="step-title" data-i18n="welcomeStepTitle">How to Use:</h2>
             <div class="step-item">
-                <div class="step-dot"></div>
-                <div data-i18n="welcomeStep1">1. Open any YouTube.com page</div>
+                <div class="step-badge">1</div>
+                <div class="step-text" data-i18n="welcomeStep1">Open any YouTube.com page</div>
             </div>
             <div class="step-item">
-                <div class="step-dot"></div>
-                <div data-i18n="welcomeStep2">2. Hover over a thumbnail or open a video player</div>
+                <div class="step-badge">2</div>
+                <div class="step-text" data-i18n="welcomeStep2">Hover over a thumbnail or open a video player</div>
             </div>
             <div class="step-item">
-                <div class="step-dot"></div>
-                <div data-i18n="welcomeStep3">3. Click the red button to instantly save (with a 10-second undo
-                    countdown)</div>
+                <div class="step-badge">3</div>
+                <div class="step-text" data-i18n="welcomeStep3">Click the red button to instantly save (with a 10-second undo countdown)</div>
+            </div>
+            <div class="step-item">
+                <div class="step-badge">4</div>
+                <div class="step-text" data-i18n="welcomeStep4">Customize button color and opacity anytime in the extension Settings</div>
             </div>
         </div>
 
-        <a href="https://www.youtube.com" class="btn" target="_blank" data-i18n="welcomeStartButton">Start watching
-            YouTube</a>
-
-        <div class="footer">
-            <a href="https://watchlater.alxple.com" target="_blank" data-i18n="website">Website</a> &bull; 
-            <a href="https://www.buymeacoffee.com/pletnovalex" target="_blank" data-i18n="donate">Donate</a> &bull; 
-            v<span id="version-num"></span>
+        <!-- Action CTAs -->
+        <div class="cta-group">
+            <a href="https://www.youtube.com" class="btn btn-primary" target="_blank">
+                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/>
+                </svg>
+                <span data-i18n="welcomeStartButton">Start watching YouTube</span>
+            </a>
+            <a href="https://www.youtube.com/playlist?list=WL" class="btn btn-secondary" target="_blank" data-i18n="openWatchLater">
+                Watch Later Playlist
+            </a>
         </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="https://watchlater.alxple.com" target="_blank" data-i18n="website">Website</a>
+            <span class="footer-dot">&bull;</span>
+            <a href="https://www.buymeacoffee.com/pletnovalex" target="_blank" data-i18n="donate">Donate</a>
+            <span class="footer-dot">&bull;</span>
+            <span>v<span class="version-num"></span></span>
+        </footer>
     </div>
     <script src="pages.js"></script>
 </body>
