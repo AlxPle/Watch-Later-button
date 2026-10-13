@@ -29,6 +29,9 @@
     "action": {
         "default_popup": "popup/popup.html"
     },
+    "permissions": [
+        "storage"
+    ],
     "content_scripts": [
         {
             "css": [
