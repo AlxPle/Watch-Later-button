@@ -1,7 +1,5 @@
-chrome.runtime.onInstalled.addListener((details) => {
-  if (details.reason === "install") {
-    chrome.tabs.create({ url: chrome.runtime.getURL("pages/welcome.html") });
-  } else if (details.reason === "update") {
-    chrome.tabs.create({ url: chrome.runtime.getURL("pages/update.html") });
+chrome.runtime.onInstalled.addListener(({ reason }) => {
+  if (reason === "install" || reason === "update") {
+    chrome.tabs.create({ url: chrome.runtime.getURL(`pages/${reason === "install" ? "welcome" : "update"}.html`) });
   }
 });
