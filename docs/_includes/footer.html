@@ -1,18 +1,18 @@
-<footer class="w-full py-12 border-t border-outline-variant/20 bg-surface-container-low">
-    <div class="flex flex-col md:flex-row justify-between items-center px-3 sm:px-6 max-w-7xl mx-auto gap-8">
-        <div class="flex flex-col items-center md:items-start gap-2">
-            <div class="text-xl font-bold text-on-surface tracking-tighter font-headline mb-2">Watch Later Button</div>
-            <p class="font-inter text-xs tracking-wide uppercase text-on-surface-variant">© {{ site.time | date: "%Y" }}
-                Watch
-                Later Button</p>
+<footer class="w-full py-10 border-t border-outline-variant/15 bg-surface-container-low text-sm">
+    <div class="flex flex-col md:flex-row justify-between items-center px-4 sm:px-6 max-w-7xl mx-auto gap-6 text-center md:text-left">
+        <div class="flex flex-col gap-1">
+            <div class="font-bold text-on-surface">Watch Later Button</div>
+            <p class="text-xs text-on-surface-variant">© {{ site.time | date: "%Y" }} Watch Later Button • Free &amp; Open Source</p>
         </div>
-        <div class="flex gap-8">
-            <a class="font-inter text-xs tracking-wide uppercase text-on-surface-variant hover:text-[#bc0100] transition-colors hover:opacity-80"
+        <div class="flex items-center gap-6 text-xs font-medium text-on-surface-variant">
+            <a class="hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5"
                 href="{{ '/privacy/' | relative_url }}">Privacy Policy</a>
-            <a class="font-inter text-xs tracking-wide uppercase text-on-surface-variant hover:text-[#bc0100] transition-colors hover:opacity-80"
+            <a class="hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5"
                 href="{{ '/impressum/' | relative_url }}">Impressum</a>
-            <a class="font-inter text-xs tracking-wide uppercase text-on-surface-variant hover:text-[#bc0100] transition-colors hover:opacity-80"
+            <a class="hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5"
                 href="{{ '/updates/' | relative_url }}">Updates</a>
+            <a class="hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5"
+                href="https://github.com/AlxPle/Watch-Later-button" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
     </div>
 </footer>

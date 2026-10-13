@@ -4,365 +4,480 @@ layout: default
 
 <div class="home">
     {%- include top-nav.html -%}
-    <div class="pt-24">
+
+    <div class="pt-16 md:pt-20">
         <!-- Hero Section -->
-        <section class="px-3 sm:px-6 py-20 md:py-32 max-w-7xl mx-auto flex flex-col items-center text-center">
-            <div
-                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/15 mb-8">
-                <span class="material-symbols-outlined text-primary text-lg" data-icon="verified"
-                    aria-hidden="true">verified</span>
-                <span class="label-md text-on-surface-variant uppercase tracking-widest">Available on Chrome, Firefox &
-                    Edge</span>
+        <section class="px-4 sm:px-6 pt-8 pb-8 md:pt-14 md:pb-10 max-w-6xl mx-auto flex flex-col items-center text-center">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 mb-5 shadow-sm text-xs font-medium text-on-surface-variant">
+                <span class="material-symbols-outlined text-primary text-base" data-icon="verified" aria-hidden="true">verified</span>
+                <span>Available for Chrome, Firefox &amp; Edge</span>
             </div>
-            <h1 class="font-headline headline-lg md:text-6xl max-w-5xl tracking-tight mb-8">
-                Save YouTube videos to
-                <span class="text-primary">Watch Later</span> in one click
+
+            <h1 class="headline-lg text-4xl sm:text-5xl md:text-6xl max-w-4xl tracking-tight mb-5 text-on-surface font-extrabold">
+                Save YouTube videos to <span class="text-primary">Watch Later</span> in one click
             </h1>
-            <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mb-12 font-body leading-relaxed">
-                Save videos as you watch, without opening extra menus or breaking your flow
+
+            <p class="text-on-surface-variant text-base sm:text-lg md:text-xl max-w-2xl mb-7 font-normal leading-relaxed">
+                Save videos directly from the player toolbar as you watch. Zero menus, zero popup interruptions, 100% private.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 items-center mb-6">
-                <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
-                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
-                    <span class="brand-icon brand-icon--chrome w-5 h-5" aria-hidden="true"></span>
-                    Chrome
-                </a>
-                <a href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/"
-                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
-                    <span class="brand-icon brand-icon--firefox w-5 h-5" aria-hidden="true"></span>
-                    Firefox
-                </a>
-                <a href="https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa"
-                    class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
-                    <span class="brand-icon brand-icon--edge w-5 h-5" aria-hidden="true"></span>
-                    Edge
-                </a>
-                <a href="#how-it-works"
-                    class="text-on-surface hover:bg-surface-container-high px-10 py-4 rounded-full font-bold text-lg transition-all">
-                    See how it works
-                </a>
+
+            <!-- Smart Primary CTA & Secondary Store Badges -->
+            <div class="flex flex-col items-center gap-4 mb-5 w-full max-w-xl">
+                <div class="flex flex-col sm:flex-row gap-3.5 items-center justify-center w-full">
+                    <a id="hero-primary-cta"
+                        href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+                        class="btn-primary-yt px-7 py-3.5 rounded-full font-semibold text-base flex items-center justify-center gap-2.5 shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus:outline-none w-full sm:w-auto">
+                        <span id="hero-primary-icon" class="brand-icon brand-icon--chrome w-4 h-4" aria-hidden="true"></span>
+                        <span id="hero-primary-text">Add to Chrome — It's Free</span>
+                    </a>
+                    <a href="#how-it-works"
+                        class="text-on-surface bg-surface-container hover:bg-surface-container-high px-7 py-3.5 rounded-full font-semibold text-base transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus:outline-none w-full sm:w-auto">
+                        See how it works
+                    </a>
+                </div>
+
+                <!-- Secondary Store Links for Other Browsers -->
+                <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1 flex-wrap justify-center">
+                    <span class="text-on-surface-variant/80">Also available for:</span>
+                    <a id="store-link-chrome" href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors focus-visible:ring-2 focus-visible:ring-primary focus:outline-none border border-outline-variant/15">
+                        <span class="brand-icon brand-icon--chrome w-3 h-3" aria-hidden="true"></span>
+                        <span>Chrome</span>
+                    </a>
+                    <a id="store-link-firefox" href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/"
+                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors focus-visible:ring-2 focus-visible:ring-primary focus:outline-none border border-outline-variant/15">
+                        <span class="brand-icon brand-icon--firefox w-3 h-3" aria-hidden="true"></span>
+                        <span>Firefox</span>
+                    </a>
+                    <a id="store-link-edge" href="https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa"
+                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors focus-visible:ring-2 focus-visible:ring-primary focus:outline-none border border-outline-variant/15">
+                        <span class="brand-icon brand-icon--edge w-3 h-3" aria-hidden="true"></span>
+                        <span>Edge</span>
+                    </a>
+                </div>
             </div>
-            <div class="flex items-center gap-2 text-on-surface-variant label-md">
+
+            <div class="flex items-center gap-2 text-xs text-on-surface-variant/80 font-medium">
                 <span class="material-symbols-outlined text-sm" data-icon="lock" aria-hidden="true">lock</span>
-                No personal data collection
+                <span>Open source • Zero personal data collection • 100% Free</span>
             </div>
         </section>
-        <!-- How It Works (Tonal Depth) -->
-        <section id="how-it-works" class="bg-surface-container-low py-16 md:py-24 px-3 sm:px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="mb-16">
-                    <span class="label-md text-primary uppercase tracking-widest mb-4 block">Three Steps</span>
-                    <h2 class="font-headline text-4xl font-extrabold tracking-tight">How it works</h2>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Step 1 -->
-                    <div
-                        class="bg-surface-container-lowest p-8 rounded-xl ghost-border flex flex-col gap-6 hover:translate-y-[-4px] transition-transform duration-300">
-                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-xl" data-icon="download"
-                                aria-hidden="true">download</span>
-                        </div>
-                        <div>
-                            <h3 class="title-lg mb-3">Install</h3>
-                            <p class="text-on-surface-variant leading-relaxed">Add it from your browser's store in
-                                seconds.
-                                No setup required</p>
-                        </div>
-                    </div>
-                    <!-- Step 2 -->
-                    <div
-                        class="bg-surface-container-lowest p-8 rounded-xl ghost-border flex flex-col gap-6 hover:translate-y-[-4px] transition-transform duration-300">
-                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-xl" data-icon="youtube_activity"
-                                aria-hidden="true">youtube_activity</span>
-                        </div>
-                        <div>
-                            <h3 class="title-lg mb-3">Open YouTube</h3>
-                            <p class="text-on-surface-variant leading-relaxed">Open any video as usual. The button is
-                                there
-                                when you need it</p>
-                        </div>
-                    </div>
-                    <!-- Step 3 -->
-                    <div
-                        class="bg-surface-container-lowest p-8 rounded-xl ghost-border flex flex-col gap-6 hover:translate-y-[-4px] transition-transform duration-300">
-                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-xl" data-icon="ads_click"
-                                aria-hidden="true">ads_click</span>
-                        </div>
-                        <div>
-                            <h3 class="title-lg mb-3">Click Button</h3>
-                            <p class="text-on-surface-variant leading-relaxed">Click once to save the video directly to
-                                your
-                                Watch Later list</p>
-                        </div>
-                    </div>
-                </div>
+
+        <!-- Before & After Speed Comparison -->
+        <section id="how-it-works" class="pt-6 pb-12 md:pt-8 md:pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
+            <div class="text-center mb-8">
+                <span class="text-xs font-semibold text-primary uppercase tracking-wider mb-2 block">Speed &amp; Focus</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-on-surface">
+                    Cut 3 steps down to 1 click
+                </h2>
+                <p class="text-on-surface-variant text-base mt-2.5 max-w-xl mx-auto">
+                    Default YouTube forces you through popup menus. The extension puts one direct button where you need it.
+                </p>
             </div>
-        </section>
-        <!-- Feature Proof Section -->
-        <section id="features" class="py-16 md:py-24 px-3 sm:px-6 max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-12">
+
+            <div class="grid md:grid-cols-2 gap-6 items-stretch">
+                <!-- Standard YouTube -->
+                <div class="bg-surface-container-low p-6 sm:p-8 rounded-2xl border border-outline-variant/20 flex flex-col justify-between">
                     <div>
-                        <h2 class="font-headline text-4xl font-extrabold tracking-tight mb-6">Designed for Focus</h2>
-                        <p class="text-on-surface-variant text-lg">We stripped away the noise. No separate accounts, no
-                            syncing
-                            delays, just pure utility</p>
+                        <div class="flex items-center justify-between mb-6 pb-4 border-b border-outline-variant/15">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center font-bold text-xs">✕</span>
+                                <h3 class="font-bold text-base text-on-surface">Standard YouTube</h3>
+                            </div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-surface-container text-on-surface-variant">~5 seconds</span>
+                        </div>
+                        <ol class="space-y-4 text-sm text-on-surface-variant">
+                            <li class="flex items-start gap-3">
+                                <span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-xs font-semibold text-on-surface shrink-0 mt-0.5">1</span>
+                                <span>Look for and open the three-dots menu below the player title</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-xs font-semibold text-on-surface shrink-0 mt-0.5">2</span>
+                                <span>Wait for "Save to playlist" popup modal to open</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-xs font-semibold text-on-surface shrink-0 mt-0.5">3</span>
+                                <span>Find and check "Watch Later", then manually close the modal</span>
+                            </li>
+                        </ol>
                     </div>
-                    <div class="grid sm:grid-cols-2 gap-8">
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary text-xl" data-icon="bolt"
-                                    aria-hidden="true">bolt</span>
-                                <h4 class="font-bold">One-click save</h4>
-                            </div>
-                            <p class="text-on-surface-variant text-sm">Save content in under 0.5 seconds without opening
-                                new
-                                windows
-                            </p>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary text-xl"
-                                    data-icon="integration_instructions"
-                                    aria-hidden="true">integration_instructions</span>
-                                <h4 class="font-bold">Seamless integration</h4>
-                            </div>
-                            <p class="text-on-surface-variant text-sm">Mimics the native YouTube design for an invisible
-                                experience
-                            </p>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary text-xl" data-icon="weight"
-                                    aria-hidden="true">weight</span>
-                                <h4 class="font-bold">Lightweight</h4>
-                            </div>
-                            <p class="text-on-surface-variant text-sm">Zero impact on your browser's performance or
-                                memory
-                            </p>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary text-xl" data-icon="translate"
-                                    aria-hidden="true">translate</span>
-                                <h4 class="font-bold">26 Languages</h4>
-                            </div>
-                            <p class="text-on-surface-variant text-sm">Localization support for a global viewing
-                                experience
-                            </p>
-                        </div>
+                    <div class="mt-8 pt-4 border-t border-outline-variant/15 text-xs text-on-surface-variant font-medium flex items-center gap-2">
+                        <span>⚠️ Breaks watching focus &amp; requires 3 separate clicks</span>
                     </div>
                 </div>
-                <div class="relative bg-surface-container p-4 sm:p-6 md:p-8 rounded-2xl">
-                    <div
-                        class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg shadow-inner overflow-hidden flex items-center justify-center">
-                        <img alt="Minimalist Interface" class="w-full h-full object-bottom-right"
-                            src="assets/banner/poster.png" fetchpriority="high" />
+
+                <!-- With Watch Later Button -->
+                <div class="bg-surface-container-lowest p-6 sm:p-8 rounded-2xl border-2 border-primary/30 shadow-md shadow-primary/5 flex flex-col justify-between relative overflow-hidden">
+                    <div>
+                        <div class="flex items-center justify-between mb-6 pb-4 border-b border-outline-variant/15">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">✓</span>
+                                <h3 class="font-bold text-base text-on-surface">With Watch Later Button</h3>
+                            </div>
+                            <span class="text-xs font-bold px-2.5 py-1 rounded bg-primary/10 text-primary">0.2 seconds</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-on-surface font-medium">
+                            <li class="flex items-start gap-3">
+                                <span class="w-5 h-5 rounded-full bg-primary/15 text-primary flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
+                                <span>Click the dedicated Watch Later button directly inside the player bar</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-base shrink-0 mt-0.5" data-icon="verified">verified</span>
+                                <span>Video is instantly saved in the background — zero popups, zero page reloads</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-base shrink-0 mt-0.5" data-icon="verified">verified</span>
+                                <span>Instant visual checkmark confirmation right in the toolbar</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-outline-variant/15 text-xs text-primary font-semibold flex items-center gap-2">
+                        <span>⚡ 1 click • Seamless native integration</span>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Trust & Privacy Section -->
-        <section class="bg-surface py-20 px-3 sm:px-6 border-y border-outline-variant/10">
+
+        <!-- Product Showcase Screenshot -->
+        <section class="pb-12 md:pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
+            <div class="rounded-2xl overflow-hidden border border-outline-variant/20 shadow-xl bg-surface-container-low">
+                <img src="assets/banner/poster.png" alt="Watch Later Button integration on YouTube"
+                    class="w-full h-auto object-cover block" fetchpriority="high" />
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section id="features" class="py-16 md:py-24 px-4 sm:px-6 bg-surface-container-low border-y border-outline-variant/15">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-14">
+                    <span class="text-xs font-semibold text-primary uppercase tracking-wider mb-2 block">Built for Utility</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-on-surface">
+                        Designed for seamless viewing
+                    </h2>
+                    <p class="text-on-surface-variant text-base mt-3 max-w-xl mx-auto">
+                        No background telemetry, no bloat, no extra accounts. Just pure utility.
+                    </p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 flex flex-col gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-lg" data-icon="bolt">bolt</span>
+                        </div>
+                        <h3 class="font-bold text-base text-on-surface">One-Click Save</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Save content in under 0.2s without breaking playback or opening modals.</p>
+                    </div>
+
+                    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 flex flex-col gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-lg" data-icon="integration_instructions">integration_instructions</span>
+                        </div>
+                        <h3 class="font-bold text-base text-on-surface">Native Player Feel</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Matches YouTube's design tokens and dark/light themes seamlessly.</p>
+                    </div>
+
+                    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 flex flex-col gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-lg" data-icon="weight">weight</span>
+                        </div>
+                        <h3 class="font-bold text-base text-on-surface">Zero Performance Hit</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Less than 50KB total size. No background polling or memory leaks.</p>
+                    </div>
+
+                    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 flex flex-col gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-lg" data-icon="translate">translate</span>
+                        </div>
+                        <h3 class="font-bold text-base text-on-surface">26 Languages</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Full internationalization support tailored to your browser's locale.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof & Trust Metrics -->
+        <section class="py-16 md:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
             {% assign rating_value_raw = site.data.store_rating.ratingValue | default: '4.3' %}
             {% assign rating_value = rating_value_raw | plus: 0 %}
-            {% assign rating_count = site.data.store_rating.ratingCount | default: '35' %}
+            {% assign rating_count = site.data.store_rating.ratingCount | default: '36' %}
             {% assign full_stars = rating_value | floor %}
             {% assign next_star = full_stars | plus: 1 %}
             {% assign remainder = rating_value | minus: full_stars %}
-            <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 items-center text-center md:text-left">
-                <div>
-                    <div class="flex items-center justify-center md:justify-start gap-1 mb-4">
+
+            <div class="grid sm:grid-cols-3 gap-8 text-center sm:text-left items-center">
+                <div class="flex flex-col items-center sm:items-start gap-2">
+                    <div class="flex items-center gap-1 text-primary">
                         {% for i in (1..5) %}
-                        {% if i <= full_stars %} <span class="material-symbols-outlined text-primary text-xl"
-                            data-icon="star" aria-hidden="true">
-                            star</span>
-                            {% elsif i == next_star and remainder >= 0.5 %}
-                            <span class="material-symbols-outlined text-primary text-xl" data-icon="star_half"
-                                aria-hidden="true">star_half</span>
-                            {% else %}
-                            <span class="material-symbols-outlined text-primary text-xl" data-icon="star_outline"
-                                aria-hidden="true">star_outline</span>
-                            {% endif %}
-                            {% endfor %}
+                        {% if i <= full_stars %}
+                            <span class="material-symbols-outlined text-lg" data-icon="star">star</span>
+                        {% elsif i == next_star and remainder >= 0.5 %}
+                            <span class="material-symbols-outlined text-lg" data-icon="star_half">star_half</span>
+                        {% else %}
+                            <span class="material-symbols-outlined text-lg" data-icon="star_outline">star_outline</span>
+                        {% endif %}
+                        {% endfor %}
                     </div>
-                    <h3 class="title-lg mb-2">{{ rating_value_raw }}/5 Rating</h3>
-                    <p class="text-on-surface-variant">Based on {{ rating_count }} user reviews</p>
+                    <div class="text-2xl font-bold text-on-surface">{{ rating_value_raw }}/5 Rating</div>
+                    <div class="text-xs text-on-surface-variant">Based on {{ rating_count }} verified store reviews</div>
                 </div>
-                <div class="flex flex-col items-center md:items-start gap-4">
-                    <div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center">
-                        <span class="material-symbols-outlined text-2xl" data-icon="accessibility_new"
-                            aria-hidden="true">accessibility_new</span>
+
+                <div class="flex flex-col items-center sm:items-start gap-2">
+                    <div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-base text-primary" data-icon="accessibility_new">accessibility_new</span>
                     </div>
-                    <div>
-                        <h3 class="title-lg mb-2">4,500+ Users</h3>
-                        <p class="text-on-surface-variant">Trusted by thousands of people worldwide</p>
-                    </div>
+                    <div class="text-2xl font-bold text-on-surface">4,500+ Active Users</div>
+                    <div class="text-xs text-on-surface-variant">Used daily across Chrome, Firefox and Edge</div>
                 </div>
-                <div class="flex flex-col items-center md:items-start gap-4">
-                    <div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center">
-                        <span class="material-symbols-outlined text-2xl" data-icon="shield_lock"
-                            aria-hidden="true">shield_lock</span>
+
+                <div class="flex flex-col items-center sm:items-start gap-2">
+                    <div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-base text-primary" data-icon="shield_lock">shield_lock</span>
                     </div>
-                    <div>
-                        <h3 class="title-lg mb-2">Privacy First</h3>
-                        <p class="text-on-surface-variant">No personal data collection, storage, or transmission</p>
-                    </div>
+                    <div class="text-2xl font-bold text-on-surface">100% Private</div>
+                    <div class="text-xs text-on-surface-variant">Runs locally in your browser with zero data tracking</div>
                 </div>
             </div>
         </section>
-        <!-- FAQ Section -->
-        <section id="faq" class="py-16 md:py-24 px-3 sm:px-6 max-w-3xl mx-auto">
-            <h2 class="font-headline text-3xl font-extrabold tracking-tight mb-12 text-center">Frequently Asked
-                Questions
-            </h2>
-            <div class="space-y-6">
-                <div class="bg-surface-container-low p-6 rounded-xl">
-                    <h4 class="font-bold mb-2">Is it really free?</h4>
-                    <p class="text-on-surface-variant text-sm">Yes, the core functionality of saving videos to your
-                        Watch
-                        Later
-                        list is and always will be free.</p>
-                </div>
-                <div class="bg-surface-container-low p-6 rounded-xl">
-                    <h4 class="font-bold mb-2">Does it work on mobile?</h4>
-                    <p class="text-on-surface-variant text-sm">This is a browser extension designed for desktop
-                        browsers.
-                        For
-                        mobile, we recommend using the native YouTube app.</p>
-                </div>
-                <div class="bg-surface-container-low p-6 rounded-xl">
-                    <h4 class="font-bold mb-2">Is my data safe?</h4>
-                    <p class="text-on-surface-variant text-sm">Absolutely. We do not have servers that store your data.
-                        Everything
-                        happens locally in your browser.</p>
-                </div>
+
+        <!-- FAQ Section (Accessible Accordion) -->
+        <section id="faq" class="py-16 md:py-24 px-4 sm:px-6 max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs font-semibold text-primary uppercase tracking-wider mb-2 block">Questions</span>
+                <h2 class="text-3xl font-extrabold tracking-tight text-on-surface">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <details class="faq-item" open>
+                    <summary>
+                        <span>Is it really free and open source?</span>
+                        <span class="material-symbols-outlined faq-chevron text-base text-on-surface-variant" data-icon="expand_more">expand_more</span>
+                    </summary>
+                    <div class="faq-content">
+                        Yes, Watch Later Button is 100% free and open-source under the GPL-3.0 license. There are no paid tiers, no ads, and no hidden features.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>
+                        <span>Does the extension collect or transmit my data?</span>
+                        <span class="material-symbols-outlined faq-chevron text-base text-on-surface-variant" data-icon="expand_more">expand_more</span>
+                    </summary>
+                    <div class="faq-content">
+                        No. The extension does not communicate with any external servers. All operations happen directly between your browser and YouTube's existing client interface.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>
+                        <span>Which browsers and platforms are supported?</span>
+                        <span class="material-symbols-outlined faq-chevron text-base text-on-surface-variant" data-icon="expand_more">expand_more</span>
+                    </summary>
+                    <div class="faq-content">
+                        Watch Later Button supports Google Chrome, Mozilla Firefox, Microsoft Edge, Brave, Opera, and Vivaldi on Windows, macOS, and Linux.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>
+                        <span>Does it work on YouTube Shorts and video cards?</span>
+                        <span class="material-symbols-outlined faq-chevron text-base text-on-surface-variant" data-icon="expand_more">expand_more</span>
+                    </summary>
+                    <div class="faq-content">
+                        Yes! As of v1.5.1+, the button is injected into standard video watch pages, YouTube Shorts player controls, and SPA navigations seamlessly.
+                    </div>
+                </details>
             </div>
         </section>
-        <!-- Support Section -->
-        <section id="support" class="bg-surface-container-low py-16 md:py-24 px-3 sm:px-6">
-            <div class="max-w-7xl mx-auto">
+
+        <!-- Support & Feedback Actions -->
+        <section id="support" class="py-16 md:py-24 px-4 sm:px-6 bg-surface-container-low border-t border-outline-variant/15">
+            <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
-                    <span class="label-md text-primary uppercase tracking-widest mb-4 block">Support</span>
-                    <h2 class="font-headline text-3xl md:text-4xl font-extrabold tracking-tight">Need help or want to
-                        share feedback?</h2>
-                    <p class="text-on-surface-variant mt-4 max-w-2xl mx-auto">Use one of the quick actions below. We
-                        read every report and review</p>
+                    <span class="text-xs font-semibold text-primary uppercase tracking-wider mb-2 block">Community &amp; Support</span>
+                    <h2 class="text-3xl font-extrabold tracking-tight text-on-surface">Need help or want to share feedback?</h2>
+                    <p class="text-on-surface-variant text-sm mt-3 max-w-xl mx-auto">We actively maintain the project and read every bug report and review.</p>
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-6">
-                    <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
-                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-xl" data-icon="bug_report"
-                                aria-hidden="true">bug_report</span>
-                        </div>
-                        <div>
-                            <h3 class="title-lg mb-2">Report an Issue</h3>
-                            <p class="text-on-surface-variant text-sm">Found a bug or something not working as expected?
-                            </p>
+                    <article class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 flex flex-col justify-between gap-6">
+                        <div class="flex flex-col gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-lg" data-icon="bug_report">bug_report</span>
+                            </div>
+                            <h3 class="font-bold text-base text-on-surface">Report an Issue</h3>
+                            <p class="text-xs text-on-surface-variant leading-relaxed">Found a bug or compatibility issue after a YouTube layout update?</p>
                         </div>
                         <a href="https://github.com/AlxPle/Watch-Later-button/issues"
-                            class="mt-auto inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-on-surface bg-surface-container-high hover:bg-surface-container transition-colors">
-                            Open Issues
+                            class="inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs font-semibold text-on-surface bg-surface-container hover:bg-surface-container-high focus-visible:ring-2 focus-visible:ring-primary focus:outline-none transition-colors">
+                            Open GitHub Issues
                         </a>
                     </article>
 
-                    <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
-                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-xl" data-icon="forum"
-                                aria-hidden="true">forum</span>
+                    <article class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 flex flex-col justify-between gap-6">
+                        <div class="flex flex-col gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-lg" data-icon="forum">forum</span>
+                            </div>
+                            <h3 class="font-bold text-base text-on-surface">Send Feedback</h3>
+                            <p class="text-xs text-on-surface-variant leading-relaxed">Leave a quick review on your browser extension store.</p>
                         </div>
-                        <div>
-                            <h3 class="title-lg mb-2">Send Feedback</h3>
-                            <p class="text-on-surface-variant text-sm">Share your experience and help improve the
-                                extension</p>
-                        </div>
-                        <div class="mt-auto relative group">
-                            <button aria-haspopup="true" aria-expanded="false"
-                                class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-on-surface bg-surface-container-high hover:bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors">
+                        <div class="relative" id="review-dropdown-container">
+                            <button type="button" id="review-dropdown-btn" aria-haspopup="true" aria-expanded="false"
+                                class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs font-semibold text-on-surface bg-surface-container hover:bg-surface-container-high focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors">
                                 Write a Review
-                                <span
-                                    class="material-symbols-outlined text-lg ml-2 group-hover:rotate-180 group-focus-within:rotate-180 transition-transform"
-                                    data-icon="expand_more" aria-hidden="true">expand_more</span>
+                                <span id="review-dropdown-icon" class="material-symbols-outlined text-base ml-1.5 transition-transform duration-200" data-icon="expand_more">expand_more</span>
                             </button>
-                            <div
-                                class="absolute bottom-full left-0 right-0 mb-2 bg-surface border border-outline-variant/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50 overflow-hidden">
+                            <div id="review-dropdown-menu"
+                                class="absolute bottom-full left-0 right-0 mb-2 bg-surface-container-lowest border border-outline-variant/20 rounded-xl shadow-xl hidden transition-all duration-200 z-50 overflow-hidden text-xs">
                                 <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface-container-high focus:outline-none focus:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
-                                    <span class="brand-icon brand-icon--chrome w-4 h-4" aria-hidden="true"></span>
-                                    Chrome Web Store
+                                    class="flex items-center gap-2.5 px-4 py-3 font-medium text-on-surface hover:bg-surface-container focus:outline-none border-b border-outline-variant/10">
+                                    <span class="brand-icon brand-icon--chrome w-3.5 h-3.5"></span>
+                                    <span>Chrome Web Store</span>
                                 </a>
                                 <a href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/#reviews"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface-container-high focus:outline-none focus:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
-                                    <span class="brand-icon brand-icon--firefox w-4 h-4" aria-hidden="true"></span>
-                                    Firefox Add-ons
+                                    class="flex items-center gap-2.5 px-4 py-3 font-medium text-on-surface hover:bg-surface-container focus:outline-none border-b border-outline-variant/10">
+                                    <span class="brand-icon brand-icon--firefox w-3.5 h-3.5"></span>
+                                    <span>Firefox Add-ons</span>
                                 </a>
                                 <a href="https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface-container-high focus:outline-none focus:bg-surface-container-high transition-colors border-b border-outline-variant/10 last:border-b-0">
-                                    <span class="brand-icon brand-icon--edge w-4 h-4" aria-hidden="true"></span>
-                                    Edge Add-ons
+                                    class="flex items-center gap-2.5 px-4 py-3 font-medium text-on-surface hover:bg-surface-container focus:outline-none">
+                                    <span class="brand-icon brand-icon--edge w-3.5 h-3.5"></span>
+                                    <span>Edge Add-ons</span>
                                 </a>
                             </div>
                         </div>
                     </article>
 
-                    <article class="bg-surface-container-lowest p-6 rounded-xl ghost-border flex flex-col gap-4">
-                        <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-xl" data-icon="favorite"
-                                aria-hidden="true">favorite</span>
+                    <article class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 flex flex-col justify-between gap-6">
+                        <div class="flex flex-col gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-lg" data-icon="favorite">favorite</span>
+                            </div>
+                            <h3 class="font-bold text-base text-on-surface">Support Development</h3>
+                            <p class="text-xs text-on-surface-variant leading-relaxed">Help support ongoing maintenance and YouTube compatibility updates.</p>
                         </div>
-                        <div>
-                            <h3 class="title-lg mb-2">Support the Developer</h3>
-                            <p class="text-on-surface-variant text-sm">If this tool saves you time, you can support
-                                future updates</p>
-                        </div>
-                        <a href="https://www.buymeacoffee.com/pletnovalex"
-                            class="mt-auto red-gradient inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-100 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/35">
+                        <a href="https://www.buymeacoffee.com/pletnovalex" target="_blank" rel="noopener noreferrer"
+                            class="btn-primary-yt inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs font-semibold focus-visible:ring-2 focus-visible:ring-primary focus:outline-none">
                             Buy Me a Coffee
                         </a>
                     </article>
                 </div>
             </div>
         </section>
+
         <!-- Final CTA Band -->
-        <section class="px-3 sm:px-6 py-20">
-            <div
-                class="max-w-7xl mx-auto bg-surface-container text-on-surface rounded-[2rem] p-6 sm:p-10 md:p-20 text-center relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[120px]"></div>
-                <div class="relative z-10">
-                    <h2 class="font-headline text-4xl md:text-5xl font-extrabold mb-8 max-w-2xl mx-auto">Build your
-                        digital
-                        library today</h2>
-                    <p class="text-on-surface-variant text-lg mb-12 max-w-xl mx-auto">Join thousands of curators who
-                        never lose a
-                        video
-                        again</p>
-                    <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                        <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
-                            class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
-                            <span class="brand-icon brand-icon--chrome w-5 h-5" aria-hidden="true"></span>
-                            Chrome
-                        </a>
-                        <a href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/"
-                            class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
-                            <span class="brand-icon brand-icon--firefox w-5 h-5" aria-hidden="true"></span>
-                            Firefox
-                        </a>
-                        <a href="https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa"
-                            class="red-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/35 active:translate-y-0 active:scale-[0.98] shadow-xl shadow-primary/25">
-                            <span class="brand-icon brand-icon--edge w-5 h-5" aria-hidden="true"></span>
-                            Edge
-                        </a>
-                        <a href="#features"
-                            class="text-on-surface hover:text-primary bg-surface-container-high hover:bg-surface-container-low px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] inline-block">
-                            Learn More
-                        </a>
-                    </div>
+        <section class="px-4 sm:px-6 py-16 md:py-20">
+            <div class="max-w-5xl mx-auto bg-surface-container-low rounded-3xl p-8 sm:p-12 md:p-16 text-center border border-outline-variant/15">
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 text-on-surface">Start saving videos the faster way</h2>
+                <p class="text-on-surface-variant text-base mb-8 max-w-lg mx-auto">Add the lightweight Watch Later Button to your desktop browser today.</p>
+                <div class="flex flex-col sm:flex-row gap-3.5 items-center justify-center">
+                    <a id="bottom-primary-cta" href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+                        class="btn-primary-yt px-7 py-3.5 rounded-full font-semibold text-base flex items-center justify-center gap-2.5 focus-visible:ring-2 focus-visible:ring-primary focus:outline-none w-full sm:w-auto">
+                        <span id="bottom-primary-icon" class="brand-icon brand-icon--chrome w-4 h-4" aria-hidden="true"></span>
+                        <span id="bottom-primary-text">Add to Chrome</span>
+                    </a>
+                    <a href="https://github.com/AlxPle/Watch-Later-button" target="_blank" rel="noopener noreferrer"
+                        class="text-on-surface bg-surface-container hover:bg-surface-container-high px-7 py-3.5 rounded-full font-semibold text-base transition-colors focus-visible:ring-2 focus-visible:ring-primary focus:outline-none w-full sm:w-auto">
+                        Star on GitHub
+                    </a>
                 </div>
             </div>
         </section>
     </div>
+
+    <!-- Client-side Interactions -->
+    <script>
+        (function() {
+            // Smart Browser Detection
+            var userAgent = navigator.userAgent || '';
+            var isFirefox = /firefox|fxios/i.test(userAgent);
+            var isEdge = /edg\//i.test(userAgent);
+            var isChrome = /chrome|chromium|crios/i.test(userAgent) && !isEdge;
+
+            var storeConfig = {
+                chrome: {
+                    name: 'Chrome',
+                    label: 'Add to Chrome — It\'s Free',
+                    bottomLabel: 'Add to Chrome',
+                    url: 'https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab',
+                    iconClass: 'brand-icon--chrome'
+                },
+                firefox: {
+                    name: 'Firefox',
+                    label: 'Add to Firefox — It\'s Free',
+                    bottomLabel: 'Add to Firefox',
+                    url: 'https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/',
+                    iconClass: 'brand-icon--firefox'
+                },
+                edge: {
+                    name: 'Edge',
+                    label: 'Add to Edge — It\'s Free',
+                    bottomLabel: 'Add to Edge',
+                    url: 'https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa',
+                    iconClass: 'brand-icon--edge'
+                }
+            };
+
+            var target = isFirefox ? storeConfig.firefox : (isEdge ? storeConfig.edge : storeConfig.chrome);
+
+            var heroBtn = document.getElementById('hero-primary-cta');
+            var heroIcon = document.getElementById('hero-primary-icon');
+            var heroText = document.getElementById('hero-primary-text');
+            var bottomBtn = document.getElementById('bottom-primary-cta');
+            var bottomIcon = document.getElementById('bottom-primary-icon');
+            var bottomText = document.getElementById('bottom-primary-text');
+
+            if (heroBtn && heroIcon && heroText) {
+                heroBtn.href = target.url;
+                heroText.textContent = target.label;
+                heroIcon.className = 'brand-icon ' + target.iconClass + ' w-4 h-4';
+            }
+
+            if (bottomBtn && bottomIcon && bottomText) {
+                bottomBtn.href = target.url;
+                bottomText.textContent = target.bottomLabel;
+                bottomIcon.className = 'brand-icon ' + target.iconClass + ' w-4 h-4';
+            }
+
+            // Review dropdown menu toggle
+            var reviewBtn = document.getElementById('review-dropdown-btn');
+            var reviewMenu = document.getElementById('review-dropdown-menu');
+            var reviewIcon = document.getElementById('review-dropdown-icon');
+            var reviewContainer = document.getElementById('review-dropdown-container');
+
+            if (reviewBtn && reviewMenu) {
+                function toggleReviewMenu(open) {
+                    var shouldOpen = typeof open === 'boolean' ? open : reviewMenu.classList.contains('hidden');
+                    if (shouldOpen) {
+                        reviewMenu.classList.remove('hidden');
+                        reviewBtn.setAttribute('aria-expanded', 'true');
+                        if (reviewIcon) reviewIcon.classList.add('rotate-180');
+                    } else {
+                        reviewMenu.classList.add('hidden');
+                        reviewBtn.setAttribute('aria-expanded', 'false');
+                        if (reviewIcon) reviewIcon.classList.remove('rotate-180');
+                    }
+                }
+
+                reviewBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleReviewMenu();
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (reviewContainer && !reviewContainer.contains(e.target)) {
+                        toggleReviewMenu(false);
+                    }
+                });
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        toggleReviewMenu(false);
+                    }
+                });
+            }
+        })();
+    </script>
+
     {%- include footer.html -%}
 </div>

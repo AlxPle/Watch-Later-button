@@ -3,21 +3,21 @@ layout: default
 ---
 
 <article class="post h-entry">
-  <header class="mb-8 pb-6 border-b border-outline-variant/25">
-    <p class="text-xs uppercase tracking-wide text-on-surface-variant mb-2">Page</p>
-    <div class="flex flex-wrap items-center gap-2 mb-2">
-      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-on-surface font-headline p-name">{{ page.title
-        |
-        escape }}</h1>
+  <header class="mb-8 pb-6 border-b border-outline-variant/15">
+    <div class="mb-2">
+      <a class="text-xs font-medium text-primary hover:underline inline-flex items-center gap-1" href="{{ '/updates/' | relative_url }}">
+        <span>←</span>
+        <span>Back to Updates</span>
+      </a>
     </div>
-    <div class="mt-4 flex flex-wrap items-center gap-4 text-sm">
-      <a class="text-on-surface-variant hover:text-on-surface" href="{{ '/updates/' | relative_url }}">Back to
-        Updates</a>
+    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-on-surface p-name">{{ page.title | escape }}</h1>
+    <div class="mt-2 text-xs text-on-surface-variant">
+      Published on {{ page.date | date: "%B %d, %Y" }}
     </div>
   </header>
 
   <div
-    class="post-content e-content [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:border-l-4 [&>h2]:border-[#bc0100] [&>h2]:pl-4 [&>h2]:text-2xl [&>h2]:font-extrabold [&>h2]:tracking-tight [&>h2]:font-headline [&>h2]:text-on-surface [&>h3]:mt-8 [&>h3]:mb-3 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:text-on-surface [&>p]:my-4 [&>ul]:my-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ul>li]:my-2">
+    class="post-content e-content [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:border-l-4 [&>h2]:border-primary [&>h2]:pl-4 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:tracking-tight [&>h2]:text-on-surface [&>h3]:mt-8 [&>h3]:mb-3 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:text-on-surface [&>p]:my-4 [&>ul]:my-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ul>li]:my-2">
     {{ content }}
   </div>
 </article>
