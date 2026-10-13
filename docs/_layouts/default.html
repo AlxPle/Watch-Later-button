@@ -4,15 +4,19 @@
 {%- include head.html -%}
 
 <body class="bg-surface text-on-surface font-body min-h-screen flex flex-col">
+    <a href="#main-content"
+       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary/50">
+        Skip to main content
+    </a>
 
     {%- if page.layout == "home" -%}
-    <main aria-label="Content">
+    <main id="main-content" aria-label="Content">
         {{ content }}
     </main>
     {%- else -%}
     {%- include top-nav.html -%}
 
-    <main class="pt-28 pb-16 px-3 sm:px-6 flex-1" aria-label="Content">
+    <main id="main-content" class="pt-28 pb-16 px-3 sm:px-6 flex-1" aria-label="Content">
         <div class="max-w-4xl mx-auto bg-surface-container-lowest rounded-2xl px-3 sm:px-6 py-6 md:py-10 ghost-border">
             {{ content }}
         </div>

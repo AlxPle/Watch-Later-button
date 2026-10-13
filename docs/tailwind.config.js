@@ -21,18 +21,12 @@ module.exports = {
         "surface-container": "var(--wl-surface-container-color)",
         "surface-container-high": "var(--wl-surface-high-color)",
         "outline-variant": "var(--wl-outline-variant-color)",
-        "primary": "oklch(0.58 0.21 29)"
+        "primary": "var(--wl-primary, oklch(0.58 0.22 27))"
       },
       fontFamily: {
-        "headline": ["Fraunces", "serif"],
-        "body": ["Urbanist", "sans-serif"],
-        "label": ["Urbanist", "sans-serif"]
-      },
-      borderRadius: {
-        "DEFAULT": "0.125rem",
-        "lg": "0.25rem",
-        "xl": "0.5rem",
-        "full": "0.75rem"
+        "headline": ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        "body": ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        "label": ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"]
       }
     }
   },

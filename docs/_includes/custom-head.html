@@ -5,10 +5,9 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
 {% endcomment %}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon.png' | relative_url }}">
-<link rel="preload" href="{{ '/assets/fonts/urbanist/urbanist.woff2' | relative_url }}" as="font" type="font/woff2"
-  crossorigin>
-<link rel="preload" href="{{ '/assets/fonts/fraunces/fraunces-black.woff2' | relative_url }}" as="font"
-  type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}">
 <script>
   (function () {
@@ -50,9 +49,17 @@ Placeholder to allow defining custom head, in principle, you can add anything he
       });
     }
 
+    var transitionTimeout = null;
     function toggleTheme() {
-      var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      var root = document.documentElement;
+      var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
       var next = current === 'dark' ? 'light' : 'dark';
+
+      root.classList.add('theme-transitioning');
+      clearTimeout(transitionTimeout);
+      transitionTimeout = setTimeout(function () {
+        root.classList.remove('theme-transitioning');
+      }, 350);
 
       try {
         localStorage.setItem(storageKey, next);
