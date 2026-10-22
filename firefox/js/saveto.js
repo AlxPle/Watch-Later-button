@@ -110,7 +110,7 @@ function sendWatchLaterAction(action, videoId) {
     ? { addedVideoId: videoId, action: "ACTION_ADD_VIDEO" }
     : { action: "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", removedVideoId: videoId };
 
-  const detail = {
+  let detail = {
     actionName: "yt-service-request",
     returnValue: [],
     args: [
@@ -124,7 +124,14 @@ function sendWatchLaterAction(action, videoId) {
     optionalAction: false
   };
 
-  appElement.dispatchEvent(new CustomEvent("yt-action", { bubbles: true, composed: true, detail }));
+  const pageWindow = document.defaultView || window;
+
+  if (typeof cloneInto !== "undefined") {
+    detail = cloneInto(detail, pageWindow);
+  }
+
+  const CustomEventConstructor = pageWindow.CustomEvent || CustomEvent;
+  appElement.dispatchEvent(new CustomEventConstructor("yt-action", { bubbles: true, composed: true, detail }));
   return true;
 }
 
@@ -327,7 +334,9 @@ let cardInjectTimer = null;
 function startCardObserver() {
   if (cardObserver) cardObserver.disconnect();
 
-  const target = document.querySelector("ytd-app, #contents, #primary") || document.body;
+  const target = document.querySelector("ytd-app, #contents, #primary") || document.body || document.documentElement;
+  if (!target) return;
+
   cardObserver = new MutationObserver(() => {
     if (cardInjectTimer) return;
     cardInjectTimer = setTimeout(() => {
