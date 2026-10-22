@@ -251,11 +251,19 @@ function getStableCardMount(contentImageEl) {
   if (!renderer) return { renderer: null, mount: contentImageEl, isResults: false, isShorts: false };
 
   const isShorts = Boolean(renderer.closest(SHORTS_SHELF_SELECTOR));
-  const isResults = location.pathname === "/results";
-  const resultsMenu = isResults && renderer.querySelector(":scope > ytd-menu-renderer, ytd-menu-renderer");
-  const mount = resultsMenu || renderer.querySelector("#dismissible") || renderer;
+  if (isShorts) {
+    const mount = renderer.querySelector("#dismissible") || renderer;
+    return { renderer, mount, isResults: false, isShorts: true };
+  }
 
-  return { renderer, mount, isResults: Boolean(resultsMenu), isShorts };
+  const isResults = location.pathname === "/results";
+  if (isResults) {
+    const resultsMenu = renderer.querySelector("ytd-menu-renderer, .yt-lockup-metadata-view-model__menu-button");
+    return { renderer, mount: resultsMenu, isResults: true, isShorts: false };
+  }
+
+  const mount = renderer.querySelector("#dismissible") || renderer;
+  return { renderer, mount, isResults: false, isShorts: false };
 }
 
 function addWatchLaterToCard(contentImageEl) {
