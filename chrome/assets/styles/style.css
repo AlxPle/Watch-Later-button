@@ -46,7 +46,7 @@
 }
 
 .saveToWatchLater.home {
-    z-index: 2;
+    z-index: 20;
     position: absolute;
     left: 10px;
     top: 10px;
@@ -62,7 +62,7 @@
 }
 
 .saveToWatchLater.shortsHomePage {
-    z-index: 2;
+    z-index: 20;
     position: absolute;
     right: 0px;
     bottom: -5px;
