@@ -10,7 +10,7 @@ image: /assets/social_poster.png
 
 Welcome to the Watch Later button extension for YouTube™. This extension is designed to provide a simple and efficient way to add videos to your "Watch Later" playlist on YouTube. Your privacy is important to us, and this policy is intended to help you understand what information we handle and your rights.
 
-**Last Updated:** May 14, 2026
+**Last Updated:** October 25, 2026
 
 ## Data Collection and Usage
 
@@ -20,13 +20,15 @@ The extension's functionality is limited to interacting with the content on the 
 
 ## Permissions
 
-To function correctly, the Watch Later button extension requires permission to access content on `https://www.youtube.com/*`. This permission is used exclusively for the following purposes:
+To function correctly, the Watch Later button extension requests the following permissions:
 
-*   To identify the video you are watching.
-*   To add the "Save to Watch Later" button to the YouTube page.
-*   To send the "add" action to YouTube's services when you click the button.
+*   **Host permission (`https://www.youtube.com/*`):** Used exclusively to:
+    *   Identify the video currently being viewed.
+    *   Inject the "Save to Watch Later" button into the video player, YouTube Shorts, and feed thumbnail cards.
+    *   Dispatch the "add" or "undo" action to YouTube's client interface when you interact with the button.
+*   **Storage permission (`storage`):** Used strictly to store your personalized button appearance preferences (custom button color and alpha transparency slider values) locally in your browser. This data never leaves your device and is never transmitted or shared.
 
-We do not use this permission to track your browsing history or collect any other information.
+We do not use any permissions to track your browsing history or collect any personal information.
 
 ## Legal Basis (GDPR)
 

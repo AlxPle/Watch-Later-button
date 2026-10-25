@@ -6,8 +6,6 @@ description: Legal notice and imprint for Watch Later Button website
 robots: index, follow
 ---
 
-# Legal Notice (Impressum)
-
 In accordance with § 5 of the German Telemediengesetz (TMG - Tele Media Act) and other applicable German and European laws, the following information is required:
 
 ## Responsible for the Website
@@ -51,7 +49,7 @@ For information on how we process your personal data, please refer to our [Priva
 
 ## Intellectual Property Rights
 
-The Watch Later Button extension is licensed under the MIT License. All trademarks, logos, and brands mentioned on this website are the property of their respective owners.
+The Watch Later Button extension is licensed under the GNU General Public License v3.0 (GPL-3.0). All trademarks, logos, and brands mentioned on this website are the property of their respective owners.
 
 ## Dispute Resolution
 
@@ -68,7 +66,7 @@ This website and all related legal notices are governed by the laws of the Feder
 
 ---
 
-**Last Updated:** May 14, 2026
+**Last Updated:** October 25, 2026
 
 ---
 
