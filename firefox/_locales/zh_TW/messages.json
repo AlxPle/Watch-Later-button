@@ -4,7 +4,7 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "立即保存YouTube影片——無選單，無額外點擊。您需要的YouTube按鈕。",
+        "message": "一鍵將 YouTube 影片儲存到「稍後觀看」，無需多餘點擊。",
         "description": "Description of the extension"
     },
     "feedback": {

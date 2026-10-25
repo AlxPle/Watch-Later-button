@@ -4,7 +4,7 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "YouTube वीडियो तुरंत सहेजें—कोई मेनू नहीं, कोई अतिरिक्त क्लिक नहीं। YouTube बटन जो आपको चाहिए था।",
+        "message": "YouTube वीडियो को एक क्लिक में «बाद में देखें» में सहेजें, बिना किसी अतिरिक्त क्लिक के।",
         "description": "Description of the extension"
     },
     "feedback": {

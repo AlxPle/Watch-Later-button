@@ -4,7 +4,7 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "Spara YouTube-videor direkt—inga menyer, inga extra klick. Knappen du behövde för YouTube.",
+        "message": "Spara YouTube-videor till «Titta senare» med ett klick, utan extra klick.",
         "description": "Description of the extension"
     },
     "feedback": {

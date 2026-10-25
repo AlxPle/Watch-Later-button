@@ -4,7 +4,7 @@
         "description": "拡張機能の名前"
     },
     "extensionDescription": {
-        "message": "YouTube動画を即座に保存—メニューなし、クリック不要。必要だったYouTubeボタン。",
+        "message": "YouTube動画をワンクリックで「後で見る」に保存。余計なクリックは不要です。",
         "description": "拡張機能の説明"
     },
     "feedback": {
