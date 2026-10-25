@@ -1,7 +1,7 @@
 {%- assign current_url = page.url | default: "" -%}
 
 {%- if page.layout == "home" -%}
-<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant/15 shadow-sm" aria-label="Main Navigation">
+<nav class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant/15 shadow-sm" aria-label="Main Navigation">
     <div class="flex justify-between items-center px-4 sm:px-6 py-3.5 max-w-7xl mx-auto">
         <div class="text-lg font-bold text-on-surface tracking-tight">
             <a href="{{ '/' | relative_url }}" class="focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus:outline-none rounded-md">Watch Later Button</a>
@@ -36,7 +36,7 @@
     </div>
 </nav>
 {%- else -%}
-<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant/15 shadow-sm" aria-label="Main Navigation">
+<nav class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant/15 shadow-sm" aria-label="Main Navigation">
     <div class="flex justify-between items-center px-4 sm:px-6 py-3.5 max-w-7xl mx-auto">
         <div class="text-lg font-bold text-on-surface tracking-tight">
             <a href="{{ '/' | relative_url }}" class="focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus:outline-none rounded-md">Watch Later Button</a>
