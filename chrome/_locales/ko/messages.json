@@ -4,7 +4,7 @@
         "description": "확장 프로그램 이름"
     },
     "extensionDescription": {
-        "message": "YouTube 동영상을 즉시 저장—메뉴 없음, 클릭 없음. 필요한 YouTube 버튼입니다.",
+        "message": "한 번의 클릭으로 YouTube 동영상을 «나중에 볼 동영상»에 저장하세요. 추가 클릭 없음.",
         "description": "확장 프로그램 설명"
     },
     "feedback": {

@@ -4,7 +4,7 @@
         "description": "Name of the extension"
     },
     "extensionDescription": {
-        "message": "YouTube videolarını anında kaydet—menü yok, ekstra tık yok. İhtiyacın olan YouTube düğmesi.",
+        "message": "YouTube videolarını tek tıkla, fazladan tıklama olmadan «Daha Sonra İzle»ye kaydedin.",
         "description": "Description of the extension"
     },
     "feedback": {
