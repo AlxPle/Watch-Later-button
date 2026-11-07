@@ -5,9 +5,6 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
 {% endcomment %}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon.png' | relative_url }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}">
 <script>
   (function () {
@@ -16,7 +13,8 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     try {
       saved = localStorage.getItem(storageKey);
     } catch (e) { }
-    var theme = saved === 'dark' ? 'dark' : 'light';
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = saved ? saved : (prefersDark ? 'dark' : 'light');
     var root = document.documentElement;
     root.setAttribute('data-theme', theme);
     root.classList.toggle('dark', theme === 'dark');
@@ -239,26 +237,50 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Is it really free?",
+      "name": "Is it really free and open source?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, the core functionality of saving videos to your Watch Later list is and always will be free."
+        "text": "Yes, Watch Later Button is 100% free and open-source under the GNU General Public License v3.0 (GPL-3.0). There are no paid tiers, no ads, and no hidden subscriptions."
       }
     },
     {
       "@type": "Question",
-      "name": "Does it work on mobile?",
+      "name": "How do I customize the button color and transparency?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This is a browser extension designed for desktop browsers. For mobile, we recommend using the native YouTube app."
+        "text": "Click the Watch Later Button icon in your browser toolbar to open the popup, then select Settings. You can choose any HEX or RGB color, adjust the opacity slider from 0% to 100%, and preview changes immediately on a checkerboard stage. All open YouTube tabs update live in real-time."
       }
     },
     {
       "@type": "Question",
-      "name": "Is my data safe?",
+      "name": "Can I undo if I click the button by mistake?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Absolutely. We do not have servers that store your data. Everything happens locally in your browser."
+        "text": "Yes! Whenever you save a video, an undo prompt appears for 10 seconds. Clicking it immediately removes the video from your Watch Later playlist."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the extension collect or transmit my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The extension does not communicate with external servers and collects zero personal data. All operations happen directly between your browser and YouTube's existing client interface, and color settings are stored only in your browser's local storage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which browsers and platforms are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Watch Later Button supports Google Chrome, Mozilla Firefox, Microsoft Edge, Brave, Opera, and Vivaldi on Windows, macOS, and Linux."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on YouTube Shorts and video cards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! The button is automatically injected into standard video watch pages, YouTube Shorts player controls, and thumbnail cards across home, subscriptions, and search feeds."
       }
     }
   ]

@@ -138,12 +138,144 @@ layout: default
             </div>
         </section>
 
-        <!-- Product Showcase Screenshot -->
-        <section class="pb-12 md:pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
-            <div class="rounded-2xl overflow-hidden border border-outline-variant/20 shadow-xl bg-surface-container-low">
-                <img src="assets/banner/poster.png" alt="Watch Later Button integration on YouTube"
-                    class="w-full h-auto object-cover block" fetchpriority="high" />
+        <!-- Interactive YouTube Player Simulator -->
+        <section id="demo" class="pb-16 md:pb-24 px-4 sm:px-6 max-w-5xl mx-auto">
+            <div class="text-center mb-8">
+                <span class="text-xs font-semibold text-primary uppercase tracking-wider mb-2 block">Live Interactive Demo</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-on-surface">
+                    Try it right here before installing
+                </h2>
+                <p class="text-on-surface-variant text-base mt-2.5 max-w-xl mx-auto">
+                    Click the Watch Later button in the player toolbar below to experience the instant 0.2s save and 10-second undo countdown.
+                </p>
             </div>
+
+            <!-- YouTube Mockup Player Container -->
+            <div class="yt-mockup relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-outline-variant/20 shadow-2xl select-none group">
+                <!-- Video Screen Background -->
+                <img src="assets/banner/social_poster.png" alt="YouTube video preview"
+                     class="w-full h-full object-cover block opacity-90 transition-opacity duration-300" />
+
+                <!-- Player Header -->
+                <div class="absolute top-0 inset-x-0 yt-player-header p-4 sm:p-5 flex items-center justify-between text-white z-10">
+                    <div class="flex items-center gap-3 truncate">
+                        <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center shrink-0 shadow-md">
+                            <span class="material-symbols-outlined text-white text-sm" data-icon="youtube_activity">youtube_activity</span>
+                        </div>
+                        <div class="truncate text-left">
+                            <div class="font-semibold text-xs sm:text-sm text-white/95 truncate">How to build modern web extensions in 2026</div>
+                            <div class="text-[11px] text-white/60">Tech Explorers • 420K views</div>
+                        </div>
+                    </div>
+                    <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 text-[11px] text-white/80">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Interactive Simulator</span>
+                    </div>
+                </div>
+
+                <!-- Toast Undo Notification -->
+                <div id="demo-yt-toast" class="yt-toast" role="status" aria-live="polite">
+                    <span class="material-symbols-outlined text-emerald-400 text-base" data-icon="verified">verified</span>
+                    <span class="text-xs sm:text-sm font-medium">Saved to <strong class="text-white">Watch Later</strong></span>
+                    <button type="button" id="demo-undo-btn"
+                            class="ml-2 px-2.5 py-1 rounded bg-white/10 hover:bg-white/20 active:bg-white/30 text-xs font-bold text-white tracking-wide transition-colors uppercase focus:outline-none focus:ring-1 focus:ring-white">
+                        Undo (<span id="demo-undo-timer">10</span>s)
+                    </button>
+                </div>
+
+                <!-- Floating Helper Hint pointing to button -->
+                <div id="demo-hint" class="absolute bottom-16 right-14 sm:right-28 z-20 pointer-events-none demo-hint-badge flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-white text-xs font-semibold shadow-lg shadow-primary/30">
+                    <span>Click this button!</span>
+                    <span class="text-sm">👇</span>
+                </div>
+
+                <!-- Bottom Player Controls Bar -->
+                <div class="absolute bottom-0 inset-x-0 yt-player-controls px-4 sm:px-6 py-3 flex flex-col gap-2.5 z-20">
+                    <!-- Scrubber / Timeline -->
+                    <div class="yt-scrubber-track rounded-full cursor-pointer">
+                        <div class="yt-scrubber-progress rounded-full"></div>
+                        <div class="yt-scrubber-thumb"></div>
+                    </div>
+
+                    <!-- Buttons Row -->
+                    <div class="flex items-center justify-between text-white">
+                        <!-- Left controls -->
+                        <div class="flex items-center gap-3 sm:gap-4 text-sm sm:text-base">
+                            <span class="cursor-pointer hover:text-white/80 transition-colors select-none" title="Play / Pause">▶</span>
+                            <span class="cursor-pointer hover:text-white/80 transition-colors select-none hidden sm:inline" title="Next">⏭</span>
+                            <span class="cursor-pointer hover:text-white/80 transition-colors select-none" title="Volume">🔊</span>
+                            <span class="text-xs text-white/70 font-mono select-none">04:12 / 12:45</span>
+                        </div>
+
+                        <!-- Right controls including the interactive button -->
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <!-- INTERACTIVE BUTTON -->
+                            <div class="relative flex items-center justify-center">
+                                <button type="button" id="demo-wl-btn" class="demo-wl-btn"
+                                        role="button"
+                                        aria-label="Save to Watch Later"
+                                        title="Click to test Save to Watch Later">
+                                </button>
+                            </div>
+
+                            <span class="cursor-pointer hover:text-white/80 transition-colors text-xs font-bold select-none" title="Subtitles">CC</span>
+                            <span class="cursor-pointer hover:text-white/80 transition-colors text-sm select-none" title="Settings">⚙</span>
+                            <span class="cursor-pointer hover:text-white/80 transition-colors text-sm select-none hidden sm:inline" title="Miniplayer">⧉</span>
+                            <span class="cursor-pointer hover:text-white/80 transition-colors text-sm select-none" title="Fullscreen">⛶</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Customization Sandbox Strip -->
+            <div class="mt-6 p-4 sm:p-5 rounded-2xl bg-surface-container-low border border-outline-variant/20 shadow-sm flex flex-col md:flex-row items-center justify-between gap-5 text-xs text-on-surface">
+                <!-- Color selector -->
+                <div class="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
+                    <span class="font-semibold text-on-surface-variant flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-sm text-primary" data-icon="ads_click">ads_click</span>
+                        Button Color:
+                    </span>
+                    <div class="flex items-center gap-2" id="demo-color-presets">
+                        <button type="button" data-color="#ff0033" aria-label="YouTube Red"
+                                class="demo-color-pill w-7 h-7 rounded-full bg-[#ff0033] ring-2 ring-primary ring-offset-2 ring-offset-surface transition-transform hover:scale-110 focus:outline-none"></button>
+                        <button type="button" data-color="#00e5ff" aria-label="Cyber Cyan"
+                                class="demo-color-pill w-7 h-7 rounded-full bg-[#00e5ff] transition-transform hover:scale-110 focus:outline-none"></button>
+                        <button type="button" data-color="#10b981" aria-label="Emerald Green"
+                                class="demo-color-pill w-7 h-7 rounded-full bg-[#10b981] transition-transform hover:scale-110 focus:outline-none"></button>
+                        <button type="button" data-color="#f59e0b" aria-label="Amber Yellow"
+                                class="demo-color-pill w-7 h-7 rounded-full bg-[#f59e0b] transition-transform hover:scale-110 focus:outline-none"></button>
+                        <button type="button" data-color="#a855f7" aria-label="Purple"
+                                class="demo-color-pill w-7 h-7 rounded-full bg-[#a855f7] transition-transform hover:scale-110 focus:outline-none"></button>
+                        <button type="button" data-color="#ffffff" aria-label="Pure White"
+                                class="demo-color-pill w-7 h-7 rounded-full bg-white border border-outline-variant/40 transition-transform hover:scale-110 focus:outline-none"></button>
+                        <!-- Native custom color input -->
+                        <label class="relative inline-flex items-center justify-center w-7 h-7 rounded-full bg-surface-container border border-outline-variant/30 cursor-pointer hover:border-primary transition-colors" title="Pick any custom color">
+                            <input type="color" id="demo-custom-color" value="#ff0033" class="opacity-0 absolute inset-0 w-full h-full cursor-pointer" aria-label="Custom color picker">
+                            <span class="material-symbols-outlined text-xs text-on-surface-variant pointer-events-none" data-icon="favorite">favorite</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Opacity slider & checkerboard preview -->
+                <div class="flex items-center gap-3">
+                    <span class="font-semibold text-on-surface-variant flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-sm text-primary" data-icon="weight">weight</span>
+                        Opacity:
+                    </span>
+                    <input type="range" id="demo-opacity-slider" min="30" max="100" value="100" step="5"
+                           class="w-24 sm:w-28 accent-primary cursor-pointer" aria-label="Button opacity slider">
+                    <span id="demo-opacity-val" class="font-mono font-semibold text-on-surface w-9 text-right">100%</span>
+                    
+                    <button type="button" id="demo-reset-btn"
+                            class="ml-2 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors font-medium text-[11px] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                        Reset
+                    </button>
+                </div>
+            </div>
+            
+            <p class="text-center text-xs text-on-surface-variant/75 mt-3">
+                💡 Live preview: Custom color &amp; transparency reflect live across all open YouTube tabs without page reload.
+            </p>
         </section>
 
         <!-- Features Grid -->
@@ -512,6 +644,145 @@ layout: default
                     }
                 });
             }
+
+            // Interactive YouTube Player Simulator
+            (function initDemoPlayer() {
+                var wlBtn = document.getElementById('demo-wl-btn');
+                var toast = document.getElementById('demo-yt-toast');
+                var undoBtn = document.getElementById('demo-undo-btn');
+                var undoTimer = document.getElementById('demo-undo-timer');
+                var hint = document.getElementById('demo-hint');
+                var colorPills = document.querySelectorAll('.demo-color-pill');
+                var customColorInput = document.getElementById('demo-custom-color');
+                var opacitySlider = document.getElementById('demo-opacity-slider');
+                var opacityVal = document.getElementById('demo-opacity-val');
+                var resetBtn = document.getElementById('demo-reset-btn');
+
+                if (!wlBtn || !toast || !undoBtn) return;
+
+                var isSaved = false;
+                var countdownTimer = null;
+                var durationMs = 10000;
+                var startTime = 0;
+
+                function applyDemoColor(hex) {
+                    wlBtn.style.setProperty('--demo-color', hex);
+                    colorPills.forEach(function(pill) {
+                        if (pill.getAttribute('data-color') === hex) {
+                            pill.classList.add('ring-2', 'ring-primary', 'ring-offset-2', 'ring-offset-surface');
+                        } else {
+                            pill.classList.remove('ring-2', 'ring-primary', 'ring-offset-2', 'ring-offset-surface');
+                        }
+                    });
+                    if (customColorInput) customColorInput.value = hex;
+                }
+
+                function applyDemoOpacity(val) {
+                    var opacity = Math.max(0.2, Math.min(1, val / 100));
+                    wlBtn.style.setProperty('--demo-opacity', opacity);
+                    if (opacitySlider) opacitySlider.value = val;
+                    if (opacityVal) opacityVal.textContent = Math.round(val) + '%';
+                }
+
+                function stopCountdown() {
+                    if (countdownTimer) {
+                        clearInterval(countdownTimer);
+                        countdownTimer = null;
+                    }
+                }
+
+                function revertSave() {
+                    stopCountdown();
+                    isSaved = false;
+                    wlBtn.classList.remove('is-saved', 'is-undo-active');
+                    wlBtn.style.setProperty('--demo-undo-angle', '360deg');
+                    wlBtn.setAttribute('aria-label', 'Save to Watch Later');
+                    toast.classList.remove('is-visible');
+                }
+
+                function performSave() {
+                    stopCountdown();
+                    isSaved = true;
+                    if (hint) {
+                        hint.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        hint.style.opacity = '0';
+                        hint.style.transform = 'translateY(10px)';
+                        setTimeout(function() { if (hint) hint.remove(); }, 350);
+                    }
+
+                    wlBtn.classList.add('is-saved', 'is-undo-active');
+                    wlBtn.setAttribute('aria-label', 'Video saved to Watch Later. Click to undo.');
+                    toast.classList.add('is-visible');
+
+                    startTime = Date.now();
+                    if (undoTimer) undoTimer.textContent = '10';
+                    wlBtn.style.setProperty('--demo-undo-angle', '360deg');
+
+                    countdownTimer = setInterval(function() {
+                        var elapsed = Date.now() - startTime;
+                        var remaining = Math.max(0, durationMs - elapsed);
+                        var remainingSec = Math.ceil(remaining / 1000);
+                        if (undoTimer) undoTimer.textContent = String(remainingSec);
+
+                        var angle = (remaining / durationMs) * 360;
+                        wlBtn.style.setProperty('--demo-undo-angle', angle.toFixed(1) + 'deg');
+
+                        if (remaining <= 0) {
+                            stopCountdown();
+                            wlBtn.classList.remove('is-undo-active');
+                            toast.classList.remove('is-visible');
+                        }
+                    }, 40);
+                }
+
+                wlBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (!isSaved) {
+                        performSave();
+                    } else {
+                        revertSave();
+                    }
+                });
+
+                wlBtn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        wlBtn.click();
+                    }
+                });
+
+                undoBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    revertSave();
+                });
+
+                colorPills.forEach(function(pill) {
+                    pill.addEventListener('click', function() {
+                        var hex = pill.getAttribute('data-color');
+                        if (hex) applyDemoColor(hex);
+                    });
+                });
+
+                if (customColorInput) {
+                    customColorInput.addEventListener('input', function(e) {
+                        applyDemoColor(e.target.value);
+                    });
+                }
+
+                if (opacitySlider) {
+                    opacitySlider.addEventListener('input', function(e) {
+                        applyDemoOpacity(Number(e.target.value));
+                    });
+                }
+
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', function() {
+                        applyDemoColor('#ff0033');
+                        applyDemoOpacity(100);
+                        revertSave();
+                    });
+                }
+            })();
         })();
     </script>
 

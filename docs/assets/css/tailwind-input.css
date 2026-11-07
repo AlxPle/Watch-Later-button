@@ -2,6 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Self-hosted Inter font — no Google Fonts, GDPR-safe */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/inter/inter-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/inter/inter-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/inter/inter-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/inter/inter-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../fonts/inter/inter-latin-800-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -284,100 +330,181 @@ body {
 }
 
 /* YouTube Player Interactive Mockup */
+:root {
+  --demo-wl-mask-add: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m17.5 11c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm.5 4v-1.5c0-.265-.235-.5-.5-.5s-.5.235-.5.5v1.5h-1.5c-.265 0-.5.235-.5.5s.235.5.5.5h1.5v1.5c0 .265.235.5.5.5s.5-.235.5-.5c0-.592 0-1.5 0-1.5h1.5c.265 0 .5-.235.5-.5s-.235-.5-.5-.5c-.592 0-1.5 0-1.5 0zm-6.479 1c.043.522.153 1.025.321 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm1.106-4c-.328.456-.594.96-.785 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm7.373-3.25c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75zm0-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z' fill-rule='nonzero'/%3E%3C/svg%3E");
+  --demo-wl-mask-added: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m17.5 11c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm-5.979 5c.043.522.153 1.025.321 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm3.704-.024 1.442 1.285c.095.085.215.127.333.127.136 0 .271-.055.37-.162l2.441-2.669c.088-.096.131-.217.131-.336 0-.274-.221-.499-.5-.499-.136 0-.271.055-.37.162l-2.108 2.304-1.073-.956c-.096-.085-.214-.127-.333-.127-.277 0-.5.224-.5.499 0 .137.056.273.167.372zm-2.598-3.976c-.328.456-.594.96-.785 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm7.373-3.25c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75zm0-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z' fill-rule='nonzero'/%3E%3C/svg%3E");
+}
+
 .yt-mockup {
   background: #000000;
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   position: relative;
 }
 
 .yt-player-header {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
 }
 
 .yt-player-controls {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 60%, transparent 100%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.65) 60%, transparent 100%);
 }
 
 .yt-scrubber-track {
-  height: 3px;
-  background: rgba(255, 255, 255, 0.3);
+  height: 4px;
+  background: rgba(255, 255, 255, 0.28);
   position: relative;
-  transition: height 0.1s ease;
+  transition: height 0.15s ease;
+}
+
+.yt-scrubber-track:hover {
+  height: 6px;
 }
 
 .yt-scrubber-progress {
   height: 100%;
   background: #ff0033;
-  width: 42%;
+  width: 38%;
 }
 
 .yt-scrubber-thumb {
   position: absolute;
   top: 50%;
-  left: 42%;
+  left: 38%;
   transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   background: #ff0033;
   border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Interactive WL Button in Player */
-.yt-wl-btn {
+/* Interactive WL Button in Player Simulation */
+.demo-wl-btn {
+  --demo-color: #ff0033;
+  --demo-opacity: 1;
+  --demo-undo-angle: 360deg;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--demo-color) calc(var(--demo-opacity) * 100%), transparent);
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.2s ease;
+  border: none;
   cursor: pointer;
-  position: relative;
+  outline: none;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-.yt-wl-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+.demo-wl-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
 }
 
-.yt-wl-btn.is-saved {
-  background: #ff0033;
-  color: #ffffff;
-  border-color: #ff0033;
+.demo-wl-btn:active {
+  transform: scale(0.94);
+}
+
+.demo-wl-btn::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background-color: #ffffff;
+  -webkit-mask: var(--demo-wl-mask-add) center / 24px no-repeat;
+  mask: var(--demo-wl-mask-add) center / 24px no-repeat;
+  transition: transform 0.2s ease, opacity 0.15s ease;
+}
+
+.demo-wl-btn.is-saved {
+  background-color: #10b981 !important;
+}
+
+.demo-wl-btn.is-saved::before {
+  -webkit-mask: var(--demo-wl-mask-added) center / 24px no-repeat;
+  mask: var(--demo-wl-mask-added) center / 24px no-repeat;
+}
+
+.demo-wl-btn.is-undo-active::after {
+  content: "";
+  position: absolute;
+  inset: -3.5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -90deg,
+    var(--demo-color) var(--demo-undo-angle, 360deg),
+    rgba(255, 255, 255, 0.15) 0deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));
+  pointer-events: none;
 }
 
 /* Toast popup in mockup */
 .yt-toast {
   position: absolute;
-  bottom: 60px;
+  bottom: 68px;
   left: 20px;
-  background: rgba(18, 18, 18, 0.95);
+  background: rgba(18, 18, 18, 0.96);
   color: #f1f1f1;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 10px 18px;
+  border-radius: 10px;
   font-size: 0.8125rem;
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(12px) scale(0.97);
   pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 20;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 30;
 }
 
 .yt-toast.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Checkerboard pattern for opacity preview */
+.checkerboard-bg {
+  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.08) 25%, transparent 25%),
+                    linear-gradient(-45deg, rgba(0, 0, 0, 0.08) 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.08) 75%),
+                    linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.08) 75%);
+  background-size: 10px 10px;
+  background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+}
+
+:root[data-theme="dark"] .checkerboard-bg {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.08) 25%, transparent 25%),
+                    linear-gradient(-45deg, rgba(255, 255, 255, 0.08) 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.08) 75%),
+                    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.08) 75%);
+}
+
+/* Pulse animation for CTA hint in player */
+@keyframes demoHintPulse {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.demo-hint-badge {
+  animation: demoHintPulse 2s ease-in-out infinite;
 }
 
 /* FAQ Details/Summary Accordion */
