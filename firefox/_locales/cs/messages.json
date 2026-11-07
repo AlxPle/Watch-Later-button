@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Vlastní barva tlačítka: Přizpůsobte si tlačítko libovolnou barvou RGBA a posuvníkem průhlednosti.",
+        "message": "Vlastní klávesová zkratka: Ukládejte nebo vracejte videa okamžitě pomocí klávesové zkratky (výchozí Alt + W).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Vyhrazená nabídka nastavení: Přehledná nabídka v vyskakovacím okně s interaktivním živým náhledem.",
+        "message": "Nastavitelný časovač vrácení: Vyberte možnost Vypnuto, 10 s, 15 s nebo vlastní dobu (1–60 s).",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Okamžitá synchronizace a výkon: Barvy se okamžitě projeví na všech otevřených kartách YouTube bez obnovení stránky.",
+        "message": "Spolehlivost v Shorts a feedech: Plynulejší přechody v Shorts a spolehlivější vkládání tlačítek do dynamických feedů.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Zpět",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Oznámení o aktualizacích",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Zobrazit kartu «Co je nového» po aktualizaci",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Vzhled",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Ovládání a časovač",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Oznámení",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Doba trvání (1–60 s)",
+        "description": "Custom duration label"
     }
 }

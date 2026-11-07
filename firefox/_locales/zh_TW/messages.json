@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "自訂按鈕色彩：使用任意 RGBA 色彩與不透明度滑桿個人化專屬按鈕外觀。",
+        "message": "自訂鍵盤快速鍵：使用自訂快速鍵（預設為 Alt + W）隨時隨地即時儲存或復原影片。",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "專屬設定選單：彈出視窗中新增直覺設定介面，配備互動式即時預覽。",
+        "message": "可設定的復原倒數：可在「關閉」、10秒、15秒或自訂（1–60秒）之間自由選擇。",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "即時即刻同步與效能提升：色彩立即套用至所有開啟的 YouTube 分頁，無需重新整理頁面。",
+        "message": "Shorts 與動態消息穩定度提升：Shorts 切換更流暢，並改善動態消息卡片的按鈕載入。",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "返回",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "更新通知",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "更新後顯示「新功能」分頁",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "外觀",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "控制與計時器",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "通知",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "時長（1–60秒）",
+        "description": "Custom duration label"
     }
 }

@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Anpassad knappfärg: Anpassa knappen med valfri RGBA-färg och skjutreglage för opacitet.",
+        "message": "Anpassat kortkommando: Spara eller ångra videor direkt med ett anpassningsbart kortkommando (standard Alt + W).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Dedikerad inställningsmeny: Förenklad inställningsmeny i popup-fönstret med interaktiv förhandsgranskning i realtid.",
+        "message": "Konfigurerbar ångra-timer: Välj mellan Av, 10s, 15s eller anpassad tid (1–60s).",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Omedelbar direktsynkronisering och prestanda: Färger tillämpas direkt på alla öppna YouTube-flikar utan omladdning.",
+        "message": "Pålitlighet i Shorts och flöden: Smidigare övergångar i Shorts och förbättrad knappplacering i dynamiska flöden.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Tillbaka",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Uppdateringsaviseringar",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Visa fliken 'Vad är nytt' efter uppdateringar",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Utseende",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Kontroller och timer",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Aviseringar",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Varaktighet (1–60s)",
+        "description": "Custom duration label"
     }
 }

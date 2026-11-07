@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "لون زر مخصص: خصص الزر بأي لون RGBA وشريط تمرير الشفافية.",
+        "message": "اختصار لوحة مفاتيح مخصص: احفظ أو تراجع عن حفظ مقاطع الفيديو فوراً باستخدام اختصار قابل للتخصيص (الافتراضي Alt + W).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "قائمة إعدادات مخصصة: قائمة إعدادات انسيابية في النافذة المنبثقة مع معاينة تفاعلية مباشرة.",
+        "message": "مؤقت تراجع قابل للتخصيص: اختر بين إيقاف أو 10 ثوانٍ أو 15 ثانية أو مدة مخصصة (1-60 ثانية).",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "مزامنة فورية وأداء عالي: يتم تطبيق الألوان فورياً عبر جميع علامات تبويب YouTube المفتوحة دون إعادة التحميل.",
+        "message": "موثوقية الفيديوهات القصيرة والخلاصات: انتقالات أكثر سلاسة في Shorts وإدراج أزرار محسن في الخلاصات الديناميكية.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "رجوع",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "إشعارات التحديث",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "فتح علامة تبويب «ما الجديد» بعد التحديثات",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "المظهر",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "عناصر التحكم والمؤقت",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "الإشعارات",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "المدة (1–60 ثانية)",
+        "description": "Custom duration label"
     }
 }

@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         demoBtn.classList.add("is-added", "is-undo-active");
         clearTimeout(undoTimer);
-        undoTimer = setTimeout(() => demoBtn.classList.remove("is-undo-active"), 10000);
+        undoTimer = setTimeout(() => demoBtn.classList.remove("is-added", "is-undo-active"), 10000);
       }
     });
   }

@@ -13,7 +13,19 @@ const SHORTS_MOUNT_SELECTORS = "reel-action-bar-view-model, ytd-shorts ytd-reel-
 const WL_ADDED_CLASS = "is-added";
 const WL_UNDO_ACTIVE_CLASS = "is-undo-active";
 const WL_ERROR_CLASS = "is-error";
-const WL_UNDO_WINDOW_MS = 10000;
+const DEFAULT_UNDO_SECONDS = 10;
+const DEFAULT_SHORTCUT = {
+  alt: true,
+  ctrl: false,
+  shift: false,
+  meta: false,
+  key: "w",
+  code: "KeyW",
+  display: "Alt + W"
+};
+
+let currentShortcut = { ...DEFAULT_SHORTCUT };
+let currentUndoSeconds = DEFAULT_UNDO_SECONDS;
 const WL_ERROR_FLASH_MS = 800;
 
 const getI18nMessage = (key, fallback) => chrome?.i18n?.getMessage?.(key) || fallback;
@@ -31,7 +43,7 @@ function applyButtonTheme(colorData) {
 }
 
 try {
-  chrome.storage?.sync?.get("buttonColor", (data) => {
+  chrome.storage?.sync?.get(["buttonColor", "buttonShortcut", "buttonUndoSeconds"], (data) => {
     if (data?.buttonColor) {
       applyButtonTheme(data.buttonColor);
     } else {
@@ -39,10 +51,33 @@ try {
         if (localData?.buttonColor) applyButtonTheme(localData.buttonColor);
       });
     }
+
+    if (data?.buttonShortcut) {
+      currentShortcut = data.buttonShortcut;
+    } else {
+      chrome.storage?.local?.get("buttonShortcut", (localData) => {
+        if (localData?.buttonShortcut) currentShortcut = localData.buttonShortcut;
+      });
+    }
+
+    if (data?.buttonUndoSeconds !== undefined) {
+      currentUndoSeconds = Number(data.buttonUndoSeconds);
+    } else {
+      chrome.storage?.local?.get("buttonUndoSeconds", (localData) => {
+        if (localData?.buttonUndoSeconds !== undefined) currentUndoSeconds = Number(localData.buttonUndoSeconds);
+      });
+    }
   });
+
   chrome.storage?.onChanged?.addListener((changes) => {
     if (changes.buttonColor?.newValue) {
       applyButtonTheme(changes.buttonColor.newValue);
+    }
+    if (changes.buttonShortcut?.newValue) {
+      currentShortcut = changes.buttonShortcut.newValue;
+    }
+    if (changes.buttonUndoSeconds?.newValue !== undefined) {
+      currentUndoSeconds = Number(changes.buttonUndoSeconds.newValue);
     }
   });
 } catch {}
@@ -165,15 +200,27 @@ function clearButtonUndoState(button) {
 function setButtonUndoState(button, videoId) {
   clearButtonUndoState(button);
 
+  if (currentUndoSeconds <= 0) {
+    // Instant save without undo window: flash success icon for 800ms
+    button.classList.add(WL_ADDED_CLASS);
+    const timerId = setTimeout(() => {
+      button.classList.remove(WL_ADDED_CLASS);
+      buttonUndoState.delete(button);
+    }, 800);
+    buttonUndoState.set(button, { timerId, videoId: null });
+    return;
+  }
+
+  const undoWindowMs = currentUndoSeconds * 1000;
   button.classList.add(WL_ADDED_CLASS, WL_UNDO_ACTIVE_CLASS);
-  button.style.setProperty("--wl-undo-ms", `${WL_UNDO_WINDOW_MS}ms`);
+  button.style.setProperty("--wl-undo-ms", `${undoWindowMs}ms`);
   button.title = WL_TEXT.deleteTitle;
   button.setAttribute("aria-label", WL_TEXT.deleteTitle);
 
   const timerId = setTimeout(() => {
     const state = buttonUndoState.get(button);
     if (state?.videoId === videoId) clearButtonUndoState(button);
-  }, WL_UNDO_WINDOW_MS);
+  }, undoWindowMs);
 
   buttonUndoState.set(button, { timerId, videoId });
 }
@@ -217,8 +264,16 @@ function mountWatchButton() {
   if (!container) return;
 
   saveTo.classList.toggle("shortsPage", isShorts);
-  if (saveTo.parentElement !== container || container.lastElementChild !== saveTo) {
+  if (saveTo.parentElement !== container) {
     container.append(saveTo);
+  }
+
+  if (isShorts) {
+    const currentVideoId = resolveCurrentVideoId();
+    const currentUndo = buttonUndoState.get(saveTo);
+    if (currentUndo && currentUndo.videoId !== currentVideoId) {
+      clearButtonUndoState(saveTo);
+    }
   }
 }
 
@@ -284,7 +339,7 @@ function addWatchLaterToCard(contentImageEl) {
     return;
   }
 
-  if (mount.hasAttribute(CARD_WL_INJECTED)) {
+  if (mount.hasAttribute(CARD_WL_INJECTED) || mount.querySelector(":scope > .saveToWatchLater")) {
     contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
     return;
   }
@@ -346,6 +401,56 @@ function startCardObserver() {
   });
   cardObserver.observe(target, { childList: true, subtree: true });
 }
+
+function handleGlobalKeyDown(e) {
+  if (!currentShortcut || !currentShortcut.key) return;
+
+  const activeEl = document.activeElement;
+  const target = e.target;
+  const isInputTarget = (el) =>
+    el && (el.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(el.tagName));
+
+  if (isInputTarget(activeEl) || isInputTarget(target)) {
+    return;
+  }
+
+  const altMatches = Boolean(currentShortcut.alt) === Boolean(e.altKey);
+  const ctrlMatches = Boolean(currentShortcut.ctrl) === Boolean(e.ctrlKey);
+  const shiftMatches = Boolean(currentShortcut.shift) === Boolean(e.shiftKey);
+  const metaMatches = Boolean(currentShortcut.meta) === Boolean(e.metaKey);
+
+  if (!altMatches || !ctrlMatches || !shiftMatches || !metaMatches) {
+    return;
+  }
+
+  const codeMatches = currentShortcut.code && e.code && currentShortcut.code.toLowerCase() === e.code.toLowerCase();
+  const keyMatches = currentShortcut.key && e.key && currentShortcut.key.toLowerCase() === e.key.toLowerCase();
+
+  if (!codeMatches && !keyMatches) {
+    return;
+  }
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (isWatchPage() || isShortsPage()) {
+    handleWatchLaterToggle(saveTo);
+    return;
+  }
+
+  const hoveredCard = document.querySelector(":hover:is(ytd-rich-item-renderer, ytd-compact-video-renderer, ytd-video-renderer, yt-lockup-view-model, ytd-reel-item-renderer)");
+  if (hoveredCard) {
+    const cardBtn = hoveredCard.querySelector(".saveToWatchLater");
+    if (cardBtn) {
+      const videoId = cardBtn.dataset.videoId;
+      if (videoId) {
+        handleWatchLaterToggle(cardBtn, videoId);
+      }
+    }
+  }
+}
+
+window.addEventListener("keydown", handleGlobalKeyDown, true);
 
 function onNavigation() {
   clearButtonUndoState(saveTo);

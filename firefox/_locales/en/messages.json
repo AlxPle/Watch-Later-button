@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Custom Button Color: Personalize the button with any RGBA color and alpha transparency slider.",
+        "message": "Custom Keyboard Shortcut: Save or undo videos instantly anywhere using a customizable hotkey (Alt + W by default).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Dedicated Settings Menu: Streamlined settings menu in the popup with interactive live preview.",
+        "message": "Configurable Undo Timer: Choose between Off, 10s, 15s, or custom duration (1–60s) to fit your flow.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Instant Live Sync & Performance: Colors apply instantly across all open YouTube tabs without reload.",
+        "message": "Shorts & Feed Reliability: Cleaner transitions when switching Shorts and improved card injection on dynamic feeds.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Back",
         "description": "Back button label"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Update notifications",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Show What's new tab after updates",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "customDuration": {
+        "message": "Duration (1–60s)",
+        "description": "Custom duration label"
+    },
+    "settingsGroupAppearance": {
+        "message": "Appearance",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Controls & Timing",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Notifications",
+        "description": "Header for notifications settings group"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
     }
 }

@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "कस्टम बटन रंग: किसी भी RGBA रंग और पारदर्शिता स्लाइडर के साथ बटन को कस्टमाइज़ करें।",
+        "message": "कस्टम कीबोर्ड शॉर्टकट: कस्टमाइज़ करने योग्य शॉर्टकट (डिफ़ॉल्ट Alt + W) के साथ वीडियो तुरंत सहेजें या पूर्ववत करें।",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "समर्पित सेटिंग्स मेनू: इंटरैक्टिव लाइव पूर्वावलोकन के साथ पॉपअप में सरल सेटिंग्स मेनू।",
+        "message": "कॉन्फ़िगर करने योग्य पूर्ववत टाइमर: बंद, 10 सेकंड, 15 सेकंड या कस्टम अवधि (1–60 सेकंड) में से चुनें।",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "त्वरित लाइव सिंक और प्रदर्शन: बिना रीलोड किए सभी खुले YouTube टैब पर रंग तुरंत लागू होते हैं।",
+        "message": "शॉर्ट्स और फ़ीड विश्वसनीयता: शॉर्ट्स में सहज बदलाव और डायनेमिक फ़ीड पर बेहतर बटन प्लेसमेंट।",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "पीछे",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "अपडेट सूचनाएं",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "अपडेट के बाद 'क्या नया है' टैब खोलें",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "दिखावट",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "नियंत्रण और टाइमर",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "सूचनाएं",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "अवधि (1–60 सेकंड)",
+        "description": "Custom duration label"
     }
 }

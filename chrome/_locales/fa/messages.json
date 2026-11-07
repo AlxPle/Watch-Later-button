@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "رنگ دکمه سفارشی: دکمه را با هر رنگ RGBA و نوار لغزنده شفافیت شخصی‌سازی کنید.",
+        "message": "کلید میانبر سفارشی: با یک کلید میانبر قابل تنظیم (به طور پیش‌فرض Alt + W) ویدیوها را فوراً ذخیره یا لغو کنید.",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "منوی تنظیمات اختصاصی: منوی تنظیمات ساده در پنجره بازشو با پیش‌نمایش زنده تعاملی.",
+        "message": "تایمر لغو قابل تنظیم: از بین خاموش، ۱۰ ثانیه، ۱۵ ثانیه یا مدت زمان سفارشی (۱ تا ۶۰ ثانیه) انتخاب کنید.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "همگام‌سازی زنده و عملکرد بهینه: رنگ‌ها فوراً در تمام تب‌های باز YouTube بدون بارگیری مجدد اعمال می‌شوند.",
+        "message": "قابلیت اطمینان در Shorts و فیدها: جابجایی روان‌تر در Shorts و بهبود درج دکمه در فیدهای پویا.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "بازگشت",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "اعلان‌های به‌روزرسانی",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "نمایش برگه «تازه‌ها» پس از به‌روزرسانی‌ها",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "ظاهر",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "کنترل‌ها و زمان‌سنج",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "اعلان‌ها",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "مدت زمان (۱–۶۰ ثانیه)",
+        "description": "Custom duration label"
     }
 }

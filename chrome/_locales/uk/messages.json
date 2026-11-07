@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Власний колір кнопки: Обирайте будь-який колір RGBA та прозорість за допомогою повзунка.",
+        "message": "Гарячі клавіші: Миттєво зберігайте та скасовуйте відео за допомогою комбінації клавіш (типово Alt + W).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Окреме меню налаштувань: Зручна панель налаштувань у спливаючому вікні з інтерактивним живим переглядом.",
+        "message": "Налаштовуваний таймер скасування: Обирайте зручне вікно скасування (Вимк, 10с, 15с або від 1 до 60с) під свій темп.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Миттєва синхронізація та швидкодія: Кольори застосовуються одразу на всіх відкритих вкладках YouTube без перезавантаження.",
+        "message": "Надійність у Shorts та стрічках: Плавніше перемикання відео в Shorts та оптимізоване додавання кнопок у динамічні стрічки.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Назад",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Сповіщення про оновлення",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Відкривати вкладку «Що нового» після оновлень",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Зовнішній вигляд",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Керування та таймер",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Сповіщення",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Тривалість (1–60с)",
+        "description": "Custom duration label"
     }
 }

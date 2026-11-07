@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "맞춤 버튼 색상: 원하는 RGBA 색상과 투명도 슬라이더로 버튼을 자유롭게 맞춤 설정하세요.",
+        "message": "맞춤 단축키: 설정 가능한 단축키(기본값 Alt + W)로 어디서나 즉시 동영상을 저장하거나 취소하세요.",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "전용 설정 메뉴: 인터랙티브 실시간 미리보기가 포함된 팝업 내 직관적인 설정 메뉴.",
+        "message": "취소 타이머 설정: 끄기, 10초, 15초 또는 맞춤 시간(1~60초) 중에서 원하는 시간을 선택하세요.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "실시간 동기화 및 성능 최적화: 새로고침 없이 열려 있는 모든 YouTube 탭에 색상이 즉시 적용됩니다.",
+        "message": "Shorts 및 피드 안정성 향상: Shorts 전환이 더욱 매끄러워지고 동적 피드 카드의 버튼 주입이 개선되었습니다.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "뒤로",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "업데이트 알림",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "업데이트 후 '새로운 기능' 탭 표시",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "디자인",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "컨트롤 및 타이머",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "알림",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "시간 (1~60초)",
+        "description": "Custom duration label"
     }
 }

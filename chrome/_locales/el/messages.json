@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Προσαρμοσμένο χρώμα κουμπιού: Εξατομικεύστε το κουμπί με οποιοδήποτε χρώμα RGBA και ρυθμιστικό διαφάνειας.",
+        "message": "Προσαρμοσμένη συντόμευση πληκτρολογίου: Αποθηκεύστε ή αναιρέστε βίντεο άμεσα με συντόμευση (προεπιλογή Alt + W).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Ειδικό μενού ρυθμίσεων: Βελτιστοποιημένο μενού στο αναδυόμενο παράθυρο με διαδραστική ζωντανή προεπισκόπηση.",
+        "message": "Ρυθμιζόμενος χρονοδιακόπτης αναίρεσης: Επιλέξτε μεταξύ Απενεργοποίηση, 10δ, 15δ ή προσαρμοσμένης διάρκειας (1–60δ).",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Άμεσος ζωντανός συγχρονισμός και απόδοση: Τα χρώματα εφαρμόζονται άμεσα σε όλες τις ανοιχτές καρτέλες του YouTube χωρίς ανανέωση.",
+        "message": "Αξιοπιστία σε Shorts & ροές: Πιο ομαλές μεταβάσεις στα Shorts και βελτιωμένη εισαγωγή κουμπιών σε δυναμικές ροές.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Πίσω",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Ειδοποιήσεις ενημερώσεων",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Εμφάνιση καρτέλας «Τι νέο υπάρχει» μετά από ενημερώσεις",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Εμφάνιση",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Στοιχεία ελέγχου και χρονόμετρο",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Ειδοποιήσεις",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Διάρκεια (1–60δ)",
+        "description": "Custom duration label"
     }
 }

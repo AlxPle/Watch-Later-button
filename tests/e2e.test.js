@@ -97,7 +97,9 @@ describe('Watch Later Button E2E Test', () => {
 
   afterAll(async () => {
     // Close the browser after all tests
-    await browser.close();
+    if (browser) {
+      await browser.close();
+    }
   });
 
   test('should inject the "Watch Later" button on a YouTube video page', async () => {

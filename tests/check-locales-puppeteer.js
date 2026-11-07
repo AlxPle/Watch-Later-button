@@ -38,7 +38,6 @@ const userDataDir = path.resolve('/tmp', 'puppeteer_watch_later_profile');
 
     const keyToId = {
         extensionName: 'extension-name',
-        statusActive: 'status-active',
         openWatchLater: 'open-watch-later',
         openPlaylistDirect: 'open-playlist-direct',
         issues: 'issues',

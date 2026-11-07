@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Özel Düğme Rengi: Düğmeyi herhangi bir RGBA rengi ve opaklık kaydırıcısıyla özelleştirin.",
+        "message": "Özel Klavye Kısayolu: Özelleştirilebilir bir kısayolla (varsayılan Alt + W) videoları anında kaydedin veya geri alın.",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Özel Ayarlar Menüsü: Açılır pencerede etkileşimli canlı önizleme içeren kolaylaştırılmış ayarlar menüsü.",
+        "message": "Yapılandırılabilir Geri Alma Sayacı: Kapalı, 10 sn, 15 sn veya özel süre (1–60 sn) arasından seçim yapın.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Anında Canlı Senkronizasyon ve Performans: Renkler sayfayı yenilemeden tüm açık YouTube sekmelerine anında uygulanır.",
+        "message": "Shorts ve Akış Güvenilirliği: Shorts videolarında daha akıcı geçişler ve dinamik akışlarda optimize edilmiş düğmeler.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Geri",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Güncelleme bildirimleri",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Güncellemelerden sonra «Yenilikler» sekmesini aç",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Görünüm",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Kontroller ve Zamanlayıcı",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Bildirimler",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Süre (1–60 sn)",
+        "description": "Custom duration label"
     }
 }

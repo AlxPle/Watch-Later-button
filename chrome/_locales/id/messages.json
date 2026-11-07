@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Warna Tombol Khusus: Sesuaikan tombol dengan warna RGBA apa pun dan penggeser opasitas.",
+        "message": "Pintasan Keyboard Khusus: Simpan atau batalkan video secara instan menggunakan tombol pintas (default Alt + W).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Menu Pengaturan Khusus: Menu pengaturan yang ramping di popup dengan pratinjau langsung interaktif.",
+        "message": "Pengatur Waktu Pembatalan yang Dapat Disesuaikan: Pilih antara Nonaktif, 10 dtk, 15 dtk, atau durasi khusus (1–60 dtk).",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Sinkronisasi Langsung & Performa: Warna langsung diterapkan di semua tab YouTube yang terbuka tanpa memuat ulang.",
+        "message": "Keandalan Shorts & Feed: Transisi yang lebih mulus di Shorts dan penempatan tombol yang ditingkatkan pada feed dinamis.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Kembali",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Notifikasi pembaruan",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Buka tab 'Apa yang baru' setelah pembaruan",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Tampilan",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Kontrol & Pengatur Waktu",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Notifikasi",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Durasi (1–60 dtk)",
+        "description": "Custom duration label"
     }
 }

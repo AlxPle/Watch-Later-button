@@ -53,7 +53,7 @@
 
 			<!-- Action Grid -->
 			<div class="action-grid">
-				<a href="https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/reviews/"
+				<a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews"
 					class="grid-btn" target="_blank" rel="noopener noreferrer" title="Leave a review">
 					<svg class="btn-icon" viewBox="0 -960 960 960" aria-hidden="true">
 						<path d="m320-240 160-122 160 122-60-198 160-114H544l-64-208-64 208H220l160 114-60 198ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z" />
@@ -69,7 +69,7 @@
 					<span id="donate" data-i18n="donate">Donate</span>
 				</a>
 
-				<a href="https://github.com/alxple/Watch-Later-button/issues/"
+				<a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/support"
 					class="grid-btn" target="_blank" rel="noopener noreferrer" title="Support & Bug Reports">
 					<svg class="btn-icon" viewBox="0 -960 960 960" aria-hidden="true">
 						<path d="M480-200q66 0 113-47t47-113v-160q0-66-47-113t-113-47q-66 0-113 47t-47 113v160q0 66 47 113t113 47Zm-80-120h160v-80H400v80Zm0-160h160v-80H400v80Zm80 40Zm0 320q-65 0-120.5-32T272-240H160v-80h84q-3-20-3.5-40t-.5-40h-80v-80h80q0-20 .5-40t3.5-40h-84v-80h112q14-23 31.5-43t40.5-35l-64-66 56-56 86 86q28-9 57-9t57 9l88-86 56 56-66 66q23 15 41.5 34.5T688-640h112v80h-84q3 20 3.5 40t.5 40h80v80h-80q0 20-.5 40t-3.5 40h84v80H688q-32 56-87.5 88T480-120Z" />
@@ -99,33 +99,118 @@
 				<h2 class="settings-title" data-i18n="settings">Settings</h2>
 			</div>
 
-			<div class="preview-box">
-				<div class="preview-center">
-					<div id="btn-preview" class="saveToWatchLater" title="Watch Later"></div>
-				</div>
-			</div>
+			<div class="settings-sections">
+				<!-- Zone 1: Appearance -->
+				<div class="settings-group">
+					<div class="settings-group-header">
+						<svg class="group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<circle cx="12" cy="12" r="10"></circle>
+							<path d="M12 2a7 7 0 0 0 0 14 3.5 3.5 0 0 0 3.5-3.5c0-.62-.25-1.2-.67-1.62l-.71-.71A2 2 0 0 1 14 9V8a2 2 0 0 1 2-2h1a5 5 0 0 1 5 5"></path>
+						</svg>
+						<span data-i18n="settingsGroupAppearance">Appearance</span>
+					</div>
 
-			<div class="settings-controls">
-				<div class="control-row">
-					<label for="color-picker" class="control-label" data-i18n="settingsColor">Button color</label>
-					<div class="color-picker-group">
-						<input type="color" id="color-picker" value="#e50914" aria-label="Button color">
-						<input type="text" id="color-hex" value="#e50914" spellcheck="false" class="hex-field" maxlength="9" aria-label="Hex color">
+					<div class="settings-card">
+						<div class="preview-center">
+							<div id="btn-preview" class="saveToWatchLater" title="Watch Later"></div>
+						</div>
+
+						<div class="control-row">
+							<label for="color-picker" class="control-label" data-i18n="settingsColor">Button color</label>
+							<div class="color-picker-group">
+								<input type="color" id="color-picker" value="#e50914" aria-label="Button color">
+								<input type="text" id="color-hex" value="#e50914" spellcheck="false" class="hex-field" maxlength="9" aria-label="Hex color">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="slider-meta">
+								<label for="opacity-slider" class="control-label" data-i18n="settingsOpacity">Opacity</label>
+								<span id="opacity-val" class="slider-value">100%</span>
+							</div>
+							<input type="range" id="opacity-slider" min="0" max="100" value="100" class="range-slider">
+						</div>
+
+						<div class="control-group">
+							<input type="text" id="rgba-output" readonly class="rgba-field" aria-label="RGBA CSS value">
+						</div>
 					</div>
 				</div>
 
-				<div class="control-group">
-					<div class="slider-meta">
-						<label for="opacity-slider" class="control-label" data-i18n="settingsOpacity">Opacity</label>
-						<span id="opacity-val" class="slider-value">100%</span>
+				<!-- Zone 2: Controls & Timing -->
+				<div class="settings-group">
+					<div class="settings-group-header">
+						<svg class="group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<rect x="2" y="4" width="20" height="16" rx="2"></rect>
+							<path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M7 16h10"></path>
+						</svg>
+						<span data-i18n="settingsGroupControls">Controls & Timing</span>
 					</div>
-					<input type="range" id="opacity-slider" min="0" max="100" value="100" class="range-slider">
+
+					<div class="settings-card">
+						<!-- Hotkey Setting -->
+						<div class="control-group">
+							<div class="control-row">
+								<span class="control-label" data-i18n="settingsShortcut">Keyboard shortcut</span>
+								<button type="button" id="shortcut-btn" class="shortcut-badge" aria-label="Keyboard shortcut">Alt + W</button>
+							</div>
+							<span id="shortcut-hint" class="settings-hint" hidden data-i18n="settingsShortcutHint">Press key combination or Esc to cancel</span>
+						</div>
+
+						<div class="settings-card-divider"></div>
+
+						<!-- Undo Timer Setting -->
+						<div class="control-group">
+							<div class="control-row">
+								<span class="control-label" data-i18n="settingsUndo">Undo timer</span>
+								<span id="undo-active-badge" class="slider-value">10s</span>
+							</div>
+							<div class="undo-pill-group" role="group" aria-label="Undo timer duration">
+								<button type="button" class="undo-pill" data-seconds="0" data-i18n="undoOff">Off</button>
+								<button type="button" class="undo-pill active" data-seconds="10">10s</button>
+								<button type="button" class="undo-pill" data-seconds="15">15s</button>
+								<button type="button" class="undo-pill" data-seconds="custom" data-i18n="undoCustom">Custom</button>
+							</div>
+							<div id="custom-undo-container" class="custom-stepper-card" hidden>
+								<span class="stepper-label" data-i18n="customDuration">Duration (1–60s)</span>
+								<div class="stepper-controls">
+									<button type="button" class="stepper-btn" id="undo-step-down" aria-label="Decrease">−</button>
+									<div class="stepper-val-wrap">
+										<input type="number" id="custom-undo-input" class="stepper-input" min="1" max="60" value="7" aria-label="Custom seconds">
+										<span class="stepper-unit" data-i18n="secondsUnit">sec</span>
+									</div>
+									<button type="button" class="stepper-btn" id="undo-step-up" aria-label="Increase">+</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
-				<div class="control-group">
-					<input type="text" id="rgba-output" readonly class="rgba-field" aria-label="RGBA CSS value">
+				<!-- Zone 3: Notifications -->
+				<div class="settings-group">
+					<div class="settings-group-header">
+						<svg class="group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+						</svg>
+						<span data-i18n="settingsGroupNotifications">Notifications</span>
+					</div>
+
+					<div class="settings-card">
+						<div class="control-row toggle-row">
+							<div class="toggle-text">
+								<label for="update-notification-toggle" class="control-label" data-i18n="settingsUpdateNotifications">Update notifications</label>
+								<span class="control-sublabel" data-i18n="settingsUpdateNotificationsDesc">Show What's new tab after updates</span>
+							</div>
+							<label class="switch">
+								<input type="checkbox" id="update-notification-toggle" checked>
+								<span class="switch-slider"></span>
+							</label>
+						</div>
+					</div>
 				</div>
 
+				<!-- Reset Action -->
 				<button type="button" id="reset-color-btn" class="reset-btn">
 					<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<polyline points="1 4 1 10 7 10"></polyline>

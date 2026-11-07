@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Benutzerdefinierte Schaltflächenfarbe: Personalisieren Sie die Schaltfläche mit beliebigen RGBA-Farben und Deckkraft-Schieberegler.",
+        "message": "Tastatur-Kurzbefehle: Videos sofort mit einem anpassbaren Tastaturkürzel (Standard: Alt + W) speichern oder rückgängig machen.",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Eigenes Einstellungsmenü: Übersichtliches Einstellungsmenü im Popup mit interaktiver Live-Vorschau.",
+        "message": "Anpassbarer Rückgängig-Timer: Wählen Sie die Dauer (Aus, 10s, 15s oder 1–60s) passend zu Ihrem Tempo.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Sofortige Live-Synchronisierung & Leistung: Farben werden sofort auf allen geöffneten YouTube-Tabs ohne Neuladen angewendet.",
+        "message": "Zuverlässigkeit in Shorts & Feeds: Flüssigere Übergänge in YouTube Shorts und optimierte Einbettung in dynamische Feeds.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Zurück",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Update-Benachrichtigungen",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Tab „Was ist neu“ nach Updates anzeigen",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Erscheinungsbild",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Steuerung & Timer",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Benachrichtigungen",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Dauer (1–60s)",
+        "description": "Custom duration label"
     }
 }

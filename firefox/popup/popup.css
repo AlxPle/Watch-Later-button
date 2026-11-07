@@ -403,9 +403,10 @@ input:focus-visible {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 52px;
+    min-height: 48px;
     padding: 8px 36px;
-    border-radius: 10px;
+    border-radius: 8px;
+    margin-bottom: 2px;
     background-color: #1a1a1a;
     background-image: 
         linear-gradient(45deg, #262626 25%, transparent 25%),
@@ -563,6 +564,75 @@ input[type="color"]::-moz-color-swatch {
     transform: scale(1.15);
 }
 
+
+.toggle-row {
+    padding: 0;
+}
+
+.toggle-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.control-sublabel {
+    font-size: 10px;
+    line-height: 1.3;
+    color: var(--wl-text-muted);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: var(--wl-surface-hover);
+    border: 1px solid var(--wl-border);
+    border-radius: 20px;
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.switch-slider::before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.18s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.switch input:checked + .switch-slider {
+    background-color: var(--wl-red);
+    border-color: var(--wl-red);
+}
+
+.switch input:focus-visible + .switch-slider {
+    box-shadow: 0 0 0 2px var(--wl-bg), 0 0 0 4px var(--wl-red);
+}
+
+.switch input:checked + .switch-slider::before {
+    transform: translateX(16px);
+}
+
 .reset-btn {
     display: inline-flex;
     align-items: center;
@@ -597,6 +667,262 @@ input[type="color"]::-moz-color-swatch {
     transform: rotate(-45deg);
 }
 
+
+/* Grouped Settings Sections & Cards */
+#settings-view {
+    max-height: 520px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 2px;
+}
+
+#settings-view::-webkit-scrollbar {
+    width: 4px;
+}
+
+#settings-view::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#settings-view::-webkit-scrollbar-thumb {
+    background: var(--wl-border);
+    border-radius: 4px;
+}
+
+#settings-view::-webkit-scrollbar-thumb:hover {
+    background: var(--wl-border-hover);
+}
+
+.settings-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.settings-group-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--wl-text-muted);
+}
+
+.settings-group-header .group-icon {
+    width: 12px;
+    height: 12px;
+    opacity: 0.75;
+    flex-shrink: 0;
+}
+
+.settings-card {
+    background: var(--wl-surface);
+    border: 1px solid var(--wl-border);
+    border-radius: var(--wl-radius);
+    padding: 11px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.18s ease;
+}
+
+.settings-card-divider {
+    height: 1px;
+    background: var(--wl-border);
+    margin: 2px 0;
+}
+
+/* Settings Enhancements: Divider, Shortcut & Undo */
+.settings-divider {
+    height: 1px;
+    background: var(--wl-border);
+    margin: 2px 0;
+}
+
+.shortcut-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 72px;
+    height: 28px;
+    padding: 0 10px;
+    background: var(--wl-surface);
+    color: var(--wl-text);
+    border: 1px solid var(--wl-border);
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.18s ease;
+    outline: none;
+}
+
+.shortcut-badge:hover {
+    background: var(--wl-surface-hover);
+    border-color: var(--wl-border-hover);
+}
+
+.shortcut-badge.is-recording {
+    background: var(--wl-red-subtle);
+    border-color: var(--wl-red);
+    color: var(--wl-red);
+    box-shadow: 0 0 0 2px var(--wl-red-subtle);
+}
+
+.settings-hint {
+    font-size: 10px;
+    color: var(--wl-text-muted);
+    line-height: 1.3;
+    margin-top: 1px;
+}
+
+.undo-pill-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    background: var(--wl-surface);
+    padding: 3px;
+    border: 1px solid var(--wl-border);
+    border-radius: 8px;
+}
+
+.undo-pill {
+    background: transparent;
+    border: none;
+    color: var(--wl-text-muted);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.18s ease;
+}
+
+.undo-pill:hover:not(.active) {
+    color: var(--wl-text);
+    background: var(--wl-surface-hover);
+}
+
+.undo-pill.active {
+    background: var(--wl-bg);
+    color: var(--wl-red);
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-stepper-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--wl-bg);
+    border: 1px solid var(--wl-border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    margin-top: 5px;
+    animation: fadeInSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stepper-label {
+    font-size: 11px;
+    color: var(--wl-text-muted);
+    font-weight: 500;
+}
+
+.stepper-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--wl-bg);
+    border: 1px solid var(--wl-border);
+    border-radius: 6px;
+    padding: 2px;
+}
+
+.stepper-btn {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: var(--wl-text);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    user-select: none;
+}
+
+.stepper-btn:hover {
+    background: var(--wl-surface-hover);
+    color: var(--wl-red);
+}
+
+.stepper-btn:active {
+    transform: scale(0.92);
+}
+
+.stepper-val-wrap {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 4px;
+}
+
+.stepper-input {
+    width: 28px;
+    border: none;
+    background: transparent;
+    color: var(--wl-text);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    padding: 0;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.stepper-input::-webkit-outer-spin-button,
+.stepper-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.stepper-unit {
+    font-size: 11px;
+    color: var(--wl-text-muted);
+    font-weight: 500;
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -605,4 +931,4 @@ input[type="color"]::-moz-color-swatch {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-}
+}

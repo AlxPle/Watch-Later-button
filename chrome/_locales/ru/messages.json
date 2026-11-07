@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Кастомизация цвета: Выбирайте любой цвет RGBA и прозрачность кнопки с помощью удобного слайдера.",
+        "message": "Горячие клавиши: Мгновенно сохраняйте и отменяйте видео с помощью настраиваемой комбинации клавиш (по умолчанию Alt + W).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Меню настроек: Удобная панель настроек в popup-меню с интерактивным живым превью.",
+        "message": "Настраиваемый таймер отмены: Выбирайте удобное окно отмены (Откл, 10с, 15с или от 1 до 60с) под свой темп.",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Мгновенная синхронизация: Цвет применяется на всех открытых вкладках YouTube без перезагрузки страниц.",
+        "message": "Надёжность в Shorts и лентах: Плавное переключение в Shorts и оптимизированное добавление кнопок в динамические ленты.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Назад",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Горячая клавиша",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Нажмите сочетание или Esc для отмены",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Нажмите клавиши...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Время отмены",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Откл",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Своё",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "сек",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Оповещения об обновлениях",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Открывать вкладку «Что нового» после обновлений",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "customDuration": {
+        "message": "Длительность (1–60с)",
+        "description": "Custom duration label"
+    },
+    "settingsGroupAppearance": {
+        "message": "Внешний вид",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Управление и таймер",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Оповещения",
+        "description": "Header for notifications settings group"
     }
 }

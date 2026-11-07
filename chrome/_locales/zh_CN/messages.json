@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "自定义按钮颜色：使用任意 RGBA 颜色和不透明度滑块个性化定制按钮外观。",
+        "message": "自定义快捷键：使用可自定义的快捷键（默认 Alt + W）随时随地即时保存或撤销视频。",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "专属设置菜单：弹出窗口中新增直观设置界面，配备交互式实时预览。",
+        "message": "可配置的撤销倒计时：可在“关闭”、10秒、15秒或自定义（1–60秒）之间自由选择。",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "即时实时同步与性能提升：颜色即时应用于所有打开的 YouTube 标签页，无需刷新页面。",
+        "message": "Shorts 与信息流稳定性提升：Shorts 切换更顺畅，并优化了动态信息流卡片的按钮注入。",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "返回",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "更新通知",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "更新后显示“新功能”页面",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "外观",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "控制与计时器",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "通知",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "时长（1–60秒）",
+        "description": "Custom duration label"
     }
 }

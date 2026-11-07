@@ -10,7 +10,7 @@ layout: default
         <section class="px-4 sm:px-6 pt-8 pb-8 md:pt-14 md:pb-10 max-w-6xl mx-auto flex flex-col items-center text-center">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 mb-5 shadow-sm text-xs font-medium text-on-surface-variant">
                 <span class="material-symbols-outlined text-primary text-base" data-icon="verified" aria-hidden="true">verified</span>
-                <span>v1.6.2 • Available for Chrome, Firefox &amp; Edge</span>
+                <span>v1.6.3 • Available for Chrome, Firefox &amp; Edge</span>
             </div>
 
             <h1 class="headline-lg text-4xl sm:text-5xl md:text-6xl max-w-4xl tracking-tight mb-5 text-on-surface font-extrabold">
@@ -138,144 +138,314 @@ layout: default
             </div>
         </section>
 
-        <!-- Interactive YouTube Player Simulator -->
-        <section id="demo" class="pb-16 md:pb-24 px-4 sm:px-6 max-w-5xl mx-auto">
-            <div class="text-center mb-8">
-                <span class="text-xs font-semibold text-primary uppercase tracking-wider mb-2 block">Live Interactive Demo</span>
+        <!-- Interactive YouTube Player & Extension Popup Studio -->
+        <section id="demo" class="pb-16 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-xs font-semibold text-primary uppercase tracking-wider mb-2 block">Interactive Extension Studio</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-on-surface">
-                    Try it right here before installing
+                    Real YouTube player. Real extension settings.
                 </h2>
-                <p class="text-on-surface-variant text-base mt-2.5 max-w-xl mx-auto">
-                    Click the Watch Later button in the player toolbar below to experience the instant 0.2s save and 10-second undo countdown.
+                <p class="text-on-surface-variant text-base mt-2.5 max-w-2xl mx-auto">
+                    Test 1-click saving directly in the YouTube player on the left, or adjust colors, transparency, and shortcuts in the authentic extension popup on the right to see live sync.
                 </p>
             </div>
 
-            <!-- YouTube Mockup Player Container -->
-            <div class="yt-mockup relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-outline-variant/20 shadow-2xl select-none group">
-                <!-- Video Screen Background -->
-                <img src="assets/banner/social_poster.png" alt="YouTube video preview"
-                     class="w-full h-full object-cover block opacity-90 transition-opacity duration-300" />
-
-                <!-- Player Header -->
-                <div class="absolute top-0 inset-x-0 yt-player-header p-4 sm:p-5 flex items-center justify-between text-white z-10">
-                    <div class="flex items-center gap-3 truncate">
-                        <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center shrink-0 shadow-md">
-                            <span class="material-symbols-outlined text-white text-sm" data-icon="youtube_activity">youtube_activity</span>
-                        </div>
-                        <div class="truncate text-left">
-                            <div class="font-semibold text-xs sm:text-sm text-white/95 truncate">How to build modern web extensions in 2026</div>
-                            <div class="text-[11px] text-white/60">Tech Explorers • 420K views</div>
-                        </div>
-                    </div>
-                    <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 text-[11px] text-white/80">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>Interactive Simulator</span>
-                    </div>
-                </div>
-
-                <!-- Toast Undo Notification -->
-                <div id="demo-yt-toast" class="yt-toast" role="status" aria-live="polite">
-                    <span class="material-symbols-outlined text-emerald-400 text-base" data-icon="verified">verified</span>
-                    <span class="text-xs sm:text-sm font-medium">Saved to <strong class="text-white">Watch Later</strong></span>
-                    <button type="button" id="demo-undo-btn"
-                            class="ml-2 px-2.5 py-1 rounded bg-white/10 hover:bg-white/20 active:bg-white/30 text-xs font-bold text-white tracking-wide transition-colors uppercase focus:outline-none focus:ring-1 focus:ring-white">
-                        Undo (<span id="demo-undo-timer">10</span>s)
-                    </button>
-                </div>
-
-                <!-- Floating Helper Hint pointing to button -->
-                <div id="demo-hint" class="absolute bottom-16 right-14 sm:right-28 z-20 pointer-events-none demo-hint-badge flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-white text-xs font-semibold shadow-lg shadow-primary/30">
-                    <span>Click this button!</span>
-                    <span class="text-sm">👇</span>
-                </div>
-
-                <!-- Bottom Player Controls Bar -->
-                <div class="absolute bottom-0 inset-x-0 yt-player-controls px-4 sm:px-6 py-3 flex flex-col gap-2.5 z-20">
-                    <!-- Scrubber / Timeline -->
-                    <div class="yt-scrubber-track rounded-full cursor-pointer">
-                        <div class="yt-scrubber-progress rounded-full"></div>
-                        <div class="yt-scrubber-thumb"></div>
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Left: YouTube Player Simulation (7 cols) -->
+                <div class="lg:col-span-7 flex flex-col gap-3">
+                    <div class="flex items-center justify-between text-xs font-medium text-on-surface-variant px-1">
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                            <span>YouTube Video Player</span>
+                        </span>
+                        <span class="text-[11px] text-on-surface-variant/70">Injected by extension</span>
                     </div>
 
-                    <!-- Buttons Row -->
-                    <div class="flex items-center justify-between text-white">
-                        <!-- Left controls -->
-                        <div class="flex items-center gap-3 sm:gap-4 text-sm sm:text-base">
-                            <span class="cursor-pointer hover:text-white/80 transition-colors select-none" title="Play / Pause">▶</span>
-                            <span class="cursor-pointer hover:text-white/80 transition-colors select-none hidden sm:inline" title="Next">⏭</span>
-                            <span class="cursor-pointer hover:text-white/80 transition-colors select-none" title="Volume">🔊</span>
-                            <span class="text-xs text-white/70 font-mono select-none">04:12 / 12:45</span>
+                    <!-- YouTube Mockup Player Container -->
+                    <div class="yt-mockup relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-outline-variant/20 shadow-2xl select-none group">
+                        <!-- Video Screen Background -->
+                        <img src="assets/banner/social_poster.png" alt="YouTube video preview"
+                             class="w-full h-full object-cover block opacity-90 transition-opacity duration-300" />
+
+                        <!-- Player Header -->
+                        <div class="absolute top-0 inset-x-0 yt-player-header p-4 sm:p-5 flex items-center justify-between text-white z-10">
+                            <div class="flex items-center gap-3 truncate">
+                                <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center shrink-0 shadow-md">
+                                    <span class="material-symbols-outlined text-white text-sm" data-icon="youtube_activity">youtube_activity</span>
+                                </div>
+                                <div class="truncate text-left">
+                                    <div class="font-semibold text-xs sm:text-sm text-white/95 truncate">How to build modern web extensions in 2026</div>
+                                    <div class="text-[11px] text-white/60">Tech Explorers • 420K views</div>
+                                </div>
+                            </div>
+                            <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 text-[11px] text-white/80">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span>Live YouTube Tab</span>
+                            </div>
                         </div>
 
-                        <!-- Right controls including the interactive button -->
-                        <div class="flex items-center gap-3 sm:gap-4">
-                            <!-- INTERACTIVE BUTTON -->
-                            <div class="relative flex items-center justify-center">
-                                <button type="button" id="demo-wl-btn" class="demo-wl-btn"
-                                        role="button"
-                                        aria-label="Save to Watch Later"
-                                        title="Click to test Save to Watch Later">
-                                </button>
+                        <!-- Toast Undo Notification -->
+                        <div id="demo-yt-toast" class="yt-toast" role="status" aria-live="polite">
+                            <span class="material-symbols-outlined text-emerald-400 text-base" data-icon="verified">verified</span>
+                            <span class="text-xs sm:text-sm font-medium">Saved to <strong class="text-white">Watch Later</strong></span>
+                            <button type="button" id="demo-undo-btn"
+                                    class="ml-2 px-2.5 py-1 rounded bg-white/10 hover:bg-white/20 active:bg-white/30 text-xs font-bold text-white tracking-wide transition-colors uppercase focus:outline-none focus:ring-1 focus:ring-white">
+                                Undo (<span id="demo-undo-timer">10</span>s)
+                            </button>
+                        </div>
+
+                        <!-- Floating Helper Hint pointing to button -->
+                        <div id="demo-hint" class="absolute bottom-16 right-14 sm:right-28 z-20 pointer-events-none demo-hint-badge flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-white text-xs font-semibold shadow-lg shadow-primary/30">
+                            <span>Click to save!</span>
+                            <span class="text-sm">👇</span>
+                        </div>
+
+                        <!-- Bottom Player Controls Bar -->
+                        <div class="absolute bottom-0 inset-x-0 yt-player-controls px-4 sm:px-6 py-3 flex flex-col gap-2.5 z-20">
+                            <!-- Scrubber / Timeline -->
+                            <div class="yt-scrubber-track rounded-full cursor-pointer">
+                                <div class="yt-scrubber-progress rounded-full"></div>
+                                <div class="yt-scrubber-thumb"></div>
                             </div>
 
-                            <span class="cursor-pointer hover:text-white/80 transition-colors text-xs font-bold select-none" title="Subtitles">CC</span>
-                            <span class="cursor-pointer hover:text-white/80 transition-colors text-sm select-none" title="Settings">⚙</span>
-                            <span class="cursor-pointer hover:text-white/80 transition-colors text-sm select-none hidden sm:inline" title="Miniplayer">⧉</span>
-                            <span class="cursor-pointer hover:text-white/80 transition-colors text-sm select-none" title="Fullscreen">⛶</span>
+                            <!-- Buttons Row -->
+                            <div class="flex items-center justify-between text-white">
+                                <!-- Left controls -->
+                                <div class="flex items-center gap-3 sm:gap-4 text-sm sm:text-base">
+                                    <span class="cursor-pointer hover:text-white/80 transition-colors select-none" title="Play / Pause">▶</span>
+                                    <span class="cursor-pointer hover:text-white/80 transition-colors select-none hidden sm:inline" title="Next">⏭</span>
+                                    <span class="cursor-pointer hover:text-white/80 transition-colors select-none" title="Volume">🔊</span>
+                                    <span class="text-xs text-white/70 font-mono select-none">04:12 / 12:45</span>
+                                </div>
+
+                                <!-- Right controls including the interactive button -->
+                                <div class="flex items-center gap-3 sm:gap-4">
+                                    <!-- INTERACTIVE BUTTON -->
+                                    <div class="relative flex items-center justify-center">
+                                        <button type="button" id="demo-wl-btn" class="demo-wl-btn"
+                                                role="button"
+                                                aria-label="Save to Watch Later"
+                                                title="Click to test Save to Watch Later (or press Alt + W)">
+                                        </button>
+                                    </div>
+
+                                    <span class="cursor-pointer hover:text-white/80 transition-colors text-xs font-bold select-none" title="Subtitles">CC</span>
+                                    <span class="cursor-pointer hover:text-white/80 transition-colors text-sm select-none" title="Settings">⚙</span>
+                                    <span class="cursor-pointer hover:text-white/80 transition-colors text-sm select-none hidden sm:inline" title="Miniplayer">⧉</span>
+                                    <span class="cursor-pointer hover:text-white/80 transition-colors text-sm select-none" title="Fullscreen">⛶</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Keyboard hotkey helper tip -->
+                    <div class="p-3 rounded-xl bg-surface-container-low border border-outline-variant/15 flex items-center justify-between gap-3 text-xs text-on-surface-variant">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-base" data-icon="bolt">bolt</span>
+                            <span>Hotkey shortcut:</span>
+                            <kbd class="px-2 py-0.5 rounded bg-surface font-mono text-[11px] font-bold border border-outline-variant/30 text-on-surface shadow-xs">Alt + W</kbd>
+                            <span>works on this page!</span>
+                        </span>
+                        <span class="text-[11px] text-primary font-medium hidden sm:inline">Try pressing it now</span>
+                    </div>
+                </div>
+
+                <!-- Right: Authentic Extension Popup Window (5 cols) -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="w-full flex items-center justify-between text-xs font-medium text-on-surface-variant mb-2 px-1 max-w-[340px]">
+                        <span class="flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-sm text-primary" data-icon="ads_click">ads_click</span>
+                            <span>Extension Popup</span>
+                        </span>
+                        <span class="text-[11px] text-emerald-500 font-semibold flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                            Live Sync Active
+                        </span>
+                    </div>
+
+                    <!-- Authentic Extension Popup Card Replica -->
+                    <div class="ext-popup-window" id="demo-ext-popup">
+                        <div class="popup-container">
+                            <!-- Popup Header (visible in Main View) -->
+                            <header class="popup-header" id="demo-popup-header" hidden>
+                                <div class="brand-group">
+                                    <img class="header-logo" src="{{ '/assets/favicon.png' | relative_url }}" alt="Logo" width="20" height="20">
+                                    <h3 class="extension-name">Watch Later Button</h3>
+                                </div>
+                            </header>
+
+                            <!-- Main View (Hidden by default, accessible via Back button) -->
+                            <section id="demo-main-view" class="view-panel" hidden>
+                                <!-- Hero Card -->
+                                <a href="https://www.youtube.com/playlist?list=WL" target="_blank" rel="noopener noreferrer" class="hero-card" title="Open Watch Later playlist">
+                                    <div class="hero-icon-wrapper">
+                                        <svg class="hero-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M19 9H2v2h17V9zm0-4H2v2h17V5zM2 15h13v-2H2v2zm15-2v6l5-3-5-3z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="hero-content">
+                                        <span class="hero-title">Watch Later</span>
+                                        <span class="hero-subtitle">Open saved videos playlist</span>
+                                    </div>
+                                    <svg class="hero-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </a>
+
+                                <!-- Open Settings Row Button -->
+                                <button type="button" class="settings-row-btn" id="demo-open-settings-btn">
+                                    <div class="settings-row-left">
+                                        <svg class="btn-icon" viewBox="0 -960 960 960" aria-hidden="true">
+                                            <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12L370-880h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm110-280q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z"/>
+                                        </svg>
+                                        <span>Settings</span>
+                                    </div>
+                                    <svg class="row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+
+                                <!-- Action Grid -->
+                                <div class="action-grid">
+                                    <a href="https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews" target="_blank" rel="noopener noreferrer" class="grid-btn">
+                                        <svg class="btn-icon" viewBox="0 -960 960 960" aria-hidden="true">
+                                            <path d="m320-240 160-122 160 122-60-198 160-114H544l-64-208-64 208H220l160 114-60 198ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z" />
+                                        </svg>
+                                        <span>Reviews</span>
+                                    </a>
+                                    <a href="https://www.buymeacoffee.com/pletnovalex" target="_blank" rel="noopener noreferrer" class="grid-btn">
+                                        <svg class="btn-icon" viewBox="0 -960 960 960" aria-hidden="true">
+                                            <path d="M160-120v-80h640v80H160Zm160-160q-66 0-113-47t-47-113v-400h640q33 0 56.5 23.5T880-760v120q0 33-23.5 56.5T800-560h-80v120q0 66-47 113t-113 47H320Zm0-80h240q33 0 56.5-23.5T640-440v-320H240v320q0 33 23.5 56.5T320-360Zm400-280h80v-120h-80v120ZM320-360h-80 400-320Z" />
+                                        </svg>
+                                        <span>Donate</span>
+                                    </a>
+                                </div>
+                            </section>
+
+                            <!-- Settings View (Active by default in demo) -->
+                            <section id="demo-settings-view" class="view-panel">
+                                <div class="settings-nav">
+                                    <button type="button" class="back-btn" id="demo-back-btn" aria-label="Back to main view">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <polyline points="15 18 9 12 15 6"></polyline>
+                                        </svg>
+                                        <span>Back</span>
+                                    </button>
+                                    <h3 class="settings-title">Settings</h3>
+                                </div>
+
+                                <div class="settings-sections">
+                                    <!-- Zone 1: Appearance -->
+                                    <div class="settings-group">
+                                        <div class="settings-group-header">
+                                            <svg class="group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M12 2a7 7 0 0 0 0 14 3.5 3.5 0 0 0 3.5-3.5c0-.62-.25-1.2-.67-1.62l-.71-.71A2 2 0 0 1 14 9V8a2 2 0 0 1 2-2h1a5 5 0 0 1 5 5"></path>
+                                            </svg>
+                                            <span>Appearance</span>
+                                        </div>
+
+                                        <div class="settings-card">
+                                            <!-- Checkerboard Preview Stage -->
+                                            <div class="preview-center" title="Live Checkerboard Preview Stage">
+                                                <div id="demo-btn-preview" class="saveToWatchLater" title="Watch Later Button Preview"></div>
+                                            </div>
+
+                                            <!-- Color Picker & HEX Input -->
+                                            <div class="control-row">
+                                                <label for="demo-popup-color-picker" class="control-label">Button color</label>
+                                                <div class="color-picker-group">
+                                                    <input type="color" id="demo-popup-color-picker" value="#e50914" aria-label="Button color">
+                                                    <input type="text" id="demo-popup-color-hex" value="#E50914" spellcheck="false" class="hex-field" maxlength="9" aria-label="Hex color">
+                                                </div>
+                                            </div>
+
+                                            <!-- Opacity Slider -->
+                                            <div class="control-group">
+                                                <div class="slider-meta">
+                                                    <label for="demo-popup-opacity-slider" class="control-label">Opacity</label>
+                                                    <span id="demo-popup-opacity-val" class="slider-value">100%</span>
+                                                </div>
+                                                <input type="range" id="demo-popup-opacity-slider" min="20" max="100" value="100" class="range-slider" aria-label="Opacity slider">
+                                            </div>
+
+                                            <!-- Live RGBA Output -->
+                                            <div class="control-group">
+                                                <input type="text" id="demo-popup-rgba-output" readonly class="rgba-field" value="rgba(229, 9, 20, 1.00)" aria-label="RGBA CSS value">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Zone 2: Controls & Timing -->
+                                    <div class="settings-group">
+                                        <div class="settings-group-header">
+                                            <svg class="group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                                <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M7 16h10"></path>
+                                            </svg>
+                                            <span>Controls &amp; Timing</span>
+                                        </div>
+
+                                        <div class="settings-card">
+                                            <!-- Keyboard Shortcut -->
+                                            <div class="control-group">
+                                                <div class="control-row">
+                                                    <span class="control-label">Keyboard shortcut</span>
+                                                    <button type="button" id="demo-popup-shortcut-btn" class="shortcut-badge" title="Click to test shortcut">Alt + W</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="settings-card-divider"></div>
+
+                                            <!-- Undo Timer Duration -->
+                                            <div class="control-group">
+                                                <div class="control-row">
+                                                    <span class="control-label">Undo timer</span>
+                                                    <span id="demo-popup-undo-badge" class="slider-value">10s</span>
+                                                </div>
+                                                <div class="undo-pill-group" role="group" aria-label="Undo timer duration">
+                                                    <button type="button" class="undo-pill" data-seconds="0">Off</button>
+                                                    <button type="button" class="undo-pill active" data-seconds="10">10s</button>
+                                                    <button type="button" class="undo-pill" data-seconds="15">15s</button>
+                                                    <button type="button" class="undo-pill" data-seconds="custom">Custom</button>
+                                                </div>
+                                                <!-- Custom Stepper -->
+                                                <div id="demo-popup-custom-undo" class="custom-stepper-card" hidden>
+                                                    <span class="stepper-label">Duration (1–60s)</span>
+                                                    <div class="stepper-controls">
+                                                        <button type="button" class="stepper-btn" id="demo-undo-step-down" aria-label="Decrease">−</button>
+                                                        <div class="stepper-val-wrap">
+                                                            <input type="number" id="demo-custom-undo-input" class="stepper-input" min="1" max="60" value="7" aria-label="Custom seconds">
+                                                            <span class="stepper-unit">sec</span>
+                                                        </div>
+                                                        <button type="button" class="stepper-btn" id="demo-undo-step-up" aria-label="Increase">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Reset Button -->
+                                    <button type="button" id="demo-popup-reset-btn" class="reset-btn">
+                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <polyline points="1 4 1 10 7 10"></polyline>
+                                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                                        </svg>
+                                        <span>Reset to default</span>
+                                    </button>
+                                </div>
+                            </section>
+
+                            <!-- Popup Footer -->
+                            <footer class="popup-footer">
+                                <span>v1.6.3</span>
+                                <span class="footer-separator">•</span>
+                                <a class="footer-link" href="{{ '/updates/' | relative_url }}">What's new</a>
+                            </footer>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Live Customization Sandbox Strip -->
-            <div class="mt-6 p-4 sm:p-5 rounded-2xl bg-surface-container-low border border-outline-variant/20 shadow-sm flex flex-col md:flex-row items-center justify-between gap-5 text-xs text-on-surface">
-                <!-- Color selector -->
-                <div class="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
-                    <span class="font-semibold text-on-surface-variant flex items-center gap-1.5">
-                        <span class="material-symbols-outlined text-sm text-primary" data-icon="ads_click">ads_click</span>
-                        Button Color:
-                    </span>
-                    <div class="flex items-center gap-2" id="demo-color-presets">
-                        <button type="button" data-color="#ff0033" aria-label="YouTube Red"
-                                class="demo-color-pill w-7 h-7 rounded-full bg-[#ff0033] ring-2 ring-primary ring-offset-2 ring-offset-surface transition-transform hover:scale-110 focus:outline-none"></button>
-                        <button type="button" data-color="#00e5ff" aria-label="Cyber Cyan"
-                                class="demo-color-pill w-7 h-7 rounded-full bg-[#00e5ff] transition-transform hover:scale-110 focus:outline-none"></button>
-                        <button type="button" data-color="#10b981" aria-label="Emerald Green"
-                                class="demo-color-pill w-7 h-7 rounded-full bg-[#10b981] transition-transform hover:scale-110 focus:outline-none"></button>
-                        <button type="button" data-color="#f59e0b" aria-label="Amber Yellow"
-                                class="demo-color-pill w-7 h-7 rounded-full bg-[#f59e0b] transition-transform hover:scale-110 focus:outline-none"></button>
-                        <button type="button" data-color="#a855f7" aria-label="Purple"
-                                class="demo-color-pill w-7 h-7 rounded-full bg-[#a855f7] transition-transform hover:scale-110 focus:outline-none"></button>
-                        <button type="button" data-color="#ffffff" aria-label="Pure White"
-                                class="demo-color-pill w-7 h-7 rounded-full bg-white border border-outline-variant/40 transition-transform hover:scale-110 focus:outline-none"></button>
-                        <!-- Native custom color input -->
-                        <label class="relative inline-flex items-center justify-center w-7 h-7 rounded-full bg-surface-container border border-outline-variant/30 cursor-pointer hover:border-primary transition-colors" title="Pick any custom color">
-                            <input type="color" id="demo-custom-color" value="#ff0033" class="opacity-0 absolute inset-0 w-full h-full cursor-pointer" aria-label="Custom color picker">
-                            <span class="material-symbols-outlined text-xs text-on-surface-variant pointer-events-none" data-icon="favorite">favorite</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Opacity slider & checkerboard preview -->
-                <div class="flex items-center gap-3">
-                    <span class="font-semibold text-on-surface-variant flex items-center gap-1.5">
-                        <span class="material-symbols-outlined text-sm text-primary" data-icon="weight">weight</span>
-                        Opacity:
-                    </span>
-                    <input type="range" id="demo-opacity-slider" min="30" max="100" value="100" step="5"
-                           class="w-24 sm:w-28 accent-primary cursor-pointer" aria-label="Button opacity slider">
-                    <span id="demo-opacity-val" class="font-mono font-semibold text-on-surface w-9 text-right">100%</span>
-                    
-                    <button type="button" id="demo-reset-btn"
-                            class="ml-2 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors font-medium text-[11px] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                        Reset
-                    </button>
-                </div>
-            </div>
-            
-            <p class="text-center text-xs text-on-surface-variant/75 mt-3">
-                💡 Live preview: Custom color &amp; transparency reflect live across all open YouTube tabs without page reload.
-            </p>
         </section>
 
         <!-- Features Grid -->
@@ -645,45 +815,174 @@ layout: default
                 });
             }
 
-            // Interactive YouTube Player Simulator
-            (function initDemoPlayer() {
+            // Interactive YouTube Player & Extension Popup Studio
+            (function initDemoStudio() {
+                // Player elements
                 var wlBtn = document.getElementById('demo-wl-btn');
                 var toast = document.getElementById('demo-yt-toast');
                 var undoBtn = document.getElementById('demo-undo-btn');
                 var undoTimer = document.getElementById('demo-undo-timer');
                 var hint = document.getElementById('demo-hint');
-                var colorPills = document.querySelectorAll('.demo-color-pill');
-                var customColorInput = document.getElementById('demo-custom-color');
-                var opacitySlider = document.getElementById('demo-opacity-slider');
-                var opacityVal = document.getElementById('demo-opacity-val');
-                var resetBtn = document.getElementById('demo-reset-btn');
+
+                // Popup elements
+                var popupHeader = document.getElementById('demo-popup-header');
+                var mainView = document.getElementById('demo-main-view');
+                var settingsView = document.getElementById('demo-settings-view');
+                var openSettingsBtn = document.getElementById('demo-open-settings-btn');
+                var backBtn = document.getElementById('demo-back-btn');
+
+                var previewBtn = document.getElementById('demo-btn-preview');
+                var colorPicker = document.getElementById('demo-popup-color-picker');
+                var colorHex = document.getElementById('demo-popup-color-hex');
+                var opacitySlider = document.getElementById('demo-popup-opacity-slider');
+                var opacityVal = document.getElementById('demo-popup-opacity-val');
+                var rgbaOutput = document.getElementById('demo-popup-rgba-output');
+                var shortcutBtn = document.getElementById('demo-popup-shortcut-btn');
+                var undoBadge = document.getElementById('demo-popup-undo-badge');
+                var undoPills = document.querySelectorAll('#demo-ext-popup .undo-pill');
+                var customUndoContainer = document.getElementById('demo-popup-custom-undo');
+                var customUndoInput = document.getElementById('demo-custom-undo-input');
+                var undoStepDown = document.getElementById('demo-undo-step-down');
+                var undoStepUp = document.getElementById('demo-undo-step-up');
+                var resetBtn = document.getElementById('demo-popup-reset-btn');
 
                 if (!wlBtn || !toast || !undoBtn) return;
 
+                // State
+                var DEFAULT_COLOR = '#e50914';
+                var DEFAULT_ALPHA = 100;
+                var DEFAULT_UNDO_SEC = 10;
+
+                var currentColor = DEFAULT_COLOR;
+                var currentAlpha = DEFAULT_ALPHA;
+                var currentUndoSec = DEFAULT_UNDO_SEC;
+
                 var isSaved = false;
                 var countdownTimer = null;
-                var durationMs = 10000;
                 var startTime = 0;
 
-                function applyDemoColor(hex) {
-                    wlBtn.style.setProperty('--demo-color', hex);
-                    colorPills.forEach(function(pill) {
-                        if (pill.getAttribute('data-color') === hex) {
-                            pill.classList.add('ring-2', 'ring-primary', 'ring-offset-2', 'ring-offset-surface');
-                        } else {
-                            pill.classList.remove('ring-2', 'ring-primary', 'ring-offset-2', 'ring-offset-surface');
+                function hexToRgba(hex, alpha) {
+                    var clean = hex.replace('#', '').slice(0, 6);
+                    if (clean.length === 3) {
+                        clean = clean[0] + clean[0] + clean[1] + clean[1] + clean[2] + clean[2];
+                    }
+                    var r = parseInt(clean.slice(0, 2), 16) || 0;
+                    var g = parseInt(clean.slice(2, 4), 16) || 0;
+                    var b = parseInt(clean.slice(4, 6), 16) || 0;
+                    var a = +(Math.round(alpha) / 100).toFixed(2);
+                    return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
+                }
+
+                function syncColors(hex, alpha) {
+                    if (hex) currentColor = hex;
+                    if (typeof alpha === 'number') currentAlpha = alpha;
+
+                    var rgba = hexToRgba(currentColor, currentAlpha);
+
+                    // Sync in Popup
+                    if (colorPicker) colorPicker.value = currentColor;
+                    if (colorHex) colorHex.value = currentColor.toUpperCase();
+                    if (opacitySlider) opacitySlider.value = currentAlpha;
+                    if (opacityVal) opacityVal.textContent = Math.round(currentAlpha) + '%';
+                    if (rgbaOutput) rgbaOutput.value = rgba;
+                    if (previewBtn) previewBtn.style.setProperty('--wl-color-default', rgba);
+
+                    // Sync to YouTube Player Button
+                    wlBtn.style.setProperty('--demo-color', currentColor);
+                    wlBtn.style.setProperty('--demo-opacity', Math.max(0.2, currentAlpha / 100));
+                }
+
+                // Popup Navigation
+                if (openSettingsBtn && backBtn) {
+                    openSettingsBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (popupHeader) popupHeader.hidden = true;
+                        if (mainView) mainView.hidden = true;
+                        if (settingsView) settingsView.hidden = false;
+                    });
+
+                    backBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (settingsView) settingsView.hidden = true;
+                        if (popupHeader) popupHeader.hidden = false;
+                        if (mainView) mainView.hidden = false;
+                    });
+                }
+
+                // Color Controls
+                if (colorPicker) {
+                    colorPicker.addEventListener('input', function(e) {
+                        syncColors(e.target.value, currentAlpha);
+                    });
+                }
+
+                if (colorHex) {
+                    colorHex.addEventListener('input', function(e) {
+                        var val = e.target.value.trim();
+                        if (!val.startsWith('#')) val = '#' + val;
+                        if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+                            syncColors(val, currentAlpha);
                         }
                     });
-                    if (customColorInput) customColorInput.value = hex;
                 }
 
-                function applyDemoOpacity(val) {
-                    var opacity = Math.max(0.2, Math.min(1, val / 100));
-                    wlBtn.style.setProperty('--demo-opacity', opacity);
-                    if (opacitySlider) opacitySlider.value = val;
-                    if (opacityVal) opacityVal.textContent = Math.round(val) + '%';
+                // Opacity Controls
+                if (opacitySlider) {
+                    opacitySlider.addEventListener('input', function(e) {
+                        syncColors(currentColor, Number(e.target.value));
+                    });
                 }
 
+                // Undo Pills & Custom Stepper
+                function setUndoDuration(sec) {
+                    currentUndoSec = sec;
+                    if (undoBadge) {
+                        undoBadge.textContent = sec === 0 ? 'Off' : sec + 's';
+                    }
+                }
+
+                undoPills.forEach(function(pill) {
+                    pill.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        undoPills.forEach(function(p) { p.classList.remove('active'); });
+                        pill.classList.add('active');
+
+                        var val = pill.getAttribute('data-seconds');
+                        if (val === 'custom') {
+                            if (customUndoContainer) customUndoContainer.hidden = false;
+                            var customSec = customUndoInput ? parseInt(customUndoInput.value, 10) || 7 : 7;
+                            setUndoDuration(customSec);
+                        } else {
+                            if (customUndoContainer) customUndoContainer.hidden = true;
+                            setUndoDuration(parseInt(val, 10) || 0);
+                        }
+                    });
+                });
+
+                if (customUndoInput) {
+                    customUndoInput.addEventListener('input', function(e) {
+                        var val = Math.max(1, Math.min(60, parseInt(e.target.value, 10) || 7));
+                        setUndoDuration(val);
+                    });
+                }
+
+                if (undoStepDown && customUndoInput) {
+                    undoStepDown.addEventListener('click', function() {
+                        var val = Math.max(1, (parseInt(customUndoInput.value, 10) || 7) - 1);
+                        customUndoInput.value = val;
+                        setUndoDuration(val);
+                    });
+                }
+
+                if (undoStepUp && customUndoInput) {
+                    undoStepUp.addEventListener('click', function() {
+                        var val = Math.min(60, (parseInt(customUndoInput.value, 10) || 7) + 1);
+                        customUndoInput.value = val;
+                        setUndoDuration(val);
+                    });
+                }
+
+                // Save / Undo Simulation
                 function stopCountdown() {
                     if (countdownTimer) {
                         clearInterval(countdownTimer);
@@ -698,11 +997,22 @@ layout: default
                     wlBtn.style.setProperty('--demo-undo-angle', '360deg');
                     wlBtn.setAttribute('aria-label', 'Save to Watch Later');
                     toast.classList.remove('is-visible');
+                    if (previewBtn) previewBtn.classList.remove('is-saved');
+                }
+
+                function triggerShortcutFlash() {
+                    if (shortcutBtn) {
+                        shortcutBtn.classList.add('is-triggered');
+                        setTimeout(function() {
+                            shortcutBtn.classList.remove('is-triggered');
+                        }, 400);
+                    }
                 }
 
                 function performSave() {
                     stopCountdown();
                     isSaved = true;
+
                     if (hint) {
                         hint.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                         hint.style.opacity = '0';
@@ -710,12 +1020,30 @@ layout: default
                         setTimeout(function() { if (hint) hint.remove(); }, 350);
                     }
 
-                    wlBtn.classList.add('is-saved', 'is-undo-active');
+                    wlBtn.classList.add('is-saved');
+                    if (previewBtn) previewBtn.classList.add('is-saved');
                     wlBtn.setAttribute('aria-label', 'Video saved to Watch Later. Click to undo.');
+
+                    // If Undo is turned Off in settings
+                    if (currentUndoSec <= 0) {
+                        wlBtn.classList.remove('is-undo-active');
+                        toast.classList.add('is-visible');
+                        if (undoBtn) undoBtn.style.display = 'none';
+                        setTimeout(function() {
+                            toast.classList.remove('is-visible');
+                            if (undoBtn) undoBtn.style.display = '';
+                        }, 2200);
+                        return;
+                    }
+
+                    // Active Undo with timer
+                    if (undoBtn) undoBtn.style.display = '';
+                    wlBtn.classList.add('is-undo-active');
                     toast.classList.add('is-visible');
 
+                    var durationMs = currentUndoSec * 1000;
                     startTime = Date.now();
-                    if (undoTimer) undoTimer.textContent = '10';
+                    if (undoTimer) undoTimer.textContent = String(currentUndoSec);
                     wlBtn.style.setProperty('--demo-undo-angle', '360deg');
 
                     countdownTimer = setInterval(function() {
@@ -735,19 +1063,23 @@ layout: default
                     }, 40);
                 }
 
-                wlBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
+                function toggleSave() {
                     if (!isSaved) {
                         performSave();
                     } else {
                         revertSave();
                     }
+                }
+
+                wlBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    toggleSave();
                 });
 
                 wlBtn.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        wlBtn.click();
+                        toggleSave();
                     }
                 });
 
@@ -756,32 +1088,53 @@ layout: default
                     revertSave();
                 });
 
-                colorPills.forEach(function(pill) {
-                    pill.addEventListener('click', function() {
-                        var hex = pill.getAttribute('data-color');
-                        if (hex) applyDemoColor(hex);
+                // Hotkey badge click triggers action
+                if (shortcutBtn) {
+                    shortcutBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        triggerShortcutFlash();
+                        toggleSave();
                     });
+                }
+
+                // Global Alt + W keyboard listener
+                document.addEventListener('keydown', function(e) {
+                    // Check if Alt + W (or Option + W on Mac)
+                    var isAltW = e.altKey && (e.key === 'w' || e.key === 'W' || e.code === 'KeyW');
+                    if (isAltW) {
+                        // Do not intercept if user is typing in an input
+                        var targetTag = e.target && e.target.tagName;
+                        if (targetTag === 'INPUT' || targetTag === 'TEXTAREA') return;
+
+                        e.preventDefault();
+                        triggerShortcutFlash();
+                        toggleSave();
+                    }
                 });
 
-                if (customColorInput) {
-                    customColorInput.addEventListener('input', function(e) {
-                        applyDemoColor(e.target.value);
-                    });
-                }
-
-                if (opacitySlider) {
-                    opacitySlider.addEventListener('input', function(e) {
-                        applyDemoOpacity(Number(e.target.value));
-                    });
-                }
-
+                // Reset to Default
                 if (resetBtn) {
-                    resetBtn.addEventListener('click', function() {
-                        applyDemoColor('#ff0033');
-                        applyDemoOpacity(100);
+                    resetBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        syncColors(DEFAULT_COLOR, DEFAULT_ALPHA);
+
+                        // Reset undo to 10s pill
+                        undoPills.forEach(function(p) {
+                            if (p.getAttribute('data-seconds') === '10') {
+                                p.classList.add('active');
+                            } else {
+                                p.classList.remove('active');
+                            }
+                        });
+                        if (customUndoContainer) customUndoContainer.hidden = true;
+                        setUndoDuration(10);
+
                         revertSave();
                     });
                 }
+
+                // Initial sync
+                syncColors(DEFAULT_COLOR, DEFAULT_ALPHA);
             })();
         })();
     </script>

@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Culoare personalizată a butonului: Personalizează butonul cu orice culoare RGBA și cursor de opacitate.",
+        "message": "Comandă rapidă de la tastatură: Salvați sau anulați videoclipurile instantaneu folosind o comandă rapidă (implicit Alt + W).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Meniu dedicat de setări: Meniu optimizat în fereastra pop-up cu previzualizare interactivă în timp real.",
+        "message": "Temporizator de anulare configurabil: Alegeți între Oprit, 10s, 15s sau durată personalizată (1–60s).",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Sincronizare în timp real și performanță: Culorile se aplică instantaneu pe toate filele YouTube deschise fără reîncărcare.",
+        "message": "Fiabilitate în Shorts și fluxuri: Tranziții mai fluide în Shorts și injectare îmbunătățită a butoanelor în fluxurile dinamice.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Înapoi",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Notificări despre actualizări",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Afișează fila «Ce este nou» după actualizări",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Aspect",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Comenzi și temporizator",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Notificări",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Durată (1–60s)",
+        "description": "Custom duration label"
     }
 }

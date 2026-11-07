@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Aangepaste knopkleur: Personaliseer de knop met elke RGBA-kleur en een schuifregelaar voor dekking.",
+        "message": "Aangepaste sneltoets: Sla video's direct op of maak dit ongedaan met een sneltoets (standaard Alt + W).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Speciaal instellingenmenu: Overzichtelijk instellingenmenu in de pop-up met interactieve live voorvertoning.",
+        "message": "Instelbare ongedaan-maken-timer: Kies tussen Uit, 10s, 15s of aangepaste duur (1–60s).",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Directe live-synchronisatie & prestaties: Kleuren worden direct toegepast op alle openstaande YouTube-tabbladen zonder herladen.",
+        "message": "Betrouwbaarheid in Shorts en feeds: Vloeiendere overgangen in Shorts en verbeterde knopinjectie op dynamische feeds.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Terug",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Update-meldingen",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Tabblad 'Wat is nieuw' openen na updates",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Uiterlijk",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Bediening & Timer",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Meldingen",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Duur (1–60s)",
+        "description": "Custom duration label"
     }
 }

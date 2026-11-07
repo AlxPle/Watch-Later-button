@@ -88,15 +88,15 @@
         "description": "Features list header"
     },
     "updateFeature1": {
-        "message": "Color de botón personalizado: Personaliza el botón con cualquier color RGBA y control deslizante de opacidad.",
+        "message": "Atajo de teclado personalizado: Guarda o deshaz vídeos al instante con una combinación de teclas (Alt + W por defecto).",
         "description": "Feature 1 description"
     },
     "updateFeature2": {
-        "message": "Menú de configuración dedicado: Menú optimizado en la ventana emergente con vista previa interactiva en vivo.",
+        "message": "Temporizador de deshacer configurable: Elige entre Desactivado, 10s, 15s o duración personalizada (1–60s).",
         "description": "Feature 2 description"
     },
     "updateFeature3": {
-        "message": "Sincronización en vivo y rendimiento: Los colores se aplican al instante en todas las pestañas de YouTube abiertas sin recargar.",
+        "message": "Fiabilidad en Shorts y feeds: Transiciones más limpias en Shorts e inserción optimizada en feeds dinámicos.",
         "description": "Feature 3 description"
     },
     "updateCloseButton": {
@@ -158,5 +158,57 @@
     "settingsBack": {
         "message": "Atrás",
         "description": "Back button label"
+    },
+    "settingsShortcut": {
+        "message": "Keyboard shortcut",
+        "description": "Label for shortcut recorder"
+    },
+    "settingsShortcutHint": {
+        "message": "Press key combination or Esc to cancel",
+        "description": "Hint while recording shortcut"
+    },
+    "settingsShortcutRecording": {
+        "message": "Press keys...",
+        "description": "Status text while recording shortcut"
+    },
+    "settingsUndo": {
+        "message": "Undo timer",
+        "description": "Label for undo timer setting"
+    },
+    "undoOff": {
+        "message": "Off",
+        "description": "Label for disabling undo"
+    },
+    "undoCustom": {
+        "message": "Custom",
+        "description": "Label for custom undo duration"
+    },
+    "secondsUnit": {
+        "message": "sec",
+        "description": "Seconds abbreviation"
+    },
+    "settingsUpdateNotifications": {
+        "message": "Notificaciones de actualización",
+        "description": "Label for update notifications toggle in settings"
+    },
+    "settingsUpdateNotificationsDesc": {
+        "message": "Mostrar pestaña «Novedades» tras actualizar",
+        "description": "Description for update notifications toggle in settings"
+    },
+    "settingsGroupAppearance": {
+        "message": "Apariencia",
+        "description": "Header for appearance settings group"
+    },
+    "settingsGroupControls": {
+        "message": "Controles y temporizador",
+        "description": "Header for controls and timing settings group"
+    },
+    "settingsGroupNotifications": {
+        "message": "Notificaciones",
+        "description": "Header for notifications settings group"
+    },
+    "customDuration": {
+        "message": "Duración (1–60s)",
+        "description": "Custom duration label"
     }
 }
