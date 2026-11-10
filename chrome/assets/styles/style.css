@@ -3,6 +3,11 @@
     --wl-color-default-hover: #b80710;
 }
 
+/* Ensure correct positioning for card button mount points (replaces getComputedStyle check) */
+.wl-mount-relative {
+    position: relative;
+}
+
 .saveToWatchLater {
     --wl-icon-color: #fff;
     --wl-ring-color: var(--wl-icon-color);
@@ -21,6 +26,8 @@
     margin-right: 8px;
     transition: transform .2s ease-in-out, background-color .18s ease, box-shadow .18s ease;
     background-color: var(--wl-color-default);
+    /* P7: isolate layout/paint recalcs to this element only */
+    contain: layout style;
 }
 
 #saveToPlaylist {
@@ -43,6 +50,8 @@
     background-color: var(--wl-color-default-hover);
     box-shadow: 0 0 0 2px rgba(255, 255, 255, .25);
     transform: rotate(180deg);
+    /* Promote to compositor layer only on hover, not statically for all buttons */
+    will-change: transform;
 }
 
 .saveToWatchLater.home {

@@ -277,15 +277,23 @@ function mountWatchButton() {
   }
 }
 
-let watchObserver = null;
+// P2: single persistent observer — never recreated, only re-targeted when needed
+let watchObserverTarget = null;
+const watchObserver = new MutationObserver(() => {
+  if (!isWatchPage() && !isShortsPage()) return;
+  mountWatchButton();
+});
+
 function startWatchObserver() {
-  if (watchObserver) watchObserver.disconnect();
   if (!isWatchPage() && !isShortsPage()) return;
 
   const target = document.querySelector("ytd-watch-flexy, ytd-shorts, ytd-app, body");
   if (!target) return;
 
-  watchObserver = new MutationObserver(mountWatchButton);
+  // Only re-observe if the target element has changed
+  if (target === watchObserverTarget) return;
+  if (watchObserverTarget) watchObserver.disconnect();
+  watchObserverTarget = target;
   watchObserver.observe(target, { childList: true, subtree: true });
 }
 
@@ -358,8 +366,9 @@ function addWatchLaterToCard(contentImageEl) {
   btn.title = WL_TEXT.defaultTitle;
   decorateButtonAccessibility(btn);
 
-  if (!isResults && window.getComputedStyle(mount).position === "static") {
-    mount.style.position = "relative";
+  if (!isResults) {
+    // Use class instead of getComputedStyle (P4: avoid forced reflow in a loop)
+    mount.classList.add("wl-mount-relative");
   }
 
   if (isResults) {
@@ -379,12 +388,46 @@ document.addEventListener("click", (e) => {
   if (videoId) handleWatchLaterToggle(btn, videoId);
 }, true);
 
-function injectIntoAllCards() {
-  document.querySelectorAll(CARD_IMAGE_NOT_INJECTED_SELECTOR).forEach(addWatchLaterToCard);
+let isInjecting = false;
+
+async function injectIntoAllCards() {
+  if (isInjecting) return;
+  isInjecting = true;
+  try {
+    const els = [...document.querySelectorAll(CARD_IMAGE_NOT_INJECTED_SELECTOR)];
+    if (!els.length) return;
+    const BATCH = 8;
+    for (let i = 0; i < els.length; i += BATCH) {
+      els.slice(i, i + BATCH).forEach(addWatchLaterToCard);
+      if (i + BATCH < els.length) {
+        await (globalThis.scheduler?.yield?.() ??
+               new Promise(r => setTimeout(r, 0)));
+      }
+    }
+  } finally {
+    isInjecting = false;
+  }
 }
 
 let cardObserver = null;
 let cardInjectTimer = null;
+
+function cleanupRemovedButtons(mutations) {
+  for (const m of mutations) {
+    for (const node of m.removedNodes) {
+      if (node.nodeType !== Node.ELEMENT_NODE) continue;
+      node.querySelectorAll?.(".saveToWatchLater").forEach(btn => {
+        // Clear undo timer and close over DOM reference
+        const undoState = buttonUndoState.get(btn);
+        if (undoState?.timerId) clearTimeout(undoState.timerId);
+        buttonUndoState.delete(btn);
+        // Clear error flash timer
+        const errorTimer = buttonErrorState.get(btn);
+        if (errorTimer) { clearTimeout(errorTimer); buttonErrorState.delete(btn); }
+      });
+    }
+  }
+}
 
 function startCardObserver() {
   if (cardObserver) cardObserver.disconnect();
@@ -392,7 +435,17 @@ function startCardObserver() {
   const target = document.querySelector("ytd-app, #contents, #primary") || document.body || document.documentElement;
   if (!target) return;
 
-  cardObserver = new MutationObserver(() => {
+  cardObserver = new MutationObserver((mutations) => {
+    // P1: clean up timers for removed card buttons
+    cleanupRemovedButtons(mutations);
+
+    // P3: only trigger inject when real element nodes were added
+    const hasNewElements = mutations.some(m =>
+      m.addedNodes.length > 0 &&
+      [...m.addedNodes].some(n => n.nodeType === Node.ELEMENT_NODE)
+    );
+    if (!hasNewElements) return;
+
     if (cardInjectTimer) return;
     cardInjectTimer = setTimeout(() => {
       cardInjectTimer = null;
