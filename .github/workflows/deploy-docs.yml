@@ -33,6 +33,8 @@ jobs:
 
       - name: Build docs site
         working-directory: docs
+        env:
+          JEKYLL_ENV: production
         run: npm run build
 
       - name: Start SSH agent
@@ -45,6 +47,7 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
         run: |
+          : "${DEPLOY_HOST:?DEPLOY_HOST is empty}"
           PORT="${DEPLOY_PORT:-22}"
           mkdir -p ~/.ssh
           ssh-keyscan -p "$PORT" -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
@@ -56,6 +59,9 @@ jobs:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         run: |
+          : "${DEPLOY_PATH:?DEPLOY_PATH is empty}"
+          : "${DEPLOY_HOST:?DEPLOY_HOST is empty}"
+          : "${DEPLOY_USER:?DEPLOY_USER is empty}"
           PORT="${DEPLOY_PORT:-22}"
           rsync -az --delete \
             -e "ssh -p $PORT" \
