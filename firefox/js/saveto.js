@@ -1,4 +1,6 @@
-/* Watch Later Button - Content Script */
+/* Watch Later Button - Content Script (Firefox) */
+
+const extApi = typeof browser !== "undefined" ? browser : chrome;
 
 const CARD_WL_INJECTED = "data-wl-injected";
 const CARD_RENDERER_SELECTOR = "ytd-rich-item-renderer, ytd-compact-video-renderer, ytd-video-renderer, yt-lockup-view-model, ytd-reel-item-renderer";
@@ -7,7 +9,12 @@ const CARD_LINK_SELECTOR = 'a[href*="/watch?v="], a[href*="/shorts/"]';
 const SHORTS_SHELF_SELECTOR = "ytd-rich-shelf-renderer[is-shorts], ytd-reel-shelf-renderer";
 const AD_SELECTORS = "ytd-ad-slot-renderer, ytd-promoted-video-renderer, ytd-display-ad-renderer, ytd-badge-supported-renderer.badge-style-type-ad";
 
-const WATCH_MOUNT_SELECTORS = "ytd-watch-metadata ytd-menu-renderer.style-scope.ytd-watch-metadata, ytd-watch-metadata ytd-menu-renderer, #top-level-buttons-computed, ytd-watch-metadata #top-level-buttons-computed";
+const WATCH_MOUNT_SELECTORS = [
+  "ytd-watch-flexy:not([hidden]) ytd-watch-metadata ytd-menu-renderer.style-scope.ytd-watch-metadata",
+  "ytd-watch-flexy:not([hidden]) ytd-watch-metadata ytd-menu-renderer",
+  "ytd-watch-flexy:not([hidden]) ytd-watch-metadata #top-level-buttons-computed"
+].join(", ");
+
 const SHORTS_MOUNT_SELECTORS = "reel-action-bar-view-model, ytd-shorts ytd-reel-video-renderer #actions";
 
 const WL_ADDED_CLASS = "is-added";
@@ -28,7 +35,7 @@ let currentShortcut = { ...DEFAULT_SHORTCUT };
 let currentUndoSeconds = DEFAULT_UNDO_SECONDS;
 const WL_ERROR_FLASH_MS = 800;
 
-const getI18nMessage = (key, fallback) => chrome?.i18n?.getMessage?.(key) || fallback;
+const getI18nMessage = (key, fallback) => extApi?.i18n?.getMessage?.(key) || fallback;
 
 const WL_TEXT = {
   defaultTitle: getI18nMessage("wlButtonDefaultTitle", "Watch Later"),
@@ -42,34 +49,34 @@ function applyButtonTheme(colorData) {
   if (colorData.hoverRgba) root.style.setProperty("--wl-color-default-hover", colorData.hoverRgba);
 }
 
+function applyStorageConfig(cfg) {
+  if (!cfg) return;
+  if (cfg.buttonColor) applyButtonTheme(cfg.buttonColor);
+  if (cfg.buttonShortcut) currentShortcut = cfg.buttonShortcut;
+  if (cfg.buttonUndoSeconds !== undefined) {
+    currentUndoSeconds = Number(cfg.buttonUndoSeconds);
+  }
+}
+
 try {
-  chrome.storage?.sync?.get(["buttonColor", "buttonShortcut", "buttonUndoSeconds"], (data) => {
-    if (data?.buttonColor) {
-      applyButtonTheme(data.buttonColor);
-    } else {
-      chrome.storage?.local?.get("buttonColor", (localData) => {
-        if (localData?.buttonColor) applyButtonTheme(localData.buttonColor);
-      });
-    }
+  const STORAGE_KEYS = ["buttonColor", "buttonShortcut", "buttonUndoSeconds"];
 
-    if (data?.buttonShortcut) {
-      currentShortcut = data.buttonShortcut;
-    } else {
-      chrome.storage?.local?.get("buttonShortcut", (localData) => {
-        if (localData?.buttonShortcut) currentShortcut = localData.buttonShortcut;
-      });
-    }
+  // Firefox поддерживает Promise API для storage; с fallback на callback для совместимости
+  const loadStorage = async () => {
+    try {
+      const localData = await extApi?.storage?.local?.get(STORAGE_KEYS);
+      applyStorageConfig(localData);
+    } catch {}
 
-    if (data?.buttonUndoSeconds !== undefined) {
-      currentUndoSeconds = Number(data.buttonUndoSeconds);
-    } else {
-      chrome.storage?.local?.get("buttonUndoSeconds", (localData) => {
-        if (localData?.buttonUndoSeconds !== undefined) currentUndoSeconds = Number(localData.buttonUndoSeconds);
-      });
-    }
-  });
+    try {
+      const syncData = await extApi?.storage?.sync?.get(STORAGE_KEYS);
+      applyStorageConfig(syncData);
+    } catch {}
+  };
 
-  chrome.storage?.onChanged?.addListener((changes) => {
+  loadStorage();
+
+  extApi?.storage?.onChanged?.addListener((changes) => {
     if (changes.buttonColor?.newValue) {
       applyButtonTheme(changes.buttonColor.newValue);
     }
@@ -161,7 +168,8 @@ function sendWatchLaterAction(action, videoId) {
 
   const pageWindow = document.defaultView || window;
 
-  if (typeof cloneInto !== "undefined") {
+  // Firefox Xray vision: клонируем объект detail в контекст страницы
+  if (typeof cloneInto === "function") {
     detail = cloneInto(detail, pageWindow);
   }
 
@@ -201,7 +209,6 @@ function setButtonUndoState(button, videoId) {
   clearButtonUndoState(button);
 
   if (currentUndoSeconds <= 0) {
-    // Instant save without undo window: flash success icon for 800ms
     button.classList.add(WL_ADDED_CLASS);
     const timerId = setTimeout(() => {
       button.classList.remove(WL_ADDED_CLASS);
@@ -277,22 +284,29 @@ function mountWatchButton() {
   }
 }
 
-let watchObserver = null;
+// Single persistent observer
+let watchObserverTarget = null;
+const watchObserver = new MutationObserver(() => {
+  if (!isWatchPage() && !isShortsPage()) return;
+  mountWatchButton();
+});
+
 function startWatchObserver() {
-  if (watchObserver) watchObserver.disconnect();
   if (!isWatchPage() && !isShortsPage()) return;
 
   const target = document.querySelector("ytd-watch-flexy, ytd-shorts, ytd-app, body");
   if (!target) return;
 
-  watchObserver = new MutationObserver(mountWatchButton);
+  if (target === watchObserverTarget) return;
+  if (watchObserverTarget) watchObserver.disconnect();
+  watchObserverTarget = target;
   watchObserver.observe(target, { childList: true, subtree: true });
 }
 
 /* ===== Card Injection ===== */
 
-function getVideoIdFromCard(cardElement) {
-  const renderer = cardElement.closest(CARD_RENDERER_SELECTOR);
+function getVideoIdFromCard(elementInsideCard) {
+  const renderer = elementInsideCard.closest(CARD_RENDERER_SELECTOR);
   if (!renderer) return null;
 
   const link = renderer.querySelector(CARD_LINK_SELECTOR);
@@ -354,12 +368,11 @@ function addWatchLaterToCard(contentImageEl) {
   const btn = document.createElement("div");
   btn.className = `saveToWatchLater ${locationClass}`;
   btn.dataset.defaultTitle = WL_TEXT.defaultTitle;
-  btn.dataset.videoId = videoId;
   btn.title = WL_TEXT.defaultTitle;
   decorateButtonAccessibility(btn);
 
-  if (!isResults && window.getComputedStyle(mount).position === "static") {
-    mount.style.position = "relative";
+  if (!isResults) {
+    mount.classList.add("wl-mount-relative");
   }
 
   if (isResults) {
@@ -375,16 +388,62 @@ document.addEventListener("click", (e) => {
 
   e.stopPropagation();
   e.preventDefault();
-  const videoId = btn.dataset.videoId;
-  if (videoId) handleWatchLaterToggle(btn, videoId);
+
+  const videoId = getVideoIdFromCard(btn);
+  if (videoId) {
+    handleWatchLaterToggle(btn, videoId);
+  } else {
+    flashButtonErrorState(btn);
+  }
 }, true);
 
-function injectIntoAllCards() {
-  document.querySelectorAll(CARD_IMAGE_NOT_INJECTED_SELECTOR).forEach(addWatchLaterToCard);
+let isInjecting = false;
+
+async function injectIntoAllCards() {
+  if (isInjecting) return;
+  isInjecting = true;
+  try {
+    const els = [...document.querySelectorAll(CARD_IMAGE_NOT_INJECTED_SELECTOR)];
+    if (!els.length) return;
+    const BATCH = 8;
+    for (let i = 0; i < els.length; i += BATCH) {
+      els.slice(i, i + BATCH).forEach(addWatchLaterToCard);
+      if (i + BATCH < els.length) {
+        // Firefox не поддерживает scheduler.yield() по умолчанию, сработает fallback на setTimeout
+        await (globalThis.scheduler?.yield?.() ?? new Promise(r => setTimeout(r, 0)));
+      }
+    }
+  } finally {
+    isInjecting = false;
+  }
 }
 
 let cardObserver = null;
 let cardInjectTimer = null;
+
+function clearButtonTimers(btn) {
+  const undoState = buttonUndoState.get(btn);
+  if (undoState?.timerId) clearTimeout(undoState.timerId);
+  buttonUndoState.delete(btn);
+
+  const errorTimer = buttonErrorState.get(btn);
+  if (errorTimer) {
+    clearTimeout(errorTimer);
+    buttonErrorState.delete(btn);
+  }
+}
+
+function cleanupRemovedButtons(mutations) {
+  for (const m of mutations) {
+    for (const node of m.removedNodes) {
+      if (node.nodeType !== Node.ELEMENT_NODE) continue;
+      if (node.matches?.(".saveToWatchLater")) {
+        clearButtonTimers(node);
+      }
+      node.querySelectorAll?.(".saveToWatchLater").forEach(clearButtonTimers);
+    }
+  }
+}
 
 function startCardObserver() {
   if (cardObserver) cardObserver.disconnect();
@@ -392,7 +451,15 @@ function startCardObserver() {
   const target = document.querySelector("ytd-app, #contents, #primary") || document.body || document.documentElement;
   if (!target) return;
 
-  cardObserver = new MutationObserver(() => {
+  cardObserver = new MutationObserver((mutations) => {
+    cleanupRemovedButtons(mutations);
+
+    const hasNewElements = mutations.some(m =>
+      m.addedNodes.length > 0 &&
+      [...m.addedNodes].some(n => n.nodeType === Node.ELEMENT_NODE)
+    );
+    if (!hasNewElements) return;
+
     if (cardInjectTimer) return;
     cardInjectTimer = setTimeout(() => {
       cardInjectTimer = null;
@@ -438,13 +505,15 @@ function handleGlobalKeyDown(e) {
     return;
   }
 
-  const hoveredCard = document.querySelector(":hover:is(ytd-rich-item-renderer, ytd-compact-video-renderer, ytd-video-renderer, yt-lockup-view-model, ytd-reel-item-renderer)");
+  const hoveredCard = document.querySelector(`:hover:is(${CARD_RENDERER_SELECTOR})`);
   if (hoveredCard) {
     const cardBtn = hoveredCard.querySelector(".saveToWatchLater");
     if (cardBtn) {
-      const videoId = cardBtn.dataset.videoId;
+      const videoId = getVideoIdFromCard(cardBtn);
       if (videoId) {
         handleWatchLaterToggle(cardBtn, videoId);
+      } else {
+        flashButtonErrorState(cardBtn);
       }
     }
   }
@@ -465,4 +534,3 @@ window.addEventListener("popstate", onNavigation);
 
 // Initial bootstrap
 onNavigation();
-

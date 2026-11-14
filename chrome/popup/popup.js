@@ -1,15 +1,37 @@
+const isFirefox = typeof browser !== "undefined" && typeof browser.runtime?.getBrowserInfo === "function";
+const extApi = typeof browser !== "undefined" ? browser : chrome;
+
+const uiLang = extApi?.i18n?.getUILanguage?.();
+if (uiLang) {
+  document.documentElement.lang = uiLang;
+}
+
 document.querySelectorAll("[data-i18n]").forEach((el) => {
-  const msg = chrome.i18n?.getMessage(el.dataset.i18n);
+  const msg = extApi?.i18n?.getMessage?.(el.dataset.i18n);
   if (msg) el.textContent = msg;
 });
 
 document.querySelectorAll("[data-i18n-title]").forEach((el) => {
-  const msg = chrome.i18n?.getMessage(el.dataset.i18nTitle);
+  const msg = extApi?.i18n?.getMessage?.(el.dataset.i18nTitle);
   if (msg) el.title = msg;
 });
 
-const version = chrome.runtime?.getManifest?.()?.version;
-if (version) document.getElementById("ext-version").textContent = `v${version}`;
+const version = extApi?.runtime?.getManifest?.()?.version;
+if (version) {
+  document.getElementById("ext-version").textContent = `v${version}`;
+}
+
+// Подмена ссылок магазина для Firefox-сборки
+if (isFirefox) {
+  const feedbackLink = document.getElementById("feedback-link");
+  const issuesLink = document.getElementById("issues-link");
+  if (feedbackLink) {
+    feedbackLink.href = "https://addons.mozilla.org/firefox/addon/watch-later-button/reviews/";
+  }
+  if (issuesLink) {
+    issuesLink.href = "https://watchlater.alxple.com/";
+  }
+}
 
 // Navigation
 const mainView = document.getElementById("main-view");
@@ -71,6 +93,19 @@ let currentShortcut = { ...DEFAULT_SHORTCUT };
 let isRecordingShortcut = false;
 let currentUndoSeconds = DEFAULT_UNDO_SECONDS;
 
+function safeStorageSet(area, data) {
+  try {
+    const store = extApi?.storage?.[area];
+    if (!store) return;
+    const res = store.set(data, () => {
+      void extApi?.runtime?.lastError;
+    });
+    if (res && typeof res.catch === "function") {
+      res.catch(() => {});
+    }
+  } catch {}
+}
+
 function flushSync() {
   if (saveTimer) {
     clearTimeout(saveTimer);
@@ -79,16 +114,14 @@ function flushSync() {
   if (pendingSyncPayload) {
     const payload = pendingSyncPayload;
     pendingSyncPayload = null;
-    try {
-      const res = chrome.storage?.sync?.set({ buttonColor: payload }, () => {
-        void chrome.runtime?.lastError;
-      });
-      if (res && typeof res.catch === "function") {
-        res.catch(() => {});
-      }
-    } catch {}
+    safeStorageSet("sync", { buttonColor: payload });
   }
 }
+
+window.addEventListener("pagehide", flushSync);
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) flushSync();
+});
 
 function hexToRgba(hex, alpha) {
   const clean = hex.replace("#", "").slice(0, 6);
@@ -117,22 +150,12 @@ function hexToHex8(hex, alpha) {
 }
 
 function persistUpdateNotification(enabled) {
-  try {
-    chrome.storage?.local?.set({ showUpdateNotification: enabled }, () => {
-      void chrome.runtime?.lastError;
-    });
-    chrome.storage?.sync?.set({ showUpdateNotification: enabled }, () => {
-      void chrome.runtime?.lastError;
-    });
-  } catch {}
+  safeStorageSet("local", { showUpdateNotification: enabled });
+  safeStorageSet("sync", { showUpdateNotification: enabled });
 }
 
 function persistColor(payload, immediate = false) {
-  try {
-    chrome.storage?.local?.set({ buttonColor: payload }, () => {
-      void chrome.runtime?.lastError;
-    });
-  } catch {}
+  safeStorageSet("local", { buttonColor: payload });
 
   pendingSyncPayload = payload;
   if (saveTimer) clearTimeout(saveTimer);
@@ -145,25 +168,13 @@ function persistColor(payload, immediate = false) {
 }
 
 function persistShortcut(shortcut) {
-  try {
-    chrome.storage?.local?.set({ buttonShortcut: shortcut }, () => {
-      void chrome.runtime?.lastError;
-    });
-    chrome.storage?.sync?.set({ buttonShortcut: shortcut }, () => {
-      void chrome.runtime?.lastError;
-    });
-  } catch {}
+  safeStorageSet("local", { buttonShortcut: shortcut });
+  safeStorageSet("sync", { buttonShortcut: shortcut });
 }
 
 function persistUndoSeconds(seconds) {
-  try {
-    chrome.storage?.local?.set({ buttonUndoSeconds: seconds }, () => {
-      void chrome.runtime?.lastError;
-    });
-    chrome.storage?.sync?.set({ buttonUndoSeconds: seconds }, () => {
-      void chrome.runtime?.lastError;
-    });
-  } catch {}
+  safeStorageSet("local", { buttonUndoSeconds: seconds });
+  safeStorageSet("sync", { buttonUndoSeconds: seconds });
 }
 
 function applyColor(hex, alpha, save = true, immediate = false) {
@@ -207,6 +218,13 @@ function formatKeyDisplay(key, code) {
   return key;
 }
 
+function isReservedBrowserShortcut(e) {
+  const hasPrimaryModifier = (e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey;
+  if (!hasPrimaryModifier) return false;
+  const blockedCodes = ["KeyW", "KeyR", "KeyT", "KeyN", "KeyQ"];
+  return blockedCodes.includes(e.code);
+}
+
 function handleKeyRecord(e) {
   e.preventDefault();
   e.stopPropagation();
@@ -217,7 +235,6 @@ function handleKeyRecord(e) {
     return;
   }
 
-  // Modifier only? Wait for secondary key
   if (["Control", "Alt", "Shift", "Meta"].includes(e.key)) {
     return;
   }
@@ -229,8 +246,8 @@ function handleKeyRecord(e) {
   if (e.shiftKey) parts.push("Shift");
   if (e.metaKey) parts.push(isMac ? "Cmd" : "Win");
 
-  // Require at least one modifier key
-  if (parts.length === 0) {
+  // Требуем минимум один модификатор и блокируем системные комбинации закрытия/обновления вкладки
+  if (parts.length === 0 || isReservedBrowserShortcut(e)) {
     return;
   }
 
@@ -278,7 +295,7 @@ function applyUndoSeconds(seconds, isCustom = false, save = true) {
 
   if (undoActiveBadge) {
     if (val === 0) {
-      undoActiveBadge.textContent = chrome.i18n?.getMessage("undoOff") || "Off";
+      undoActiveBadge.textContent = extApi?.i18n?.getMessage?.("undoOff") || "Off";
     } else {
       undoActiveBadge.textContent = `${val}s`;
     }
@@ -287,52 +304,81 @@ function applyUndoSeconds(seconds, isCustom = false, save = true) {
   if (save) persistUndoSeconds(val);
 }
 
-// Load saved settings from sync or local
-function loadStoredSettings() {
-  chrome.storage?.sync?.get(["buttonColor", "showUpdateNotification", "buttonShortcut", "buttonUndoSeconds"], (syncData) => {
-    if (syncData?.buttonColor) {
-      const { hex = DEFAULT_COLOR, alpha = DEFAULT_ALPHA } = syncData.buttonColor;
-      applyColor(hex, alpha !== undefined ? alpha : DEFAULT_ALPHA, false);
-    } else {
-      chrome.storage?.local?.get("buttonColor", (localData) => {
-        const { hex = DEFAULT_COLOR, alpha = DEFAULT_ALPHA } = localData?.buttonColor || {};
-        applyColor(hex, alpha !== undefined ? alpha : DEFAULT_ALPHA, false);
-      });
+// Интерактивное тестирование кнопки в превью настроек
+if (previewBtn) {
+  const defaultTitle = extApi?.i18n?.getMessage?.("wlButtonDefaultTitle") || "Watch Later";
+  const deleteTitle = extApi?.i18n?.getMessage?.("wlButtonDeleteTitle") || "Delete from Watch Later";
+  previewBtn.title = defaultTitle;
+  previewBtn.setAttribute("aria-label", defaultTitle);
+
+  let previewTimer = null;
+
+  const resetPreviewState = () => {
+    clearTimeout(previewTimer);
+    previewBtn.classList.remove("is-added", "is-undo-active");
+    previewBtn.title = defaultTitle;
+    previewBtn.setAttribute("aria-label", defaultTitle);
+  };
+
+  const togglePreview = () => {
+    if (previewBtn.classList.contains("is-added")) {
+      resetPreviewState();
+      return;
     }
 
-    if (syncData?.showUpdateNotification !== undefined) {
-      if (updateNotificationToggle) {
-        updateNotificationToggle.checked = syncData.showUpdateNotification;
-      }
+    clearTimeout(previewTimer);
+    if (currentUndoSeconds <= 0) {
+      previewBtn.classList.add("is-added");
+      previewTimer = setTimeout(resetPreviewState, 800);
     } else {
-      chrome.storage?.local?.get("showUpdateNotification", (localData) => {
-        if (updateNotificationToggle) {
-          updateNotificationToggle.checked = localData?.showUpdateNotification !== false;
-        }
-      });
+      const ms = currentUndoSeconds * 1000;
+      previewBtn.style.setProperty("--wl-undo-ms", `${ms}ms`);
+      previewBtn.classList.add("is-added", "is-undo-active");
+      previewBtn.title = deleteTitle;
+      previewBtn.setAttribute("aria-label", deleteTitle);
+      previewTimer = setTimeout(resetPreviewState, ms);
     }
+  };
 
-    if (syncData?.buttonShortcut) {
-      applyShortcut(syncData.buttonShortcut, false);
-    } else {
-      chrome.storage?.local?.get("buttonShortcut", (localData) => {
-        applyShortcut(localData?.buttonShortcut || DEFAULT_SHORTCUT, false);
-      });
-    }
-
-    if (syncData?.buttonUndoSeconds !== undefined) {
-      const storedSec = Number(syncData.buttonUndoSeconds);
-      const isCustomVal = ![0, 10, 15].includes(storedSec);
-      applyUndoSeconds(storedSec, isCustomVal, false);
-    } else {
-      chrome.storage?.local?.get("buttonUndoSeconds", (localData) => {
-        const storedSec = localData?.buttonUndoSeconds !== undefined ? Number(localData.buttonUndoSeconds) : DEFAULT_UNDO_SECONDS;
-        const isCustomVal = ![0, 10, 15].includes(storedSec);
-        applyUndoSeconds(storedSec, isCustomVal, false);
-      });
+  previewBtn.addEventListener("click", togglePreview);
+  previewBtn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      togglePreview();
     }
   });
 }
+
+// Load saved settings from local + sync
+async function loadStoredSettings() {
+  const KEYS = ["buttonColor", "showUpdateNotification", "buttonShortcut", "buttonUndoSeconds"];
+  let localData = {};
+  let syncData = {};
+
+  try {
+    localData = (await extApi?.storage?.local?.get(KEYS)) || {};
+  } catch {}
+
+  try {
+    syncData = (await extApi?.storage?.sync?.get(KEYS)) || {};
+  } catch {}
+
+  const cfg = { ...localData, ...syncData };
+
+  const { hex = DEFAULT_COLOR, alpha = DEFAULT_ALPHA } = cfg.buttonColor || {};
+  applyColor(hex, alpha !== undefined ? alpha : DEFAULT_ALPHA, false);
+
+  if (updateNotificationToggle) {
+    updateNotificationToggle.checked = cfg.showUpdateNotification !== false;
+  }
+
+  applyShortcut(cfg.buttonShortcut || DEFAULT_SHORTCUT, false);
+
+  const storedSec = cfg.buttonUndoSeconds !== undefined ? Number(cfg.buttonUndoSeconds) : DEFAULT_UNDO_SECONDS;
+  const isCustomVal = ![0, 10, 15].includes(storedSec);
+  applyUndoSeconds(storedSec, isCustomVal, false);
+}
+
 loadStoredSettings();
 
 // Event Listeners
@@ -381,7 +427,7 @@ shortcutBtn?.addEventListener("click", () => {
 
   isRecordingShortcut = true;
   shortcutBtn.classList.add("is-recording");
-  const recordingText = chrome.i18n?.getMessage("settingsShortcutRecording") || "Press keys...";
+  const recordingText = extApi?.i18n?.getMessage?.("settingsShortcutRecording") || "Press keys...";
   shortcutBtn.textContent = recordingText;
   if (shortcutHint) shortcutHint.hidden = false;
 

@@ -7,7 +7,12 @@ const CARD_LINK_SELECTOR = 'a[href*="/watch?v="], a[href*="/shorts/"]';
 const SHORTS_SHELF_SELECTOR = "ytd-rich-shelf-renderer[is-shorts], ytd-reel-shelf-renderer";
 const AD_SELECTORS = "ytd-ad-slot-renderer, ytd-promoted-video-renderer, ytd-display-ad-renderer, ytd-badge-supported-renderer.badge-style-type-ad";
 
-const WATCH_MOUNT_SELECTORS = "ytd-watch-metadata ytd-menu-renderer.style-scope.ytd-watch-metadata, ytd-watch-metadata ytd-menu-renderer, #top-level-buttons-computed, ytd-watch-metadata #top-level-buttons-computed";
+const WATCH_MOUNT_SELECTORS = [
+  "ytd-watch-flexy:not([hidden]) ytd-watch-metadata ytd-menu-renderer.style-scope.ytd-watch-metadata",
+  "ytd-watch-flexy:not([hidden]) ytd-watch-metadata ytd-menu-renderer",
+  "ytd-watch-flexy:not([hidden]) ytd-watch-metadata #top-level-buttons-computed"
+].join(", ");
+
 const SHORTS_MOUNT_SELECTORS = "reel-action-bar-view-model, ytd-shorts ytd-reel-video-renderer #actions";
 
 const WL_ADDED_CLASS = "is-added";
@@ -42,31 +47,23 @@ function applyButtonTheme(colorData) {
   if (colorData.hoverRgba) root.style.setProperty("--wl-color-default-hover", colorData.hoverRgba);
 }
 
+function applyStorageConfig(cfg) {
+  if (!cfg) return;
+  if (cfg.buttonColor) applyButtonTheme(cfg.buttonColor);
+  if (cfg.buttonShortcut) currentShortcut = cfg.buttonShortcut;
+  if (cfg.buttonUndoSeconds !== undefined) {
+    currentUndoSeconds = Number(cfg.buttonUndoSeconds);
+  }
+}
+
 try {
-  chrome.storage?.sync?.get(["buttonColor", "buttonShortcut", "buttonUndoSeconds"], (data) => {
-    if (data?.buttonColor) {
-      applyButtonTheme(data.buttonColor);
-    } else {
-      chrome.storage?.local?.get("buttonColor", (localData) => {
-        if (localData?.buttonColor) applyButtonTheme(localData.buttonColor);
-      });
-    }
+  const STORAGE_KEYS = ["buttonColor", "buttonShortcut", "buttonUndoSeconds"];
 
-    if (data?.buttonShortcut) {
-      currentShortcut = data.buttonShortcut;
-    } else {
-      chrome.storage?.local?.get("buttonShortcut", (localData) => {
-        if (localData?.buttonShortcut) currentShortcut = localData.buttonShortcut;
-      });
-    }
-
-    if (data?.buttonUndoSeconds !== undefined) {
-      currentUndoSeconds = Number(data.buttonUndoSeconds);
-    } else {
-      chrome.storage?.local?.get("buttonUndoSeconds", (localData) => {
-        if (localData?.buttonUndoSeconds !== undefined) currentUndoSeconds = Number(localData.buttonUndoSeconds);
-      });
-    }
+  chrome.storage?.local?.get(STORAGE_KEYS, (localData = {}) => {
+    applyStorageConfig(localData);
+    chrome.storage?.sync?.get(STORAGE_KEYS, (syncData = {}) => {
+      applyStorageConfig(syncData);
+    });
   });
 
   chrome.storage?.onChanged?.addListener((changes) => {
@@ -299,8 +296,8 @@ function startWatchObserver() {
 
 /* ===== Card Injection ===== */
 
-function getVideoIdFromCard(cardElement) {
-  const renderer = cardElement.closest(CARD_RENDERER_SELECTOR);
+function getVideoIdFromCard(elementInsideCard) {
+  const renderer = elementInsideCard.closest(CARD_RENDERER_SELECTOR);
   if (!renderer) return null;
 
   const link = renderer.querySelector(CARD_LINK_SELECTOR);
@@ -362,7 +359,6 @@ function addWatchLaterToCard(contentImageEl) {
   const btn = document.createElement("div");
   btn.className = `saveToWatchLater ${locationClass}`;
   btn.dataset.defaultTitle = WL_TEXT.defaultTitle;
-  btn.dataset.videoId = videoId;
   btn.title = WL_TEXT.defaultTitle;
   decorateButtonAccessibility(btn);
 
@@ -384,8 +380,13 @@ document.addEventListener("click", (e) => {
 
   e.stopPropagation();
   e.preventDefault();
-  const videoId = btn.dataset.videoId;
-  if (videoId) handleWatchLaterToggle(btn, videoId);
+
+  const videoId = getVideoIdFromCard(btn);
+  if (videoId) {
+    handleWatchLaterToggle(btn, videoId);
+  } else {
+    flashButtonErrorState(btn);
+  }
 }, true);
 
 let isInjecting = false;
@@ -412,19 +413,26 @@ async function injectIntoAllCards() {
 let cardObserver = null;
 let cardInjectTimer = null;
 
+function clearButtonTimers(btn) {
+  const undoState = buttonUndoState.get(btn);
+  if (undoState?.timerId) clearTimeout(undoState.timerId);
+  buttonUndoState.delete(btn);
+
+  const errorTimer = buttonErrorState.get(btn);
+  if (errorTimer) {
+    clearTimeout(errorTimer);
+    buttonErrorState.delete(btn);
+  }
+}
+
 function cleanupRemovedButtons(mutations) {
   for (const m of mutations) {
     for (const node of m.removedNodes) {
       if (node.nodeType !== Node.ELEMENT_NODE) continue;
-      node.querySelectorAll?.(".saveToWatchLater").forEach(btn => {
-        // Clear undo timer and close over DOM reference
-        const undoState = buttonUndoState.get(btn);
-        if (undoState?.timerId) clearTimeout(undoState.timerId);
-        buttonUndoState.delete(btn);
-        // Clear error flash timer
-        const errorTimer = buttonErrorState.get(btn);
-        if (errorTimer) { clearTimeout(errorTimer); buttonErrorState.delete(btn); }
-      });
+      if (node.matches?.(".saveToWatchLater")) {
+        clearButtonTimers(node);
+      }
+      node.querySelectorAll?.(".saveToWatchLater").forEach(clearButtonTimers);
     }
   }
 }
@@ -491,13 +499,15 @@ function handleGlobalKeyDown(e) {
     return;
   }
 
-  const hoveredCard = document.querySelector(":hover:is(ytd-rich-item-renderer, ytd-compact-video-renderer, ytd-video-renderer, yt-lockup-view-model, ytd-reel-item-renderer)");
+  const hoveredCard = document.querySelector(`:hover:is(${CARD_RENDERER_SELECTOR})`);
   if (hoveredCard) {
     const cardBtn = hoveredCard.querySelector(".saveToWatchLater");
     if (cardBtn) {
-      const videoId = cardBtn.dataset.videoId;
+      const videoId = getVideoIdFromCard(cardBtn);
       if (videoId) {
         handleWatchLaterToggle(cardBtn, videoId);
+      } else {
+        flashButtonErrorState(cardBtn);
       }
     }
   }
@@ -518,4 +528,3 @@ window.addEventListener("popstate", onNavigation);
 
 // Initial bootstrap
 onNavigation();
-

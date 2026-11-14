@@ -1,3 +1,4 @@
+/* pages.css */
 @font-face {
     font-family: 'Inter';
     font-style: normal;
@@ -28,6 +29,7 @@
     --wl-card-border: rgba(0, 0, 0, 0.08);
     --wl-inner-bg: rgba(248, 249, 250, 0.7);
     --wl-inner-border: 1px solid rgba(0, 0, 0, 0.06);
+    --wl-secondary-hover-bg: rgba(204, 0, 0, 0.06);
     --wl-foreground: #0f0f0f;
     --wl-foreground-muted: #606060;
     --wl-primary: #cc0000;
@@ -46,6 +48,7 @@
         --wl-card-border: rgba(255, 255, 255, 0.08);
         --wl-inner-bg: rgba(33, 33, 33, 0.6);
         --wl-inner-border: 1px solid rgba(255, 255, 255, 0.06);
+        --wl-secondary-hover-bg: rgba(255, 255, 255, 0.12);
         --wl-foreground: #f1f1f1;
         --wl-foreground-muted: #aaaaaa;
         --wl-primary: #ff0000;
@@ -95,7 +98,7 @@ body {
 .container {
     max-width: 580px;
     width: 100%;
-    margin: auto;
+    margin: auto 0;
     padding: 40px;
     background: var(--wl-card-bg);
     backdrop-filter: blur(24px);
@@ -104,7 +107,6 @@ body {
     border-radius: 28px;
     box-shadow: var(--wl-box-shadow);
     text-align: center;
-    box-sizing: border-box;
     transition: transform 0.3s ease;
 }
 
@@ -158,9 +160,9 @@ body {
 }
 
 h1 {
-    font-family: 'Manrope', 'Inter', sans-serif;
+    font-family: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 26px;
-    font-weight: 800;
+    font-weight: 700;
     margin: 0 0 12px 0;
     color: var(--wl-foreground);
     letter-spacing: -0.02em;
@@ -292,7 +294,7 @@ h1 {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: conic-gradient(from -90deg, #cc0000 360deg, rgba(204, 0, 0, 0.2) 0deg);
+    background: conic-gradient(from -90deg, var(--wl-color-default, var(--wl-primary)) 360deg, rgba(204, 0, 0, 0.2) 0deg);
     -webkit-mask: radial-gradient(farthest-side, transparent 15px, #000 16px);
     mask: radial-gradient(farthest-side, transparent 15px, #000 16px);
     animation: wlDemoUndo 10s linear forwards;
@@ -301,10 +303,10 @@ h1 {
 
 @keyframes wlDemoUndo {
     from {
-        background: conic-gradient(from -90deg, #cc0000 360deg, rgba(204, 0, 0, 0.2) 0deg);
+        background: conic-gradient(from -90deg, var(--wl-color-default, var(--wl-primary)) 360deg, rgba(204, 0, 0, 0.2) 0deg);
     }
     to {
-        background: conic-gradient(from -90deg, #cc0000 0deg, rgba(204, 0, 0, 0.2) 0deg);
+        background: conic-gradient(from -90deg, var(--wl-color-default, var(--wl-primary)) 0deg, rgba(204, 0, 0, 0.2) 0deg);
     }
 }
 
@@ -502,7 +504,7 @@ h1 {
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--wl-secondary-hover-bg);
     transform: translateY(-2px);
     border-color: var(--wl-primary);
     color: var(--wl-primary);
@@ -570,5 +572,3 @@ button:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
-
-
