@@ -35,34 +35,6 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 3. **Feeds & Search:** Hover over any video thumbnail on the home feed or search results and click the button in the corner.
 4. **Keyboard:** Press `Alt + W` (or your custom shortcut) while watching a video or hovering over a card.
 
-## Development & Build
-
-This project uses a unified codebase in `src/` with a zero-dependency build script in pure Node.js:
-
-```bash
-# Build unpacked extensions for Chrome and Firefox + release .zip packages
-npm run build
-
-# Fast build without creating zip archives (for rapid dev iterations)
-npm run build:fast
-
-# Run offline locale and popup layout tests across all 26 languages
-npm test
-
-# Launch an isolated Chrome debug profile on port 9222
-npm run chrome:debug
-```
-
-For full environment setup, testing details, and debugging instructions, see [SETUP.md](SETUP.md).
-
-## Feedback & Support
-
-- [📖 Official Website & Blog](https://watchlater.alxple.com/) - Documentation and release notes
-- [🐛 Report an Issue](https://github.com/alxple/Watch-Later-button/issues) - GitHub Issues
-- [⭐ Chrome Reviews](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews) - Rate on Chrome Web Store
-- [⭐ Firefox Reviews](https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/reviews/) - Rate on Mozilla Add-ons
-- [☕ Buy Me a Coffee](https://www.buymeacoffee.com/pletnovalex) - Support project development
-
 ## Privacy & Security
 
 This extension does **not**:
@@ -72,6 +44,14 @@ This extension does **not**:
 - Request unnecessary host or identity permissions
 
 All actions execute locally in your browser.
+
+## Feedback & Support
+
+- [📖 Official Website & Blog](https://watchlater.alxple.com/) - Documentation and release notes
+- [🐛 Report an Issue](https://github.com/alxple/Watch-Later-button/issues) - GitHub Issues
+- [⭐ Chrome Reviews](https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews) - Rate on Chrome Web Store
+- [⭐ Firefox Reviews](https://addons.mozilla.org/en-US/firefox/addon/watchlaterbutton/reviews/) - Rate on Mozilla Add-ons
+- [☕ Buy Me a Coffee](https://www.buymeacoffee.com/pletnovalex) - Support project development
 
 ## License
 
