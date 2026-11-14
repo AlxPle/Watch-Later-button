@@ -1,6 +1,7 @@
 :root {
     --wl-color-default: #e50914;
     --wl-color-default-hover: #b80710;
+    --wl-icon-color: #ffffff;
 }
 
 /* Ensure correct positioning for card button mount points (replaces getComputedStyle check) */
@@ -9,7 +10,6 @@
 }
 
 .saveToWatchLater {
-    --wl-icon-color: #fff;
     --wl-ring-color: var(--wl-icon-color);
     --wl-color-added: #10b981;
     --wl-color-added-hover: #059669;
@@ -81,6 +81,7 @@
 }
 
 .saveToWatchLater.is-added {
+    --wl-icon-color: #ffffff;
     --wl-ring-color: var(--wl-color-default);
     background-color: var(--wl-color-added);
 }
@@ -107,6 +108,38 @@
     opacity: .95;
     animation: wlUndoCountdown var(--wl-undo-ms) linear forwards;
     pointer-events: none;
+}
+
+.wl-action-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.saveToWatchLater.is-pending {
+    cursor: progress;
+    transform: none;
+}
+
+.saveToWatchLater.is-pending::before {
+    width: 18px;
+    height: 18px;
+    top: 9px;
+    left: 9px;
+    background: none;
+    mask: none;
+    -webkit-mask: none;
+    border: 2px solid var(--wl-icon-color);
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: wlPendingSpin .8s linear infinite;
+}
+
+@keyframes wlPendingSpin {
+    to { transform: rotate(360deg); }
 }
 
 .saveToWatchLater.is-error {
@@ -170,7 +203,9 @@
         transform: none !important;
     }
 
-    .saveToWatchLater.is-undo-active::after {
+    .saveToWatchLater.is-undo-active::after,
+    .saveToWatchLater.is-pending::before,
+    .saveToWatchLater.is-error {
         animation: none !important;
     }
 }

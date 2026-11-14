@@ -117,6 +117,8 @@ GEM
       google-protobuf (~> 4.31)
     sass-embedded (1.93.2-arm64-darwin)
       google-protobuf (~> 4.31)
+    sass-embedded (1.93.2-x64-mingw-ucrt)
+      google-protobuf (~> 4.31)
     sass-embedded (1.93.2-x86_64-darwin)
       google-protobuf (~> 4.31)
     sass-embedded (1.93.2-x86_64-linux-gnu)
@@ -135,6 +137,7 @@ PLATFORMS
   arm-linux-musl
   arm64-darwin
   ruby
+  x64-mingw-ucrt
   x86-linux-gnu
   x86-linux-musl
   x86_64-darwin

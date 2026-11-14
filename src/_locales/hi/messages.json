@@ -104,35 +104,35 @@
         "description": "Close update button text"
     },
     "openWatchLater": {
-        "message": "Watch Later Playlist",
+        "message": "“बाद में देखें” प्लेलिस्ट",
         "description": "Hero button to open Watch Later playlist"
     },
     "openPlaylistDirect": {
-        "message": "Open your saved videos on YouTube",
+        "message": "YouTube पर अपने सहेजे गए वीडियो खोलें",
         "description": "Subtitle for Watch Later hero button"
     },
     "statusActive": {
-        "message": "Active on YouTube",
+        "message": "YouTube पर सक्रिय",
         "description": "Status text indicating extension is running"
     },
     "badgeNew": {
-        "message": "New",
+        "message": "नया",
         "description": "Badge for new features"
     },
     "badgeImproved": {
-        "message": "Improved",
+        "message": "बेहतर",
         "description": "Badge for improvements"
     },
     "badgeFixed": {
-        "message": "Fixed",
+        "message": "ठीक किया गया",
         "description": "Badge for fixes"
     },
     "previewBadge": {
-        "message": "Interactive Preview",
+        "message": "इंटरैक्टिव प्रीव्यू",
         "description": "Badge for interactive demo on onboarding page"
     },
     "mockVideoTitle": {
-        "message": "Instant 1-Click Save to Watch Later Demo",
+        "message": "“बाद में देखें” में 1-क्लिक में तुरंत सहेजने का डेमो",
         "description": "Title in mock video thumbnail"
     },
     "mockVideoChannel": {
@@ -160,31 +160,31 @@
         "description": "Back button label"
     },
     "settingsShortcut": {
-        "message": "Keyboard shortcut",
+        "message": "कीबोर्ड शॉर्टकट",
         "description": "Label for shortcut recorder"
     },
     "settingsShortcutHint": {
-        "message": "Press key combination or Esc to cancel",
+        "message": "कुंजी संयोजन दबाएँ या रद्द करने के लिए Esc दबाएँ",
         "description": "Hint while recording shortcut"
     },
     "settingsShortcutRecording": {
-        "message": "Press keys...",
+        "message": "कुंजियाँ दबाएँ...",
         "description": "Status text while recording shortcut"
     },
     "settingsUndo": {
-        "message": "Undo timer",
+        "message": "पूर्ववत टाइमर",
         "description": "Label for undo timer setting"
     },
     "undoOff": {
-        "message": "Off",
+        "message": "बंद",
         "description": "Label for disabling undo"
     },
     "undoCustom": {
-        "message": "Custom",
+        "message": "कस्टम",
         "description": "Label for custom undo duration"
     },
     "secondsUnit": {
-        "message": "sec",
+        "message": "से",
         "description": "Seconds abbreviation"
     },
     "settingsUpdateNotifications": {

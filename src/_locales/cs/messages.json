@@ -104,35 +104,35 @@
         "description": "Close update button text"
     },
     "openWatchLater": {
-        "message": "Watch Later Playlist",
+        "message": "Playlist Sledovat později",
         "description": "Hero button to open Watch Later playlist"
     },
     "openPlaylistDirect": {
-        "message": "Open your saved videos on YouTube",
+        "message": "Otevřít uložená videa na YouTube",
         "description": "Subtitle for Watch Later hero button"
     },
     "statusActive": {
-        "message": "Active on YouTube",
+        "message": "Aktivní na YouTube",
         "description": "Status text indicating extension is running"
     },
     "badgeNew": {
-        "message": "New",
+        "message": "Nové",
         "description": "Badge for new features"
     },
     "badgeImproved": {
-        "message": "Improved",
+        "message": "Vylepšeno",
         "description": "Badge for improvements"
     },
     "badgeFixed": {
-        "message": "Fixed",
+        "message": "Opraveno",
         "description": "Badge for fixes"
     },
     "previewBadge": {
-        "message": "Interactive Preview",
+        "message": "Interaktivní náhled",
         "description": "Badge for interactive demo on onboarding page"
     },
     "mockVideoTitle": {
-        "message": "Instant 1-Click Save to Watch Later Demo",
+        "message": "Ukázka okamžitého uložení do Sledovat později jedním kliknutím",
         "description": "Title in mock video thumbnail"
     },
     "mockVideoChannel": {
@@ -160,31 +160,31 @@
         "description": "Back button label"
     },
     "settingsShortcut": {
-        "message": "Keyboard shortcut",
+        "message": "Klávesová zkratka",
         "description": "Label for shortcut recorder"
     },
     "settingsShortcutHint": {
-        "message": "Press key combination or Esc to cancel",
+        "message": "Stiskněte kombinaci kláves nebo Esc pro zrušení",
         "description": "Hint while recording shortcut"
     },
     "settingsShortcutRecording": {
-        "message": "Press keys...",
+        "message": "Stiskněte klávesy...",
         "description": "Status text while recording shortcut"
     },
     "settingsUndo": {
-        "message": "Undo timer",
+        "message": "Časovač vrácení",
         "description": "Label for undo timer setting"
     },
     "undoOff": {
-        "message": "Off",
+        "message": "Vyp.",
         "description": "Label for disabling undo"
     },
     "undoCustom": {
-        "message": "Custom",
+        "message": "Vlastní",
         "description": "Label for custom undo duration"
     },
     "secondsUnit": {
-        "message": "sec",
+        "message": "s",
         "description": "Seconds abbreviation"
     },
     "settingsUpdateNotifications": {

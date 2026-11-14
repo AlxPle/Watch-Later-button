@@ -104,35 +104,35 @@
         "description": "Close update button text"
     },
     "openWatchLater": {
-        "message": "Watch Later Playlist",
+        "message": "Playlist « À regarder plus tard »",
         "description": "Hero button to open Watch Later playlist"
     },
     "openPlaylistDirect": {
-        "message": "Open your saved videos on YouTube",
+        "message": "Ouvrez vos vidéos enregistrées sur YouTube",
         "description": "Subtitle for Watch Later hero button"
     },
     "statusActive": {
-        "message": "Active on YouTube",
+        "message": "Actif sur YouTube",
         "description": "Status text indicating extension is running"
     },
     "badgeNew": {
-        "message": "New",
+        "message": "Nouveau",
         "description": "Badge for new features"
     },
     "badgeImproved": {
-        "message": "Improved",
+        "message": "Amélioré",
         "description": "Badge for improvements"
     },
     "badgeFixed": {
-        "message": "Fixed",
+        "message": "Corrigé",
         "description": "Badge for fixes"
     },
     "previewBadge": {
-        "message": "Interactive Preview",
+        "message": "Aperçu interactif",
         "description": "Badge for interactive demo on onboarding page"
     },
     "mockVideoTitle": {
-        "message": "Instant 1-Click Save to Watch Later Demo",
+        "message": "Démo : enregistrement instantané dans « À regarder plus tard » en 1 clic",
         "description": "Title in mock video thumbnail"
     },
     "mockVideoChannel": {
@@ -160,31 +160,31 @@
         "description": "Back button label"
     },
     "settingsShortcut": {
-        "message": "Keyboard shortcut",
+        "message": "Raccourci clavier",
         "description": "Label for shortcut recorder"
     },
     "settingsShortcutHint": {
-        "message": "Press key combination or Esc to cancel",
+        "message": "Appuyez sur une combinaison ou Échap pour annuler",
         "description": "Hint while recording shortcut"
     },
     "settingsShortcutRecording": {
-        "message": "Press keys...",
+        "message": "Appuyez sur les touches…",
         "description": "Status text while recording shortcut"
     },
     "settingsUndo": {
-        "message": "Undo timer",
+        "message": "Minuteur d'annulation",
         "description": "Label for undo timer setting"
     },
     "undoOff": {
-        "message": "Off",
+        "message": "Non",
         "description": "Label for disabling undo"
     },
     "undoCustom": {
-        "message": "Custom",
+        "message": "Perso",
         "description": "Label for custom undo duration"
     },
     "secondsUnit": {
-        "message": "sec",
+        "message": "s",
         "description": "Seconds abbreviation"
     },
     "settingsUpdateNotifications": {
@@ -212,7 +212,7 @@
         "description": "Custom duration label"
     },
     "settingsGroupSurfaces": {
-        "message": "Surfaces",
+        "message": "Emplacements",
         "description": "En-tête du groupe de paramètres d'emplacements"
     },
     "settingsSurfaceWatch": {

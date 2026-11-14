@@ -39,6 +39,18 @@
         "message": "Watch Later",
         "description": "Default tooltip/aria label for the Watch Later button"
     },
+    "wlButtonPendingTitle": {
+        "message": "Waiting for YouTube…"
+    },
+    "wlButtonErrorTitle": {
+        "message": "Change not confirmed. Check your Watch Later playlist, connection, and YouTube sign-in before trying again."
+    },
+    "wlButtonSaved": {
+        "message": "Saved to Watch Later"
+    },
+    "wlButtonRemoved": {
+        "message": "Removed from Watch Later"
+    },
     "wlButtonDeleteTitle": {
         "message": "Delete from Watch Later",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"

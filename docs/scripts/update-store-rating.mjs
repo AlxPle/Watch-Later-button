@@ -1,44 +1,23 @@
 #!/usr/bin/env node
 
 import fs from "node:fs";
-import path from "node:path";
-import https from "node:https";
+import { fileURLToPath } from "node:url";
+import { parse } from "yaml";
 
-const STORE_URL = "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab";
-const DATA_PATH = path.resolve(process.cwd(), "_data/store_rating.json");
+const STORES_PATH = new URL("../_data/stores.yml", import.meta.url);
+const DATA_PATH = fileURLToPath(new URL("../_data/store_rating.json", import.meta.url));
 const DRY_RUN = process.argv.includes("--dry-run");
+const STORE_URL = parse(fs.readFileSync(STORES_PATH, "utf8")).chrome_url;
 
-function fetchHtml(url) {
-    return new Promise((resolve, reject) => {
-        const req = https.get(
-            url,
-            {
-                headers: {
-                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-                    "Accept-Language": "en-US,en;q=0.9"
-                }
-            },
-            (res) => {
-                let body = "";
-                res.setEncoding("utf8");
-                res.on("data", (chunk) => {
-                    body += chunk;
-                });
-                res.on("end", () => {
-                    if (res.statusCode && res.statusCode >= 400) {
-                        reject(new Error(`Request failed with status ${res.statusCode}`));
-                        return;
-                    }
-                    resolve(body);
-                });
-            }
-        );
-
-        req.on("error", reject);
-        req.setTimeout(20000, () => {
-            req.destroy(new Error("Request timeout"));
-        });
+async function fetchHtml(url) {
+    const response = await fetch(url, {
+        headers: { "Accept-Language": "en-US,en;q=0.9" },
+        signal: AbortSignal.timeout(20000)
     });
+    if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+    }
+    return response.text();
 }
 
 function extractFirst(html, patterns) {
@@ -156,11 +135,7 @@ async function main() {
         console.log(`Updated ${DATA_PATH}`);
         console.log(`ratingValue=${nextData.ratingValue}, ratingCount=${nextData.ratingCount}`);
     } catch (error) {
-        const fallbackData = {
-            ...current,
-            source: STORE_URL,
-            lastCheckedAt: new Date().toISOString()
-        };
+        const fallbackData = { ...current, source: STORE_URL };
 
         if (!DRY_RUN) {
             writeData(fallbackData);

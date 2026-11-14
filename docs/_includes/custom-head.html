@@ -1,11 +1,5 @@
-{% comment %}
-Placeholder to allow defining custom head, in principle, you can add anything here, e.g. favicons:
-
-1. Head over to https://realfavicongenerator.net/ to add your own favicons.
-2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
-{% endcomment %}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon.png' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}">
+
 <script>
   (function () {
     var storageKey = 'wl-docs-theme';
@@ -14,13 +8,16 @@ Placeholder to allow defining custom head, in principle, you can add anything he
       saved = localStorage.getItem(storageKey);
     } catch (e) { }
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var theme = saved ? saved : (prefersDark ? 'dark' : 'light');
+    var theme = saved === 'dark' || saved === 'light' ? saved : (prefersDark ? 'dark' : 'light');
     var root = document.documentElement;
     root.setAttribute('data-theme', theme);
     root.classList.toggle('dark', theme === 'dark');
   })();
 </script>
 
+<link rel="preload" href="{{ '/assets/fonts/inter/inter-latin-400-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/inter/inter-latin-600-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <script>
   (function () {
@@ -33,17 +30,12 @@ Placeholder to allow defining custom head, in principle, you can add anything he
       root.classList.toggle('dark', isDark);
 
       var toggles = document.querySelectorAll('[data-theme-toggle]');
-      var icons = document.querySelectorAll('[data-theme-icon]');
+      var label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
 
       toggles.forEach(function (toggle) {
         toggle.setAttribute('aria-pressed', String(isDark));
-        toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-      });
-
-      icons.forEach(function (icon) {
-        var iconName = isDark ? 'light_mode' : 'dark_mode';
-        icon.setAttribute('data-icon', iconName);
-        icon.textContent = iconName;
+        toggle.setAttribute('aria-label', label);
+        toggle.setAttribute('title', label);
       });
     }
 
@@ -93,16 +85,17 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     "url": {{ '/assets/favicon.png' | absolute_url | jsonify }}
   },
   "sameAs": [
-    "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab",
-    "https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa",
-    "https://addons.mozilla.org/firefox/addon/watchlaterbutton/",
-    "https://www.buymeacoffee.com/pletnovalex"
+    {{ site.data.stores.chrome_url | jsonify }},
+    {{ site.data.stores.edge_url | jsonify }},
+    {{ site.data.stores.firefox_url | jsonify }},
+    {{ site.data.stores.github_url | jsonify }},
+    {{ site.data.stores.donate_url | jsonify }}
   ],
   "contactPoint": [
     {
       "@type": "ContactPoint",
       "contactType": "customer support",
-      "url": "https://github.com/AlxPle/Watch-Later-button/issues"
+      "url": {{ site.data.stores.issues_url | jsonify }}
     }
   ]
 }
@@ -115,14 +108,14 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   "@type": "Person",
   "@id": {{ '/' | absolute_url | append: '#person' | jsonify }},
   "name": "Alex Pletnov",
-  "url": "https://github.com/AlxPle/",
+  "url": {{ site.data.stores.github_profile_url | jsonify }},
   "sameAs": [
-    "https://www.buymeacoffee.com/pletnovalex"
+    {{ site.data.stores.donate_url | jsonify }}
   ]
 }
 </script>
 
-<!-- JSON-LD Schema for SoftwareApplication -->
+{% if page.layout == 'home' %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -131,7 +124,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   "name": "Watch Later Button",
   "description": "Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first browser extension.",
   "url": {{ '/' | absolute_url | jsonify }},
-  "image": {{ '/assets/social_poster.png' | absolute_url | jsonify }},
+  "image": {{ '/assets/banner/social_poster.png' | absolute_url | jsonify }},
   "applicationCategory": "Browser extension",
   "operatingSystem": "any",
   "offers": {
@@ -141,8 +134,10 @@ Placeholder to allow defining custom head, in principle, you can add anything he
   },
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": {{ site.data.store_rating.ratingValue | default: '4.5' | jsonify }},
-    "ratingCount": {{ site.data.store_rating.ratingCount | default: '26' | jsonify }}
+    "ratingValue": {{ site.data.store_rating.ratingValue | plus: 0 | jsonify }},
+    "ratingCount": {{ site.data.store_rating.ratingCount | plus: 0 | jsonify }},
+    "bestRating": "5",
+    "worstRating": "1"
   },
   "author": {
     "@id": {{ '/' | absolute_url | append: '#person' | jsonify }}
@@ -151,12 +146,13 @@ Placeholder to allow defining custom head, in principle, you can add anything he
     "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
   },
   "downloadUrl": [
-    "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab",
-    "https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa",
-    "https://addons.mozilla.org/firefox/addon/watchlaterbutton/"
+    {{ site.data.stores.chrome_url | jsonify }},
+    {{ site.data.stores.edge_url | jsonify }},
+    {{ site.data.stores.firefox_url | jsonify }}
   ]
 }
 </script>
+{% endif %}
 
 {% if page.layout == 'post' %}
 <script type="application/ld+json">
@@ -248,7 +244,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
       "name": "How do I customize the button color and transparency?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Click the Watch Later Button icon in your browser toolbar to open the popup, then select Settings. You can choose any HEX or RGB color, adjust the opacity slider from 0% to 100%, and preview changes immediately on a checkerboard stage. All open YouTube tabs update live in real-time."
+        "text": "Click the Watch Later Button icon in your browser toolbar to open the popup, then select Settings. You can choose any HEX or RGB color, adjust the opacity slider from 0% to 100%, and preview changes immediately in the popup. All open YouTube tabs update live in real-time."
       }
     },
     {
@@ -256,7 +252,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
       "name": "Can I undo if I click the button by mistake?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes! Whenever you save a video, an undo prompt appears for 10 seconds. Clicking it immediately removes the video from your Watch Later playlist."
+        "text": "After YouTube confirms a save, click the same button again during the undo countdown to request removal. The default window is 10 seconds; Settings lets you choose 15 seconds, a custom duration from 1 to 60 seconds, or Off. After the window ends, the button returns to saving mode."
       }
     },
     {
@@ -264,7 +260,7 @@ Placeholder to allow defining custom head, in principle, you can add anything he
       "name": "Does the extension collect or transmit my data?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. The extension does not communicate with external servers and collects zero personal data. All operations happen directly between your browser and YouTube's existing client interface, and color settings are stored only in your browser's local storage."
+        "text": "The extension has no analytics and does not send your viewing activity to the developer. Saving and undoing videos use YouTube's existing client interface. Preferences are stored locally and in browser sync storage; when browser-account sync is enabled, your browser may synchronize those preferences across devices."
       }
     },
     {
@@ -315,4 +311,4 @@ Placeholder to allow defining custom head, in principle, you can add anything he
 }
 </script>
 {% endif %}
-<script defer src="https://umami.alxple.com/script.js" data-website-id="b04a179a-b662-489c-9960-7f38071bf404"></script>
+<script defer src="https://umami.alxple.com/script.js" data-website-id="b04a179a-b662-489c-9960-7f38071bf404" data-do-not-track="true"></script>

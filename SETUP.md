@@ -2,7 +2,7 @@
 
 This repository contains two main parts:
 
-1. **Watch Later Button Extension (v2.0 Architecture)**
+1. **Watch Later Button Extension (v1.6.5 unified architecture)**
    - `src/` — unified single source codebase for both Chrome and Firefox.
    - `dist/` — generated unpacked extensions (`dist/chrome`, `dist/firefox`) and release `.zip` archives.
    - `scripts/` — zero-dependency build and debug tooling (`build.mjs`, `start-chrome-debug.ps1`, `start-chrome-debug.sh`).
@@ -120,7 +120,7 @@ cd ..
 
 ### Run Locale & Layout Validation (Fast & Offline)
 
-Validates all 26 languages for `popup.html`, `welcome.html`, and `update.html`, ensuring all translations exist and the popup does not exceed `320px` width:
+Validates all 26 languages for `popup.html`, `welcome.html`, and `update.html`, ensuring all translations exist, the popup does not exceed `350px` width, and text is not clipped inside controls (undo timer segments, settings labels and sublabels):
 
 ```bash
 npm test
@@ -251,12 +251,13 @@ Watch-Later-button/
 │   ├── watch-later-chrome-v*.zip
 │   └── watch-later-firefox-v*.zip
 ├── tests/                      # AUTOMATED TEST SUITE
-│   ├── check-locales-puppeteer.js # 26-language verification & 320px overflow test
+│   ├── check-locales-puppeteer.js # 26-language verification, 350px width & inner clipping
 │   ├── e2e.test.js             # Live YouTube integration tests (Watch, Shorts, Cards)
 │   └── package.json            # Jest and Puppeteer dependencies
 ├── .gitignore                  # Git ignore rules (includes dist/ and *.zip)
 ├── package.json                # Root automation commands
-├── ROADMAP_V2_REFACTORING.md   # Architectural v2.0 roadmap & progress checklist
+├── ROADMAP_V1_6_5.md           # v1.6.5 release roadmap & unified architecture spec
+├── POPUP_REDESIGN_V1_6_5.md    # Popup redesign spec (350px, preset colors, screen slider)
 ├── README.md                   # Public extension documentation
 └── SETUP.md                    # This development guide
 ```

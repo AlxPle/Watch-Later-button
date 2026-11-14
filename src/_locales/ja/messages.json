@@ -104,35 +104,35 @@
         "description": "Close update button text"
     },
     "openWatchLater": {
-        "message": "Watch Later Playlist",
+        "message": "「後で見る」プレイリスト",
         "description": "Hero button to open Watch Later playlist"
     },
     "openPlaylistDirect": {
-        "message": "Open your saved videos on YouTube",
+        "message": "YouTube で保存した動画を開く",
         "description": "Subtitle for Watch Later hero button"
     },
     "statusActive": {
-        "message": "Active on YouTube",
+        "message": "YouTube で有効",
         "description": "Status text indicating extension is running"
     },
     "badgeNew": {
-        "message": "New",
+        "message": "新機能",
         "description": "Badge for new features"
     },
     "badgeImproved": {
-        "message": "Improved",
+        "message": "改善",
         "description": "Badge for improvements"
     },
     "badgeFixed": {
-        "message": "Fixed",
+        "message": "修正",
         "description": "Badge for fixes"
     },
     "previewBadge": {
-        "message": "Interactive Preview",
+        "message": "インタラクティブ プレビュー",
         "description": "Badge for interactive demo on onboarding page"
     },
     "mockVideoTitle": {
-        "message": "Instant 1-Click Save to Watch Later Demo",
+        "message": "ワンクリックで「後で見る」に保存するデモ",
         "description": "Title in mock video thumbnail"
     },
     "mockVideoChannel": {
@@ -160,31 +160,31 @@
         "description": "Back button label"
     },
     "settingsShortcut": {
-        "message": "Keyboard shortcut",
+        "message": "キーボード ショートカット",
         "description": "Label for shortcut recorder"
     },
     "settingsShortcutHint": {
-        "message": "Press key combination or Esc to cancel",
+        "message": "キーの組み合わせを押すか、Esc でキャンセル",
         "description": "Hint while recording shortcut"
     },
     "settingsShortcutRecording": {
-        "message": "Press keys...",
+        "message": "キーを押してください...",
         "description": "Status text while recording shortcut"
     },
     "settingsUndo": {
-        "message": "Undo timer",
+        "message": "取り消しタイマー",
         "description": "Label for undo timer setting"
     },
     "undoOff": {
-        "message": "Off",
+        "message": "オフ",
         "description": "Label for disabling undo"
     },
     "undoCustom": {
-        "message": "Custom",
+        "message": "カスタム",
         "description": "Label for custom undo duration"
     },
     "secondsUnit": {
-        "message": "sec",
+        "message": "秒",
         "description": "Seconds abbreviation"
     },
     "settingsUpdateNotifications": {

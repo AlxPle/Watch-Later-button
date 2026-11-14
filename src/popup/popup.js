@@ -20,30 +20,62 @@ if (version) {
   document.getElementById("ext-version").textContent = `v${version}`;
 }
 
-
-// Navigation
+// Navigation & Dynamic Slider Height
+const viewsSlider = document.getElementById("views-slider");
 const mainView = document.getElementById("main-view");
 const settingsView = document.getElementById("settings-view");
-const mainHeader = document.querySelector(".popup-header");
+
+function syncSliderHeight(activeEl) {
+  if (!viewsSlider || !activeEl) return;
+  viewsSlider.style.height = `${activeEl.offsetHeight}px`;
+}
 
 const openSettings = () => {
-  mainHeader.hidden = true;
-  mainView.hidden = true;
-  settingsView.hidden = false;
+  mainView.classList.remove("is-active");
+  mainView.classList.add("is-hidden-left");
+  mainView.setAttribute("inert", "");
+
+  settingsView.removeAttribute("inert");
+  settingsView.classList.add("is-active");
+  syncSliderHeight(settingsView);
 };
 
 const closeSettings = () => {
-  settingsView.hidden = true;
-  mainHeader.hidden = false;
-  mainView.hidden = false;
+  settingsView.classList.remove("is-active");
+  settingsView.setAttribute("inert", "");
+
+  mainView.removeAttribute("inert");
+  mainView.classList.remove("is-hidden-left");
+  mainView.classList.add("is-active");
+  syncSliderHeight(mainView);
 };
+
+if (typeof ResizeObserver !== "undefined" && viewsSlider) {
+  const resizeObserver = new ResizeObserver(() => {
+    const active = settingsView.classList.contains("is-active") ? settingsView : mainView;
+    syncSliderHeight(active);
+  });
+  resizeObserver.observe(mainView);
+  resizeObserver.observe(settingsView);
+}
+
+requestAnimationFrame(() => syncSliderHeight(mainView));
 
 document.getElementById("open-settings-row-btn")?.addEventListener("click", openSettings);
 document.getElementById("back-to-main-btn")?.addEventListener("click", closeSettings);
 
+// Возврат на главный экран по клавише Esc
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !isRecordingShortcut && settingsView.classList.contains("is-active")) {
+    e.preventDefault();
+    closeSettings();
+  }
+});
+
 // Defaults & Constants
 const DEFAULT_COLOR = "#e50914";
 const DEFAULT_ALPHA = 100;
+const PRESET_COLORS = ["#e50914", "#ffffff", "#3ea6ff", "#2ba640"];
 const DEFAULT_SHORTCUT = {
   alt: true,
   ctrl: false,
@@ -63,6 +95,8 @@ const DEFAULT_SURFACES = {
 // Color Settings Elements
 const colorPicker = document.getElementById("color-picker");
 const colorHex = document.getElementById("color-hex");
+const presetChips = document.querySelectorAll(".preset-chip[data-color]");
+const customSwatchBtn = document.getElementById("custom-swatch-btn");
 const opacitySlider = document.getElementById("opacity-slider");
 const opacityVal = document.getElementById("opacity-val");
 const rgbaOutput = document.getElementById("rgba-output");
@@ -79,6 +113,7 @@ const surfaceCardsToggle = document.getElementById("surface-cards-toggle");
 const shortcutBtn = document.getElementById("shortcut-btn");
 const shortcutHint = document.getElementById("shortcut-hint");
 const undoPills = document.querySelectorAll(".undo-pill");
+const undoActiveThumb = document.getElementById("undo-active-thumb");
 const customUndoContainer = document.getElementById("custom-undo-container");
 const customUndoInput = document.getElementById("custom-undo-input");
 const undoActiveBadge = document.getElementById("undo-active-badge");
@@ -92,17 +127,12 @@ let isRecordingShortcut = false;
 let currentUndoSeconds = DEFAULT_UNDO_SECONDS;
 let currentSurfaces = { ...DEFAULT_SURFACES };
 
-function safeStorageSet(area, data) {
+async function safeStorageSet(area, data) {
   try {
-    const store = extApi?.storage?.[area];
-    if (!store) return;
-    const res = store.set(data, () => {
-      void extApi?.runtime?.lastError;
-    });
-    if (res && typeof res.catch === "function") {
-      res.catch(() => {});
-    }
-  } catch {}
+    await extApi.storage[area].set(data);
+  } catch (error) {
+    console.warn(`Could not save ${area} settings`, error);
+  }
 }
 
 function flushSync() {
@@ -148,6 +178,37 @@ function hexToHex8(hex, alpha) {
   return `#${clean}${aHex}`;
 }
 
+function getRelativeLuminance(hex) {
+  const clean = hex.replace("#", "").slice(0, 6);
+  const channels = [
+    parseInt(clean.slice(0, 2), 16) / 255,
+    parseInt(clean.slice(2, 4), 16) / 255,
+    parseInt(clean.slice(4, 6), 16) / 255
+  ].map((c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)));
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+}
+
+function updatePresetSelection(normalizedHex) {
+  let matchedPreset = false;
+  presetChips.forEach((chip) => {
+    const isMatch = chip.dataset.color?.toLowerCase() === normalizedHex;
+    chip.classList.toggle("active", isMatch);
+    if (isMatch) matchedPreset = true;
+  });
+
+  if (customSwatchBtn) {
+    if (!matchedPreset && !PRESET_COLORS.includes(normalizedHex)) {
+      customSwatchBtn.classList.add("active", "has-custom-color");
+      customSwatchBtn.style.setProperty("--custom-chip-bg", normalizedHex);
+      customSwatchBtn.style.color = getRelativeLuminance(normalizedHex) > 0.55 ? "#0f0f0f" : "#ffffff";
+    } else {
+      customSwatchBtn.classList.remove("active", "has-custom-color");
+      customSwatchBtn.style.removeProperty("--custom-chip-bg");
+      customSwatchBtn.style.color = "";
+    }
+  }
+}
+
 function persistUpdateNotification(enabled) {
   safeStorageSet("local", { showUpdateNotification: enabled });
   safeStorageSet("sync", { showUpdateNotification: enabled });
@@ -181,6 +242,12 @@ function persistSurfaces(surfaces) {
   safeStorageSet("sync", { buttonSurfaces: surfaces });
 }
 
+function syncSwitchAria(inputEl) {
+  if (inputEl) {
+    inputEl.setAttribute("aria-checked", String(Boolean(inputEl.checked)));
+  }
+}
+
 function applySurfaces(surfaces, save = true) {
   currentSurfaces = {
     watch: surfaces?.watch !== false,
@@ -188,32 +255,45 @@ function applySurfaces(surfaces, save = true) {
     cards: surfaces?.cards !== false
   };
 
-  if (surfaceWatchToggle) surfaceWatchToggle.checked = currentSurfaces.watch;
-  if (surfaceShortsToggle) surfaceShortsToggle.checked = currentSurfaces.shorts;
-  if (surfaceCardsToggle) surfaceCardsToggle.checked = currentSurfaces.cards;
+  if (surfaceWatchToggle) {
+    surfaceWatchToggle.checked = currentSurfaces.watch;
+    syncSwitchAria(surfaceWatchToggle);
+  }
+  if (surfaceShortsToggle) {
+    surfaceShortsToggle.checked = currentSurfaces.shorts;
+    syncSwitchAria(surfaceShortsToggle);
+  }
+  if (surfaceCardsToggle) {
+    surfaceCardsToggle.checked = currentSurfaces.cards;
+    syncSwitchAria(surfaceCardsToggle);
+  }
 
   if (save) persistSurfaces(currentSurfaces);
 }
 
 function applyColor(hex, alpha, save = true, immediate = false) {
   const clampedAlpha = Math.max(0, Math.min(100, Math.round(Number(alpha))));
-  const cleanHex = hex.startsWith("#") ? hex.slice(0, 7) : `#${hex.slice(0, 6)}`;
+  const cleanHex = (hex.startsWith("#") ? hex.slice(0, 7) : `#${hex.slice(0, 6)}`).toLowerCase();
   const rgba = hexToRgba(cleanHex, clampedAlpha);
   const hoverRgba = hexToHoverRgba(cleanHex, clampedAlpha);
+  const isLightFill = getRelativeLuminance(cleanHex) > 0.55 && clampedAlpha >= 45;
+  const iconColor = isLightFill ? "#0f0f0f" : "#ffffff";
 
-  colorPicker.value = cleanHex.toLowerCase();
+  colorPicker.value = cleanHex;
   colorHex.value = hexToHex8(cleanHex, clampedAlpha);
   opacitySlider.value = clampedAlpha;
   opacityVal.textContent = `${clampedAlpha}%`;
   rgbaOutput.value = rgba;
+  updatePresetSelection(cleanHex);
 
-  if (previewBtn) {
+if (previewBtn) {
     previewBtn.style.setProperty("--wl-color-default", rgba);
     previewBtn.style.setProperty("--wl-color-default-hover", hoverRgba);
+    previewBtn.style.setProperty("--wl-icon-color", iconColor);
   }
 
   if (save) {
-    persistColor({ hex: cleanHex.toLowerCase(), alpha: clampedAlpha, rgba, hoverRgba }, immediate);
+    persistColor({ hex: cleanHex, alpha: clampedAlpha, rgba, hoverRgba, iconColor }, immediate);
   }
 }
 
@@ -264,7 +344,6 @@ function handleKeyRecord(e) {
   if (e.shiftKey) parts.push("Shift");
   if (e.metaKey) parts.push(isMac ? "Cmd" : "Win");
 
-  // Требуем минимум один модификатор и блокируем системные комбинации закрытия/обновления вкладки
   if (parts.length === 0 || isReservedBrowserShortcut(e)) {
     return;
   }
@@ -290,12 +369,15 @@ function applyUndoSeconds(seconds, isCustom = false, save = true) {
   const val = Math.max(0, Math.min(60, Math.round(Number(seconds) || 0)));
   currentUndoSeconds = val;
 
+  let activeIndex = 3;
   let matchedPill = false;
+
   undoPills.forEach((pill) => {
     const secAttr = pill.dataset.seconds;
     if (!isCustom && secAttr !== "custom" && Number(secAttr) === val) {
       pill.classList.add("active");
       matchedPill = true;
+      activeIndex = Number(pill.dataset.index || 0);
     } else if (secAttr !== "custom") {
       pill.classList.remove("active");
     }
@@ -304,11 +386,16 @@ function applyUndoSeconds(seconds, isCustom = false, save = true) {
   const customPill = document.querySelector('.undo-pill[data-seconds="custom"]');
   if (isCustom || !matchedPill) {
     customPill?.classList.add("active");
+    activeIndex = 3;
     if (customUndoContainer) customUndoContainer.hidden = false;
     if (customUndoInput && document.activeElement !== customUndoInput) customUndoInput.value = val;
   } else {
     customPill?.classList.remove("active");
     if (customUndoContainer) customUndoContainer.hidden = true;
+  }
+
+  if (undoActiveThumb) {
+    undoActiveThumb.style.transform = `translateX(${activeIndex * 100}%)`;
   }
 
   if (undoActiveBadge) {
@@ -322,7 +409,7 @@ function applyUndoSeconds(seconds, isCustom = false, save = true) {
   if (save) persistUndoSeconds(val);
 }
 
-// Интерактивное тестирование кнопки в превью настроек
+// Interactive button preview inside mini-player
 if (previewBtn) {
   const defaultTitle = extApi?.i18n?.getMessage?.("wlButtonDefaultTitle") || "Watch Later";
   const deleteTitle = extApi?.i18n?.getMessage?.("wlButtonDeleteTitle") || "Delete from Watch Later";
@@ -388,6 +475,7 @@ async function loadStoredSettings() {
 
   if (updateNotificationToggle) {
     updateNotificationToggle.checked = cfg.showUpdateNotification !== false;
+    syncSwitchAria(updateNotificationToggle);
   }
 
   applyShortcut(cfg.buttonShortcut || DEFAULT_SHORTCUT, false);
@@ -401,7 +489,21 @@ async function loadStoredSettings() {
 
 loadStoredSettings();
 
-// Event Listeners
+// Preset Swatches Events
+presetChips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const presetHex = chip.dataset.color;
+    if (presetHex) {
+      applyColor(presetHex, Number(opacitySlider.value), true, true);
+    }
+  });
+});
+
+customSwatchBtn?.addEventListener("click", () => {
+  colorPicker?.click();
+});
+
+// Color Picker & Slider Events
 colorPicker?.addEventListener("input", (e) => {
   applyColor(e.target.value, Number(opacitySlider.value), true, false);
 });
@@ -434,21 +536,44 @@ opacitySlider?.addEventListener("change", (e) => {
   applyColor(colorPicker.value, Number(e.target.value), true, true);
 });
 
+const rgbaCopyWrap = document.getElementById("rgba-copy-wrap");
+let rgbaCopyTimer = null;
+
+rgbaOutput?.addEventListener("click", async () => {
+  if (!rgbaOutput.value) return;
+  try {
+    await navigator.clipboard.writeText(rgbaOutput.value);
+  } catch {
+    rgbaOutput.select();
+    document.execCommand("copy");
+  }
+
+  rgbaCopyWrap?.classList.add("is-copied");
+  clearTimeout(rgbaCopyTimer);
+  rgbaCopyTimer = setTimeout(() => {
+    rgbaCopyWrap?.classList.remove("is-copied");
+  }, 1000);
+});
+
 updateNotificationToggle?.addEventListener("change", (e) => {
+  syncSwitchAria(e.target);
   persistUpdateNotification(e.target.checked);
 });
 
 surfaceWatchToggle?.addEventListener("change", (e) => {
+  syncSwitchAria(e.target);
   currentSurfaces.watch = e.target.checked;
   persistSurfaces(currentSurfaces);
 });
 
 surfaceShortsToggle?.addEventListener("change", (e) => {
+  syncSwitchAria(e.target);
   currentSurfaces.shorts = e.target.checked;
   persistSurfaces(currentSurfaces);
 });
 
 surfaceCardsToggle?.addEventListener("change", (e) => {
+  syncSwitchAria(e.target);
   currentSurfaces.cards = e.target.checked;
   persistSurfaces(currentSurfaces);
 });
@@ -524,13 +649,22 @@ undoStepUp?.addEventListener("click", () => {
   applyUndoSeconds(nextVal, true, true);
 });
 
+let resetFeedbackTimer = null;
+
 resetBtn?.addEventListener("click", () => {
   applyColor(DEFAULT_COLOR, DEFAULT_ALPHA, true, true);
   if (updateNotificationToggle) {
     updateNotificationToggle.checked = true;
+    syncSwitchAria(updateNotificationToggle);
   }
   persistUpdateNotification(true);
   applyShortcut(DEFAULT_SHORTCUT, true);
   applyUndoSeconds(DEFAULT_UNDO_SECONDS, false, true);
   applySurfaces(DEFAULT_SURFACES, true);
+
+  resetBtn.classList.add("is-reset");
+  clearTimeout(resetFeedbackTimer);
+  resetFeedbackTimer = setTimeout(() => {
+    resetBtn.classList.remove("is-reset");
+  }, 1000);
 });

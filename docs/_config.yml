@@ -4,40 +4,29 @@ author: Alex Pletnov
 lang: en
 google_tag_manager_id: GTM-TB8PQ6FT
 
-# Navigation: exclude index from header
-header_pages:
-  - privacy_policy.md
-  - updates.md
+url: "https://watchlater.alxple.com"  # Production domain (no trailing slash)
+baseurl: ""  # Empty for root domain deployments
 
-# Add plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
 
-# Jekyll Feed configuration
 feed:
   path: feed.xml
-  collections:
-    posts:
-      path: /feed.xml
 
-# Sitemap
-url: "https://watchlater.alxple.com"  # Production domain (no trailing slash)
-baseurl: ""  # Empty for root domain deployments
-sitemap:
-  include_posts: true  # Include posts (default: true)
-  change_frequency: "weekly"  # Change frequency
-  priority: 0.5  # Page priority
-
-# Typographer
-typographer:
-  entities: true  # Enable HTML entities
-  quotes: true    # Replace quotes
-  dashes: true    # Replace dashes
-
-# Optional: configure URL for posts
 permalink: /updates/:year/:month/:day/:title/
+
+kramdown:
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Alex Pletnov
 
 exclude:
   - Gemfile
@@ -48,15 +37,12 @@ exclude:
   - .sass-cache
   - .jekyll-cache
   - README.md
-  - e2e.test.js
   - LICENSE
   - .gitignore
   - package.json
   - package-lock.json
-  - chrome/
-  - SETUP.md
-
-
-
-
-
+  - scripts
+  - tailwind.config.js
+  - assets/css/tailwind-input.css
+  - _config_dev.yml
+  - "**/*.tmp.*"

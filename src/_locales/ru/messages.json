@@ -39,6 +39,18 @@
         "message": "Смотреть позже",
         "description": "Default tooltip/aria label for the Watch Later button"
     },
+    "wlButtonPendingTitle": {
+        "message": "Ожидание ответа YouTube…"
+    },
+    "wlButtonErrorTitle": {
+        "message": "Изменение не подтверждено. Перед повторной попыткой проверьте плейлист «Смотреть позже», подключение и вход в YouTube."
+    },
+    "wlButtonSaved": {
+        "message": "Добавлено в «Смотреть позже»"
+    },
+    "wlButtonRemoved": {
+        "message": "Удалено из «Смотреть позже»"
+    },
     "wlButtonDeleteTitle": {
         "message": "Удалить из \"Смотреть позже\"",
         "description": "Tooltip/aria label when clicking again will remove from Watch Later"

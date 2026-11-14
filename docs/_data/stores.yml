@@ -1,0 +1,16 @@
+# Single source of truth for extension store listings and project links
+github_url: "https://github.com/AlxPle/Watch-Later-button"
+issues_url: "https://github.com/AlxPle/Watch-Later-button/issues"
+github_profile_url: "https://github.com/AlxPle/"
+donate_url: "https://www.buymeacoffee.com/pletnovalex"
+watch_later_playlist_url: "https://www.youtube.com/playlist?list=WL"
+
+chrome_extension_id: "igehcnnhegiagilpnablldbbcnjabkab"
+chrome_url: "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab"
+chrome_reviews_url: "https://chromewebstore.google.com/detail/watch-later-button/igehcnnhegiagilpnablldbbcnjabkab/reviews"
+
+edge_extension_id: "poopocdoinnkiddflgklibkgmmlidfpa"
+edge_url: "https://microsoftedge.microsoft.com/addons/detail/poopocdoinnkiddflgklibkgmmlidfpa"
+
+firefox_url: "https://addons.mozilla.org/firefox/addon/watchlaterbutton/"
+firefox_reviews_url: "https://addons.mozilla.org/firefox/addon/watchlaterbutton/#reviews"

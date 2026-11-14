@@ -4,7 +4,7 @@
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "author": "Alex Pletnov",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "icons": {
     "16": "assets/app-icons/red/iconmonstr-text-plus-lined-16.png",
     "32": "assets/app-icons/red/iconmonstr-text-plus-lined-32.png",
@@ -18,6 +18,12 @@
     "storage"
   ],
   "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["js/youtube-bridge.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
     {
       "css": [
         "assets/styles/style.css"

@@ -10,6 +10,8 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+docs/_data/ui_icons.json
+docs/_data/extension.json
 
 # Local Chrome DevTools relay artifacts
 .devtools-relay/

@@ -4,15 +4,16 @@
             <div class="font-bold text-on-surface">Watch Later Button</div>
             <p class="text-xs text-on-surface-variant">© {{ site.time | date: "%Y" }} Watch Later Button • Free &amp; Open Source</p>
         </div>
-        <div class="flex items-center gap-6 text-xs font-medium text-on-surface-variant">
-            <a class="hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5"
-                href="{{ '/privacy/' | relative_url }}">Privacy Policy</a>
-            <a class="hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5"
-                href="{{ '/impressum/' | relative_url }}">Impressum</a>
-            <a class="hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5"
-                href="{{ '/updates/' | relative_url }}">Updates</a>
-            <a class="hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5"
-                href="https://github.com/AlxPle/Watch-Later-button" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
+        <nav class="flex items-center gap-6 text-xs font-medium text-on-surface-variant" aria-label="Footer Navigation">
+            {%- for item in site.data.navigation.footer %}
+            {%- if item.store_key %}
+            {%- assign href = site.data.stores[item.store_key] %}
+            {%- else %}
+            {%- assign href = item.url | relative_url %}
+            {%- endif %}
+            <a class="hover:text-link transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5"
+                href="{{ href }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.title }}</a>
+            {%- endfor %}
+        </nav>
     </div>
 </footer>

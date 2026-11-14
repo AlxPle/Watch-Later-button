@@ -104,35 +104,35 @@
         "description": "Close update button text"
     },
     "openWatchLater": {
-        "message": "Watch Later Playlist",
+        "message": "Playlist \"Tonton nanti\"",
         "description": "Hero button to open Watch Later playlist"
     },
     "openPlaylistDirect": {
-        "message": "Open your saved videos on YouTube",
+        "message": "Buka video tersimpan Anda di YouTube",
         "description": "Subtitle for Watch Later hero button"
     },
     "statusActive": {
-        "message": "Active on YouTube",
+        "message": "Aktif di YouTube",
         "description": "Status text indicating extension is running"
     },
     "badgeNew": {
-        "message": "New",
+        "message": "Baru",
         "description": "Badge for new features"
     },
     "badgeImproved": {
-        "message": "Improved",
+        "message": "Ditingkatkan",
         "description": "Badge for improvements"
     },
     "badgeFixed": {
-        "message": "Fixed",
+        "message": "Diperbaiki",
         "description": "Badge for fixes"
     },
     "previewBadge": {
-        "message": "Interactive Preview",
+        "message": "Pratinjau Interaktif",
         "description": "Badge for interactive demo on onboarding page"
     },
     "mockVideoTitle": {
-        "message": "Instant 1-Click Save to Watch Later Demo",
+        "message": "Demo Simpan Sekali Klik ke \"Tonton nanti\"",
         "description": "Title in mock video thumbnail"
     },
     "mockVideoChannel": {
@@ -160,31 +160,31 @@
         "description": "Back button label"
     },
     "settingsShortcut": {
-        "message": "Keyboard shortcut",
+        "message": "Pintasan keyboard",
         "description": "Label for shortcut recorder"
     },
     "settingsShortcutHint": {
-        "message": "Press key combination or Esc to cancel",
+        "message": "Tekan kombinasi tombol atau Esc untuk batal",
         "description": "Hint while recording shortcut"
     },
     "settingsShortcutRecording": {
-        "message": "Press keys...",
+        "message": "Tekan tombol...",
         "description": "Status text while recording shortcut"
     },
     "settingsUndo": {
-        "message": "Undo timer",
+        "message": "Timer urungkan",
         "description": "Label for undo timer setting"
     },
     "undoOff": {
-        "message": "Off",
+        "message": "Nonaktif",
         "description": "Label for disabling undo"
     },
     "undoCustom": {
-        "message": "Custom",
+        "message": "Kustom",
         "description": "Label for custom undo duration"
     },
     "secondsUnit": {
-        "message": "sec",
+        "message": "dtk",
         "description": "Seconds abbreviation"
     },
     "settingsUpdateNotifications": {

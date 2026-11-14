@@ -1,0 +1,7 @@
+{%- assign icon_name = include.name | replace: '_', '-' -%}
+{%- case icon_name -%}
+  {%- when 'expand-more' -%}{%- assign icon_name = 'unfold-more' -%}
+  {%- when 'youtube-activity' -%}{%- assign icon_name = 'play-circle' -%}
+{%- endcase -%}
+{%- assign icon = site.data.ui_icons[icon_name] -%}
+<svg xmlns="http://www.w3.org/2000/svg" class="ui-icon {{ include.class | escape }}" viewBox="{{ icon.viewBox }}" fill="currentColor" focusable="false"{% if include.id %} id="{{ include.id | escape }}"{% endif %}{% if include.theme %} data-theme-icon="{{ include.theme | escape }}"{% endif %}{% if include.label %} role="img" aria-label="{{ include.label | escape }}"{% else %} aria-hidden="true"{% endif %}>{{ icon.body }}</svg>

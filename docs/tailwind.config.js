@@ -7,6 +7,8 @@ module.exports = {
     "./*.html"
   ],
   darkMode: ["class", '[data-theme="dark"]'],
+  // Classes toggled only from inline scripts (not present in static markup)
+  safelist: ["rotate-180"],
   theme: {
     extend: {
       colors: {
@@ -21,7 +23,8 @@ module.exports = {
         "surface-container": "var(--wl-surface-container-color)",
         "surface-container-high": "var(--wl-surface-high-color)",
         "outline-variant": "var(--wl-outline-variant-color)",
-        "primary": "var(--wl-primary, oklch(0.58 0.22 27))"
+        "primary": "var(--wl-primary, oklch(0.58 0.22 27))",
+        "link": "var(--wl-link-color)"
       },
       fontFamily: {
         "headline": ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],

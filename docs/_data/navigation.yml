@@ -1,0 +1,31 @@
+# Site navigation shared by header and footer
+home_anchors:
+  - title: How it works
+    anchor: how-it-works
+  - title: Features
+    anchor: features
+  - title: FAQ
+    anchor: faq
+  - title: Updates
+    url: /updates/
+
+pages:
+  - title: Home
+    url: /
+  - title: Privacy
+    url: /privacy/
+  - title: Impressum
+    url: /impressum/
+  - title: Updates
+    url: /updates/
+
+footer:
+  - title: Privacy Policy
+    url: /privacy/
+  - title: Impressum
+    url: /impressum/
+  - title: Updates
+    url: /updates/
+  - title: GitHub
+    store_key: github_url
+    external: true

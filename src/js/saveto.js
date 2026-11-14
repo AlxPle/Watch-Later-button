@@ -13,7 +13,7 @@ const WATCH_MOUNT_SELECTORS = [
   "ytd-watch-flexy:not([hidden]) ytd-watch-metadata #top-level-buttons-computed"
 ].join(", ");
 
-const SHORTS_MOUNT_SELECTORS = "reel-action-bar-view-model, ytd-shorts ytd-reel-video-renderer #actions";
+const SHORTS_MOUNT_SELECTORS = "reel-action-bar-view-model, #actions";
 
 const WL_ADDED_CLASS = "is-added";
 const WL_UNDO_ACTIVE_CLASS = "is-undo-active";
@@ -43,7 +43,11 @@ const getI18nMessage = (key, fallback) => chrome?.i18n?.getMessage?.(key) || fal
 
 const WL_TEXT = {
   defaultTitle: getI18nMessage("wlButtonDefaultTitle", "Watch Later"),
-  deleteTitle: getI18nMessage("wlButtonDeleteTitle", "Delete from Watch Later")
+  deleteTitle: getI18nMessage("wlButtonDeleteTitle", "Delete from Watch Later"),
+  pending: getI18nMessage("wlButtonPendingTitle", "Waiting for YouTube…"),
+  error: getI18nMessage("wlButtonErrorTitle", "Change not confirmed. Check your Watch Later playlist, connection, and YouTube sign-in before trying again."),
+  saved: getI18nMessage("wlButtonSaved", "Saved to Watch Later"),
+  removed: getI18nMessage("wlButtonRemoved", "Removed from Watch Later")
 };
 
 function getDefaultButtonTitle() {
@@ -56,16 +60,10 @@ function getDefaultButtonTitle() {
 function updateAllButtonsDefaultTitle() {
   const title = getDefaultButtonTitle();
   saveTo.dataset.defaultTitle = title;
-  if (!buttonUndoState.has(saveTo)) {
-    saveTo.title = title;
-    saveTo.setAttribute("aria-label", title);
-  }
+  if (!buttonErrorState.has(saveTo)) restoreButtonTitle(saveTo);
   document.querySelectorAll(".saveToWatchLater:not(#saveToPlaylist)").forEach((btn) => {
     btn.dataset.defaultTitle = title;
-    if (!buttonUndoState.has(btn)) {
-      btn.title = title;
-      btn.setAttribute("aria-label", title);
-    }
+    if (!buttonErrorState.has(btn)) restoreButtonTitle(btn);
   });
 }
 
@@ -74,6 +72,7 @@ function applyButtonTheme(colorData) {
   const root = document.documentElement;
   if (colorData.rgba) root.style.setProperty("--wl-color-default", colorData.rgba);
   if (colorData.hoverRgba) root.style.setProperty("--wl-color-default-hover", colorData.hoverRgba);
+  root.style.setProperty("--wl-icon-color", colorData.iconColor || "#ffffff");
 }
 
 function applySurfacesConfig(surfaces) {
@@ -158,6 +157,7 @@ try {
 } catch {}
 
 function handleButtonKeyDown(e) {
+  if (e.repeat || e.isComposing) return;
   if (e.key === "Enter" || e.key === " ") {
     e.preventDefault();
     e.currentTarget.click();
@@ -213,37 +213,49 @@ function resolveCurrentVideoId() {
   return null;
 }
 
-function sendWatchLaterAction(action, videoId) {
-  const appElement = document.querySelector("ytd-app");
-  if (!appElement || !videoId) return false;
+const pendingRequests = new Map();
+const buttonPendingState = new WeakMap();
+const pendingVideos = new Set();
+const actionStatus = document.createElement("span");
+actionStatus.className = "wl-action-status";
+actionStatus.setAttribute("role", "status");
+actionStatus.setAttribute("aria-live", "polite");
+document.body.append(actionStatus);
 
-  const actionPayload = action === "add"
-    ? { addedVideoId: videoId, action: "ACTION_ADD_VIDEO" }
-    : { action: "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", removedVideoId: videoId };
-
-  let detail = {
-    actionName: "yt-service-request",
-    returnValue: [],
-    args: [
-      { data: {} },
-      {
-        clickTrackingParams: "",
-        commandMetadata: { webCommandMetadata: { sendPost: true, apiUrl: "/youtubei/v1/browse/edit_playlist" } },
-        playlistEditEndpoint: { playlistId: "WL", actions: [actionPayload] }
-      }
-    ],
-    optionalAction: false
-  };
-
-  const pageWindow = document.defaultView || window;
-
-  if (typeof cloneInto !== "undefined") {
-    detail = cloneInto(detail, pageWindow);
+document.addEventListener("wl-playlist-response", (event) => {
+  let response;
+  try {
+    response = JSON.parse(event.detail);
+  } catch {
+    return;
   }
+  const pending = pendingRequests.get(response?.requestId);
+  if (!pending) return;
+  clearTimeout(pending.timer);
+  pendingRequests.delete(response.requestId);
+  pending.resolve(response.ok === true);
+});
 
-  const CustomEventConstructor = pageWindow.CustomEvent || CustomEvent;
-  appElement.dispatchEvent(new CustomEventConstructor("yt-action", { bubbles: true, composed: true, detail }));
-  return true;
+function sendWatchLaterAction(action, videoId) {
+  const requestId = crypto.randomUUID();
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => {
+      pendingRequests.delete(requestId);
+      resolve(false);
+    }, 13000);
+    pendingRequests.set(requestId, { resolve, timer });
+    document.dispatchEvent(new CustomEvent("wl-playlist-request", {
+      detail: JSON.stringify({ requestId, action, videoId })
+    }));
+  });
+}
+
+function restoreButtonTitle(button) {
+  const title = buttonPendingState.has(button) ? WL_TEXT.pending
+    : buttonUndoState.get(button)?.videoId ? WL_TEXT.deleteTitle
+    : button.dataset.defaultTitle || getDefaultButtonTitle();
+  button.title = title;
+  button.setAttribute("aria-label", title);
 }
 
 function flashButtonErrorState(button) {
@@ -253,10 +265,14 @@ function flashButtonErrorState(button) {
   button.classList.remove(WL_ERROR_CLASS);
   void button.offsetWidth;
   button.classList.add(WL_ERROR_CLASS);
+  button.title = WL_TEXT.error;
+  button.setAttribute("aria-label", WL_TEXT.error);
+  actionStatus.textContent = WL_TEXT.error;
 
   const timerId = setTimeout(() => {
     button.classList.remove(WL_ERROR_CLASS);
     buttonErrorState.delete(button);
+    restoreButtonTitle(button);
   }, WL_ERROR_FLASH_MS);
 
   buttonErrorState.set(button, timerId);
@@ -268,9 +284,7 @@ function clearButtonUndoState(button) {
 
   buttonUndoState.delete(button);
   button.classList.remove(WL_ADDED_CLASS, WL_UNDO_ACTIVE_CLASS);
-  const title = button.dataset.defaultTitle || getDefaultButtonTitle();
-  button.title = title;
-  button.setAttribute("aria-label", title);
+  restoreButtonTitle(button);
 }
 
 function setButtonUndoState(button, videoId) {
@@ -301,31 +315,62 @@ function setButtonUndoState(button, videoId) {
   buttonUndoState.set(button, { timerId, videoId });
 }
 
-function handleWatchLaterToggle(button, explicitVideoId = null) {
+async function handleWatchLaterToggle(button, explicitVideoId = null) {
   const videoId = explicitVideoId || resolveCurrentVideoId();
   if (!videoId) {
     flashButtonErrorState(button);
     return;
   }
+  if (buttonPendingState.has(button) || pendingVideos.has(videoId)) return;
 
   const undoState = buttonUndoState.get(button);
-  if (undoState && undoState.videoId === videoId) {
-    if (sendWatchLaterAction("remove", videoId)) {
-      clearButtonUndoState(button);
-    } else {
-      flashButtonErrorState(button);
-    }
+  const action = undoState?.videoId === videoId ? "remove" : "add";
+  const operation = { videoId };
+  buttonPendingState.set(button, operation);
+  pendingVideos.add(videoId);
+  clearTimeout(buttonErrorState.get(button));
+  buttonErrorState.delete(button);
+  button.classList.remove(WL_ERROR_CLASS);
+  button.classList.add("is-pending");
+  button.setAttribute("aria-busy", "true");
+  restoreButtonTitle(button);
+  actionStatus.textContent = WL_TEXT.pending;
+
+  const ok = await sendWatchLaterAction(action, videoId);
+  pendingVideos.delete(videoId);
+  if (buttonPendingState.get(button) !== operation) return;
+  buttonPendingState.delete(button);
+  button.classList.remove("is-pending");
+  button.removeAttribute("aria-busy");
+  restoreButtonTitle(button);
+
+  const currentVideoId = button === saveTo ? resolveCurrentVideoId() : getVideoIdFromCard(button);
+  if (!button.isConnected || currentVideoId !== videoId) return;
+  if (!ok) {
+    flashButtonErrorState(button);
     return;
   }
-
-  if (sendWatchLaterAction("add", videoId)) {
-    setButtonUndoState(button, videoId);
-  } else {
-    flashButtonErrorState(button);
-  }
+  if (action === "remove") clearButtonUndoState(button);
+  else setButtonUndoState(button, videoId);
+  actionStatus.textContent = action === "add" ? WL_TEXT.saved : WL_TEXT.removed;
 }
 
 saveTo.addEventListener("click", () => handleWatchLaterToggle(saveTo));
+
+function getShortsMount() {
+  const shorts = document.querySelector("ytd-shorts:not([hidden])");
+  if (!shorts) return null;
+  const active = shorts.querySelector("ytd-reel-video-renderer[is-active]:not([hidden])");
+  if (active) return active.querySelector(SHORTS_MOUNT_SELECTORS);
+
+  const standalone = [...shorts.querySelectorAll("reel-action-bar-view-model")].find(element =>
+    !element.closest("ytd-reel-video-renderer, [hidden], [aria-hidden='true']"));
+  if (standalone) return standalone;
+
+  const visibleReels = [...shorts.querySelectorAll("ytd-reel-video-renderer")].filter(element =>
+    !element.closest("[hidden], [aria-hidden='true']"));
+  return visibleReels.length === 1 ? visibleReels[0].querySelector(SHORTS_MOUNT_SELECTORS) : null;
+}
 
 function mountWatchButton() {
   if (!isWatchPage() && !isShortsPage()) {
@@ -344,10 +389,12 @@ function mountWatchButton() {
   }
 
   const isShorts = isShortsPage();
-  const selector = isShorts ? SHORTS_MOUNT_SELECTORS : WATCH_MOUNT_SELECTORS;
-  const container = document.querySelector(selector);
+  const container = isShorts ? getShortsMount() : document.querySelector(WATCH_MOUNT_SELECTORS);
 
-  if (!container) return;
+  if (!container) {
+    if (saveTo.parentElement) saveTo.remove();
+    return;
+  }
 
   saveTo.classList.toggle("shortsPage", isShorts);
   if (saveTo.parentElement !== container) {
@@ -373,14 +420,19 @@ const watchObserver = new MutationObserver(() => {
 function startWatchObserver() {
   if (!isWatchPage() && !isShortsPage()) return;
 
-  const target = document.querySelector("ytd-watch-flexy, ytd-shorts, ytd-app, body");
+  const target = document.querySelector("ytd-app") || document.body;
   if (!target) return;
 
   // Only re-observe if the target element has changed
   if (target === watchObserverTarget) return;
   if (watchObserverTarget) watchObserver.disconnect();
   watchObserverTarget = target;
-  watchObserver.observe(target, { childList: true, subtree: true });
+  watchObserver.observe(target, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["is-active", "hidden"]
+  });
 }
 
 /* ===== Card Injection ===== */
@@ -506,6 +558,9 @@ let cardObserver = null;
 let cardInjectTimer = null;
 
 function clearButtonTimers(btn) {
+  buttonPendingState.delete(btn);
+  btn.classList.remove("is-pending");
+  btn.removeAttribute("aria-busy");
   const undoState = buttonUndoState.get(btn);
   if (undoState?.timerId) clearTimeout(undoState.timerId);
   buttonUndoState.delete(btn);
@@ -520,7 +575,7 @@ function clearButtonTimers(btn) {
 function cleanupRemovedButtons(mutations) {
   for (const m of mutations) {
     for (const node of m.removedNodes) {
-      if (node.nodeType !== Node.ELEMENT_NODE) continue;
+      if (node.nodeType !== Node.ELEMENT_NODE || node.isConnected) continue;
       if (node.matches?.(".saveToWatchLater")) {
         clearButtonTimers(node);
       }
@@ -556,7 +611,7 @@ function startCardObserver() {
 }
 
 function handleGlobalKeyDown(e) {
-  if (!currentShortcut || !currentShortcut.key) return;
+  if (e.repeat || e.isComposing || !currentShortcut || !currentShortcut.key) return;
 
   const activeEl = document.activeElement;
   const target = e.target;
@@ -617,6 +672,7 @@ function handleGlobalKeyDown(e) {
 window.addEventListener("keydown", handleGlobalKeyDown, true);
 
 function onNavigation() {
+  clearButtonTimers(saveTo);
   clearButtonUndoState(saveTo);
   mountWatchButton();
   startWatchObserver();

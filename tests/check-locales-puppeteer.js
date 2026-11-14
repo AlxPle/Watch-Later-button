@@ -130,7 +130,7 @@ const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-locales-'));
         const page = await browser.newPage();
         page.on('pageerror', err => console.error(`  [CONSOLE ERROR] ${locale}:`, err.message));
         page.on('console', msg => console.log(`  [CONSOLE LOG] ${locale}:`, msg.text()));
-        await page.setViewport({ width: 320, height: 600 });
+        await page.setViewport({ width: 350, height: 600 });
 
         let localeErrors = 0;
 
@@ -144,8 +144,32 @@ const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-locales-'));
 
         // Check popup scrollWidth
         const scrollWidth = await page.evaluate(() => document.body.scrollWidth);
-        if (scrollWidth > 320) {
-            console.error(`  [FAIL] ${locale} [popup]: Horizontal overflow detected! scrollWidth=${scrollWidth}px (max 320px)`);
+        if (scrollWidth > 350) {
+            console.error(`  [FAIL] ${locale} [popup]: Horizontal overflow detected! scrollWidth=${scrollWidth}px (max 350px)`);
+            localeErrors++;
+        }
+
+        // Check inner overflow (text clipped inside controls)
+        const innerOverflows = await page.evaluate(() => {
+            const selectors = ['.undo-pill', '.control-label', '.control-sublabel'];
+            const results = [];
+            for (const selector of selectors) {
+                for (const el of document.querySelectorAll(selector)) {
+                    if (el.scrollWidth > el.clientWidth + 1) {
+                        results.push({
+                            selector,
+                            text: el.textContent.trim(),
+                            scrollWidth: el.scrollWidth,
+                            clientWidth: el.clientWidth
+                        });
+                    }
+                }
+            }
+            return results;
+        });
+
+        for (const o of innerOverflows) {
+            console.error(`  [FAIL] ${locale} [popup-inner]: ${o.selector} "${o.text}" scrollWidth=${o.scrollWidth} clientWidth=${o.clientWidth}`);
             localeErrors++;
         }
 
@@ -227,7 +251,7 @@ const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-locales-'));
         if (localeErrors > 0) {
             failedLocales++;
         } else {
-            console.log(`  ✓ Locale '${locale}' passed (popup, welcome, update, width <= 320px).`);
+            console.log(`  ✓ Locale '${locale}' passed (popup, welcome, update, width <= 350px, no inner overflow).`);
         }
     }
     } finally {
@@ -244,7 +268,7 @@ const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-locales-'));
         console.error(`\x1b[31m[FAILED]\x1b[0m ${failedLocales} of ${locales.length} locales failed (${totalChecks} elements verified).`);
         process.exit(1);
     } else {
-        console.log(`\x1b[32m[PASSED]\x1b[0m All ${locales.length} locales passed (${totalChecks} elements checked across popup, welcome, update)!`);
+        console.log(`\x1b[32m[PASSED]\x1b[0m All ${locales.length} locales passed (${totalChecks} elements checked; width <= 350px, no inner overflow).`);
         process.exit(0);
     }
 })().catch(err => {
