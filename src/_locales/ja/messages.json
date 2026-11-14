@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "期間（1〜60秒）",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "表示場所",
+        "description": "配置設定グループのヘッダー"
+    },
+    "settingsSurfaceWatch": {
+        "message": "動画プレーヤー",
+        "description": "動画再生ページのトグル"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "動画再生ページにボタンを表示",
+        "description": "動画再生ページトグルの説明"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Shortsのトグル"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Shorts動画にボタンを表示",
+        "description": "Shortsトグルの説明"
+    },
+    "settingsSurfaceCards": {
+        "message": "動画カード",
+        "description": "動画カードのトグル"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "サムネイルにボタンを表示",
+        "description": "動画カードトグルの説明"
     }
 }

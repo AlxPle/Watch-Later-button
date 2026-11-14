@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Duur (1–60s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Oppervlakken",
+        "description": "Koptekst voor plaatsingsinstellingen"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Videospeler",
+        "description": "Schakelaar voor videopagina"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Knop tonen op videopagina",
+        "description": "Beschrijving voor videopaginaschakelaar"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Schakelaar voor Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Knop tonen bij Shorts",
+        "description": "Beschrijving voor Shortsschakelaar"
+    },
+    "settingsSurfaceCards": {
+        "message": "Videokaarten",
+        "description": "Schakelaar voor videokaarten"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Knop tonen op miniaturen",
+        "description": "Beschrijving voor videokaartenschakelaar"
     }
 }

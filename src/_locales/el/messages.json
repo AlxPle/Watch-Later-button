@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Διάρκεια (1–60δ)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Τοποθεσίες",
+        "description": "Επικεφαλίδα ρυθμίσεων τοποθεσίας κουμπιού"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Πρόγραμμα αναπαραγωγής",
+        "description": "Διακόπτης για σελίδα βίντεο"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Εμφάνιση κουμπιού στη σελίδα βίντεο",
+        "description": "Περιγραφή διακόπτη σελίδας βίντεο"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Διακόπτης για Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Εμφάνιση κουμπιού στα Shorts",
+        "description": "Περιγραφή διακόπτη Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "Κάρτες βίντεο",
+        "description": "Διακόπτης για κάρτες βίντεο"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Εμφάνιση κουμπιού στις μικρογραφίες",
+        "description": "Περιγραφή διακόπτη καρτών βίντεο"
     }
 }

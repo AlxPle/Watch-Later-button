@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Varighet (1–60s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Plassering",
+        "description": "Overskrift for innstillinger av knapplassering"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Videospiller",
+        "description": "Bryter for videoside"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Vis knapp på videosiden",
+        "description": "Beskrivelse for videosidebryter"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Bryter for Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Vis knapp på Shorts",
+        "description": "Beskrivelse for Shorts-bryter"
+    },
+    "settingsSurfaceCards": {
+        "message": "Videokort",
+        "description": "Bryter for videokort"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Vis knapp på miniatyrbilder",
+        "description": "Beskrivelse for videokortbryter"
     }
 }

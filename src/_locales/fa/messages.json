@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "مدت زمان (۱–۶۰ ثانیه)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "بخش‌ها",
+        "description": "عنوان گروه تنظیمات بخش‌های نمایش"
+    },
+    "settingsSurfaceWatch": {
+        "message": "پخش‌کننده ویدیو",
+        "description": "کلید صفحه ویدیو"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "نمایش دکمه در صفحه ویدیو",
+        "description": "توضیح کلید صفحه ویدیو"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "کلید بخش Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "نمایش دکمه در بخش Shorts",
+        "description": "توضیح کلید Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "کارت‌های ویدیو",
+        "description": "کلید کارت‌های ویدیو"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "نمایش دکمه روی تصاویر بندانگشتی",
+        "description": "توضیح کلید کارت‌های ویدیو"
     }
 }

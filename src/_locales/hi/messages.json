@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "अवधि (1–60 सेकंड)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "दिखाने के स्थान",
+        "description": "स्थान सेटिंग्स समूह हेडर"
+    },
+    "settingsSurfaceWatch": {
+        "message": "वीडियो प्लेयर",
+        "description": "वीडियो पेज टॉगल"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "वीडियो पेज पर बटन दिखाएं",
+        "description": "वीडियो पेज टॉगल विवरण"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Shorts टॉगल"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Shorts पर बटन दिखाएं",
+        "description": "Shorts टॉगल विवरण"
+    },
+    "settingsSurfaceCards": {
+        "message": "वीडियो कार्ड",
+        "description": "वीडियो कार्ड टॉगल"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "थंबनेल पर बटन दिखाएं",
+        "description": "वीडियो कार्ड टॉगल विवरण"
     }
 }

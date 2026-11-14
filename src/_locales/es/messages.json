@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Duración (1–60s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Superficies",
+        "description": "Encabezado del grupo de superficies de colocación"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Reproductor de video",
+        "description": "Interruptor para la página de video"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Mostrar botón en la página del video",
+        "description": "Descripción del interruptor de página de video"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Interruptor para Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Mostrar botón en Shorts",
+        "description": "Descripción del interruptor de Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "Tarjetas de video",
+        "description": "Interruptor para tarjetas de video"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Mostrar botón en miniaturas",
+        "description": "Descripción del interruptor de tarjetas"
     }
 }

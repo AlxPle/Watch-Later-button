@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "시간 (1~60초)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "표시 위치",
+        "description": "버튼 표시 위치 설정 그룹 헤더"
+    },
+    "settingsSurfaceWatch": {
+        "message": "동영상 플레이어",
+        "description": "동영상 페이지 토글"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "동영상 페이지에 버튼 표시",
+        "description": "동영상 페이지 토글 설명"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Shorts 토글"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Shorts에 버튼 표시",
+        "description": "Shorts 토글 설명"
+    },
+    "settingsSurfaceCards": {
+        "message": "동영상 카드",
+        "description": "동영상 카드 토글"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "미리보기 이미지에 버튼 표시",
+        "description": "동영상 카드 토글 설명"
     }
 }

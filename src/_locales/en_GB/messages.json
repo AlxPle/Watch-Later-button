@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Duration (1–60s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Surfaces",
+        "description": "Header for button placement surfaces settings group"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Video player",
+        "description": "Label for video watch page toggle"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Show button on watch page",
+        "description": "Description for video watch page toggle"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Label for Shorts toggle"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Show button on Shorts",
+        "description": "Description for Shorts toggle"
+    },
+    "settingsSurfaceCards": {
+        "message": "Video cards",
+        "description": "Label for video cards toggle"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Show button on thumbnails",
+        "description": "Description for video cards toggle"
     }
 }

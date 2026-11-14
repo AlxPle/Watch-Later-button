@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Doba trvání (1–60 s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Povrchy",
+        "description": "Záhlaví skupiny umístění tlačítka"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Přehrávač videa",
+        "description": "Přepínač pro stránku videa"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Zobrazit tlačítko na stránce videa",
+        "description": "Popis přepínače stránky videa"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Přepínač pro Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Zobrazit tlačítko v Shorts",
+        "description": "Popis přepínače Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "Karty videí",
+        "description": "Přepínač pro karty videí"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Zobrazit tlačítko na miniaturách",
+        "description": "Popis přepínače karet videí"
     }
 }

@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Duração (1–60s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Superfícies",
+        "description": "Cabeçalho para configurações de exibição"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Player de vídeo",
+        "description": "Alternador para página de vídeo"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Mostrar botão na página do vídeo",
+        "description": "Descrição do alternador da página de vídeo"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Alternador para Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Mostrar botão no Shorts",
+        "description": "Descrição do alternador de Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "Cards de vídeo",
+        "description": "Alternador para cards de vídeo"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Mostrar botão nas miniaturas",
+        "description": "Descrição do alternador de cards"
     }
 }

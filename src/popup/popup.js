@@ -54,6 +54,11 @@ const DEFAULT_SHORTCUT = {
   display: "Alt + W"
 };
 const DEFAULT_UNDO_SECONDS = 10;
+const DEFAULT_SURFACES = {
+  watch: true,
+  shorts: true,
+  cards: true
+};
 
 // Color Settings Elements
 const colorPicker = document.getElementById("color-picker");
@@ -64,6 +69,11 @@ const rgbaOutput = document.getElementById("rgba-output");
 const previewBtn = document.getElementById("btn-preview");
 const resetBtn = document.getElementById("reset-color-btn");
 const updateNotificationToggle = document.getElementById("update-notification-toggle");
+
+// Surface Toggles Elements
+const surfaceWatchToggle = document.getElementById("surface-watch-toggle");
+const surfaceShortsToggle = document.getElementById("surface-shorts-toggle");
+const surfaceCardsToggle = document.getElementById("surface-cards-toggle");
 
 // Shortcut & Undo Elements
 const shortcutBtn = document.getElementById("shortcut-btn");
@@ -80,6 +90,7 @@ let pendingSyncPayload = null;
 let currentShortcut = { ...DEFAULT_SHORTCUT };
 let isRecordingShortcut = false;
 let currentUndoSeconds = DEFAULT_UNDO_SECONDS;
+let currentSurfaces = { ...DEFAULT_SURFACES };
 
 function safeStorageSet(area, data) {
   try {
@@ -163,6 +174,25 @@ function persistShortcut(shortcut) {
 function persistUndoSeconds(seconds) {
   safeStorageSet("local", { buttonUndoSeconds: seconds });
   safeStorageSet("sync", { buttonUndoSeconds: seconds });
+}
+
+function persistSurfaces(surfaces) {
+  safeStorageSet("local", { buttonSurfaces: surfaces });
+  safeStorageSet("sync", { buttonSurfaces: surfaces });
+}
+
+function applySurfaces(surfaces, save = true) {
+  currentSurfaces = {
+    watch: surfaces?.watch !== false,
+    shorts: surfaces?.shorts !== false,
+    cards: surfaces?.cards !== false
+  };
+
+  if (surfaceWatchToggle) surfaceWatchToggle.checked = currentSurfaces.watch;
+  if (surfaceShortsToggle) surfaceShortsToggle.checked = currentSurfaces.shorts;
+  if (surfaceCardsToggle) surfaceCardsToggle.checked = currentSurfaces.cards;
+
+  if (save) persistSurfaces(currentSurfaces);
 }
 
 function applyColor(hex, alpha, save = true, immediate = false) {
@@ -339,7 +369,7 @@ if (previewBtn) {
 
 // Load saved settings from local + sync
 async function loadStoredSettings() {
-  const KEYS = ["buttonColor", "showUpdateNotification", "buttonShortcut", "buttonUndoSeconds"];
+  const KEYS = ["buttonColor", "showUpdateNotification", "buttonShortcut", "buttonUndoSeconds", "buttonSurfaces"];
   let localData = {};
   let syncData = {};
 
@@ -365,6 +395,8 @@ async function loadStoredSettings() {
   const storedSec = cfg.buttonUndoSeconds !== undefined ? Number(cfg.buttonUndoSeconds) : DEFAULT_UNDO_SECONDS;
   const isCustomVal = ![0, 10, 15].includes(storedSec);
   applyUndoSeconds(storedSec, isCustomVal, false);
+
+  applySurfaces(cfg.buttonSurfaces || DEFAULT_SURFACES, false);
 }
 
 loadStoredSettings();
@@ -404,6 +436,21 @@ opacitySlider?.addEventListener("change", (e) => {
 
 updateNotificationToggle?.addEventListener("change", (e) => {
   persistUpdateNotification(e.target.checked);
+});
+
+surfaceWatchToggle?.addEventListener("change", (e) => {
+  currentSurfaces.watch = e.target.checked;
+  persistSurfaces(currentSurfaces);
+});
+
+surfaceShortsToggle?.addEventListener("change", (e) => {
+  currentSurfaces.shorts = e.target.checked;
+  persistSurfaces(currentSurfaces);
+});
+
+surfaceCardsToggle?.addEventListener("change", (e) => {
+  currentSurfaces.cards = e.target.checked;
+  persistSurfaces(currentSurfaces);
 });
 
 shortcutBtn?.addEventListener("click", () => {
@@ -485,4 +532,5 @@ resetBtn?.addEventListener("click", () => {
   persistUpdateNotification(true);
   applyShortcut(DEFAULT_SHORTCUT, true);
   applyUndoSeconds(DEFAULT_UNDO_SECONDS, false, true);
+  applySurfaces(DEFAULT_SURFACES, true);
 });

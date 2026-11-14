@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "المدة (1–60 ثانية)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "المواقع",
+        "description": "عنوان مجموعة إعدادات مواضع الزر"
+    },
+    "settingsSurfaceWatch": {
+        "message": "مشغل الفيديو",
+        "description": "زر تبديل صفحة الفيديو"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "إظهار الزر في صفحة الفيديو",
+        "description": "وصف تبديل صفحة الفيديو"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "زر تبديل مقاطع Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "إظهار الزر في مقاطع Shorts",
+        "description": "وصف تبديل Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "بطاقات الفيديو",
+        "description": "زر تبديل بطاقات الفيديو"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "إظهار الزر على الصور المصغرة",
+        "description": "وصف تبديل بطاقات الفيديو"
     }
 }

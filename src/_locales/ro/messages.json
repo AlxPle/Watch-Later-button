@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Durată (1–60s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Suprafețe",
+        "description": "Antet pentru setările de plasare a butonului"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Player video",
+        "description": "Comutator pentru pagina video"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Afișează butonul pe pagina video",
+        "description": "Descriere comutator pagină video"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Comutator pentru Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Afișează butonul pe Shorts",
+        "description": "Descriere comutator Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "Carduri video",
+        "description": "Comutator pentru carduri video"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Afișează butonul pe miniaturi",
+        "description": "Descriere comutator carduri video"
     }
 }

@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Durasi (1–60 dtk)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Penempatan",
+        "description": "Header untuk grup pengaturan penempatan tombol"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Pemutar video",
+        "description": "Tombol alih halaman video"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Tampilkan tombol di halaman video",
+        "description": "Deskripsi tombol alih halaman video"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Tombol alih Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Tampilkan tombol di Shorts",
+        "description": "Deskripsi tombol alih Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "Kartu video",
+        "description": "Tombol alih kartu video"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Tampilkan tombol di thumbnail",
+        "description": "Deskripsi tombol alih kartu video"
     }
 }

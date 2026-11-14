@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Varaktighet (1–60s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Placering",
+        "description": "Rubrik för inställningar av knapplacering"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Videospelare",
+        "description": "Växlare för videosida"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Visa knapp på videosidan",
+        "description": "Beskrivning för videosidesväxlare"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Växlare för Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Visa knapp på Shorts",
+        "description": "Beskrivning för Shortsväxlare"
+    },
+    "settingsSurfaceCards": {
+        "message": "Videokort",
+        "description": "Växlare för videokort"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Visa knapp på miniatyrer",
+        "description": "Beskrivning för videokortväxlare"
     }
 }

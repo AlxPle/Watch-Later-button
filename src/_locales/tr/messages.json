@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Süre (1–60 sn)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Yüzeyler",
+        "description": "Yerleşim yüzeyleri ayar grubu başlığı"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Video oynatıcı",
+        "description": "Video sayfası için geçiş anahtarı"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Düğmeyi video sayfasında göster",
+        "description": "Video sayfası geçiş anahtarı açıklaması"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Shorts için geçiş anahtarı"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Düğmeyi Shorts üzerinde göster",
+        "description": "Shorts geçiş anahtarı açıklaması"
+    },
+    "settingsSurfaceCards": {
+        "message": "Video kartları",
+        "description": "Video kartları için geçiş anahtarı"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Düğmeyi küçük resimlerde göster",
+        "description": "Video kartları geçiş açıklaması"
     }
 }

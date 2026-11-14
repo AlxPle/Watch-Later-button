@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "時長（1–60秒）",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "顯示位置",
+        "description": "按鈕放置介面設定組標題"
+    },
+    "settingsSurfaceWatch": {
+        "message": "影片播放器",
+        "description": "影片播放頁開關"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "在影片播放頁顯示按鈕",
+        "description": "影片播放頁開關說明"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Shorts短片開關"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "在Shorts短片顯示按鈕",
+        "description": "Shorts短片開關說明"
+    },
+    "settingsSurfaceCards": {
+        "message": "影片卡片",
+        "description": "影片卡片開關"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "在縮圖上顯示按鈕",
+        "description": "影片卡片開關說明"
     }
 }

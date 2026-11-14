@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Durée (1–60s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Surfaces",
+        "description": "En-tête du groupe de paramètres d'emplacements"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Lecteur vidéo",
+        "description": "Bouton pour la page vidéo"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Afficher le bouton sur la page vidéo",
+        "description": "Description pour la page vidéo"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Bouton pour Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Afficher le bouton sur les Shorts",
+        "description": "Description pour Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "Cartes vidéo",
+        "description": "Bouton pour les cartes vidéo"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Afficher le bouton sur les miniatures",
+        "description": "Description pour les cartes vidéo"
     }
 }

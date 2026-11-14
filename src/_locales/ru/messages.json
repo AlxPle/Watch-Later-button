@@ -210,5 +210,33 @@
     "settingsGroupNotifications": {
         "message": "Оповещения",
         "description": "Header for notifications settings group"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Поверхности",
+        "description": "Заголовок группы настроек поверхностей отображения"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Плеер видео",
+        "description": "Переключатель для страницы видео"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Показывать кнопку на странице видео",
+        "description": "Описание переключателя для страницы видео"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Переключатель для Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Показывать кнопку в ленте Shorts",
+        "description": "Описание переключателя для Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "Карточки видео",
+        "description": "Переключатель для карточек видео"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Показывать кнопку на превью видео",
+        "description": "Описание переключателя для карточек видео"
     }
 }

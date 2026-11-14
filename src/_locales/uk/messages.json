@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Тривалість (1–60с)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Поверхні",
+        "description": "Заголовок групи налаштувань поверхонь відображення"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Відеоплеєр",
+        "description": "Перемикач для сторінки відео"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Показувати кнопку на сторінці відео",
+        "description": "Опис перемикача для сторінки відео"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Перемикач для Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Показувати кнопку в стрічці Shorts",
+        "description": "Опис перемикача для Shorts"
+    },
+    "settingsSurfaceCards": {
+        "message": "Картки відео",
+        "description": "Перемикач для карток відео"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Показувати кнопку на прев'ю відео",
+        "description": "Опис перемикача для карток відео"
     }
 }

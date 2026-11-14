@@ -210,5 +210,33 @@
     "customDuration": {
         "message": "Dauer (1–60s)",
         "description": "Custom duration label"
+    },
+    "settingsGroupSurfaces": {
+        "message": "Oberflächen",
+        "description": "Header für Einstellungen der Platzierungsbereiche"
+    },
+    "settingsSurfaceWatch": {
+        "message": "Videoplayer",
+        "description": "Schalter für Videoseite"
+    },
+    "settingsSurfaceWatchDesc": {
+        "message": "Schaltfläche auf Videoseite anzeigen",
+        "description": "Beschreibung für Videoseitenschalter"
+    },
+    "settingsSurfaceShorts": {
+        "message": "YouTube Shorts",
+        "description": "Schalter für Shorts"
+    },
+    "settingsSurfaceShortsDesc": {
+        "message": "Schaltfläche bei Shorts anzeigen",
+        "description": "Beschreibung für Shortsschalter"
+    },
+    "settingsSurfaceCards": {
+        "message": "Videokarten",
+        "description": "Schalter für Videokarten"
+    },
+    "settingsSurfaceCardsDesc": {
+        "message": "Schaltfläche auf Miniaturbildern",
+        "description": "Beschreibung für Videokartenschalter"
     }
 }

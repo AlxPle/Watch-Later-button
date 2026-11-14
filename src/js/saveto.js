@@ -28,9 +28,15 @@ const DEFAULT_SHORTCUT = {
   code: "KeyW",
   display: "Alt + W"
 };
+const DEFAULT_SURFACES = {
+  watch: true,
+  shorts: true,
+  cards: true
+};
 
 let currentShortcut = { ...DEFAULT_SHORTCUT };
 let currentUndoSeconds = DEFAULT_UNDO_SECONDS;
+let currentSurfaces = { ...DEFAULT_SURFACES };
 const WL_ERROR_FLASH_MS = 800;
 
 const getI18nMessage = (key, fallback) => chrome?.i18n?.getMessage?.(key) || fallback;
@@ -40,6 +46,29 @@ const WL_TEXT = {
   deleteTitle: getI18nMessage("wlButtonDeleteTitle", "Delete from Watch Later")
 };
 
+function getDefaultButtonTitle() {
+  if (currentShortcut && currentShortcut.display) {
+    return `${WL_TEXT.defaultTitle} (${currentShortcut.display})`;
+  }
+  return WL_TEXT.defaultTitle;
+}
+
+function updateAllButtonsDefaultTitle() {
+  const title = getDefaultButtonTitle();
+  saveTo.dataset.defaultTitle = title;
+  if (!buttonUndoState.has(saveTo)) {
+    saveTo.title = title;
+    saveTo.setAttribute("aria-label", title);
+  }
+  document.querySelectorAll(".saveToWatchLater:not(#saveToPlaylist)").forEach((btn) => {
+    btn.dataset.defaultTitle = title;
+    if (!buttonUndoState.has(btn)) {
+      btn.title = title;
+      btn.setAttribute("aria-label", title);
+    }
+  });
+}
+
 function applyButtonTheme(colorData) {
   if (!colorData) return;
   const root = document.documentElement;
@@ -47,17 +76,62 @@ function applyButtonTheme(colorData) {
   if (colorData.hoverRgba) root.style.setProperty("--wl-color-default-hover", colorData.hoverRgba);
 }
 
+function applySurfacesConfig(surfaces) {
+  if (!surfaces) return;
+  const prevCards = currentSurfaces.cards;
+
+  currentSurfaces = {
+    watch: surfaces.watch !== false,
+    shorts: surfaces.shorts !== false,
+    cards: surfaces.cards !== false
+  };
+
+  if (isWatchPage()) {
+    if (!currentSurfaces.watch && saveTo.parentElement) {
+      saveTo.remove();
+    } else if (currentSurfaces.watch && !saveTo.parentElement) {
+      mountWatchButton();
+    }
+  }
+
+  if (isShortsPage()) {
+    if (!currentSurfaces.shorts && saveTo.parentElement) {
+      saveTo.remove();
+    } else if (currentSurfaces.shorts && !saveTo.parentElement) {
+      mountWatchButton();
+    }
+  }
+
+  if (!currentSurfaces.cards && prevCards) {
+    document.querySelectorAll(".saveToWatchLater:not(#saveToPlaylist)").forEach((btn) => {
+      clearButtonTimers(btn);
+      btn.remove();
+    });
+    document.querySelectorAll(`[${CARD_WL_INJECTED}]`).forEach((el) => {
+      el.removeAttribute(CARD_WL_INJECTED);
+    });
+  } else if (currentSurfaces.cards && !prevCards) {
+    injectIntoAllCards();
+  }
+}
+
 function applyStorageConfig(cfg) {
   if (!cfg) return;
   if (cfg.buttonColor) applyButtonTheme(cfg.buttonColor);
-  if (cfg.buttonShortcut) currentShortcut = cfg.buttonShortcut;
+  if (cfg.buttonShortcut) {
+    currentShortcut = cfg.buttonShortcut;
+    updateAllButtonsDefaultTitle();
+  }
   if (cfg.buttonUndoSeconds !== undefined) {
     currentUndoSeconds = Number(cfg.buttonUndoSeconds);
+  }
+  if (cfg.buttonSurfaces) {
+    applySurfacesConfig(cfg.buttonSurfaces);
   }
 }
 
 try {
-  const STORAGE_KEYS = ["buttonColor", "buttonShortcut", "buttonUndoSeconds"];
+  const STORAGE_KEYS = ["buttonColor", "buttonShortcut", "buttonUndoSeconds", "buttonSurfaces"];
 
   chrome.storage?.local?.get(STORAGE_KEYS, (localData = {}) => {
     applyStorageConfig(localData);
@@ -72,9 +146,13 @@ try {
     }
     if (changes.buttonShortcut?.newValue) {
       currentShortcut = changes.buttonShortcut.newValue;
+      updateAllButtonsDefaultTitle();
     }
     if (changes.buttonUndoSeconds?.newValue !== undefined) {
       currentUndoSeconds = Number(changes.buttonUndoSeconds.newValue);
+    }
+    if (changes.buttonSurfaces?.newValue) {
+      applySurfacesConfig(changes.buttonSurfaces.newValue);
     }
   });
 } catch {}
@@ -98,8 +176,9 @@ function decorateButtonAccessibility(button) {
 const saveTo = document.createElement("div");
 saveTo.id = "saveToPlaylist";
 saveTo.className = "saveToWatchLater";
-saveTo.dataset.defaultTitle = WL_TEXT.defaultTitle;
-saveTo.title = WL_TEXT.defaultTitle;
+const initialDefaultTitle = getDefaultButtonTitle();
+saveTo.dataset.defaultTitle = initialDefaultTitle;
+saveTo.title = initialDefaultTitle;
 decorateButtonAccessibility(saveTo);
 
 const buttonUndoState = new WeakMap();
@@ -189,7 +268,7 @@ function clearButtonUndoState(button) {
 
   buttonUndoState.delete(button);
   button.classList.remove(WL_ADDED_CLASS, WL_UNDO_ACTIVE_CLASS);
-  const title = button.dataset.defaultTitle || WL_TEXT.defaultTitle;
+  const title = button.dataset.defaultTitle || getDefaultButtonTitle();
   button.title = title;
   button.setAttribute("aria-label", title);
 }
@@ -250,6 +329,16 @@ saveTo.addEventListener("click", () => handleWatchLaterToggle(saveTo));
 
 function mountWatchButton() {
   if (!isWatchPage() && !isShortsPage()) {
+    if (saveTo.parentElement) saveTo.remove();
+    return;
+  }
+
+  if (isWatchPage() && !currentSurfaces.watch) {
+    if (saveTo.parentElement) saveTo.remove();
+    return;
+  }
+
+  if (isShortsPage() && !currentSurfaces.shorts) {
     if (saveTo.parentElement) saveTo.remove();
     return;
   }
@@ -334,6 +423,7 @@ function getStableCardMount(contentImageEl) {
 }
 
 function addWatchLaterToCard(contentImageEl) {
+  if (!currentSurfaces.cards) return;
   if (contentImageEl.hasAttribute(CARD_WL_INJECTED)) return;
 
   const { renderer, mount, isResults, isShorts } = getStableCardMount(contentImageEl);
@@ -358,8 +448,9 @@ function addWatchLaterToCard(contentImageEl) {
   const locationClass = isResults ? "results" : (isShorts ? "shortsHomePage" : "home");
   const btn = document.createElement("div");
   btn.className = `saveToWatchLater ${locationClass}`;
-  btn.dataset.defaultTitle = WL_TEXT.defaultTitle;
-  btn.title = WL_TEXT.defaultTitle;
+  const defaultTitle = getDefaultButtonTitle();
+  btn.dataset.defaultTitle = defaultTitle;
+  btn.title = defaultTitle;
   decorateButtonAccessibility(btn);
 
   if (!isResults) {
@@ -392,6 +483,7 @@ document.addEventListener("click", (e) => {
 let isInjecting = false;
 
 async function injectIntoAllCards() {
+  if (!currentSurfaces.cards) return;
   if (isInjecting) return;
   isInjecting = true;
   try {
@@ -494,10 +586,19 @@ function handleGlobalKeyDown(e) {
   e.preventDefault();
   e.stopPropagation();
 
-  if (isWatchPage() || isShortsPage()) {
+  if (isWatchPage()) {
+    if (!currentSurfaces.watch) return;
     handleWatchLaterToggle(saveTo);
     return;
   }
+
+  if (isShortsPage()) {
+    if (!currentSurfaces.shorts) return;
+    handleWatchLaterToggle(saveTo);
+    return;
+  }
+
+  if (!currentSurfaces.cards) return;
 
   const hoveredCard = document.querySelector(`:hover:is(${CARD_RENDERER_SELECTOR})`);
   if (hoveredCard) {
