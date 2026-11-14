@@ -69,9 +69,19 @@ else
   echo "[info] Using isolated profile: $USER_DATA_DIR"
 fi
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+EXT_DIR="$SCRIPT_DIR/../dist/chrome"
+
+if [[ ! -d "$EXT_DIR" ]]; then
+  echo "[info] Building extension into dist/chrome..."
+  node "$SCRIPT_DIR/build.mjs" --no-zip
+fi
+
 exec "$CHROME_BIN" \
   --remote-debugging-port="$PORT" \
   --user-data-dir="$USER_DATA_DIR" \
+  --disable-extensions-except="$EXT_DIR" \
+  --load-extension="$EXT_DIR" \
   --no-first-run \
   --no-default-browser-check \
   "$TARGET_URL"

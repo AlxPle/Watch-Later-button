@@ -13,3 +13,7 @@ _site/
 
 # Local Chrome DevTools relay artifacts
 .devtools-relay/
+
+# Extension build artifacts
+dist/
+*.zip

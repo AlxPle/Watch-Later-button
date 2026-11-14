@@ -1,286 +1,262 @@
 # Development Setup
 
-This repository contains:
+This repository contains two main parts:
 
-- `chrome/` — the Chrome extension source code
-- `docs/` — the Jekyll website used for GitHub Pages
-- `tests/` — the JavaScript test tooling and E2E tests
+1. **Watch Later Button Extension (v2.0 Architecture)**
+   - `src/` — unified single source codebase for both Chrome and Firefox.
+   - `dist/` — generated unpacked extensions (`dist/chrome`, `dist/firefox`) and release `.zip` archives.
+   - `scripts/` — zero-dependency build and debug tooling (`build.mjs`, `start-chrome-debug.ps1`, `start-chrome-debug.sh`).
+   - `tests/` — Puppeteer & Jest test suites (locale validations for all 26 languages and YouTube E2E flows).
 
-## Requirements
+2. **Official Website & Docs**
+   - `docs/` — Jekyll-based website (`watchlater.alxple.com`) deployed via GitHub Actions.
 
-Make sure the following tools are installed:
+---
 
-- Ruby
-- Bundler
-- Node.js and npm
-- Git
+## Prerequisites
 
-## Install system dependencies
+| Tool | Required For | Recommended Version |
+| :--- | :--- | :--- |
+| **Node.js** | Extension builds & testing | Node.js 18+ or 20+ LTS (tested on Node 22/26) |
+| **npm** | Package management | npm 9+ |
+| **Google Chrome** | Local testing & debugging | Latest stable |
+| **Ruby & Bundler** *(optional)* | Only needed if editing `docs/` | Ruby 3.x, Bundler 2.x |
+| **Git** | Source control | Any recent version |
 
-### Fedora / CentOS / RHEL
+---
 
-```bash
-sudo dnf install ruby-devel gcc gcc-c++ make openssl-devel
-```
+## 1. Extension Quick Start
 
-## Install Bundler and Jekyll
+### Build the extension
 
-If Bundler or Jekyll are not installed yet, run:
-
-```bash
-gem install bundler jekyll
-```
-
-## Install project dependencies
-
-The website and test tooling are configured separately:
-
-- Run Jekyll commands from `docs/`
-- Run JavaScript test commands from `tests/`
-
-The docs site also includes Node-based automation scripts for SEO/schema tasks
-(for example, refreshing `aggregateRating` data before build).
-
-### Install Ruby gems
+The extension builder is written in pure Node.js and requires **no external npm packages**:
 
 ```bash
-cd docs
-bundle install
+# Full build: generates dist/chrome, dist/firefox, and release .zip archives
+npm run build
+
+# Fast build (skips .zip creation, ideal for rapid local development)
+npm run build:fast
 ```
 
-This installs the Jekyll dependencies defined in `docs/Gemfile`, including:
+The build script automatically:
+1. Validates JSON syntax across `src/manifest.base.json` and all 26 locale files in `src/_locales/*/messages.json`.
+2. Generates target-specific manifests:
+   - `dist/chrome/manifest.json` (with `service_worker: "background.js"`).
+   - `dist/firefox/manifest.json` (with `gecko.id`, permissions, and `scripts: ["background.js"]`).
+3. Replaces store placeholders (`{{STORE_URL}}`, `{{REVIEWS_URL}}`, `{{SUPPORT_URL}}`) with platform-specific links.
+4. Performs Post-Build Lint: verifies no `chromewebstore.google.com` links leak into the Firefox build and no unresolved `{{...}}` tokens remain.
+5. Packs production-ready zip files (`dist/watch-later-chrome-v*.zip` and `dist/watch-later-firefox-v*.zip`).
 
-- `jekyll`
-- `minima`
-- `jekyll-seo-tag`
-- `jekyll-sitemap`
+---
 
-### Install Node.js dependencies
+## 2. Load the Extension in Your Browser
+
+### In Google Chrome / Brave / Edge / Chromium:
+
+1. Run `npm run build` or `npm run build:fast`.
+2. Open `chrome://extensions` in your browser.
+3. Enable **Developer mode** (toggle in the top-right corner).
+4. Click **Load unpacked** and select the `dist/chrome` folder.
+5. Whenever you make changes to `src/`, run `npm run build:fast` and click the reload icon on the extension card.
+
+### In Mozilla Firefox:
+
+1. Run `npm run build` or `npm run build:fast`.
+2. Open `about:debugging#/runtime/this-firefox`.
+3. Click **Load Temporary Add-on...**.
+4. Select `dist/firefox/manifest.json` (or any file inside `dist/firefox`).
+5. After updating `src/` and running `npm run build:fast`, click **Reload** under the temporary add-on.
+
+---
+
+## 3. Chrome Remote Debugging
+
+Remote debugging allows VS Code or automated scripts to attach to Chrome and inspect extension views.
+
+### On Windows (PowerShell):
+
+```powershell
+# Starts Chrome with an isolated debug profile on port 9222 and auto-loads dist/chrome
+npm run chrome:debug
+```
+
+*Or enable debugging directly inside your running Chrome:*
+1. Navigate to `chrome://inspect/#remote-debugging`.
+2. Turn on **Allow remote debugging for this browser instance**.
+
+### On Linux / macOS (Bash):
+
+```bash
+# Uses mirror profile (preserves settings/extensions)
+npm run chrome:debug:main
+
+# Uses isolated clean profile
+npm run chrome:debug:isolated
+```
+
+### Verify Debug Endpoint:
+
+```bash
+npm run chrome:debug:check
+# Returns JSON version info when port 9222 is active
+```
+
+### VS Code Attachment:
+
+This repository includes [./.vscode/launch.json](./.vscode/launch.json). Once Chrome is running on port `9222`, press **F5** in VS Code (or select **Attach: Chrome on :9222** in Run & Debug) to inspect content scripts and service workers.
+
+---
+
+## 4. Running Tests
+
+Install test dependencies once:
 
 ```bash
 cd tests
 npm install
+cd ..
 ```
 
-This installs the JavaScript development dependencies defined in `tests/package.json`.
+### Run Locale & Layout Validation (Fast & Offline)
 
-### Docs automation scripts (optional)
+Validates all 26 languages for `popup.html`, `welcome.html`, and `update.html`, ensuring all translations exist and the popup does not exceed `320px` width:
 
-From `docs/`:
+```bash
+npm test
+# or:
+npm run test:locales
+```
+
+You can also run the locale check against the Firefox build:
+
+```bash
+node tests/check-locales-puppeteer.js dist/firefox
+```
+
+### Run Live YouTube E2E Tests
+
+Executes end-to-end integration tests using Puppeteer on YouTube video pages, Shorts, search feeds, and video cards:
+
+```bash
+npm run test:e2e
+```
+
+### Full CI Check
+
+Runs the complete build and validation suite:
+
+```bash
+npm run ci
+```
+
+---
+
+## 5. Website & Docs Development (`watchlater.alxple.com`)
+
+The website in `docs/` is built using Jekyll. You only need this if you are updating documentation or blog posts.
+
+### System dependencies for Jekyll:
+
+- **Ubuntu / Debian:** `sudo apt-get install ruby-full build-essential zlib1g-dev`
+- **Fedora / RHEL:** `sudo dnf install ruby-devel gcc gcc-c++ make openssl-devel`
+- **macOS:** `brew install ruby`
+- **Windows:** Install [Ruby+Devkit](https://rubyinstaller.org/)
+
+### Install gems & dependencies:
 
 ```bash
 cd docs
-npm install
+gem install bundler jekyll
+bundle install
 ```
 
-This initializes npm scripts in `docs/package.json` used for SEO automation.
-No external npm dependencies are required right now, but this keeps setup
-consistent for future script updates.
-
-## Run the site locally
-
-From the `docs/` directory:
+### Run the site locally:
 
 ```bash
 cd docs
 bundle exec jekyll serve
+# Site will be available at http://127.0.0.1:4000
 ```
 
-If port `4000` is already in use, stop the stale Jekyll process first and then retry:
-
-```bash
-pkill -f "jekyll serve"
-```
-
-Or use the dev config + rating refresh in one command:
+### Updating Chrome Web Store rating schema:
 
 ```bash
 cd docs
-npm run serve:dev
-```
-
-## Run tests
-
-From the `tests/` directory:
-
-```bash
-npm test
-```
-
-## Chrome + VS Code attach debugging (Linux)
-
-Use this workflow when you need Chrome with your existing extensions and want to inspect or forward element data into VS Code.
-
-### 1) Start Chrome with remote debugging
-
-Main profile mirror (recommended, keeps your installed extensions):
-
-```bash
-npm run chrome:debug:main
-```
-
-Why mirror is needed: Chrome blocks DevTools remote debugging on its default profile directory.
-This command clones `~/.config/google-chrome` into a dedicated debug folder and starts Chrome from that mirror.
-
-Important: close all regular Chrome windows first, otherwise profile sync may be incomplete.
-
-Fallback profile (clean isolated profile):
-
-```bash
-npm run chrome:debug:isolated
-```
-
-### 2) Verify DevTools endpoint
-
-```bash
-npm run chrome:debug:check
-```
-
-If the command returns JSON, VS Code can attach to Chrome on port `9222`.
-
-### 3) Attach from VS Code
-
-This repository includes [./.vscode/launch.json](./.vscode/launch.json) with configuration:
-
-- `Attach: Chrome on :9222`
-
-Run this launch config from VS Code Run and Debug panel.
-
-### 4) Start local relay for captured DevTools data
-
-```bash
-npm run devtools:relay
-```
-
-Captured payloads are appended to `.devtools-relay/captures.ndjson`.
-
-### 5) Send selected element info from Chrome DevTools Console
-
-Select an element in Elements panel (`$0` should point to it), then run:
-
-```js
-fetch("http://127.0.0.1:3030/capture", {
-	method: "POST",
-	headers: { "content-type": "application/json" },
-	body: JSON.stringify({
-		page: location.href,
-		ts: new Date().toISOString(),
-		element: {
-			html: $0?.outerHTML ?? null,
-			rect: $0?.getBoundingClientRect?.() ?? null,
-			computed: $0 ? {
-				position: getComputedStyle($0).position,
-				top: getComputedStyle($0).top,
-				right: getComputedStyle($0).right,
-				bottom: getComputedStyle($0).bottom,
-				left: getComputedStyle($0).left,
-				zIndex: getComputedStyle($0).zIndex,
-				width: getComputedStyle($0).width,
-				height: getComputedStyle($0).height
-			} : null
-		}
-	})
-});
-```
-
-You can now inspect the incoming data in `.devtools-relay/captures.ndjson` directly from VS Code.
-
-## Useful commands
-
-```bash
-# Check installed versions
-ruby --version
-bundle --version
-node --version
-npm --version
-
-# Build the site
-cd docs
-bundle exec jekyll build
-
-# Refresh Chrome Web Store rating data (dry-run)
-cd docs
+# Check current store rating
 npm run rating:check
 
-# Refresh rating data and save to docs/_data/store_rating.json
-cd docs
+# Update rating in docs/_data/store_rating.json
 npm run rating:update
 
-# Full production SEO build (rating update + Jekyll build)
-cd docs
+# Build site with updated SEO ratings
 npm run build:seo
-
-# Clean generated files
-cd docs
-bundle exec jekyll clean
-
-# Install test dependencies
-cd ../tests
-npm install
-
-# Run E2E tests
-npm test
 ```
 
-## Automatic deploy on commit (recommended)
+### Deployment:
 
-This repository includes a GitHub Actions workflow at `.github/workflows/deploy-docs.yml`.
-It automatically builds the Jekyll site from `docs/` and uploads `docs/_site/` to your server
-on every push to `main` (and can also be started manually).
+The Jekyll site is automatically deployed to `watchlater.alxple.com` on every push to `master`/`main` via [.github/workflows/deploy-docs.yml](.github/workflows/deploy-docs.yml).
 
-Add these repository secrets in GitHub:
+Required GitHub Repository Secrets:
+- `DEPLOY_HOST` — server hostname
+- `DEPLOY_USER` — SSH user
+- `DEPLOY_SSH_KEY` — private SSH key
+- `DEPLOY_PATH` — web root directory on server
+- `DEPLOY_PORT` — SSH port (default: `22`)
 
-- `DEPLOY_HOST` — your server hostname (for example `watchlater.alxple.com`)
-- `DEPLOY_USER` — SSH user for deployment
-- `DEPLOY_SSH_KEY` — private SSH key used by GitHub Actions
-- `DEPLOY_PATH` — target directory on server (for example `/var/www/watchlater.alxple.com`)
-- `DEPLOY_PORT` — optional SSH port (defaults to `22`)
+---
 
-After secrets are configured, deployment is fully automatic on commit.
+## 6. Project Structure
 
-### Manual trigger (GitHub CLI)
-
-You can start the deploy workflow manually using the GitHub CLI. Example:
-
-```bash
-# trigger the workflow by its display name on the `master` branch
-gh workflow run "Build and Deploy Docs" --ref master
-
-# or trigger by workflow filename
-gh workflow run deploy-docs.yml --ref master
-
-# list recent runs for the workflow
-gh run list --workflow=deploy-docs.yml
-
-# open a specific run in the browser (use run id from the list)
-gh run view <run-id> --web
+```text
+Watch-Later-button/
+├── .agents/                    # Specialized AI agent skills & rules
+├── .github/
+│   ├── FUNDING.yml             # GitHub Sponsors / Buy Me a Coffee config
+│   └── workflows/
+│       └── deploy-docs.yml     # Automated Jekyll site deployment
+├── banner/                     # Web Store promotional images & assets
+├── docs/                       # Official Jekyll website (watchlater.alxple.com)
+│   ├── _data/store_rating.json # CWS cached rating data
+│   ├── _posts/                 # Release notes & articles
+│   ├── Gemfile                 # Ruby gem dependencies
+│   └── package.json            # SEO & rating automation scripts
+├── scripts/
+│   ├── build.mjs               # Zero-dependency multi-target builder (Chrome + Firefox)
+│   ├── devtools-relay.mjs      # Local DevTools capture relay
+│   ├── start-chrome-debug.ps1  # Windows Chrome debug profile launcher
+│   └── start-chrome-debug.sh   # Linux Chrome debug profile launcher
+├── src/                        # UNIFIED EXTENSION SOURCE CODE
+│   ├── _locales/               # 26 localized messages.json directories
+│   ├── assets/
+│   │   ├── app-icons/red/      # Extension icons (16, 32, 48, 120, 128)
+│   │   ├── fonts/              # WOFF2 font subsets (Inter & Manrope)
+│   │   └── styles/style.css    # YouTube injected styles (.saveToWatchLater, .wl-mount-relative)
+│   ├── js/
+│   │   └── saveto.js           # Content script (Watch page, Shorts, dynamic video cards)
+│   ├── pages/
+│   │   ├── pages.css           # Styling for welcome & update pages
+│   │   ├── pages.js            # Localization & interactive preview demo logic
+│   │   ├── update.html         # Post-update announcement page
+│   │   └── welcome.html        # First-time installation onboarding page
+│   ├── popup/
+│   │   ├── popup.css           # Extension popup styling (dark/light mode, mobile width)
+│   │   ├── popup.html          # Extension popup markup (templated store links)
+│   │   └── popup.js            # Popup logic, color pickers, settings sync
+│   ├── background.js           # Cross-browser Service Worker / Background script
+│   └── manifest.base.json      # Base MV3 manifest without browser-specific fields
+├── dist/                       # GENERATED BUILD ARTIFACTS (.gitignore)
+│   ├── chrome/                 # Unpacked Chrome / Edge extension
+│   ├── firefox/                # Unpacked Firefox extension
+│   ├── watch-later-chrome-v*.zip
+│   └── watch-later-firefox-v*.zip
+├── tests/                      # AUTOMATED TEST SUITE
+│   ├── check-locales-puppeteer.js # 26-language verification & 320px overflow test
+│   ├── e2e.test.js             # Live YouTube integration tests (Watch, Shorts, Cards)
+│   └── package.json            # Jest and Puppeteer dependencies
+├── .gitignore                  # Git ignore rules (includes dist/ and *.zip)
+├── package.json                # Root automation commands
+├── ROADMAP_V2_REFACTORING.md   # Architectural v2.0 roadmap & progress checklist
+├── README.md                   # Public extension documentation
+└── SETUP.md                    # This development guide
 ```
-
-## Manual deploy from server (alternative)
-
-If you prefer manual deployment:
-
-```bash
-cd /path/to/repo
-git pull
-cd docs
-bundle install
-npm run build
-rsync -az --delete _site/ /var/www/watchlater.alxple.com/
-```
-
-Manual deploy works, but automation is safer and more repeatable.
-
-## Project structure
-
-- `chrome/` — Chrome extension source
-- `docs/` — Jekyll site source
-- `docs/_posts/` — blog and update posts
-- `docs/_layouts/` — Jekyll layouts
-- `docs/_includes/` — shared Jekyll partials
-- `docs/_sass/` — SCSS sources
-- `docs/assets/` — site assets
-- `docs/Gemfile` — Ruby dependencies
-- `tests/` — JavaScript test workspace
-- `tests/e2e.test.js` — E2E test for the extension
-- `tests/package.json` — Node.js dependencies for tests

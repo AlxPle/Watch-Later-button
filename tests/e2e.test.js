@@ -1,8 +1,36 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
+const fs = require('fs');
+const os = require('os');
 
-// Path to the directory with your extension
-const extensionPath = path.join(__dirname, '..', 'chrome');
+// Path to the directory with your built Chrome extension
+const extensionPath = process.env.EXTENSION_PATH || path.join(__dirname, '..', 'dist', 'chrome');
+let userDataDir;
+
+function findChromeExecutable() {
+  if (process.env.CHROME_BIN && fs.existsSync(process.env.CHROME_BIN)) {
+    return process.env.CHROME_BIN;
+  }
+  try {
+    const pptrPath = puppeteer.executablePath();
+    if (fs.existsSync(pptrPath)) return pptrPath;
+  } catch {}
+
+  const candidates = [
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    path.join(os.homedir(), 'AppData', 'Local', 'Google', 'Chrome', 'Application', 'chrome.exe'),
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/google-chrome',
+    '/usr/bin/chromium-browser',
+    '/usr/bin/chromium',
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
+  }
+  return undefined;
+}
 
 // YouTube video URL for testing
 const YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v=PRgS7hBgR1k';
@@ -79,26 +107,35 @@ describe('Watch Later Button E2E Test', () => {
   jest.setTimeout(90000);
 
   beforeAll(async () => {
-    // Launch Chromium browser
-    browser = await puppeteer.launch({
+    userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-e2e-'));
+    const launchOptions = {
       headless: true,
-      executablePath: process.env.CHROME_BIN || '/usr/bin/google-chrome-stable',
       args: [
         `--disable-extensions-except=${extensionPath}`,
         `--load-extension=${extensionPath}`,
         '--no-sandbox',
         '--disable-setuid-sandbox'
       ],
-    });
+      userDataDir
+    };
 
-    // Create a new page
+    const chromePath = findChromeExecutable();
+    if (chromePath) {
+      launchOptions.executablePath = chromePath;
+    }
+
+    browser = await puppeteer.launch(launchOptions);
     page = await browser.newPage();
   });
 
   afterAll(async () => {
-    // Close the browser after all tests
     if (browser) {
-      await browser.close();
+      await browser.close().catch(() => {});
+    }
+    if (userDataDir) {
+      try {
+        fs.rmSync(userDataDir, { recursive: true, force: true });
+      } catch {}
     }
   });
 
@@ -239,5 +276,31 @@ describe('Watch Later Button E2E Test', () => {
 
     const buttonOnShorts = await page.waitForSelector(WATCH_LATER_BUTTON_SELECTOR, { timeout: 45000 });
     expect(buttonOnShorts).not.toBeNull();
+  });
+
+  test('should inject the button into video cards on search results and prevent navigation on click', async () => {
+    await gotoWithConsent(page, YOUTUBE_RESULTS_URL);
+
+    // Wait for search result cards
+    await page.waitForSelector('ytd-video-renderer, ytd-rich-item-renderer', { timeout: 45000 });
+
+    const card = await page.$('ytd-video-renderer, ytd-rich-item-renderer');
+    expect(card).not.toBeNull();
+    await card.hover();
+
+    const cardButton = await card.waitForSelector('.saveToWatchLater', { timeout: 15000 });
+    expect(cardButton).not.toBeNull();
+
+    const isMounted = await card.evaluate((el) => {
+      const btn = el.querySelector('.saveToWatchLater');
+      const parent = btn ? btn.parentElement : null;
+      return parent ? (parent.classList.contains('wl-mount-relative') || getComputedStyle(parent).position === 'relative') : false;
+    });
+    expect(isMounted).toBe(true);
+
+    const urlBeforeClick = page.url();
+    await cardButton.click();
+    await new Promise((r) => setTimeout(r, 1000));
+    expect(page.url()).toBe(urlBeforeClick);
   });
 });
