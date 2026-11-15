@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "빨간색 버튼을 클릭하면 즉시 저장됩니다. (10초 실행 취소 카운트다운 포함)",
+        "message": "버튼을 클릭하면 즉시 저장됩니다.",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "나중에 보기 버튼이 해당 버전으로 성공적으로 업데이트되었습니다.",
-        "description": "Update version text prefix"
+        "message": "나중에 보기 버튼이 버전 $VERSION$(으)로 성공적으로 업데이트되었습니다.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "이번 릴리스의 새로운 기능:",

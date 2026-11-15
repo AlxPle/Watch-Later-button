@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Klik tombol merah untuk langsung menyimpan (dengan hitungan mundur 10 detik)",
+        "message": "Klik tombol untuk langsung menyimpan",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Tombol Tonton Nanti telah berhasil diperbarui ke versi",
-        "description": "Update version text prefix"
+        "message": "Tombol Tonton Nanti telah berhasil diperbarui ke versi $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Apa yang baru dalam rilis ini:",

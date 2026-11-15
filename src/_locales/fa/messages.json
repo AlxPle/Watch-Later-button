@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "برای ذخیره فوری روی دکمه قرمز کلیک کنید (با یک شمارش معکوس 10 ثانیه ای)",
+        "message": "برای ذخیره فوری روی دکمه کلیک کنید",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "دکمه Watch Later با موفقیت به نسخه به روز شد",
-        "description": "Update version text prefix"
+        "message": "دکمه Watch Later با موفقیت به نسخه $VERSION$ به روز شد.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "آنچه در این نسخه جدید است:",

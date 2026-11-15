@@ -293,6 +293,7 @@ describe('Watch Later interactions with isolated YouTube responses', () => {
       await popup.evaluate(async () => {
         await chrome.storage.local.set({ buttonUndoSeconds: 7, buttonUndoSecondsUpdatedAt: 200 });
       });
+      await popup.waitForFunction(() => document.querySelector('#undo-active-badge').textContent === '7s');
       await page.bringToFront();
       await page.click('#saveToPlaylist');
       await waitForState('is-undo-active');
@@ -302,6 +303,7 @@ describe('Watch Later interactions with isolated YouTube responses', () => {
       await popup.evaluate(async () => {
         await chrome.storage.sync.set({ buttonUndoSeconds: 15, buttonUndoSecondsUpdatedAt: 100 });
       });
+      expect(await popup.$eval('#undo-active-badge', el => el.textContent)).toBe('7s');
       await page.click('#saveToPlaylist');
       await waitForState('is-undo-active');
       expect(await page.$eval('#saveToPlaylist', button => button.style.getPropertyValue('--wl-undo-ms'))).toBe('7000ms');
@@ -310,9 +312,131 @@ describe('Watch Later interactions with isolated YouTube responses', () => {
       await popup.evaluate(async () => {
         await chrome.storage.sync.set({ buttonUndoSeconds: 15, buttonUndoSecondsUpdatedAt: 300 });
       });
+      await popup.waitForFunction(() => document.querySelector('#undo-active-badge').textContent === '15s');
       await page.click('#saveToPlaylist');
       await waitForState('is-undo-active');
       expect(await page.$eval('#saveToPlaylist', button => button.style.getPropertyValue('--wl-undo-ms'))).toBe('15000ms');
+    } finally {
+      await popup.close();
+    }
+  });
+
+  test('batches rapid popup edits and does not save the same undo value twice', async () => {
+    const popup = await openPopup();
+    try {
+      await popup.waitForFunction(() => storageReady);
+      const writes = await popup.evaluate(async () => {
+        const localSet = chrome.storage.local.set.bind(chrome.storage.local);
+        const syncSet = chrome.storage.sync.set.bind(chrome.storage.sync);
+        window.localWrites = [];
+        window.syncWrites = [];
+        chrome.storage.local.set = async data => {
+          window.localWrites.push(structuredClone(data));
+          await localSet(data);
+        };
+        chrome.storage.sync.set = async data => {
+          window.syncWrites.push(structuredClone(data));
+          await syncSet(data);
+        };
+        document.querySelector('.undo-pill[data-seconds="custom"]').click();
+        const input = document.querySelector('#custom-undo-input');
+        for (let value = 8; value <= 25; value++) {
+          input.value = String(value);
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        input.dispatchEvent(new Event('blur'));
+        const opacity = document.querySelector('#opacity-slider');
+        opacity.value = '65';
+        opacity.dispatchEvent(new Event('input', { bubbles: true }));
+        const watch = document.querySelector('#surface-watch-toggle');
+        watch.checked = false;
+        watch.dispatchEvent(new Event('change', { bubbles: true }));
+        return { local: window.localWrites, sync: window.syncWrites };
+      });
+      expect(writes.sync).toEqual([]);
+      expect(writes.local.filter(data => data.buttonUndoSeconds === 25)).toHaveLength(1);
+      await popup.waitForFunction(() => window.syncWrites.length === 1);
+      const payload = await popup.evaluate(() => window.syncWrites[0]);
+      expect(payload.buttonUndoSeconds).toBe(25);
+      expect(payload.buttonColor.alpha).toBe(65);
+      expect(payload.buttonSurfaces.watch).toBe(false);
+      await popup.waitForFunction(async () => (await chrome.storage.sync.get('buttonUndoSeconds')).buttonUndoSeconds === 25);
+    } finally {
+      await popup.close();
+    }
+  });
+
+  test('defers remote changes while editing and never flushes an older pending value over them', async () => {
+    const popup = await openPopup();
+    try {
+      await popup.waitForFunction(() => storageReady);
+      await popup.click('#open-settings-row-btn');
+      await popup.evaluate(async () => {
+        document.querySelector('.undo-pill[data-seconds="custom"]').click();
+        const input = document.querySelector('#custom-undo-input');
+        input.value = '25';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        const { buttonUndoSecondsUpdatedAt } = await chrome.storage.local.get('buttonUndoSecondsUpdatedAt');
+        await chrome.storage.sync.set({ buttonUndoSeconds: 45, buttonUndoSecondsUpdatedAt: buttonUndoSecondsUpdatedAt + 1000 });
+      });
+      expect(await popup.$eval('#custom-undo-input', el => el.value)).toBe('25');
+      expect(await popup.$eval('#undo-active-badge', el => el.textContent)).toBe('25s');
+      await popup.evaluate(() => document.querySelector('#custom-undo-input').blur());
+      await popup.waitForFunction(() => document.querySelector('#undo-active-badge').textContent === '45s');
+      await popup.evaluate(() => window.dispatchEvent(new Event('pagehide')));
+      expect((await popup.evaluate(() => chrome.storage.sync.get('buttonUndoSeconds'))).buttonUndoSeconds).toBe(45);
+      await popup.evaluate(async () => {
+        const { buttonUndoSecondsUpdatedAt } = await chrome.storage.sync.get('buttonUndoSecondsUpdatedAt');
+        await chrome.storage.sync.set({ buttonUndoSeconds: 15, buttonUndoSecondsUpdatedAt: buttonUndoSecondsUpdatedAt + 1 });
+      });
+      await popup.waitForFunction(() => document.querySelector('#undo-active-badge').textContent === '15s');
+    } finally {
+      await popup.close();
+    }
+  });
+
+  test('cancels an active popup preview when changing the timer or resetting the same duration', async () => {
+    const popup = await openPopup();
+    try {
+      await popup.click('#open-settings-row-btn');
+      await popup.click('#btn-preview');
+      expect(await popup.$eval('#btn-preview', el => el.classList.contains('is-undo-active'))).toBe(true);
+      await popup.click('.undo-pill[data-seconds="0"]');
+      expect(await popup.$eval('#btn-preview', el => el.classList.contains('is-added'))).toBe(false);
+      await popup.click('.undo-pill[data-seconds="10"]');
+      await popup.click('#btn-preview');
+      await popup.click('#reset-color-btn');
+      expect(await popup.$eval('#btn-preview', el => el.classList.contains('is-added'))).toBe(false);
+      expect(await popup.evaluate(() => previewTimer)).toBeNull();
+      const resetWrites = await popup.evaluate(async () => {
+        const local = await chrome.storage.local.get(null);
+        const sync = await chrome.storage.sync.get(null);
+        return { local, sync };
+      });
+      expect(resetWrites.sync).toEqual(resetWrites.local);
+    } finally {
+      await popup.close();
+    }
+  });
+
+  test.each(['Control', 'Meta'])('rejects reserved %s+Shift shortcuts without leaving recording mode', async modifier => {
+    const popup = await openPopup();
+    try {
+      await popup.click('#open-settings-row-btn');
+      await popup.click('#shortcut-btn');
+      for (const key of ['W', 'R', 'T', 'N', 'Q']) {
+        const recording = await popup.evaluate(({ modifier, key }) => {
+          window.dispatchEvent(new KeyboardEvent('keydown', {
+            key: key.toLowerCase(), code: `Key${key}`, shiftKey: true,
+            ctrlKey: modifier === 'Control', metaKey: modifier === 'Meta', bubbles: true
+          }));
+          return isRecordingShortcut;
+        }, { modifier, key });
+        expect(recording).toBe(true);
+      }
+      await popup.keyboard.press('Escape');
+      expect(await popup.$eval('#shortcut-btn', el => el.textContent)).toBe('Alt + W');
     } finally {
       await popup.close();
     }

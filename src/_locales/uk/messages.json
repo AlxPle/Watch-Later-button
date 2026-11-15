@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Натисніть червону кнопку, щоб миттєво зберегти (з 10-секундним відліком скасування)",
+        "message": "Натисніть кнопку, щоб миттєво зберегти",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Кнопку «Переглянути пізніше» успішно оновлено до версії",
-        "description": "Update version text prefix"
+        "message": "Кнопку «Переглянути пізніше» успішно оновлено до версії $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Що нового в цьому випуску:",

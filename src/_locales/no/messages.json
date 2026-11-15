@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Klikk på den røde knappen for å lagre umiddelbart (med en 10-sekunders angre nedtelling)",
+        "message": "Klikk på knappen for å lagre umiddelbart",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Se senere-knappen har blitt oppdatert til versjon",
-        "description": "Update version text prefix"
+        "message": "Se senere-knappen har blitt oppdatert til versjon $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Hva er nytt i denne utgivelsen:",

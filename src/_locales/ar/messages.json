@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "انقر فوق الزر الأحمر للحفظ على الفور (مع العد التنازلي للتراجع لمدة 10 ثوانٍ)",
+        "message": "انقر فوق الزر للحفظ على الفور",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "تم تحديث زر المشاهدة لاحقًا إلى الإصدار بنجاح",
-        "description": "Update version text prefix"
+        "message": "تم تحديث زر المشاهدة لاحقًا إلى الإصدار $VERSION$ بنجاح.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "ما الجديد في هذا الإصدار:",

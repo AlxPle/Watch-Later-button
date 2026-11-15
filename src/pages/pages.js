@@ -1,97 +1,99 @@
-/* pages.js */
-const extApi = typeof browser !== "undefined" ? browser : chrome;
+const extApi = globalThis.browser || globalThis.chrome;
 
 const initPages = async () => {
   const uiLang = extApi?.i18n?.getUILanguage?.();
   if (uiLang) {
-    document.documentElement.lang = uiLang;
+    document.documentElement.lang = uiLang.replace(/_/g, "-");
   }
-
-  document.querySelectorAll("[data-i18n]").forEach((el) => {
-    const key = el.dataset.i18n;
-    const message = extApi?.i18n?.getMessage?.(key);
-    if (message) {
-      // Гарантируем пробел перед "v1.x.x" в update.html, если переводчик его опустил
-      el.textContent = key === "updateVersionMessage" && !/\s$/.test(message)
-        ? `${message} `
-        : message;
-    }
-  });
 
   const version = extApi?.runtime?.getManifest?.()?.version;
-  if (version) {
-    document.querySelectorAll(".version-num").forEach((el) => {
-      el.textContent = version;
-    });
-  }
-
-  function applyButtonTheme(colorData) {
-    if (!colorData) return;
-    const root = document.documentElement;
-    if (colorData.rgba) root.style.setProperty("--wl-color-default", colorData.rgba);
-    if (colorData.hoverRgba) root.style.setProperty("--wl-color-default-hover", colorData.hoverRgba);
-  }
-
-  try {
-    const keys = ["buttonColor", "buttonColorUpdatedAt"];
-    const storageData = { local: {}, sync: {} };
-    let ready = false;
-    const applyCurrentTheme = () => {
-      const { local, sync } = storageData;
-      const localTime = local.buttonColorUpdatedAt || 0;
-      const syncTime = sync.buttonColorUpdatedAt || 0;
-      const color = local.buttonColor !== undefined && (sync.buttonColor === undefined || localTime >= syncTime)
-        ? local.buttonColor : sync.buttonColor;
-      applyButtonTheme(color);
-    };
-
-    extApi.storage.onChanged.addListener((changes, area) => {
-      if (area !== "sync" && area !== "local") return;
-      let changed = false;
-      for (const key of keys) {
-        if (!(key in changes)) continue;
-        storageData[area][key] = changes[key].newValue;
-        changed = true;
-      }
-      if (ready && changed) applyCurrentTheme();
-    });
-
-    for (const area of ["local", "sync"]) {
-      try {
-        const data = await extApi.storage[area].get(keys);
-        storageData[area] = { ...data, ...storageData[area] };
-      } catch {}
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.dataset.i18n;
+    if (key === "updateVersionMessage" && !version) {
+      el.hidden = true;
+      return;
     }
-    ready = true;
-    applyCurrentTheme();
-  } catch {}
+    const substitutions = key === "updateVersionMessage" ? [`v${version}`] : undefined;
+    const message = extApi?.i18n?.getMessage?.(key, substitutions);
+    if (message) el.textContent = message;
+  });
 
+  document.querySelectorAll(".version-num").forEach((el) => {
+    el.textContent = version || "";
+  });
+  document.querySelectorAll(".version-chip, .version-label").forEach((el) => {
+    el.hidden = !version;
+  });
+
+  let currentUndoSeconds = 10;
   const demoBtn = document.getElementById("demo-btn");
   if (demoBtn) {
     const defaultTitle = extApi?.i18n?.getMessage?.("wlButtonDefaultTitle") || "Watch Later";
     const deleteTitle = extApi?.i18n?.getMessage?.("wlButtonDeleteTitle") || "Delete from Watch Later";
-
-    const setDemoState = (isAdded) => {
+    const setDemoState = (isAdded, isUndoActive = isAdded) => {
       demoBtn.classList.toggle("is-added", isAdded);
-      demoBtn.classList.toggle("is-undo-active", isAdded);
-      const label = isAdded ? deleteTitle : defaultTitle;
+      demoBtn.classList.toggle("is-undo-active", isUndoActive);
+      const label = isUndoActive ? deleteTitle : defaultTitle;
       demoBtn.title = label;
       demoBtn.setAttribute("aria-label", label);
     };
 
     setDemoState(false);
-
     let undoTimer = null;
     demoBtn.addEventListener("click", () => {
       clearTimeout(undoTimer);
-      if (demoBtn.matches(".is-added, .is-undo-active")) {
+      if (demoBtn.classList.contains("is-undo-active")) {
         setDemoState(false);
-      } else {
-        setDemoState(true);
-        undoTimer = setTimeout(() => setDemoState(false), 10000);
+        return;
       }
+      const isUndoActive = currentUndoSeconds > 0;
+      const durationMs = isUndoActive ? currentUndoSeconds * 1000 : 800;
+      demoBtn.style.setProperty("--wl-undo-ms", `${durationMs}ms`);
+      setDemoState(true, isUndoActive);
+      undoTimer = setTimeout(() => setDemoState(false), durationMs);
     });
   }
+
+  if (!extApi?.storage) return;
+  const keys = ["buttonColor", "buttonUndoSeconds"];
+  const storageKeys = keys.flatMap(key => [key, `${key}UpdatedAt`]);
+  const storageData = { local: {}, sync: {} };
+  let ready = false;
+  const applyCurrentSettings = () => {
+    const cfg = {};
+    for (const key of keys) {
+      const { local, sync } = storageData;
+      const localTime = local[`${key}UpdatedAt`] || 0;
+      const syncTime = sync[`${key}UpdatedAt`] || 0;
+      cfg[key] = local[key] !== undefined && (sync[key] === undefined || localTime >= syncTime)
+        ? local[key] : sync[key];
+    }
+    const root = document.documentElement;
+    root.style.setProperty("--wl-color-default", cfg.buttonColor?.rgba || "");
+    root.style.setProperty("--wl-color-default-hover", cfg.buttonColor?.hoverRgba || "");
+    root.style.setProperty("--wl-icon-color", cfg.buttonColor?.iconColor || "");
+    currentUndoSeconds = cfg.buttonUndoSeconds === undefined ? 10 : Number(cfg.buttonUndoSeconds);
+  };
+
+  extApi.storage.onChanged.addListener((changes, area) => {
+    if (area !== "sync" && area !== "local") return;
+    let changed = false;
+    for (const key of storageKeys) {
+      if (!(key in changes)) continue;
+      storageData[area][key] = changes[key].newValue;
+      changed = true;
+    }
+    if (ready && changed) applyCurrentSettings();
+  });
+
+  for (const area of ["local", "sync"]) {
+    try {
+      const data = await extApi.storage[area].get(storageKeys);
+      storageData[area] = { ...data, ...storageData[area] };
+    } catch {}
+  }
+  ready = true;
+  applyCurrentSettings();
 };
 
 if (document.readyState === "loading") {

@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Fai clic sul pulsante rosso per salvare immediatamente (con un conto alla rovescia per l'annullamento di 10 secondi)",
+        "message": "Fai clic sul pulsante per salvare immediatamente",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Il pulsante Guarda più tardi è stato aggiornato con successo alla versione",
-        "description": "Update version text prefix"
+        "message": "Il pulsante Guarda più tardi è stato aggiornato con successo alla versione $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Novità in questa versione:",

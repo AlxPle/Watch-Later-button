@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Κάντε κλικ στο κόκκινο κουμπί για άμεση αποθήκευση (με αντίστροφη μέτρηση αναίρεσης 10 δευτερολέπτων)",
+        "message": "Κάντε κλικ στο κουμπί για άμεση αποθήκευση",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Το κουμπί Παρακολούθηση αργότερα ενημερώθηκε με επιτυχία στην έκδοση",
-        "description": "Update version text prefix"
+        "message": "Το κουμπί Παρακολούθηση αργότερα ενημερώθηκε με επιτυχία στην έκδοση $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Τι νέο υπάρχει σε αυτήν την έκδοση:",

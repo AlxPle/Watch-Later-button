@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "तुरंत सेव करने के लिए लाल बटन पर क्लिक करें (10 सेकंड की पूर्ववत उलटी गिनती के साथ)",
+        "message": "तुरंत सेव करने के लिए बटन पर क्लिक करें",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "बाद में देखें बटन को सफलतापूर्वक संस्करण में अद्यतन कर दिया गया है",
-        "description": "Update version text prefix"
+        "message": "बाद में देखें बटन को सफलतापूर्वक संस्करण $VERSION$ में अद्यतन कर दिया गया है।",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "इस रिलीज़ में नया क्या है:",

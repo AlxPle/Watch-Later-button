@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Klik op de rode knop om direct op te slaan (met een aftelling van 10 seconden voor ongedaan maken)",
+        "message": "Klik op de knop om direct op te slaan",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "De knop Later bekijken is succesvol bijgewerkt naar de versie",
-        "description": "Update version text prefix"
+        "message": "De knop Later bekijken is succesvol bijgewerkt naar de versie $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Wat is er nieuw in deze release:",

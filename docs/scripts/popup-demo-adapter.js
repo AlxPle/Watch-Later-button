@@ -22,7 +22,9 @@
     };
   }
 
-  function memoryStorage() {
+  const storageListeners = new Set();
+
+  function memoryStorage(area) {
     const values = Object.create(null);
     return {
       async get(keys = null) {
@@ -36,8 +38,20 @@
         return structuredClone(result);
       },
       async set(data) {
-        Object.assign(values, structuredClone(data));
-        if (ready) queueMicrotask(() => send('settings', { settings: settings() }));
+        const next = structuredClone(data);
+        const changes = {};
+        for (const [key, value] of Object.entries(next)) {
+          if (JSON.stringify(values[key]) !== JSON.stringify(value)) {
+            changes[key] = { oldValue: values[key], newValue: value };
+          }
+        }
+        Object.assign(values, next);
+        queueMicrotask(() => {
+          if (Object.keys(changes).length) {
+            for (const listener of storageListeners) listener(structuredClone(changes), area);
+          }
+          if (ready) send('settings', { settings: settings() });
+        });
       }
     };
   }
@@ -49,7 +63,14 @@
       getUILanguage: () => locale.replaceAll('_', '-')
     },
     runtime: { getManifest: () => ({ version }) },
-    storage: { local: memoryStorage(), sync: memoryStorage() }
+    storage: {
+      local: memoryStorage('local'),
+      sync: memoryStorage('sync'),
+      onChanged: {
+        addListener: listener => storageListeners.add(listener),
+        removeListener: listener => storageListeners.delete(listener)
+      }
+    }
   };
 
   document.addEventListener('DOMContentLoaded', () => {

@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Cliquez sur le bouton rouge pour enregistrer instantanément (avec un compte à rebours d'annulation de 10 secondes)",
+        "message": "Cliquez sur le bouton pour enregistrer instantanément",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Le bouton Regarder plus tard a été mis à jour avec succès vers la version",
-        "description": "Update version text prefix"
+        "message": "Le bouton Regarder plus tard a été mis à jour avec succès vers la version $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Quoi de neuf dans cette version :",

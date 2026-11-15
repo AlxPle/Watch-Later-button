@@ -134,18 +134,29 @@ let isRecordingShortcut = false;
 let currentUndoSeconds = DEFAULT_UNDO_SECONDS;
 let currentSurfaces = { ...DEFAULT_SURFACES };
 let settingsUpdatedAt = 0;
-const editedSettings = new Set();
+const SETTINGS_KEYS = ["buttonColor", "showUpdateNotification", "buttonShortcut", "buttonUndoSeconds", "buttonSurfaces"];
+const storageKeys = SETTINGS_KEYS.flatMap(key => [key, `${key}UpdatedAt`]);
+const storageData = { local: {}, sync: {} };
+const appliedSettings = new Map();
+const appliedRevisions = new Map();
+let storageReady = false;
 
 function createSettingsPayload(key, value) {
   settingsUpdatedAt = Math.max(Date.now(), settingsUpdatedAt + 1);
-  editedSettings.add(key);
-  return { [key]: value, [`${key}UpdatedAt`]: settingsUpdatedAt };
+  const payload = { [key]: value, [`${key}UpdatedAt`]: settingsUpdatedAt };
+  Object.assign(storageData.local, payload);
+  appliedSettings.set(key, structuredClone(value));
+  appliedRevisions.set(key, settingsUpdatedAt);
+  return payload;
 }
 
-function persistSetting(key, value) {
+function persistSetting(key, value, immediate = false) {
   const payload = createSettingsPayload(key, value);
   safeStorageSet("local", payload);
-  safeStorageSet("sync", payload);
+  pendingSyncPayload = { ...pendingSyncPayload, ...payload };
+  if (saveTimer) clearTimeout(saveTimer);
+  if (immediate) flushSync();
+  else saveTimer = setTimeout(flushSync, 500);
 }
 
 async function safeStorageSet(area, data) {
@@ -164,7 +175,7 @@ function flushSync() {
   if (pendingSyncPayload) {
     const payload = pendingSyncPayload;
     pendingSyncPayload = null;
-    safeStorageSet("sync", payload);
+    if (Object.keys(payload).length) safeStorageSet("sync", payload);
   }
 }
 
@@ -235,17 +246,7 @@ function persistUpdateNotification(enabled) {
 }
 
 function persistColor(color, immediate = false) {
-  const payload = createSettingsPayload("buttonColor", color);
-  safeStorageSet("local", payload);
-
-  pendingSyncPayload = payload;
-  if (saveTimer) clearTimeout(saveTimer);
-
-  if (immediate) {
-    flushSync();
-  } else {
-    saveTimer = setTimeout(flushSync, 500);
-  }
+  persistSetting("buttonColor", color, immediate);
 }
 
 function persistShortcut(shortcut) {
@@ -336,7 +337,7 @@ function formatKeyDisplay(key, code) {
 }
 
 function isReservedBrowserShortcut(e) {
-  const hasPrimaryModifier = (e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey;
+  const hasPrimaryModifier = (e.ctrlKey || e.metaKey) && !e.altKey;
   if (!hasPrimaryModifier) return false;
   const blockedCodes = ["KeyW", "KeyR", "KeyT", "KeyN", "KeyQ"];
   return blockedCodes.includes(e.code);
@@ -350,6 +351,7 @@ function handleKeyRecord(e) {
   if (e.key === "Escape") {
     window.removeEventListener("keydown", handleKeyRecord, true);
     applyShortcut(currentShortcut, false);
+    applyStoredSettings();
     return;
   }
 
@@ -387,6 +389,8 @@ function handleKeyRecord(e) {
 
 function applyUndoSeconds(seconds, isCustom = false, save = true) {
   const val = Math.max(0, Math.min(60, Math.round(Number(seconds) || 0)));
+  const changed = currentUndoSeconds !== val;
+  if (changed) resetPreviewState();
   currentUndoSeconds = val;
 
   let activeIndex = 3;
@@ -426,24 +430,26 @@ function applyUndoSeconds(seconds, isCustom = false, save = true) {
     }
   }
 
-  if (save) persistUndoSeconds(val);
+  if (save && changed) persistUndoSeconds(val);
 }
 
 // Interactive button preview inside mini-player
+let previewTimer = null;
+const defaultPreviewTitle = extApi?.i18n?.getMessage?.("wlButtonDefaultTitle") || "Watch Later";
+
+function resetPreviewState() {
+  clearTimeout(previewTimer);
+  previewTimer = null;
+  previewBtn?.classList.remove("is-added", "is-undo-active");
+  if (previewBtn) {
+    previewBtn.title = defaultPreviewTitle;
+    previewBtn.setAttribute("aria-label", defaultPreviewTitle);
+  }
+}
+
 if (previewBtn) {
-  const defaultTitle = extApi?.i18n?.getMessage?.("wlButtonDefaultTitle") || "Watch Later";
   const deleteTitle = extApi?.i18n?.getMessage?.("wlButtonDeleteTitle") || "Delete from Watch Later";
-  previewBtn.title = defaultTitle;
-  previewBtn.setAttribute("aria-label", defaultTitle);
-
-  let previewTimer = null;
-
-  const resetPreviewState = () => {
-    clearTimeout(previewTimer);
-    previewBtn.classList.remove("is-added", "is-undo-active");
-    previewBtn.title = defaultTitle;
-    previewBtn.setAttribute("aria-label", defaultTitle);
-  };
+  resetPreviewState();
 
   const togglePreview = () => {
     if (previewBtn.classList.contains("is-undo-active")) {
@@ -474,53 +480,82 @@ if (previewBtn) {
   });
 }
 
-// Load saved settings from local + sync
-async function loadStoredSettings() {
-  const KEYS = ["buttonColor", "showUpdateNotification", "buttonShortcut", "buttonUndoSeconds", "buttonSurfaces"];
-  const storageKeys = KEYS.flatMap(key => [key, `${key}UpdatedAt`]);
-  let localData = {};
-  let syncData = {};
-
-  try {
-    localData = (await extApi?.storage?.local?.get(storageKeys)) || {};
-  } catch {}
-
-  try {
-    syncData = (await extApi?.storage?.sync?.get(storageKeys)) || {};
-  } catch {}
-
+function applyStoredSettings() {
+  if (!storageReady) return;
   const cfg = {};
-  for (const key of KEYS) {
-    const localTime = localData[`${key}UpdatedAt`] || 0;
-    const syncTime = syncData[`${key}UpdatedAt`] || 0;
+  for (const key of SETTINGS_KEYS) {
+    const { local, sync } = storageData;
+    const timestampKey = `${key}UpdatedAt`;
+    const localTime = local[timestampKey] || 0;
+    const syncTime = sync[timestampKey] || 0;
     settingsUpdatedAt = Math.max(settingsUpdatedAt, localTime, syncTime);
-    cfg[key] = localData[key] !== undefined && (syncData[key] === undefined || localTime >= syncTime)
-      ? localData[key] : syncData[key];
+    const selected = local[key] !== undefined && (sync[key] === undefined || localTime >= syncTime) ? local : sync;
+    if (pendingSyncPayload?.[timestampKey] < (selected[timestampKey] || 0)) {
+      delete pendingSyncPayload[key];
+      delete pendingSyncPayload[timestampKey];
+    }
+    const editingColor = key === "buttonColor" && [colorPicker, colorHex, opacitySlider].includes(document.activeElement);
+    const editingUndo = key === "buttonUndoSeconds" && document.activeElement === customUndoInput;
+    if (editingColor || editingUndo || (key === "buttonShortcut" && isRecordingShortcut)) continue;
+    const value = selected[key];
+    const revision = selected[timestampKey] || 0;
+    if (value !== undefined && revision < (appliedRevisions.get(key) || 0)) continue;
+    appliedRevisions.set(key, revision);
+    if (appliedSettings.has(key) && JSON.stringify(appliedSettings.get(key)) === JSON.stringify(value)) continue;
+    appliedSettings.set(key, structuredClone(value));
+    cfg[key] = value;
   }
 
-  if (!editedSettings.has("buttonColor")) {
+  if (Object.hasOwn(cfg, "buttonColor")) {
     const { hex = DEFAULT_COLOR, alpha = DEFAULT_ALPHA } = cfg.buttonColor || {};
     applyColor(hex, alpha, false);
   }
 
-  if (updateNotificationToggle && !editedSettings.has("showUpdateNotification")) {
+  if (updateNotificationToggle && Object.hasOwn(cfg, "showUpdateNotification")) {
     updateNotificationToggle.checked = cfg.showUpdateNotification !== false;
     syncSwitchAria(updateNotificationToggle);
   }
 
-  if (!editedSettings.has("buttonShortcut") && !isRecordingShortcut) {
+  if (Object.hasOwn(cfg, "buttonShortcut")) {
     applyShortcut(cfg.buttonShortcut || DEFAULT_SHORTCUT, false);
   }
 
-  if (!editedSettings.has("buttonUndoSeconds")) {
+  if (Object.hasOwn(cfg, "buttonUndoSeconds")) {
     const storedSec = cfg.buttonUndoSeconds !== undefined ? Number(cfg.buttonUndoSeconds) : DEFAULT_UNDO_SECONDS;
     const isCustomVal = ![0, 10, 15].includes(storedSec);
     applyUndoSeconds(storedSec, isCustomVal, false);
   }
 
-  if (!editedSettings.has("buttonSurfaces")) {
+  if (Object.hasOwn(cfg, "buttonSurfaces")) {
     applySurfaces(cfg.buttonSurfaces || DEFAULT_SURFACES, false);
   }
+}
+
+extApi.storage.onChanged.addListener((changes, area) => {
+  if (area !== "local" && area !== "sync") return;
+  let changed = false;
+  for (const key of SETTINGS_KEYS) {
+    const timestampKey = `${key}UpdatedAt`;
+    if (!(key in changes) && !(timestampKey in changes)) continue;
+    for (const name of [key, timestampKey]) {
+      if (name in changes) storageData[area][name] = changes[name].newValue;
+    }
+    changed = true;
+  }
+  if (changed) applyStoredSettings();
+});
+
+document.addEventListener("focusout", () => queueMicrotask(applyStoredSettings));
+
+async function loadStoredSettings() {
+  for (const area of ["local", "sync"]) {
+    try {
+      const data = await extApi.storage[area].get(storageKeys);
+      storageData[area] = { ...data, ...storageData[area] };
+    } catch {}
+  }
+  storageReady = true;
+  applyStoredSettings();
 }
 
 loadStoredSettings();
@@ -618,6 +653,7 @@ shortcutBtn?.addEventListener("click", () => {
   if (isRecordingShortcut) {
     window.removeEventListener("keydown", handleKeyRecord, true);
     applyShortcut(currentShortcut, false);
+    applyStoredSettings();
     return;
   }
 
@@ -688,7 +724,8 @@ undoStepUp?.addEventListener("click", () => {
 let resetFeedbackTimer = null;
 
 resetBtn?.addEventListener("click", () => {
-  applyColor(DEFAULT_COLOR, DEFAULT_ALPHA, true, true);
+  resetPreviewState();
+  applyColor(DEFAULT_COLOR, DEFAULT_ALPHA, true);
   if (updateNotificationToggle) {
     updateNotificationToggle.checked = true;
     syncSwitchAria(updateNotificationToggle);
@@ -697,6 +734,7 @@ resetBtn?.addEventListener("click", () => {
   applyShortcut(DEFAULT_SHORTCUT, true);
   applyUndoSeconds(DEFAULT_UNDO_SECONDS, false, true);
   applySurfaces(DEFAULT_SURFACES, true);
+  flushSync();
 
   resetBtn.classList.add("is-reset");
   clearTimeout(resetFeedbackTimer);

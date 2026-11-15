@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "點選紅色按鈕立即儲存（有10秒鐘撤銷倒數計時）",
+        "message": "點選按鈕立即儲存",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "稍後觀看按鈕已成功更新至版本",
-        "description": "Update version text prefix"
+        "message": "稍後觀看按鈕已成功更新至版本 $VERSION$。",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "此版本的新增內容：",

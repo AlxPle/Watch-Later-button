@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "赤いボタンをクリックして即座に保存します (10 秒間の元に戻すカウントダウン付き)",
+        "message": "ボタンをクリックして即座に保存します",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "「後で見る」ボタンが正常にバージョンに更新されました",
-        "description": "Update version text prefix"
+        "message": "「後で見る」ボタンがバージョン $VERSION$ に正常に更新されました。",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "このリリースの新機能:",

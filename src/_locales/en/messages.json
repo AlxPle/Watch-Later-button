@@ -76,7 +76,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Click the red button to instantly save (with a 10-second undo countdown)",
+        "message": "Click the button to instantly save",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -92,8 +92,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Watch Later Button has been successfully updated to version ",
-        "description": "Update version text prefix"
+        "message": "Watch Later Button has been successfully updated to version $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "What's new in this release:",

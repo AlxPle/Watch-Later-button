@@ -177,7 +177,11 @@ async function checkPopupDemo(page, label, screenshot) {
   assert.equal(await frame.$eval('#btn-preview', el => el.classList.contains('is-undo-active')), true);
   await keyboard.press('Enter');
   assert.equal(await frame.$eval('#btn-preview', el => el.classList.contains('is-added')), false);
+  await frame.click('#btn-preview');
+  assert.equal(await frame.$eval('#btn-preview', el => el.classList.contains('is-undo-active')), true);
   await frame.click('[data-seconds="0"]');
+  assert.equal(await frame.$eval('#btn-preview', el => el.classList.contains('is-added')), false);
+  assert.equal(await frame.evaluate(() => previewTimer), null);
   await frame.click('#btn-preview');
   await frame.click('#btn-preview');
   assert.equal(await frame.$eval('#btn-preview', el => el.classList.contains('is-added')), true);
@@ -247,6 +251,26 @@ async function checkPopupDemo(page, label, screenshot) {
     };
   });
   assert.deepEqual(storage, { local: { isolationProbe: { nested: { number: 1 } } }, sync: {}, defaults: { missing: 7 }, persistent: [null, null] });
+  await frame.evaluate(async () => {
+    const local = await browser.storage.local.get('buttonUndoSecondsUpdatedAt');
+    window.remoteUndoTime = (local.buttonUndoSecondsUpdatedAt || 0) + 1000;
+    await browser.storage.sync.set({ buttonUndoSeconds: 45, buttonUndoSecondsUpdatedAt: window.remoteUndoTime });
+  });
+  await frame.waitForFunction(() => document.querySelector('#undo-active-badge').textContent === '45s');
+  await frame.evaluate(async () => {
+    await browser.storage.sync.set({ buttonUndoSeconds: 15, buttonUndoSecondsUpdatedAt: window.remoteUndoTime - 1 });
+  });
+  assert.equal(await frame.$eval('#undo-active-badge', el => el.textContent), '45s');
+  await frame.evaluate(async () => {
+    await browser.storage.sync.set({ buttonUndoSeconds: 15, buttonUndoSecondsUpdatedAt: window.remoteUndoTime + 1 });
+  });
+  await frame.waitForFunction(() => document.querySelector('#undo-active-badge').textContent === '15s');
+  await reset();
+  await frame.click('#btn-preview');
+  assert.equal(await frame.$eval('#btn-preview', el => el.classList.contains('is-undo-active')), true);
+  await reset();
+  assert.equal(await frame.$eval('#btn-preview', el => el.classList.contains('is-added')), false);
+  assert.equal(await frame.evaluate(() => previewTimer), null);
   await change('#opacity-slider', '42');
   await page.reload({ waitUntil: 'networkidle2' });
   await page.waitForSelector('#demo-popup-frame[data-ready="true"]');

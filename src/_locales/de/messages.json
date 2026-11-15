@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Klicken Sie auf die rote Schaltfläche, um sofort zu speichern (mit einem 10-sekündigen Countdown zum Rückgängigmachen).",
+        "message": "Klicken Sie auf die Schaltfläche, um sofort zu speichern.",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Die Schaltfläche „Später ansehen“ wurde erfolgreich auf die Version aktualisiert",
-        "description": "Update version text prefix"
+        "message": "Die Schaltfläche „Später ansehen“ wurde erfolgreich auf die Version $VERSION$ aktualisiert.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Was ist neu in dieser Version:",

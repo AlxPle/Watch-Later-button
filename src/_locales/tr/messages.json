@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Anında kaydetmek için kırmızı düğmeye tıklayın (10 saniyelik geri sayım ile)",
+        "message": "Anında kaydetmek için düğmeye tıklayın",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Daha Sonra İzle Düğmesi başarıyla sürüme güncellendi",
-        "description": "Update version text prefix"
+        "message": "Daha Sonra İzle Düğmesi başarıyla $VERSION$ sürümüne güncellendi.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Bu sürümdeki yenilikler:",

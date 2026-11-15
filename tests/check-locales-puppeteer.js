@@ -101,15 +101,21 @@ const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-locales-'));
         const messages = JSON.parse(fs.readFileSync(messagesPath, 'utf8'));
         const messagesMap = {};
         for (const k of Object.keys(messages)) {
-            messagesMap[k] = messages[k].message;
+            let message = messages[k].message;
+            for (const [name, placeholder] of Object.entries(messages[k].placeholders || {})) {
+                message = message.replaceAll(`$${name.toUpperCase()}$`, placeholder.content);
+            }
+            messagesMap[k] = message;
         }
 
         const mockScript = `
             <script>
                 window.__MESSAGES = ${JSON.stringify(messagesMap)};
                 window.mockI18n = {
-                    getMessage: function(key) {
-                        return window.__MESSAGES && window.__MESSAGES[key] !== undefined ? window.__MESSAGES[key] : '';
+                    getMessage: function(key, substitutions) {
+                        const message = window.__MESSAGES[key] || '';
+                        const values = Array.isArray(substitutions) ? substitutions : [substitutions];
+                        return message.replace(/\\$(\\d)/g, (_, index) => values[Number(index) - 1] || '');
                     },
                     getUILanguage: function() { return '${locale}'; }
                 };
@@ -236,12 +242,12 @@ const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-locales-'));
 
         for (const { key, text } of updateI18nResults) {
             totalChecks++;
-            const expected = messages[key]?.message?.trim();
+            const expected = messages[key]?.message?.replace('$VERSION$', `v${manifest.version}`).trim();
             if (!expected) {
                 console.error(`  [FAIL] ${locale} [update]: Missing key '${key}' in messages.json`);
                 localeErrors++;
-            } else if (!text.includes(expected)) {
-                console.error(`  [FAIL] ${locale} [update]: Key '${key}' mismatch. Expected to contain "${expected}", got "${text}"`);
+            } else if (text !== expected) {
+                console.error(`  [FAIL] ${locale} [update]: Key '${key}' mismatch. Expected "${expected}", got "${text}"`);
                 localeErrors++;
             }
         }

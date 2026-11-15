@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Klicka på den röda knappen för att spara omedelbart (med en 10-sekunders ångra nedräkning)",
+        "message": "Klicka på knappen för att spara omedelbart",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Titta senare-knappen har uppdaterats till version",
-        "description": "Update version text prefix"
+        "message": "Titta senare-knappen har uppdaterats till version $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Vad är nytt i den här utgåvan:",

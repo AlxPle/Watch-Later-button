@@ -76,7 +76,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Нажмите красную кнопку для мгновенного сохранения (с отменой 10 сек)",
+        "message": "Нажмите кнопку для мгновенного сохранения",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -92,8 +92,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Приложение Watch Later Button успешно обновлено до версии ",
-        "description": "Update version text prefix"
+        "message": "Приложение Watch Later Button успешно обновлено до версии $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Что нового в этой версии:",

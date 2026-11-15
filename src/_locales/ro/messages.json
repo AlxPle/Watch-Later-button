@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Faceți clic pe butonul roșu pentru a salva instantaneu (cu o numărătoare inversă anulată de 10 secunde)",
+        "message": "Faceți clic pe buton pentru a salva instantaneu",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Butonul Vizionați mai târziu a fost actualizat cu succes la versiunea",
-        "description": "Update version text prefix"
+        "message": "Butonul Vizionați mai târziu a fost actualizat cu succes la versiunea $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Ce este nou în această versiune:",

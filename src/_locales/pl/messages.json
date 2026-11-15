@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Kliknij czerwony przycisk, aby natychmiast zapisać (z 10-sekundowym odliczaniem cofania)",
+        "message": "Kliknij przycisk, aby natychmiast zapisać",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "Przycisk Obejrzyj później został pomyślnie zaktualizowany do wersji",
-        "description": "Update version text prefix"
+        "message": "Przycisk Obejrzyj później został pomyślnie zaktualizowany do wersji $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Co nowego w tej wersji:",

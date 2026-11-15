@@ -64,7 +64,7 @@
         "description": "Second step description"
     },
     "welcomeStep3": {
-        "message": "Haga clic en el botón rojo para guardar instantáneamente (con una cuenta regresiva para deshacer de 10 segundos)",
+        "message": "Haga clic en el botón para guardar instantáneamente",
         "description": "Third step description"
     },
     "welcomeStep4": {
@@ -80,8 +80,11 @@
         "description": "Update page title"
     },
     "updateVersionMessage": {
-        "message": "El botón Ver más tarde se ha actualizado correctamente a la versión",
-        "description": "Update version text prefix"
+        "message": "El botón Ver más tarde se ha actualizado correctamente a la versión $VERSION$.",
+        "description": "Update version message",
+        "placeholders": {
+            "version": { "content": "$1", "example": "v1.6.5" }
+        }
     },
     "updateFeaturesTitle": {
         "message": "Novedades de esta versión:",
