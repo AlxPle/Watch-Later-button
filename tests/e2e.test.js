@@ -118,6 +118,7 @@ describe('Chrome action popup', () => {
         const popupTarget = await browser.waitForTarget(t => t.url().endsWith('/popup/popup.html'));
         const popup = await popupTarget.asPage();
         await popup.waitForSelector('#ext-version');
+        await popup.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: opening === 0 ? 'light' : 'dark' }]);
         expect(await popup.evaluate(() => innerWidth)).toBe(350);
         expect(await popup.$eval('body', el => el.getBoundingClientRect().width)).toBe(350);
         await popup.click('#open-settings-row-btn');
@@ -127,6 +128,16 @@ describe('Chrome action popup', () => {
           return settings.classList.contains('is-active') && Math.abs(slider.clientHeight - settings.offsetHeight) <= 1;
         });
         await popup.waitForFunction(() => document.getAnimations().every(animation => animation.playState !== 'running'));
+        expect(await popup.$eval('#settings-view', el => getComputedStyle(el).transform)).toBe('none');
+        expect(await popup.$eval('#settings-view', el => getComputedStyle(el).willChange)).toBe('auto');
+        expect(await popup.$eval('.undo-active-thumb', el => getComputedStyle(el).boxShadow)).toBe('none');
+        await popup.click('.undo-pill[data-seconds="15"]');
+        await popup.waitForFunction(() => document.getAnimations().every(animation => animation.playState !== 'running'));
+        expect(await popup.$eval('.undo-pill.active', el => el.dataset.seconds)).toBe('15');
+        expect(await popup.evaluate(() => Math.abs(
+          document.querySelector('.undo-active-thumb').getBoundingClientRect().left -
+          document.querySelector('.undo-pill.active').getBoundingClientRect().left
+        ))).toBeLessThanOrEqual(1);
         expect(await popup.$eval('body', el => el.getBoundingClientRect().width)).toBe(350);
         expect(await popup.evaluate(() => innerHeight)).toBeLessThanOrEqual(600);
         await popup.keyboard.press('Escape');

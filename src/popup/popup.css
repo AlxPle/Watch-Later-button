@@ -177,12 +177,11 @@ body {
     gap: 12px;
     width: 100%;
     transition: transform 220ms var(--wl-ease-out), opacity 220ms var(--wl-ease-out);
-    will-change: transform, opacity;
 }
 
 #main-view {
     position: relative;
-    transform: translateX(0);
+    transform: none;
     opacity: 1;
 }
 
@@ -210,7 +209,7 @@ body {
 
 #settings-view.is-active {
     position: relative;
-    transform: translateX(0);
+    transform: none;
     opacity: 1;
     pointer-events: auto;
 }
@@ -1056,7 +1055,6 @@ input[type="color"]::-moz-color-swatch {
     width: calc((100% - 6px) / 4);
     background: var(--wl-surface);
     border-radius: 6px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14);
     transition: transform 200ms var(--wl-ease-out);
     pointer-events: none;
 }
