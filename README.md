@@ -65,4 +65,4 @@ The extension runs in your browser and sends playlist changes to YouTube through
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
-Made with ❤️ for YouTube lovers everywhere from 🇩🇪 Germany.
+Crafted with ❤️ in 🇩🇪 for YouTube lovers everywhere.
