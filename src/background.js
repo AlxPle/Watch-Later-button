@@ -5,12 +5,20 @@ extAPI.runtime.onInstalled.addListener(async ({ reason }) => {
     extAPI.tabs.create({ url: extAPI.runtime.getURL("pages/welcome.html") });
   } else if (reason === "update") {
     try {
-      const syncData = await extAPI.storage.sync.get("showUpdateNotification");
-      let enabled = syncData?.showUpdateNotification;
-      if (enabled === undefined) {
-        const localData = await extAPI.storage.local.get("showUpdateNotification");
-        enabled = localData?.showUpdateNotification;
-      }
+      const keys = ["showUpdateNotification", "showUpdateNotificationUpdatedAt"];
+      let localData = {};
+      let syncData = {};
+      try {
+        localData = await extAPI.storage.local.get(keys);
+      } catch {}
+      try {
+        syncData = await extAPI.storage.sync.get(keys);
+      } catch {}
+      const localTime = localData.showUpdateNotificationUpdatedAt || 0;
+      const syncTime = syncData.showUpdateNotificationUpdatedAt || 0;
+      const enabled = localData.showUpdateNotification !== undefined &&
+        (syncData.showUpdateNotification === undefined || localTime >= syncTime)
+        ? localData.showUpdateNotification : syncData.showUpdateNotification;
       if (enabled !== false) {
         extAPI.tabs.create({ url: extAPI.runtime.getURL("pages/update.html") });
       }

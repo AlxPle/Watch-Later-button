@@ -129,32 +129,45 @@ function applyStorageConfig(cfg) {
   }
 }
 
-try {
-  const STORAGE_KEYS = ["buttonColor", "buttonShortcut", "buttonUndoSeconds", "buttonSurfaces"];
+async function loadStorageConfig() {
+  const keys = ["buttonColor", "buttonShortcut", "buttonUndoSeconds", "buttonSurfaces"];
+  const storageKeys = keys.flatMap(key => [key, `${key}UpdatedAt`]);
+  const storageData = { local: {}, sync: {} };
+  let ready = false;
 
-  chrome.storage?.local?.get(STORAGE_KEYS, (localData = {}) => {
-    applyStorageConfig(localData);
-    chrome.storage?.sync?.get(STORAGE_KEYS, (syncData = {}) => {
-      applyStorageConfig(syncData);
-    });
+  const applyCurrentConfig = () => {
+    const cfg = {};
+    for (const key of keys) {
+      const local = storageData.local;
+      const sync = storageData.sync;
+      const localTime = local[`${key}UpdatedAt`] || 0;
+      const syncTime = sync[`${key}UpdatedAt`] || 0;
+      cfg[key] = local[key] !== undefined && (sync[key] === undefined || localTime >= syncTime)
+        ? local[key] : sync[key];
+    }
+    applyStorageConfig(cfg);
+  };
+
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local" && area !== "sync") return;
+    let changed = false;
+    for (const key of storageKeys) {
+      if (!(key in changes)) continue;
+      storageData[area][key] = changes[key].newValue;
+      changed = true;
+    }
+    if (ready && changed) applyCurrentConfig();
   });
 
-  chrome.storage?.onChanged?.addListener((changes) => {
-    if (changes.buttonColor?.newValue) {
-      applyButtonTheme(changes.buttonColor.newValue);
-    }
-    if (changes.buttonShortcut?.newValue) {
-      currentShortcut = changes.buttonShortcut.newValue;
-      updateAllButtonsDefaultTitle();
-    }
-    if (changes.buttonUndoSeconds?.newValue !== undefined) {
-      currentUndoSeconds = Number(changes.buttonUndoSeconds.newValue);
-    }
-    if (changes.buttonSurfaces?.newValue) {
-      applySurfacesConfig(changes.buttonSurfaces.newValue);
-    }
-  });
-} catch {}
+  for (const area of ["local", "sync"]) {
+    try {
+      const data = await chrome.storage[area].get(storageKeys);
+      storageData[area] = { ...data, ...storageData[area] };
+    } catch {}
+  }
+  ready = true;
+  applyCurrentConfig();
+}
 
 function handleButtonKeyDown(e) {
   if (e.repeat || e.isComposing) return;
@@ -486,7 +499,7 @@ function addWatchLaterToCard(contentImageEl) {
     return;
   }
 
-  if (mount.hasAttribute(CARD_WL_INJECTED) || mount.querySelector(":scope > .saveToWatchLater")) {
+  if (mount.querySelector(":scope > .saveToWatchLater")) {
     contentImageEl.setAttribute(CARD_WL_INJECTED, "1");
     return;
   }
@@ -499,6 +512,7 @@ function addWatchLaterToCard(contentImageEl) {
 
   const locationClass = isResults ? "results" : (isShorts ? "shortsHomePage" : "home");
   const btn = document.createElement("div");
+  btn.dataset.videoId = videoId;
   btn.className = `saveToWatchLater ${locationClass}`;
   const defaultTitle = getDefaultButtonTitle();
   btn.dataset.defaultTitle = defaultTitle;
@@ -559,47 +573,73 @@ let cardInjectTimer = null;
 
 function clearButtonTimers(btn) {
   buttonPendingState.delete(btn);
-  btn.classList.remove("is-pending");
+  btn.classList.remove("is-pending", WL_ERROR_CLASS);
   btn.removeAttribute("aria-busy");
-  const undoState = buttonUndoState.get(btn);
-  if (undoState?.timerId) clearTimeout(undoState.timerId);
-  buttonUndoState.delete(btn);
-
-  const errorTimer = buttonErrorState.get(btn);
-  if (errorTimer) {
-    clearTimeout(errorTimer);
-    buttonErrorState.delete(btn);
-  }
+  clearTimeout(buttonErrorState.get(btn));
+  buttonErrorState.delete(btn);
+  clearButtonUndoState(btn);
 }
 
 function cleanupRemovedButtons(mutations) {
+  let needsInjection = false;
   for (const m of mutations) {
+    let removedButtons = false;
     for (const node of m.removedNodes) {
       if (node.nodeType !== Node.ELEMENT_NODE || node.isConnected) continue;
-      if (node.matches?.(".saveToWatchLater")) {
-        clearButtonTimers(node);
-      }
-      node.querySelectorAll?.(".saveToWatchLater").forEach(clearButtonTimers);
+      const buttons = node.matches(".saveToWatchLater")
+        ? [node] : [...node.querySelectorAll(".saveToWatchLater")];
+      buttons.forEach(clearButtonTimers);
+      if (buttons.length) removedButtons = true;
     }
+    if (!removedButtons) continue;
+    const renderer = m.target.closest(CARD_RENDERER_SELECTOR);
+    if (!renderer?.isConnected) continue;
+    renderer.removeAttribute(CARD_WL_INJECTED);
+    renderer.querySelectorAll(`[${CARD_WL_INJECTED}]`).forEach(el => {
+      el.removeAttribute(CARD_WL_INJECTED);
+    });
+    needsInjection = true;
   }
+  return needsInjection;
+}
+
+function refreshCardVideo(button) {
+  const videoId = getVideoIdFromCard(button) || "";
+  if (button.dataset.videoId === videoId) return;
+  clearButtonTimers(button);
+  button.dataset.videoId = videoId;
 }
 
 function startCardObserver() {
-  if (cardObserver) cardObserver.disconnect();
+  if (cardObserver) {
+    cleanupRemovedButtons(cardObserver.takeRecords());
+    cardObserver.disconnect();
+  }
 
   const target = document.querySelector("ytd-app, #contents, #primary") || document.body || document.documentElement;
   if (!target) return;
 
   cardObserver = new MutationObserver((mutations) => {
-    // P1: clean up timers for removed card buttons
-    cleanupRemovedButtons(mutations);
+    const needsInjection = cleanupRemovedButtons(mutations);
+    const changedCards = new Set();
+    for (const mutation of mutations) {
+      const renderer = mutation.target.closest(CARD_RENDERER_SELECTOR);
+      if (renderer) changedCards.add(renderer);
+      for (const node of mutation.addedNodes) {
+        if (node.nodeType !== Node.ELEMENT_NODE) continue;
+        if (node.matches(CARD_RENDERER_SELECTOR)) changedCards.add(node);
+        node.querySelectorAll(CARD_RENDERER_SELECTOR).forEach(card => changedCards.add(card));
+      }
+    }
+    changedCards.forEach(renderer => {
+      renderer.querySelectorAll(".saveToWatchLater").forEach(refreshCardVideo);
+    });
 
-    // P3: only trigger inject when real element nodes were added
     const hasNewElements = mutations.some(m =>
-      m.addedNodes.length > 0 &&
       [...m.addedNodes].some(n => n.nodeType === Node.ELEMENT_NODE)
     );
-    if (!hasNewElements) return;
+    const hasLinkChanges = mutations.some(m => m.type === "attributes");
+    if (!needsInjection && !hasNewElements && !hasLinkChanges) return;
 
     if (cardInjectTimer) return;
     cardInjectTimer = setTimeout(() => {
@@ -607,7 +647,12 @@ function startCardObserver() {
       injectIntoAllCards();
     }, 200);
   });
-  cardObserver.observe(target, { childList: true, subtree: true });
+  cardObserver.observe(target, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["href"]
+  });
 }
 
 function handleGlobalKeyDown(e) {
@@ -672,12 +717,11 @@ function handleGlobalKeyDown(e) {
 window.addEventListener("keydown", handleGlobalKeyDown, true);
 
 function onNavigation() {
+  startCardObserver();
   clearButtonTimers(saveTo);
-  clearButtonUndoState(saveTo);
   mountWatchButton();
   startWatchObserver();
   injectIntoAllCards();
-  startCardObserver();
 }
 
 document.addEventListener("yt-navigate-finish", onNavigation);
@@ -685,3 +729,4 @@ window.addEventListener("popstate", onNavigation);
 
 // Initial bootstrap
 onNavigation();
+loadStorageConfig();

@@ -33,25 +33,37 @@ const initPages = async () => {
   }
 
   try {
-    const loadTheme = async () => {
-      try {
-        const localData = await extApi?.storage?.local?.get("buttonColor");
-        if (localData?.buttonColor) applyButtonTheme(localData.buttonColor);
-      } catch {}
-
-      try {
-        const syncData = await extApi?.storage?.sync?.get("buttonColor");
-        if (syncData?.buttonColor) applyButtonTheme(syncData.buttonColor);
-      } catch {}
+    const keys = ["buttonColor", "buttonColorUpdatedAt"];
+    const storageData = { local: {}, sync: {} };
+    let ready = false;
+    const applyCurrentTheme = () => {
+      const { local, sync } = storageData;
+      const localTime = local.buttonColorUpdatedAt || 0;
+      const syncTime = sync.buttonColorUpdatedAt || 0;
+      const color = local.buttonColor !== undefined && (sync.buttonColor === undefined || localTime >= syncTime)
+        ? local.buttonColor : sync.buttonColor;
+      applyButtonTheme(color);
     };
 
-    await loadTheme();
-
-    extApi?.storage?.onChanged?.addListener((changes, area) => {
-      if ((area === "sync" || area === "local") && changes.buttonColor?.newValue) {
-        applyButtonTheme(changes.buttonColor.newValue);
+    extApi.storage.onChanged.addListener((changes, area) => {
+      if (area !== "sync" && area !== "local") return;
+      let changed = false;
+      for (const key of keys) {
+        if (!(key in changes)) continue;
+        storageData[area][key] = changes[key].newValue;
+        changed = true;
       }
+      if (ready && changed) applyCurrentTheme();
     });
+
+    for (const area of ["local", "sync"]) {
+      try {
+        const data = await extApi.storage[area].get(keys);
+        storageData[area] = { ...data, ...storageData[area] };
+      } catch {}
+    }
+    ready = true;
+    applyCurrentTheme();
   } catch {}
 
   const demoBtn = document.getElementById("demo-btn");

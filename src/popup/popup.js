@@ -133,6 +133,20 @@ let currentShortcut = { ...DEFAULT_SHORTCUT };
 let isRecordingShortcut = false;
 let currentUndoSeconds = DEFAULT_UNDO_SECONDS;
 let currentSurfaces = { ...DEFAULT_SURFACES };
+let settingsUpdatedAt = 0;
+const editedSettings = new Set();
+
+function createSettingsPayload(key, value) {
+  settingsUpdatedAt = Math.max(Date.now(), settingsUpdatedAt + 1);
+  editedSettings.add(key);
+  return { [key]: value, [`${key}UpdatedAt`]: settingsUpdatedAt };
+}
+
+function persistSetting(key, value) {
+  const payload = createSettingsPayload(key, value);
+  safeStorageSet("local", payload);
+  safeStorageSet("sync", payload);
+}
 
 async function safeStorageSet(area, data) {
   try {
@@ -150,7 +164,7 @@ function flushSync() {
   if (pendingSyncPayload) {
     const payload = pendingSyncPayload;
     pendingSyncPayload = null;
-    safeStorageSet("sync", { buttonColor: payload });
+    safeStorageSet("sync", payload);
   }
 }
 
@@ -217,12 +231,12 @@ function updatePresetSelection(normalizedHex) {
 }
 
 function persistUpdateNotification(enabled) {
-  safeStorageSet("local", { showUpdateNotification: enabled });
-  safeStorageSet("sync", { showUpdateNotification: enabled });
+  persistSetting("showUpdateNotification", enabled);
 }
 
-function persistColor(payload, immediate = false) {
-  safeStorageSet("local", { buttonColor: payload });
+function persistColor(color, immediate = false) {
+  const payload = createSettingsPayload("buttonColor", color);
+  safeStorageSet("local", payload);
 
   pendingSyncPayload = payload;
   if (saveTimer) clearTimeout(saveTimer);
@@ -235,18 +249,15 @@ function persistColor(payload, immediate = false) {
 }
 
 function persistShortcut(shortcut) {
-  safeStorageSet("local", { buttonShortcut: shortcut });
-  safeStorageSet("sync", { buttonShortcut: shortcut });
+  persistSetting("buttonShortcut", shortcut);
 }
 
 function persistUndoSeconds(seconds) {
-  safeStorageSet("local", { buttonUndoSeconds: seconds });
-  safeStorageSet("sync", { buttonUndoSeconds: seconds });
+  persistSetting("buttonUndoSeconds", seconds);
 }
 
 function persistSurfaces(surfaces) {
-  safeStorageSet("local", { buttonSurfaces: surfaces });
-  safeStorageSet("sync", { buttonSurfaces: surfaces });
+  persistSetting("buttonSurfaces", surfaces);
 }
 
 function syncSwitchAria(inputEl) {
@@ -305,6 +316,7 @@ if (previewBtn) {
 }
 
 function applyShortcut(shortcut, save = true) {
+  window.removeEventListener("keydown", handleKeyRecord, true);
   currentShortcut = shortcut || { ...DEFAULT_SHORTCUT };
   if (shortcutBtn) {
     shortcutBtn.textContent = currentShortcut.display || "Alt + W";
@@ -465,34 +477,50 @@ if (previewBtn) {
 // Load saved settings from local + sync
 async function loadStoredSettings() {
   const KEYS = ["buttonColor", "showUpdateNotification", "buttonShortcut", "buttonUndoSeconds", "buttonSurfaces"];
+  const storageKeys = KEYS.flatMap(key => [key, `${key}UpdatedAt`]);
   let localData = {};
   let syncData = {};
 
   try {
-    localData = (await extApi?.storage?.local?.get(KEYS)) || {};
+    localData = (await extApi?.storage?.local?.get(storageKeys)) || {};
   } catch {}
 
   try {
-    syncData = (await extApi?.storage?.sync?.get(KEYS)) || {};
+    syncData = (await extApi?.storage?.sync?.get(storageKeys)) || {};
   } catch {}
 
-  const cfg = { ...localData, ...syncData };
+  const cfg = {};
+  for (const key of KEYS) {
+    const localTime = localData[`${key}UpdatedAt`] || 0;
+    const syncTime = syncData[`${key}UpdatedAt`] || 0;
+    settingsUpdatedAt = Math.max(settingsUpdatedAt, localTime, syncTime);
+    cfg[key] = localData[key] !== undefined && (syncData[key] === undefined || localTime >= syncTime)
+      ? localData[key] : syncData[key];
+  }
 
-  const { hex = DEFAULT_COLOR, alpha = DEFAULT_ALPHA } = cfg.buttonColor || {};
-  applyColor(hex, alpha !== undefined ? alpha : DEFAULT_ALPHA, false);
+  if (!editedSettings.has("buttonColor")) {
+    const { hex = DEFAULT_COLOR, alpha = DEFAULT_ALPHA } = cfg.buttonColor || {};
+    applyColor(hex, alpha, false);
+  }
 
-  if (updateNotificationToggle) {
+  if (updateNotificationToggle && !editedSettings.has("showUpdateNotification")) {
     updateNotificationToggle.checked = cfg.showUpdateNotification !== false;
     syncSwitchAria(updateNotificationToggle);
   }
 
-  applyShortcut(cfg.buttonShortcut || DEFAULT_SHORTCUT, false);
+  if (!editedSettings.has("buttonShortcut") && !isRecordingShortcut) {
+    applyShortcut(cfg.buttonShortcut || DEFAULT_SHORTCUT, false);
+  }
 
-  const storedSec = cfg.buttonUndoSeconds !== undefined ? Number(cfg.buttonUndoSeconds) : DEFAULT_UNDO_SECONDS;
-  const isCustomVal = ![0, 10, 15].includes(storedSec);
-  applyUndoSeconds(storedSec, isCustomVal, false);
+  if (!editedSettings.has("buttonUndoSeconds")) {
+    const storedSec = cfg.buttonUndoSeconds !== undefined ? Number(cfg.buttonUndoSeconds) : DEFAULT_UNDO_SECONDS;
+    const isCustomVal = ![0, 10, 15].includes(storedSec);
+    applyUndoSeconds(storedSec, isCustomVal, false);
+  }
 
-  applySurfaces(cfg.buttonSurfaces || DEFAULT_SURFACES, false);
+  if (!editedSettings.has("buttonSurfaces")) {
+    applySurfaces(cfg.buttonSurfaces || DEFAULT_SURFACES, false);
+  }
 }
 
 loadStoredSettings();
