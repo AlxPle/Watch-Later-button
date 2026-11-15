@@ -20,20 +20,28 @@ Save YouTube videos to Watch Later in one click. Clean, minimal, privacy-first e
 
 ## Key Features
 
-- 🎯 **One-click save** - Add videos to Watch Later instantly without opening extra menus.
-- 🎬 **Everywhere on YouTube** - Works seamlessly on regular video pages (`/watch`), YouTube Shorts (`/shorts`), and video card thumbnails across Home and Search feeds.
-- ⏱️ **Instant undo** - 10-second countdown timer after every save so you can undo accidental clicks.
-- ⌨️ **Custom keyboard shortcut** - Save or undo videos from anywhere on YouTube using a customizable hotkey (default: `Alt + W`).
-- 🎨 **Appearance controls** - Customize button color, hover tone, and opacity directly in the extension popup.
-- 🌍 **26 languages** - Complete native localization for 26 languages worldwide.
-- 🔒 **Privacy-first** - Zero analytics, zero tracking, no remote scripts, and no user data collection.
+- **One-click save** - Add videos to your YouTube Watch Later playlist without opening extra menus, with a loading indicator and confirmation when YouTube completes the action.
+- **Watch pages, Shorts & video cards** - Save from regular video pages (`/watch`), YouTube Shorts (`/shorts`), and video cards across Home, Subscriptions, Channel pages, and Search results.
+- **Configurable undo** - Click the same button again during the circular countdown to remove the saved video. Choose Off, 10 seconds (default), 15 seconds, or a custom duration from 1 to 60 seconds. Saving does not wait for the countdown to finish.
+- **Custom keyboard shortcut** - Save or undo with `Alt + W` by default, or record your own combination in Settings. Button tooltips show your configured shortcut, and the hotkey does not trigger while typing in input fields.
+- **Appearance controls** - Choose a color preset, use the color picker, or enter HEX/HEX8 values; adjust opacity from 0% to 100% and test the button in the interactive preview. Hover tone and icon contrast are calculated automatically.
+- **Per-surface controls** - Independently enable or disable buttons on watch pages, Shorts, and video cards. The keyboard shortcut also respects these switches.
+- **Live settings updates** - Changes apply across open YouTube tabs without a reload. Preferences persist across browser restarts, with a one-click reset to defaults.
+- **Playlist & update access** - Open Watch Later directly from the popup and choose whether the What's new tab opens automatically after extension updates.
+- **26 languages** - Localized interface and button tooltips, with bundled Cyrillic and Latin-Extended fonts for supported languages.
+- **Privacy-first** - Zero analytics, zero tracking, no remote scripts, and no user data collection.
 
 ## How to Use
 
-1. **Watch Page:** Click the dedicated red button below any video player to save it immediately.
-2. **Shorts:** Click the button in the action panel next to any Short.
-3. **Feeds & Search:** Hover over any video thumbnail on the home feed or search results and click the button in the corner.
-4. **Keyboard:** Press `Alt + W` (or your custom shortcut) while watching a video or hovering over a card.
+Sign in to YouTube in your browser so videos can be saved to your account's Watch Later playlist.
+
+1. **Watch Page:** Click the button beneath the video player, next to YouTube's action buttons.
+2. **Shorts:** Click the button in the vertical action panel beside the active Short.
+3. **Feeds & Search:** Click the button on a video card. On Home it appears in the thumbnail's upper-left corner; in Search it appears beside the card's menu.
+4. **Keyboard:** Press `Alt + W` (or your custom shortcut) for the current video or Short, or hover over a card in a feed and press the shortcut.
+5. **Undo:** After a confirmed save, click the same button or repeat the shortcut before the countdown ends. With the undo timer set to Off, only a brief confirmation is shown.
+6. **Settings:** Click the extension icon, then Settings to customize appearance, record a shortcut, adjust the undo timer, select button locations, or turn update notifications on or off. Changes save automatically.
+7. **Saved Videos:** Open the extension popup and click Watch Later to open your playlist on YouTube.
 
 ## Privacy & Security
 
@@ -43,7 +51,7 @@ This extension does **not**:
 - Communicate with external analytics or tracking servers
 - Request unnecessary host or identity permissions
 
-All actions execute locally in your browser.
+The extension runs in your browser and sends playlist changes to YouTube through your existing signed-in session. Preferences are stored locally and can sync through your browser's built-in settings storage. Content scripts run only on YouTube, and the only additional permission is `storage`.
 
 ## Feedback & Support
 
@@ -57,4 +65,4 @@ All actions execute locally in your browser.
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
-Made with ❤️ for YouTube lovers everywhere.
+Made with ❤️ for YouTube lovers everywhere from 🇩🇪 Germany.
