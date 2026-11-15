@@ -67,7 +67,7 @@ files.set('popup/popup.html', html);
 files.set('popup/demo-data.js', `window.WL_DEMO_DATA = ${JSON.stringify({ version: manifest.version, locale, messages })};\n`);
 files.set('popup/demo-adapter.js', await read(path.join(docs, 'scripts/popup-demo-adapter.js')));
 files.set('host.js', await read(path.join(docs, 'scripts/popup-demo-host.js')));
-files.set('popup/demo.css', '#settings-view { max-height: none; overflow: visible; }\n');
+files.set('popup/demo.css', 'body { max-width: 100vw; }\n#settings-view { max-height: none; overflow: visible; }\n');
 await fs.mkdir(output, { recursive: true });
 await fs.rm(output, { recursive: true });
 for (const [relative, content] of files) {

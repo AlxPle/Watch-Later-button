@@ -99,6 +99,48 @@ async function gotoWithConsent(page, url) {
 }
 
 
+describe('Chrome action popup', () => {
+  jest.setTimeout(30000);
+
+  test('keeps its width when Chrome sizes the popup and switches views', async () => {
+    const browser = await puppeteer.launch({
+      headless: true,
+      pipe: true,
+      enableExtensions: [extensionPath],
+      defaultViewport: null,
+      executablePath: findChromeExecutable()
+    });
+    try {
+      const target = await browser.waitForTarget(t => t.type() === 'service_worker' && t.url().startsWith('chrome-extension://'));
+      const worker = await target.worker();
+      for (let opening = 0; opening < 2; opening++) {
+        await worker.evaluate(() => chrome.action.openPopup());
+        const popupTarget = await browser.waitForTarget(t => t.url().endsWith('/popup/popup.html'));
+        const popup = await popupTarget.asPage();
+        await popup.waitForSelector('#ext-version');
+        expect(await popup.evaluate(() => innerWidth)).toBe(350);
+        expect(await popup.$eval('body', el => el.getBoundingClientRect().width)).toBe(350);
+        await popup.click('#open-settings-row-btn');
+        await popup.waitForFunction(() => {
+          const slider = document.querySelector('#views-slider');
+          const settings = document.querySelector('#settings-view');
+          return settings.classList.contains('is-active') && Math.abs(slider.clientHeight - settings.offsetHeight) <= 1;
+        });
+        await popup.waitForFunction(() => document.getAnimations().every(animation => animation.playState !== 'running'));
+        expect(await popup.$eval('body', el => el.getBoundingClientRect().width)).toBe(350);
+        expect(await popup.evaluate(() => innerHeight)).toBeLessThanOrEqual(600);
+        await popup.keyboard.press('Escape');
+        await popup.waitForFunction(() => document.querySelector('#main-view').classList.contains('is-active'));
+        expect(await popup.$eval('body', el => el.getBoundingClientRect().width)).toBe(350);
+        expect(await popup.evaluate(() => document.activeElement.id)).toBe('open-settings-row-btn');
+        await popup.close();
+      }
+    } finally {
+      await browser.close();
+    }
+  });
+});
+
 describe('Watch Later Button E2E Test', () => {
   let browser;
   let page;
