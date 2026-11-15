@@ -20,7 +20,7 @@ This repository contains two main parts:
 | **Node.js** | Extension builds & testing | Node.js 18+ or 20+ LTS (tested on Node 22/26) |
 | **npm** | Package management | npm 9+ |
 | **Google Chrome** | Local testing & debugging | Latest stable |
-| **Ruby & Bundler** *(optional)* | Only needed if editing `docs/` | Ruby 3.x, Bundler 2.x |
+| **Ruby & Bundler** | Full website builds, serving & regression checks; not needed for extension builds or standalone demo tests | Ruby 3.2 (matches deployment), Bundler 2.x |
 | **Git** | Source control | Any recent version |
 
 ---
@@ -142,42 +142,101 @@ Executes end-to-end integration tests using Puppeteer on YouTube video pages, Sh
 npm run test:e2e
 ```
 
-### Full CI Check
+### Extension CI Check
 
-Runs the complete build and validation suite:
+Builds both extension targets and runs content-script tests plus locale validation:
 
 ```bash
 npm run ci
 ```
 
+This does not build or test the website. Run the demo and full-site checks in section 5 when changing popup sources or website code.
+
 ---
 
 ## 5. Website & Docs Development (`watchlater.alxple.com`)
 
-The website in `docs/` is built using Jekyll. You only need this if you are updating documentation or blog posts.
+The website in `docs/` uses Jekyll and Tailwind. Its interactive settings demo reuses the real extension popup, so changes to `src/popup/` also require demo and website checks.
 
-### System dependencies for Jekyll:
+### System dependencies for Jekyll
 
 - **Ubuntu / Debian:** `sudo apt-get install ruby-full build-essential zlib1g-dev`
 - **Fedora / RHEL:** `sudo dnf install ruby-devel gcc gcc-c++ make openssl-devel`
 - **macOS:** `brew install ruby`
-- **Windows:** Install [Ruby+Devkit](https://rubyinstaller.org/)
+- **Windows:** Install [Ruby+Devkit](https://rubyinstaller.org/) and enable its PATH option, or use the RubyInstaller terminal.
 
-### Install gems & dependencies:
+Verify these commands in the same terminal used to run npm:
 
 ```bash
-cd docs
-gem install bundler jekyll
-bundle install
+ruby --version
+bundle --version
 ```
 
-### Run the site locally:
+If Bundler is missing, run `gem install bundler`. If Ruby is not on PATH, fix the terminal environment before attempting a full site build; successful Node-only checks do not validate Jekyll.
+
+### Install dependencies
+
+From the repository root:
 
 ```bash
+npm --prefix docs ci
+npm --prefix tests ci
 cd docs
-bundle exec jekyll serve
+bundle install
+cd ..
+```
+
+### Build and serve the site
+
+From the repository root:
+
+```bash
+npm --prefix docs run build
+npm --prefix docs run serve:dev
 # Site will be available at http://127.0.0.1:4000
 ```
+
+`build` regenerates assets before building Jekyll; `serve:dev` regenerates assets before starting Jekyll with local configuration. Re-run `serve:dev` after changing popup sources, locales, manifest metadata, or demo adapter scripts. Do not use bare `bundle exec jekyll serve` as the normal workflow: it skips asset generation and can serve stale or missing demo files.
+
+### Shared popup demo: source and isolation
+
+- Edit the UI only in `src/popup/popup.html`, `popup.css`, and `popup.js`; there is no separate website copy to maintain.
+- `docs/scripts/build-popup-demo.mjs` runs during `build:assets`, copies local popup dependencies, takes the version from `src/manifest.base.json`, translations from `src/_locales/`, and links from the site configuration. Missing resources, unconfigured links, and unresolved templates fail the build.
+- `docs/scripts/popup-demo-adapter.js` loads before the original popup script and implements only the popup's i18n, manifest, and asynchronous storage APIs. Local and sync storage are separate, memory-only stores, reset on reload; they do not access installed extensions, YouTube accounts, or real browser sync. YouTube interaction scripts are not copied.
+- `docs/scripts/popup-demo-host.js` connects the iframe to the external demo button through messages validated by sender, origin, type, and values. The iframe starts in settings, resizes automatically, supports Back navigation, and inherits the site theme through `color-scheme`.
+- Color, opacity, shortcut, undo duration, and the video-player toggle affect the demo button. Shorts, video-card, and update-notification toggles are preview controls only.
+- `docs/assets/popup-demo/` is generated and Git-ignored. Never edit or commit its contents; regenerate them from source.
+
+### Standalone demo checks (no Ruby required)
+
+After installing the npm dependencies above, run from the repository root:
+
+```bash
+npm run test:demo
+```
+
+This rebuilds website assets, checks generation against changed popup text/styles and invalid dependencies, and starts a temporary HTTP fixture for Chrome browser tests. It checks widths of 1440, 390, and 320 pixels in both themes, iframe sizing, focus, clipboard copying, shortcuts, undo timers, message validation, and storage reset/isolation. Screenshots are saved to the temporary directory printed by the test.
+
+For Firefox, regenerate assets first and supply the installed browser path (Git Bash example on Windows):
+
+```bash
+npm --prefix docs run build:assets
+TEST_BROWSER=firefox TEST_BROWSER_PATH="C:/Program Files/Mozilla Firefox/firefox.exe" node tests/check-popup-demo.cjs
+```
+
+In PowerShell, set `$env:TEST_BROWSER` and `$env:TEST_BROWSER_PATH` before running the same Node command. Adjust the executable path for your system.
+
+### Full website regression checks
+
+Keep `npm --prefix docs run serve:dev` running, then use a second terminal at the repository root:
+
+```bash
+npm run test:docs
+# Optional screenshots:
+node tests/check-docs-puppeteer.cjs --screenshots
+```
+
+The full-site suite checks the integrated demo, navigation, release pages, legal pages, keyboard access, and mobile overflow. Set `DOCS_URL` if the server uses another address; `TEST_BROWSER` and `TEST_BROWSER_PATH` also select Firefox for this suite. Standalone demo checks do not replace a fresh Jekyll build and this full-site test.
 
 ### Updating Chrome Web Store rating schema:
 
@@ -195,7 +254,9 @@ npm run build:seo
 
 ### Deployment:
 
-The Jekyll site is automatically deployed to `watchlater.alxple.com` on every push to `master`/`main` via [.github/workflows/deploy-docs.yml](.github/workflows/deploy-docs.yml).
+The Jekyll site is deployed via [.github/workflows/deploy-docs.yml](.github/workflows/deploy-docs.yml) on pushes to `master`/`main` that change `docs/**` or the workflow itself; it can also be started manually with `workflow_dispatch`.
+
+Changes only to `src/popup/`, its assets, locales, or manifest do **not** currently trigger website deployment, even though the demo depends on them. Regenerate and verify the demo after those changes; publishing requires a manual workflow run or an eligible docs change after the sources are pushed. Expanding deployment triggers requires a separate agreed workflow change.
 
 Required GitHub Repository Secrets:
 - `DEPLOY_HOST` — server hostname
@@ -219,8 +280,13 @@ Watch-Later-button/
 ├── docs/                       # Official Jekyll website (watchlater.alxple.com)
 │   ├── _data/store_rating.json # CWS cached rating data
 │   ├── _posts/                 # Release notes & articles
+│   ├── assets/popup-demo/      # Generated shared popup demo (.gitignore)
+│   ├── scripts/
+│   │   ├── build-popup-demo.mjs # Validated popup resource generation
+│   │   ├── popup-demo-adapter.js # Memory-only extension API adapter
+│   │   └── popup-demo-host.js  # Validated iframe messages & external demo button
 │   ├── Gemfile                 # Ruby gem dependencies
-│   └── package.json            # SEO & rating automation scripts
+│   └── package.json            # Site/assets builds, local serving & rating automation
 ├── scripts/
 │   ├── build.mjs               # Zero-dependency multi-target builder (Chrome + Firefox)
 │   ├── devtools-relay.mjs      # Local DevTools capture relay
@@ -252,6 +318,9 @@ Watch-Later-button/
 │   └── watch-later-firefox-v*.zip
 ├── tests/                      # AUTOMATED TEST SUITE
 │   ├── check-locales-puppeteer.js # 26-language verification, 350px width & inner clipping
+│   ├── build-popup-demo.test.cjs # Demo source updates & invalid dependency checks
+│   ├── check-popup-demo.cjs    # Standalone Chrome/Firefox popup integration fixture
+│   ├── check-docs-puppeteer.cjs # Full Jekyll site browser regressions
 │   ├── e2e.test.js             # Live YouTube integration tests (Watch, Shorts, Cards)
 │   └── package.json            # Jest and Puppeteer dependencies
 ├── .gitignore                  # Git ignore rules (includes dist/ and *.zip)

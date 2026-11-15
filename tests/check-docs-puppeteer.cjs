@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const puppeteer = require('puppeteer');
+const { checkPopupDemo } = require('./check-popup-demo.cjs');
 
 const baseUrl = process.env.DOCS_URL || 'http://127.0.0.1:4000/';
 const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/manifest.base.json'), 'utf8'));
@@ -73,105 +74,17 @@ async function checkHome(page, viewport, label) {
   assert.equal(browserBadges.length, 3);
   assert.ok(browserBadges.every(badge => Math.abs(badge.top - browserBadges[0].top) < 1));
   assert.ok(browserBadges.every(badge => badge.left >= 0 && badge.right <= viewport.width));
-  const hiddenDisplays = await page.$$eval('#demo-ext-popup [hidden]', elements =>
-    elements.map(element => getComputedStyle(element).display));
-  assert.ok(hiddenDisplays.every(display => display === 'none'), 'Hidden popup panels are visible');
   assert.equal(await page.$eval('#demo-yt-toast', element => getComputedStyle(element).visibility), 'hidden');
   assert.equal(await page.$eval('#demo-wl-btn', element => element.getBoundingClientRect().width), 40);
   const stats = await page.$eval('.grid[class~="sm:grid-cols-3"]', element =>
     [...element.children].map(child => ({ align: getComputedStyle(child).alignItems, text: getComputedStyle(child).textAlign })));
   assert.ok(stats.every(stat => stat.align === 'center' && stat.text === 'center'));
-  await screenshot(page, `${label}-home`);
-  await screenshot(page, `${label}-demo`, '#demo');
-  await screenshot(page, `${label}-stats`, 'section:has(.grid[class~="sm:grid-cols-3"])');
-
-  for (const selector of ['[data-theme-toggle]', '#hero-primary-cta', '#demo-wl-btn', '#demo-popup-color-hex', '#demo-popup-opacity-slider', '#demo-popup-shortcut-btn']) {
+  for (const selector of ['[data-theme-toggle]', '#hero-primary-cta', '#demo-wl-btn']) {
     await checkFocus(page, selector);
   }
-  await page.click('#demo-wl-btn');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.classList.contains('is-saved')), true);
-  await page.waitForSelector('#demo-undo-btn', { visible: true });
-  await screenshot(page, `${label}-saved`, '.yt-mockup');
-  await page.click('#demo-undo-btn');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.classList.contains('is-saved')), false);
-
-  await page.focus('#demo-wl-btn');
-  await page.keyboard.down('Alt');
-  await page.keyboard.down('w');
-  await page.keyboard.down('w');
-  await page.keyboard.up('w');
-  await page.keyboard.up('Alt');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.classList.contains('is-saved')), true);
-  await page.click('#demo-undo-btn');
-  await page.focus('#demo-popup-color-hex');
-  await page.keyboard.down('Alt');
-  await page.keyboard.press('w');
-  await page.keyboard.up('Alt');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.classList.contains('is-saved')), false);
-
-  await page.click('#demo-popup-color-hex', { clickCount: 3 });
-  await page.type('#demo-popup-color-hex', '#336699');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.style.getPropertyValue('--demo-color')), '#336699');
-  await page.focus('#demo-popup-opacity-slider');
-  await page.keyboard.press('Home');
-  assert.equal(await page.$eval('#demo-popup-opacity-val', element => element.textContent), '0%');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.style.getPropertyValue('--demo-opacity')), '0');
-  await page.click('#demo-popup-color-hex', { clickCount: 3 });
-  await page.type('#demo-popup-color-hex', '#invalid');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.style.getPropertyValue('--demo-color')), '#336699');
-
-  await page.click('[data-seconds="custom"]');
-  await page.waitForSelector('#demo-popup-custom-undo', { visible: true });
-  await page.click('#demo-custom-undo-input', { clickCount: 3 });
-  await page.type('#demo-custom-undo-input', '60');
-  await page.click('#demo-undo-step-up');
-  assert.equal(await page.$eval('#demo-custom-undo-input', element => element.value), '60');
-  await page.click('#demo-custom-undo-input', { clickCount: 3 });
-  await page.type('#demo-custom-undo-input', '1');
-  await page.click('#demo-undo-step-down');
-  assert.equal(await page.$eval('#demo-custom-undo-input', element => element.value), '1');
-  await page.click('#demo-wl-btn');
-  await page.focus('#demo-undo-btn');
-  await page.waitForFunction(() => !document.querySelector('#demo-wl-btn').classList.contains('is-undo-active'));
-  assert.equal(await page.$eval('#demo-yt-toast', element => getComputedStyle(element).visibility), 'hidden');
-  assert.equal(await page.evaluate(() => document.activeElement.id), 'demo-wl-btn');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.classList.contains('is-saved')), false);
-  await page.click('#demo-wl-btn');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.classList.contains('is-undo-active')), true);
-  await page.click('#demo-undo-btn');
-
-  await page.click('#demo-popup-reset-btn');
-  assert.equal(await page.$eval('#demo-popup-opacity-val', element => element.textContent), '100%');
-  assert.equal(await page.$eval('#demo-popup-custom-undo', element => getComputedStyle(element).display), 'none');
-  await page.click('[data-seconds="0"]');
-  await page.click('#demo-wl-btn');
-  assert.equal(await page.$eval('#demo-undo-btn', element => getComputedStyle(element).display), 'none');
-  await page.click('#demo-wl-btn');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.classList.contains('is-saved')), true);
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.classList.contains('is-undo-active')), false);
-  await page.waitForFunction(() => !document.querySelector('#demo-wl-btn').classList.contains('is-saved'));
-  await page.click('#demo-wl-btn');
-  await page.click('#demo-popup-reset-btn');
-  await page.click('[data-seconds="custom"]');
-  await page.$eval('#demo-custom-undo-input', element => {
-    element.value = '2';
-    element.dispatchEvent(new Event('input', { bubbles: true }));
-  });
-  await page.click('#demo-wl-btn');
-  await page.waitForFunction(() => document.querySelector('#demo-undo-timer').textContent === '1');
-  assert.equal(await page.$eval('#demo-wl-btn', element => element.classList.contains('is-undo-active')), true);
-  assert.equal(await page.$eval('#demo-yt-toast', element => getComputedStyle(element).visibility), 'visible');
-  assert.notEqual(await page.$eval('#demo-undo-btn', element => getComputedStyle(element).display), 'none');
-  await page.click('#demo-popup-reset-btn');
-
-  await page.$eval('#demo-back-btn', element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
-  await screenshot(page, `${label}-before-back`);
-  await page.click('#demo-back-btn');
-  assert.equal(await page.$eval('#demo-settings-view', element => getComputedStyle(element).display), 'none');
-  assert.equal(await page.evaluate(() => document.activeElement.id), 'demo-open-settings-btn');
-  await page.click('#demo-open-settings-btn');
-  assert.equal(await page.evaluate(() => document.activeElement.id), 'demo-back-btn');
-  assert.equal(await page.$eval('#demo-popup-header', element => getComputedStyle(element).display), 'none');
+  await screenshot(page, `${label}-home`);
+  await screenshot(page, `${label}-demo`, '#demo');
+  await checkPopupDemo(page, label, screenshot);
   await page.click('#review-dropdown-btn');
   await page.focus('#review-dropdown-menu a');
   await page.keyboard.press('Escape');
@@ -249,7 +162,7 @@ async function checkLegal(page, label) {
 }
 
 async function main() {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: true, browser: process.env.TEST_BROWSER || 'chrome', executablePath: process.env.TEST_BROWSER_PATH || undefined });
   try {
     let releaseUrls;
     for (const viewport of viewports) {
@@ -262,7 +175,9 @@ async function main() {
           if (response.url().startsWith(baseUrl) && response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
         });
         await page.setViewport(viewport);
-        await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: theme }, { name: 'prefers-reduced-motion', value: 'reduce' }]);
+        await page.evaluateOnNewDocument(theme => {
+          if (!localStorage.getItem('wl-docs-theme')) localStorage.setItem('wl-docs-theme', theme);
+        }, theme);
         const label = `${viewport.width}-${theme}`;
         await checkHome(page, viewport, label);
         await page.evaluate(theme => localStorage.setItem('wl-docs-theme', theme), theme);
@@ -270,7 +185,7 @@ async function main() {
         await checkLegal(page, label);
         assert.deepEqual(errors, [], label);
         await context.close();
-        console.log(`PASS ${label}: layout, keyboard, sandbox, archive, legal pages`);
+        console.log(`PASS ${label}: layout, keyboard, isolated demo, archive, legal pages`);
       }
     }
     const page = await browser.newPage();

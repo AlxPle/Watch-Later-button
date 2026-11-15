@@ -59,16 +59,23 @@ if (typeof ResizeObserver !== "undefined" && viewsSlider) {
   resizeObserver.observe(settingsView);
 }
 
-requestAnimationFrame(() => syncSliderHeight(mainView));
+requestAnimationFrame(() => syncSliderHeight(settingsView.classList.contains("is-active") ? settingsView : mainView));
 
-document.getElementById("open-settings-row-btn")?.addEventListener("click", openSettings);
-document.getElementById("back-to-main-btn")?.addEventListener("click", closeSettings);
+document.getElementById("open-settings-row-btn")?.addEventListener("click", () => {
+  openSettings();
+  document.getElementById("back-to-main-btn").focus({ preventScroll: true });
+});
+document.getElementById("back-to-main-btn")?.addEventListener("click", () => {
+  closeSettings();
+  document.getElementById("open-settings-row-btn").focus({ preventScroll: true });
+});
 
 // Возврат на главный экран по клавише Esc
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !isRecordingShortcut && settingsView.classList.contains("is-active")) {
     e.preventDefault();
     closeSettings();
+    document.getElementById("open-settings-row-btn").focus({ preventScroll: true });
   }
 });
 
@@ -326,6 +333,7 @@ function isReservedBrowserShortcut(e) {
 function handleKeyRecord(e) {
   e.preventDefault();
   e.stopPropagation();
+  if (e.repeat || e.isComposing) return;
 
   if (e.key === "Escape") {
     window.removeEventListener("keydown", handleKeyRecord, true);
@@ -426,7 +434,7 @@ if (previewBtn) {
   };
 
   const togglePreview = () => {
-    if (previewBtn.classList.contains("is-added")) {
+    if (previewBtn.classList.contains("is-undo-active")) {
       resetPreviewState();
       return;
     }
@@ -449,7 +457,7 @@ if (previewBtn) {
   previewBtn.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      togglePreview();
+      if (!e.repeat && !e.isComposing) togglePreview();
     }
   });
 }

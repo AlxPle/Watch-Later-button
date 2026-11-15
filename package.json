@@ -10,6 +10,7 @@
     "test:e2e": "npm --prefix tests test -- e2e.test.js",
     "test:content": "npm --prefix tests run test:content",
     "test:docs": "node tests/check-docs-puppeteer.cjs",
+    "test:demo": "npm --prefix docs run build:assets && node --test tests/build-popup-demo.test.cjs && node tests/check-popup-demo.cjs",
     "ci": "npm run build && npm run test:content && npm run test:locales",
     "chrome:debug": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-chrome-debug.ps1",
     "chrome:debug:check": "curl -fsS http://127.0.0.1:9222/json/version",

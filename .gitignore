@@ -12,6 +12,7 @@ _site/
 .jekyll-metadata
 docs/_data/ui_icons.json
 docs/_data/extension.json
+docs/assets/popup-demo/
 
 # Local Chrome DevTools relay artifacts
 .devtools-relay/
